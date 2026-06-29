@@ -32,7 +32,7 @@ Edits in these source files **are** the source of truth — nothing auto-generat
 **Figma:** `33:195`  
 **Primary CSS:** `css/complexity-start.css` (`v=42`) · nav start layout also depends on `css/clarity-transition.css` (`v=14`)  
 **Signed off:** 27 Jun 2026 (v1 `413a46b`) · **re-signed 27 Jun 2026 (v2)**  
-**Git:** v2 pending commit · tag target `journey/complexity-start-v2`  
+**Git:** `593143b` · tag `journey/complexity-start-v2`  
 **Status:** **LOCKED** — do not rework layout, spacing, or chrome without explicit ask.
 
 ### Must pass (regression checklist)
