@@ -1,0 +1,37 @@
+---
+description: Protect signed-off Clarity journey milestones; avoid regressions on parked work
+globs: directions/04-clarity/**
+alwaysApply: false
+---
+
+# Clarity journey — parked milestones
+
+Read `directions/04-clarity/MILESTONES.md` before editing files in this folder.
+
+## Locked until user explicitly asks otherwise
+
+- **Milestone 1 (Complexity start):** `css/complexity-start.css`, starting-state markup in `journey.html`
+- **Milestone 2 (Resting):** `css/clarity-rest.css`, resting markup in `journey.html`
+
+Do not refactor, restyle, or “improve” parked milestones while working on transitions or other features.
+
+## Active / safe to change
+
+- `css/clarity-transition.css` — slider-driven motion only; guard with `:not(.is-resting)` where needed
+- `js/clarity-journey.js` — slider, pop-outs, resting toggle
+
+## When user says “park it” / “sign off” / “keep that”
+
+1. Update `MILESTONES.md` with status and date.
+2. Remind user to commit (or commit if they ask).
+3. Do not revisit parked CSS unless they explicitly request a change to that milestone.
+
+## Regression checks before ending a session
+
+On `journey.html?start=1`: urgency bar, dots ~0.26, slider draggable, Slide me position, portrait on HR.
+
+On `journey.html?resting=1`: resting layout unchanged from signed-off spec.
+
+## Common false alarm
+
+Missing urgency bar usually means **resting state** persisted in `localStorage` (`portfolio-clarity-resting`). Use `?start=1` to reset — not a CSS removal.

@@ -1,0 +1,277 @@
+/* Clarity resting state — Figma 33:259
+   Applied when body.is-resting (slider at max, focus/hover off) */
+
+body.complexity-start.is-resting {
+  --chaos: 0;
+  --width-site: 980px;
+  padding-top: 0;
+}
+
+/* ——— Chrome: hide chaos, reset fixed header stack ——— */
+body.complexity-start.is-resting .chaos-layer {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+body.complexity-start.is-resting .cx-page {
+  padding-top: 0;
+}
+
+body.complexity-start.is-resting .cx-header.site-header {
+  position: sticky;
+  top: 0;
+  box-shadow: none;
+}
+
+body.complexity-start.is-resting .cx-logo__tm {
+  display: none;
+}
+
+body.complexity-start.is-resting .cx-logo__name {
+  font-size: 1.111rem;
+}
+
+body.complexity-start.is-resting .cx-nav--complex {
+  display: none;
+}
+
+body.complexity-start.is-resting .cx-nav--clarity {
+  display: flex;
+}
+
+/* ——— Hero ——— */
+body.complexity-start.is-resting .cx-hero {
+  border-bottom: none;
+  padding-bottom: 1.5rem;
+}
+
+body.complexity-start.is-resting .cx-hero__bg,
+body.complexity-start.is-resting .cx-hero__portrait,
+body.complexity-start.is-resting .cx-hero__venn,
+body.complexity-start.is-resting .cx-hero__eyebrow,
+body.complexity-start.is-resting .cx-hero__title-complex,
+body.complexity-start.is-resting .cx-slider__heading,
+body.complexity-start.is-resting .cx-slider {
+  display: none;
+}
+
+body.complexity-start.is-resting .cx-hero__inner {
+  align-items: stretch;
+  gap: 0;
+  padding-top: 3.5rem;
+  padding-bottom: 0;
+  min-height: auto;
+}
+
+body.complexity-start.is-resting .cx-hero__content {
+  justify-content: flex-start;
+  gap: 4rem;
+  padding-bottom: 0;
+  min-height: auto;
+}
+
+body.complexity-start.is-resting .cx-hero__headline-row {
+  display: block;
+}
+
+body.complexity-start.is-resting .cx-hero__copy {
+  flex: none;
+  max-width: none;
+}
+
+body.complexity-start.is-resting .cx-hero__title-clarity {
+  display: block;
+  margin: 0;
+  max-width: 42.167rem;
+  font-family: var(--font-serif);
+  font-size: clamp(2.75rem, 6.5vw, 5.333rem);
+  font-weight: 500;
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  color: var(--color-ink);
+}
+
+body.complexity-start.is-resting .cx-hero__slider-block {
+  margin-top: 0;
+}
+
+/* ——— Rest panel (replaces slider) ——— */
+.cx-rest-panel {
+  display: none;
+}
+
+body.complexity-start.is-resting .cx-rest-panel {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1.5rem;
+  width: 100%;
+  padding: 0.6rem 1rem 0.7rem;
+  background: var(--color-paper-warm);
+  border: 1px solid var(--color-rule);
+}
+
+.cx-rest-panel__cta {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.35rem 0.75rem;
+  background: var(--color-rule);
+  font-family: var(--font-sans);
+  font-size: 0.778rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--color-ink);
+  white-space: nowrap;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.cx-rest-panel__cta:hover {
+  background: var(--color-ink);
+  color: var(--color-paper);
+}
+
+.cx-rest-panel__restore {
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: none;
+  font-family: var(--font-sans);
+  font-size: 0.722rem;
+  font-weight: 400;
+  color: var(--color-ink-faint);
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.cx-rest-panel__restore:hover {
+  color: var(--color-ink-muted);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* ——— Hero rule ——— */
+.cx-hero-rule {
+  display: none;
+  margin: 0;
+  border: none;
+  border-top: 1px solid var(--color-rule);
+}
+
+body.complexity-start.is-resting .cx-hero-rule {
+  display: block;
+}
+
+/* ——— Complexity-only sections ——— */
+body.complexity-start.is-resting .cx-complex-only {
+  display: none;
+}
+
+/* ——— Resting selected work list ——— */
+.cx-work-rest {
+  display: none;
+}
+
+body.complexity-start.is-resting .cx-work-rest {
+  display: block;
+  padding-block: 3.556rem;
+}
+
+.cx-work-rest__eyebrow {
+  margin: 0 0 2rem;
+  font-family: var(--font-sans);
+  font-size: 0.667rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-ink-faint);
+}
+
+.cx-work-rest__list {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.cx-work-rest__item {
+  margin: 0;
+}
+
+.cx-work-rest__link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+
+.cx-work-rest__link:hover .cx-work-rest__title {
+  color: var(--color-accent);
+}
+
+.cx-work-rest__title {
+  margin: 0 0 0.444rem;
+  font-family: var(--font-serif);
+  font-size: 1.333rem;
+  font-weight: 500;
+  line-height: 1.25;
+  color: var(--color-ink);
+  transition: color 0.2s ease;
+}
+
+.cx-work-rest__thesis {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--color-ink-muted);
+}
+
+/* ——— Footer ——— */
+body.complexity-start.is-resting .cx-footer__complex {
+  display: none;
+}
+
+body.complexity-start.is-resting .cx-footer__clarity {
+  display: flex;
+}
+
+.cx-footer__clarity {
+  display: none;
+}
+
+/* ——— Default: hide clarity-only elements ——— */
+.cx-hero__title-clarity,
+.cx-nav--clarity {
+  display: none;
+}
+
+/* ——— Responsive ——— */
+@media (max-width: 768px) {
+  body.complexity-start.is-resting .cx-hero__inner {
+    padding-top: 3rem;
+    min-height: auto;
+  }
+
+  body.complexity-start.is-resting .cx-hero__content {
+    min-height: auto;
+  }
+
+  body.complexity-start.is-resting .cx-hero__title-clarity {
+    font-size: clamp(2.25rem, 10vw, 3.5rem);
+  }
+
+  body.complexity-start.is-resting .cx-rest-panel {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1rem;
+  }
+
+  body.complexity-start.is-resting .cx-rest-panel__cta {
+    justify-content: center;
+  }
+}

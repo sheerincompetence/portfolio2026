@@ -1,0 +1,259 @@
+/* Clarity journey transitions — driven by --u (0 = complexity, 1 = clarity)
+   Active while dragging; resting state handled in clarity-rest.css */
+
+:root {
+  --u: 0;
+  --chaos: calc(1 - var(--u));
+}
+
+body.clarity-journey:not(.is-resting) {
+  --chaos: calc(1 - var(--u));
+  --width-site: calc(1280px - var(--u) * 300px);
+}
+
+body.clarity-journey:not(.is-resting) .cx-nav--complex.is-hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+body.clarity-journey:not(.is-resting):not(.urgency-popped) {
+  padding-top: var(--cx-urgency-height);
+}
+
+body.clarity-journey.urgency-popped:not(.is-resting) {
+  padding-top: 0;
+}
+
+body.clarity-journey:not(.is-resting) .cx-page {
+  padding-top: calc(var(--cx-top-chrome) * clamp(0, 1 - var(--u) * 1.15, 1));
+}
+
+body.clarity-journey:not(.is-resting):not(.urgency-popped) .cx-header.site-header {
+  top: var(--cx-urgency-height);
+}
+
+body.clarity-journey.urgency-popped:not(.is-resting) .cx-header.site-header {
+  top: 0;
+}
+
+/* ——— Logo ——— */
+body.clarity-journey:not(.is-resting) .cx-logo__name {
+  font-size: calc(1.778rem - var(--u) * 0.667rem);
+}
+
+body.clarity-journey:not(.is-resting) .cx-logo__tm {
+  opacity: calc(1 - var(--u) * 2);
+}
+
+/* ——— Nav crossfade ——— */
+body.clarity-journey:not(.is-resting) .cx-nav--complex {
+  opacity: calc(clamp(0, 1 - (var(--u) - 0.35) / 0.25, 1));
+  pointer-events: calc((1 - clamp(0, (var(--u) - 0.45) / 0.1, 1)) * 1);
+}
+
+body.clarity-journey:not(.is-resting) .cx-nav--clarity {
+  display: flex;
+  opacity: calc(clamp(0, (var(--u) - 0.45) / 0.25, 1));
+  pointer-events: none;
+}
+
+body.clarity-journey:not(.is-resting).nav-clarity .cx-nav--clarity {
+  pointer-events: auto;
+}
+
+/* ——— Hero ——— */
+body.clarity-journey:not(.is-resting) .cx-hero__bg img {
+  opacity: calc(0.26 * (1 - var(--u) * 0.85));
+}
+
+body.clarity-journey:not(.is-resting) .cx-hero__slider-block {
+  position: relative;
+  z-index: 2;
+}
+
+body.clarity-journey:not(.is-resting) .cx-hero__portrait {
+  opacity: calc(1 - var(--u));
+  width: calc(20.056rem * (1 - var(--u) * 0.92));
+  margin-right: calc(-4rem * var(--u) * 0.5);
+  margin-bottom: calc(-1.5rem * (1 - var(--u)));
+  align-self: flex-end;
+  overflow: hidden;
+  pointer-events: calc((1 - var(--u)) * 1);
+}
+
+body.clarity-journey:not(.is-resting) .cx-hero__venn {
+  opacity: calc(1 - var(--u) * 1.1);
+  transform: scale(calc(1 - var(--u) * 0.12));
+}
+
+body.clarity-journey:not(.is-resting) .cx-hero__eyebrow {
+  opacity: calc(1 - var(--u) * 1.4);
+  max-height: calc((1 - var(--u)) * 3rem);
+  overflow: hidden;
+}
+
+body.clarity-journey:not(.is-resting) .cx-hero__title {
+  display: grid;
+  align-items: start;
+}
+
+body.clarity-journey:not(.is-resting) .cx-hero__title-complex,
+body.clarity-journey:not(.is-resting) .cx-hero__title-clarity {
+  grid-area: 1 / 1;
+}
+
+body.clarity-journey:not(.is-resting) .cx-hero__title-complex {
+  opacity: calc(1 - clamp(0, (var(--u) - 0.05) / 0.45, 1));
+}
+
+body.clarity-journey:not(.is-resting) .cx-hero__title-clarity {
+  display: block;
+  opacity: calc(clamp(0, (var(--u) - 0.35) / 0.5, 1));
+  max-width: 42.167rem;
+  font-family: var(--font-serif);
+  font-size: clamp(1.333rem, calc(1.333rem + var(--u) * 4rem), 5.333rem);
+  font-weight: 500;
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  color: var(--color-ink);
+}
+
+body.clarity-journey:not(.is-resting) .cx-hero__headline-row {
+  align-items: flex-start;
+}
+
+body.clarity-journey:not(.is-resting) .cx-hero__inner {
+  padding-top: calc(1.75rem + var(--u) * 1.75rem);
+  padding-bottom: calc(1.5rem + var(--u) * 0.5rem);
+  align-items: flex-end;
+  min-height: auto;
+}
+
+body.clarity-journey:not(.is-resting) .cx-hero__content {
+  justify-content: flex-start;
+  gap: calc(1.25rem + var(--u) * 2.75rem);
+  padding-bottom: 0;
+  min-height: auto;
+}
+
+body.clarity-journey:not(.is-resting) .cx-slider__heading {
+  opacity: calc(1 - var(--u) * 3);
+  pointer-events: calc((1 - var(--u) * 2) * 1);
+}
+
+body.clarity-journey:not(.is-resting) .cx-slider__here {
+  opacity: calc(1 - var(--u) * 1.5);
+}
+
+body.clarity-journey:not(.is-resting) .cx-slider__label--from {
+  opacity: calc(1 - var(--u) * 0.6);
+}
+
+/* Hero HR: complexity-start.css border-bottom (non-resting) / cx-hero-rule (resting) — no fade */
+
+/* ——— Complexity bands ——— */
+body.clarity-journey:not(.is-resting) .cx-complex-only {
+  display: block;
+  opacity: calc(clamp(0, 1 - (var(--u) - 0.08) / 0.35, 1));
+  max-height: calc(clamp(0, 1 - (var(--u) - 0.12) / 0.4, 1) * 80rem);
+  overflow: hidden;
+  pointer-events: calc((1 - clamp(0, (var(--u) - 0.35) / 0.15, 1)) * 1);
+}
+
+body.clarity-journey:not(.is-resting) .cx-ai-ticker {
+  max-height: calc(clamp(0, 1 - var(--u) * 1.8, 1) * 8rem);
+}
+
+body.clarity-journey:not(.is-resting) .cx-pillars {
+  max-height: calc(clamp(0, 1 - (var(--u) - 0.1) * 1.4, 1) * 12rem);
+}
+
+body.clarity-journey:not(.is-resting) .cx-work.cx-complex-only {
+  max-height: calc(clamp(0, 1 - (var(--u) - 0.15) * 1.1, 1) * 120rem);
+}
+
+body.clarity-journey:not(.is-resting) .cx-work.cx-complex-only .cx-work-card__image {
+  opacity: calc(clamp(0, 1 - (var(--u) - 0.2) * 1.2, 1));
+  max-height: calc(2rem + clamp(0, 1 - (var(--u) - 0.15) * 1.1, 1) * 14rem);
+}
+
+/* ——— Rest work list (preview while dragging) ——— */
+body.clarity-journey:not(.is-resting) .cx-work-rest {
+  display: block;
+  opacity: calc(clamp(0, (var(--u) - 0.45) / 0.4, 1));
+  max-height: calc(clamp(0, (var(--u) - 0.4) / 0.45, 1) * 60rem);
+  overflow: hidden;
+  padding-block: calc(var(--u) * 3.556rem);
+  pointer-events: calc((clamp(0, (var(--u) - 0.7) / 0.2, 1)) * 1);
+}
+
+/* ——— Footer ——— */
+body.clarity-journey:not(.is-resting) .cx-footer__complex {
+  display: flex;
+  opacity: calc(1 - clamp(0, (var(--u) - 0.55) / 0.25, 1));
+}
+
+body.clarity-journey:not(.is-resting) .cx-footer__clarity {
+  display: flex;
+  opacity: calc(clamp(0, (var(--u) - 0.55) / 0.25, 1));
+  pointer-events: calc((clamp(0, (var(--u) - 0.65) / 0.15, 1)) * 1);
+}
+
+body.clarity-journey:not(.is-resting) .cx-footer {
+  display: grid;
+}
+
+body.clarity-journey:not(.is-resting) .cx-footer__inner {
+  grid-area: 1 / 1;
+}
+
+/* ——— Chaos: pop, not fade ——— */
+body.clarity-journey .chaos-layer {
+  opacity: 1;
+  pointer-events: none;
+}
+
+body.clarity-journey .chaos-layer > * {
+  transition: none;
+}
+
+.chaos-pop-out {
+  animation: cx-chaos-pop-vanish 0.38s cubic-bezier(0.55, 0, 1, 0.45) forwards;
+  pointer-events: none !important;
+}
+
+.chaos-slide-off {
+  animation: cx-chaos-slide-off 0.55s cubic-bezier(0.55, 0, 1, 0.45) forwards;
+  pointer-events: none !important;
+}
+
+@keyframes cx-chaos-pop-vanish {
+  0%   { transform: scale(1); opacity: 1; }
+  12%  { transform: scale(1) translate(1px, -1px); opacity: 1; }
+  24%  { transform: scale(1) translate(-1px, 1px); opacity: 1; }
+  36%  { transform: scale(1) translate(1px, 0); opacity: 1; }
+  48%  { transform: scale(1.06); opacity: 1; }
+  100% { transform: scale(0); opacity: 0; }
+}
+
+@keyframes cx-chaos-slide-off {
+  0%   { transform: translateY(0); opacity: 1; }
+  100% { transform: translateY(-120%); opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body.clarity-journey:not(.is-resting) .cx-hero__portrait,
+  body.clarity-journey:not(.is-resting) .cx-hero__venn,
+  body.clarity-journey:not(.is-resting) .cx-complex-only,
+  body.clarity-journey:not(.is-resting) .cx-work-rest {
+    transition: none;
+  }
+
+  .chaos-pop-out,
+  .chaos-slide-off {
+    animation: none;
+    opacity: 0 !important;
+    pointer-events: none !important;
+  }
+}
