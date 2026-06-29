@@ -28,7 +28,7 @@ Do not refactor, restyle, or “improve” parked milestones while working on tr
 
 ## Regression checks before ending a session
 
-On `journey.html?start=1`: urgency bar, dots ~0.26, slider draggable, Slide me position, portrait on HR.
+On `journey.html?start=1`: urgency bar (10px pad), dots ~0.26, slider draggable, Slide me position, portrait on HR, social proof at 8px/1.25rem, nav 7-wide on one row.
 
 On `journey.html?resting=1`: resting layout unchanged from signed-off spec.
 

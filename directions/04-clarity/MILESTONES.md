@@ -27,24 +27,24 @@ Edits in these source files **are** the source of truth — nothing auto-generat
 
 ---
 
-## Milestone 1: Complexity starting state — **SIGNED OFF**
+## Milestone 1: Complexity starting state — **SIGNED OFF (v2)**
 
 **Figma:** `33:195`  
-**Primary CSS:** `css/complexity-start.css` (`v=28`)  
-**Signed off:** 27 Jun 2026  
-**Git:** `413a46b` · tag `journey/complexity-start-v1`  
+**Primary CSS:** `css/complexity-start.css` (`v=42`) · nav start layout also depends on `css/clarity-transition.css` (`v=14`)  
+**Signed off:** 27 Jun 2026 (v1 `413a46b`) · **re-signed 27 Jun 2026 (v2)**  
+**Git:** v2 pending commit · tag target `journey/complexity-start-v2`  
 **Status:** **LOCKED** — do not rework layout, spacing, or chrome without explicit ask.
 
 ### Must pass (regression checklist)
 
-- [ ] Orange **urgency bar** visible at top on `?start=1`
-- [ ] Fixed header below urgency; full complex nav + ™ logo; wrapped nav row gap **0.5rem**
-- [ ] Hero: portrait on HR (inner `padding-bottom: 1.5rem` + portrait `margin-bottom: -1.5rem`), dots bg (**0.26** opacity), emoji eyebrow, complexity headline, venn
-- [ ] **Slide me →** left of slider panel (outside warm box); **1.5rem** gap slider → HR
+- [ ] Orange **urgency bar** visible at top on `?start=1`; **10px** vertical padding (`padding-block`)
+- [ ] Fixed header below urgency; full complex nav (7 links on one row at 1280px); ™ logo; wrapped row gap **0.5rem**; clarity nav hidden/out of flow at start (no width steal)
+- [ ] Hero: **no extra top padding** (`--cx-hero-pad-top: 0`); portrait on HR (inner `padding-bottom: 1.5rem` + portrait `margin-bottom: -1.5rem`); dots bg (**0.26** opacity); emoji eyebrow; complexity headline; venn
+- [ ] **Slide me →** left of slider panel (outside warm box); **~1.5rem** gap headline block → slider (`1.25rem` content gap + `0.25rem` slider-block margin); **1.5rem** gap slider → HR
 - [ ] Slider labels: Complexity / **Clarity** (not Understanding)
 - [ ] Hero HR (`border-bottom`) visible; AI ticker; five pillars; work cards; approach; limited offer; method/origins
 - [ ] Approach quote: accent border on `.cx-quote p` only (no blockquote outer border)
-- [ ] Chaos widgets positioned per `complexity-start.css`
+- [ ] Chaos widgets: social proof **8px** from top, **1.25rem** from left (aligned with cookie/quote stack); stack-left at **1.25rem**
 
 ---
 

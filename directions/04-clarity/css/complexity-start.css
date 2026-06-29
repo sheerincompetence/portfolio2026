@@ -6,16 +6,21 @@ body.complexity-start {
   padding-top: 0;
   --chaos: 1;
   --ink-muted: var(--color-ink-muted);
-  --cx-urgency-height: calc(0.5rem * 2 + 0.7rem * 1.25);
+  --cx-urgency-height: calc(20px + 0.7rem * 1.25);
   --cx-header-height: calc(1.333rem * 2 + 2.75rem);
   --cx-top-chrome: calc(var(--cx-urgency-height) + var(--cx-header-height));
   --cx-header-bottom: var(--cx-top-chrome);
   --width-site: 1280px;
+  --cx-hero-pad-top: 0;
+  /* Pulls HR + portrait up; does not change slider-to-HR padding (1.5rem) */
+  --cx-hero-lift: 70px;
 }
 
 body.complexity-start .chaos-urgency {
-  height: var(--cx-urgency-height);
-  padding-block: 0;
+  height: auto;
+  min-height: var(--cx-urgency-height);
+  padding-block: 10px;
+  padding-inline: 2rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -26,19 +31,19 @@ body.complexity-start .chaos-urgency {
 
 /* Chaos widget placement overrides for this page */
 body.complexity-start .chaos-social {
-  top: var(--cx-header-bottom);
-  right: 1.25rem;
-  left: auto;
+  top: 8px;
+  left: 1.25rem;
+  right: auto;
   max-width: 15rem;
   z-index: 110;
-  transform: translateY(-50%);
+  transform: none;
   animation: none;
 }
 
 body.complexity-start .chaos-stack-left {
   position: fixed;
   bottom: 0.75rem;
-  left: 1rem;
+  left: 1.25rem;
   z-index: 96;
   display: flex;
   flex-direction: column;
@@ -137,7 +142,7 @@ body.complexity-start .cx-header.site-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 2rem;
+  gap: 1rem;
 }
 
 .cx-logo {
@@ -169,10 +174,12 @@ body.complexity-start .cx-header.site-header {
 
 .cx-nav {
   display: flex;
+  flex: 1 1 auto;
   flex-wrap: wrap;
   align-items: center;
   justify-content: flex-end;
-  gap: 0.5rem 1.333rem;
+  min-width: 0;
+  gap: 0.5rem 0.875rem;
 }
 
 .cx-nav a {
@@ -185,6 +192,15 @@ body.complexity-start .cx-header.site-header {
 
 .cx-nav a:hover {
   color: var(--color-ink);
+}
+
+/* Complexity start: only the long nav; clarity nav appears at resting */
+body.complexity-start:not(.is-resting) .cx-nav--clarity {
+  display: none;
+}
+
+body.complexity-start:not(.is-resting) .cx-nav--complex {
+  display: flex;
 }
 
 /* ——— Hero ——— */
@@ -210,11 +226,31 @@ body.complexity-start .cx-header.site-header {
 .cx-hero__inner {
   position: relative;
   display: flex;
-  align-items: flex-end;
+  align-items: flex-start;
   gap: 4rem;
-  padding-top: 1.75rem;
+  padding-top: var(--cx-hero-pad-top);
   padding-bottom: 1.5rem;
-  min-height: calc(29.5rem + 1.75rem + 1.5rem);
+  min-height: calc(29.5rem + var(--cx-hero-pad-top) + 1.5rem - var(--cx-hero-lift));
+}
+
+/* Wide: content sets hero height; portrait anchored to HR (avoids portrait min-height dead space) */
+@media (min-width: 769px) {
+  .cx-hero__inner {
+    display: block;
+    min-height: auto;
+  }
+
+  .cx-hero__portrait {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    margin-top: 0;
+    margin-bottom: -1.5rem;
+  }
+
+  .cx-hero__content {
+    margin-left: calc(20.056rem + 4rem);
+  }
 }
 
 .cx-hero__portrait {
@@ -222,6 +258,7 @@ body.complexity-start .cx-header.site-header {
   width: 20.056rem;
   height: 29.5rem;
   align-self: flex-end;
+  margin-top: auto;
   margin-bottom: -1.5rem;
 }
 
@@ -238,7 +275,7 @@ body.complexity-start .cx-header.site-header {
   flex-direction: column;
   justify-content: flex-start;
   gap: 1.25rem;
-  align-self: flex-end;
+  align-self: flex-start;
   padding-bottom: 0;
 }
 
@@ -255,7 +292,7 @@ body.complexity-start .cx-header.site-header {
 }
 
 .cx-hero__eyebrow {
-  margin: 0 0 1rem;
+  margin: 0 0 max(0.5rem, calc(1rem - var(--cx-hero-lift) * 0.15));
   font-family: var(--font-sans);
   font-size: 0.667rem;
   font-weight: 500;
@@ -280,7 +317,7 @@ body.complexity-start .cx-header.site-header {
 
 .cx-hero__venn {
   flex-shrink: 0;
-  width: 28rem;
+  width: calc(28rem - var(--cx-hero-lift) * 0.55);
   height: auto;
   max-width: 48%;
 }
@@ -730,11 +767,13 @@ body.complexity-start .cx-header.site-header {
 }
 
 /* ——— Responsive ——— */
-@media (max-width: 1100px) {
+@media (max-width: 900px) {
   .cx-nav a:not(:nth-child(-n+4)) {
     display: none;
   }
+}
 
+@media (max-width: 1100px) {
   .cx-pillars__row {
     justify-content: flex-start;
   }
@@ -776,11 +815,14 @@ body.complexity-start .cx-header.site-header {
     height: auto;
     aspect-ratio: 361 / 531;
     align-self: auto;
+    margin-top: 0;
+    margin-bottom: 0;
   }
 
   .cx-hero__content {
     align-self: auto;
     padding-bottom: 1.25rem;
+    margin-bottom: 0;
   }
 
   .cx-hero__headline-row {
