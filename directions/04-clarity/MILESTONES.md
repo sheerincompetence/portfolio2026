@@ -32,6 +32,7 @@ Edits in these source files **are** the source of truth — nothing auto-generat
 **Figma:** `33:195`  
 **Primary CSS:** `css/complexity-start.css` (`v=28`)  
 **Signed off:** 27 Jun 2026  
+**Git:** `413a46b` · tag `journey/complexity-start-v1`  
 **Status:** **LOCKED** — do not rework layout, spacing, or chrome without explicit ask.
 
 ### Must pass (regression checklist)
