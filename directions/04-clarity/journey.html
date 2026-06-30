@@ -7,17 +7,17 @@
   <meta name="description" content="Andrew Sheerin — I translate ideas into understanding.">
   <link rel="stylesheet" href="../../css/main.css?v=5">
   <link rel="stylesheet" href="css/chaos.css?v=5">
-  <link rel="stylesheet" href="css/complexity-start.css?v=43">
-  <link rel="stylesheet" href="css/clarity-transition.css?v=53">
-  <link rel="stylesheet" href="css/clarity-rest.css?v=13">
-  <link rel="stylesheet" href="css/clarity-layout-lock.css?v=17">
+  <link rel="stylesheet" href="css/complexity-start.css?v=46">
+  <link rel="stylesheet" href="css/clarity-transition.css?v=70">
+  <link rel="stylesheet" href="css/clarity-rest.css?v=19">
+  <link rel="stylesheet" href="css/clarity-layout-lock.css?v=32">
   <link rel="stylesheet" href="css/clarity-tune.css?v=1">
 </head>
-<body class="complexity-start clarity-journey journey-no-urgency journey-layout-lock">
+<body class="complexity-start clarity-journey journey-layout-lock">
 
   <!-- Chaos overlays (widgets sit above page content) -->
   <div class="chaos-layer" id="chaos-layer" aria-hidden="true">
-    <div class="chaos-urgency" role="presentation" data-pop-at="0.06" data-pop-slide="0.12" data-pop-type="slide">
+    <div class="chaos-urgency" role="presentation" data-pop-at="0.50" data-pop-slide="0.08" data-pop-type="slide">
       ⚠️ Andrew is only available to save your business for the next
       <strong id="countdown">4 hours 32 minutes 12 seconds</strong> — book now!
     </div>
@@ -28,9 +28,9 @@
     </div>
 
     <div class="chaos-stack-left">
-      <button type="button" class="chaos-fab-quote" data-chaos-dead-end data-pop-at="0.44" data-pop-delay="850">📞 Call for quote</button>
+      <button type="button" class="chaos-fab-quote" data-chaos-dead-end data-pop-at="0.33" data-pop-delay="850">📞 Call for quote</button>
 
-      <div class="chaos-cookie" role="dialog" aria-label="Cookie consent parody" data-pop-at="0.44">
+      <div class="chaos-cookie" role="dialog" aria-label="Cookie consent parody" data-pop-at="0.33">
         <p>🍪 We use cookies, pixels, beacons, SDKs, and commercial data points extracted from your hopes and dreams to personalise your recruitment experience.</p>
         <div class="chaos-cookie__btns">
           <button type="button" class="chaos-cookie__accept" data-chaos-dead-end>Accept all</button>
@@ -141,7 +141,7 @@
                 </div>
                 <input type="range" class="cx-slider__input" id="clarity-slider" min="0" max="100" step="1" value="0" aria-label="Adjust from complexity to clarity">
               </div>
-              <div class="cx-rest-panel" id="rest-panel">
+              <div class="cx-rest-panel" id="rest-panel" hidden>
                 <a href="#selected-work" class="cx-rest-panel__cta">Take a look</a>
                 <button type="button" class="cx-rest-panel__restore" id="restore-slider">Give me back the slider</button>
               </div>
@@ -174,69 +174,6 @@
               <span class="cx-pillar">Design execution <span aria-hidden="true">▾</span></span>
             </div>
           </div>
-        </div>
-      </section>
-
-      <!-- Selected work (complexity) -->
-      <section class="cx-work section cx-complex-only" id="selected-work-complex">
-        <div class="container">
-          <header class="cx-work__header">
-            <p class="eyebrow">Selected work</p>
-            <div class="cx-work__header-body">
-              <h2>Three problems, three approaches</h2>
-              <p class="text-muted">Each case study follows the same structure: what happened, why it mattered, what changed.</p>
-            </div>
-          </header>
-
-          <div class="cx-work__grid">
-            <a href="../../work/antare.html" class="cx-work-card">
-              <span class="cx-work-card__num">Project 01</span>
-              <h3 class="cx-work-card__title">Antare</h3>
-              <p class="cx-work-card__thesis">When AI generates more signal than anyone can process, the design problem becomes editorial — not technical.</p>
-              <img src="../../assets/images/antare/dual-feeds.png" alt="Antare dual feed model" class="cx-work-card__image" loading="lazy">
-            </a>
-
-            <a href="../../work/dona.html" class="cx-work-card">
-              <span class="cx-work-card__num">Project 02</span>
-              <h3 class="cx-work-card__title">Citrix</h3>
-              <p class="cx-work-card__thesis">Behavioural science meets organisational influence — turning a wellbeing concept into executive buy-in and shipped product</p>
-              <img src="../../assets/images/dona/north-star.png" alt="DONA north star concept" class="cx-work-card__image" loading="lazy">
-            </a>
-
-            <a href="../../work/education.html" class="cx-work-card">
-              <span class="cx-work-card__num">Project 03</span>
-              <h3 class="cx-work-card__title">VMware</h3>
-              <p class="cx-work-card__thesis">Designing beyond the product: Poor conversion suggested we needed better premium features, but I looked elsewhere…</p>
-              <img src="../../assets/images/education/conclusion.png" alt="Education research conclusion" class="cx-work-card__image" loading="lazy">
-            </a>
-          </div>
-        </div>
-      </section>
-
-      <!-- Selected work (resting — Figma 44:407) -->
-      <section class="cx-work-rest" id="selected-work">
-        <div class="container">
-          <p class="cx-work-rest__eyebrow">Selected work</p>
-          <ul class="cx-work-rest__list">
-            <li class="cx-work-rest__item">
-              <a href="../../work/antare.html" class="cx-work-rest__link">
-                <h2 class="cx-work-rest__title">01 Antare: Compressing reality</h2>
-                <p class="cx-work-rest__thesis">When AI produces more signal than anyone can process, the design problem becomes editorial</p>
-              </a>
-            </li>
-            <li class="cx-work-rest__item">
-              <a href="../../work/dona.html" class="cx-work-rest__link">
-                <h2 class="cx-work-rest__title">02 Citrix: DONA, a wellbeing &amp; productivity assistant</h2>
-                <p class="cx-work-rest__thesis">Behavioural science, organisational influence and an early experiment in sensitive Human-AI interaction</p>
-              </a>
-            </li>
-            <li class="cx-work-rest__item">
-              <a href="../../work/education.html" class="cx-work-rest__link">
-                <h2 class="cx-work-rest__title">03 VMware: Boosting conversion by avoiding design</h2>
-                <p class="cx-work-rest__thesis">Poor conversion suggested we needed better premium features, but I looked elsewhere…</p>
-              </a>
-            </li>
-          </ul>
         </div>
       </section>
 
@@ -283,6 +220,39 @@
           </a>
         </div>
       </section>
+
+      <!-- Selected work — single component; intro fades with slider -->
+      <section class="cx-work-rest" id="selected-work">
+        <div class="container">
+          <p class="cx-work-rest__eyebrow">Selected work</p>
+
+          <div class="cx-work-rest__intro">
+            <h2 class="cx-work-rest__intro-title">Three problems, three approaches</h2>
+            <p class="cx-work-rest__intro-desc">Each case study follows the same structure: what happened, why it mattered, what changed.</p>
+          </div>
+
+          <ul class="cx-work-rest__list">
+            <li class="cx-work-rest__item">
+              <a href="../../work/antare.html" class="cx-work-rest__link">
+                <h2 class="cx-work-rest__title">01 Antare: Compressing reality</h2>
+                <p class="cx-work-rest__thesis">When AI produces more signal than anyone can process, the design problem becomes editorial</p>
+              </a>
+            </li>
+            <li class="cx-work-rest__item">
+              <a href="../../work/dona.html" class="cx-work-rest__link">
+                <h2 class="cx-work-rest__title">02 Citrix: DONA, a wellbeing &amp; productivity assistant</h2>
+                <p class="cx-work-rest__thesis">Behavioural science, organisational influence and an early experiment in sensitive Human-AI interaction</p>
+              </a>
+            </li>
+            <li class="cx-work-rest__item">
+              <a href="../../work/education.html" class="cx-work-rest__link">
+                <h2 class="cx-work-rest__title">03 VMware: Boosting conversion by avoiding design</h2>
+                <p class="cx-work-rest__thesis">Poor conversion suggested we needed better premium features, but I looked elsewhere…</p>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </section>
     </main>
 
     <footer class="cx-footer site-footer">
@@ -290,13 +260,9 @@
         <p>Andrew Sheerin — Product Design Leader</p>
         <p><a href="#">Contact</a> | <a href="#">CV</a></p>
       </div>
-      <div class="container cx-footer__inner cx-footer__clarity">
-        <p>Andrew Sheerin — Product Design Leader</p>
-        <p><a href="../../about.html">About &amp; contact</a></p>
-      </div>
     </footer>
   </div>
 
-  <script src="js/clarity-journey.js?v=54"></script>
+  <script src="js/clarity-journey.js?v=65"></script>
 </body>
 </html>

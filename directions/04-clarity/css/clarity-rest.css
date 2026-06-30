@@ -10,74 +10,82 @@ body.complexity-start {
   --cx-rest-hero-pad-top: 0;
 }
 
-body.complexity-start.is-resting {
+body.complexity-start.is-resting:not(.clarity-journey) {
   --chaos: 0;
   --width-site: 980px;
   padding-top: 0;
 }
 
 /* ——— Chrome: hide chaos, reset fixed header stack ——— */
-body.complexity-start.is-resting .chaos-layer {
+body.complexity-start.is-resting:not(.clarity-journey) .chaos-layer {
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
 }
 
-body.complexity-start.is-resting .cx-page {
+body.complexity-start.is-resting:not(.clarity-journey) .cx-page {
   padding-top: 0;
 }
 
-body.complexity-start.is-resting:not(.journey-layout-lock) .cx-header.site-header {
+body.complexity-start.is-resting:not(.clarity-journey):not(.journey-layout-lock) .cx-header.site-header {
   position: sticky;
   top: 0;
   box-shadow: none;
+  height: auto;
+  min-height: 0;
+  padding-top: var(--cx-header-pad-top-compact, 2.333rem);
+  padding-bottom: var(--cx-header-pad-bottom-compact, 1.667rem);
 }
 
-body.complexity-start.is-resting .cx-logo__tm {
+body.complexity-start.is-resting:not(.clarity-journey) .cx-header__inner {
+  align-items: baseline;
+}
+
+body.complexity-start.is-resting:not(.clarity-journey) .cx-logo__tm {
   display: none;
 }
 
-body.complexity-start.is-resting .cx-logo__name {
+body.complexity-start.is-resting:not(.clarity-journey) .cx-logo__name {
   font-size: 1.111rem;
 }
 
-body.complexity-start.is-resting .cx-nav--complex {
+body.complexity-start.is-resting:not(.clarity-journey) .cx-nav--complex {
   display: flex;
 }
 
-body.complexity-start.is-resting .cx-nav--complex a[data-threshold] {
+body.complexity-start.is-resting:not(.clarity-journey) .cx-nav--complex a[data-threshold] {
   display: none;
 }
 
-body.complexity-start.is-resting .cx-nav--complex #nav-how-i-work .cx-nav__text--long {
+body.complexity-start.is-resting:not(.clarity-journey) .cx-nav--complex #nav-how-i-work .cx-nav__text--long {
   display: none;
 }
 
-body.complexity-start.is-resting .cx-nav--complex #nav-how-i-work .cx-nav__text--short {
+body.complexity-start.is-resting:not(.clarity-journey) .cx-nav--complex #nav-how-i-work .cx-nav__text--short {
   display: inline;
 }
 
-body.complexity-start.is-resting .cx-nav--clarity {
+body.complexity-start.is-resting:not(.clarity-journey) .cx-nav--clarity {
   display: none;
 }
 
 /* ——— Hero ——— */
-body.complexity-start.is-resting .cx-hero {
+body.complexity-start.is-resting:not(.clarity-journey) .cx-hero {
   border-bottom: none;
   padding-bottom: 1.5rem;
 }
 
-body.complexity-start.is-resting .cx-hero__bg,
-body.complexity-start.is-resting .cx-hero__portrait,
-body.complexity-start.is-resting .cx-hero__venn,
-body.complexity-start.is-resting .cx-hero__title-complex,
-body.complexity-start.is-resting .cx-slider__heading,
-body.complexity-start.is-resting .cx-slider {
+body.complexity-start.is-resting:not(.clarity-journey) .cx-hero__bg,
+body.complexity-start.is-resting:not(.clarity-journey) .cx-hero__portrait,
+body.complexity-start.is-resting:not(.clarity-journey) .cx-hero__venn,
+body.complexity-start.is-resting:not(.clarity-journey) .cx-hero__title-complex,
+body.complexity-start.is-resting:not(.clarity-journey) .cx-slider__heading,
+body.complexity-start.is-resting:not(.clarity-journey) .cx-slider {
   display: none;
 }
 
 /* Keep eyebrow slot height — skills gone but space preserved (matches u=100) */
-body.complexity-start.is-resting .cx-hero__eyebrow {
+body.complexity-start.is-resting:not(.clarity-journey) .cx-hero__eyebrow {
   visibility: hidden;
   min-height: var(--cx-eyebrow-reserved-height, var(--cx-layout-eyebrow-slot));
   margin-bottom: max(0.5rem, calc(1rem - var(--cx-hero-lift) * 0.15));
@@ -85,7 +93,7 @@ body.complexity-start.is-resting .cx-hero__eyebrow {
   pointer-events: none;
 }
 
-body.complexity-start.is-resting .cx-hero__inner {
+body.complexity-start.is-resting:not(.clarity-journey) .cx-hero__inner {
   align-items: stretch;
   gap: 0;
   padding-top: var(--cx-rest-hero-pad-top);
@@ -93,7 +101,7 @@ body.complexity-start.is-resting .cx-hero__inner {
   min-height: auto;
 }
 
-body.complexity-start.is-resting .cx-hero__content {
+body.complexity-start.is-resting:not(.clarity-journey) .cx-hero__content {
   justify-content: flex-start;
   gap: var(--cx-rest-content-gap);
   padding-bottom: 0;
@@ -101,16 +109,16 @@ body.complexity-start.is-resting .cx-hero__content {
   margin-left: 0;
 }
 
-body.complexity-start.is-resting .cx-hero__headline-row {
+body.complexity-start.is-resting:not(.clarity-journey) .cx-hero__headline-row {
   display: block;
 }
 
-body.complexity-start.is-resting .cx-hero__copy {
+body.complexity-start.is-resting:not(.clarity-journey) .cx-hero__copy {
   flex: none;
   max-width: none;
 }
 
-body.complexity-start.is-resting .cx-hero__title-clarity {
+body.complexity-start.is-resting:not(.clarity-journey) .cx-hero__title-clarity {
   display: block;
   margin: 0;
   max-width: var(--cx-rest-title-max-w);
@@ -122,7 +130,7 @@ body.complexity-start.is-resting .cx-hero__title-clarity {
   color: var(--color-ink);
 }
 
-body.complexity-start.is-resting .cx-hero__slider-block {
+body.complexity-start.is-resting:not(.clarity-journey) .cx-hero__slider-block {
   margin-top: 0;
 }
 
@@ -131,18 +139,9 @@ body.complexity-start.is-resting .cx-hero__slider-block {
   display: none;
 }
 
-body.complexity-start.is-resting .cx-rest-panel {
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  gap: 1.5rem;
-  width: 100%;
-  padding: 1.35rem 1.75rem 1.5rem;
-  background: var(--color-paper-warm);
-  border: 1px solid var(--color-rule);
-  border-left: 3px solid var(--color-accent);
-  box-shadow: 0 2px 14px rgba(28, 28, 28, 0.06);
-  box-sizing: border-box;
+body.complexity-start.is-resting:not(.clarity-journey) .cx-rest-panel {
+  opacity: 1;
+  pointer-events: auto;
 }
 
 .cx-rest-panel__cta {
@@ -193,22 +192,22 @@ body.complexity-start.is-resting .cx-rest-panel {
   border-top: 1px solid var(--color-rule);
 }
 
-body.complexity-start.is-resting .cx-hero-rule {
+body.complexity-start.is-resting:not(.clarity-journey) .cx-hero-rule {
   display: block;
 }
 
 /* ——— Complexity-only sections ——— */
-body.complexity-start.is-resting .cx-complex-only {
+body.complexity-start.is-resting:not(.clarity-journey) .cx-complex-only {
   display: none;
 }
 
-/* ——— Resting selected work list ——— */
-.cx-work-rest {
-  display: none;
-}
-
-body.complexity-start.is-resting .cx-work-rest {
+/* ——— Selected work ——— */
+body.clarity-journey .cx-work-rest {
   display: block;
+  padding-block: 3rem;
+}
+
+body.complexity-start.is-resting:not(.clarity-journey) .cx-work-rest {
   padding-block: 3.556rem;
 }
 
@@ -220,6 +219,24 @@ body.complexity-start.is-resting .cx-work-rest {
   letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--color-ink-faint);
+}
+
+.cx-work-rest__intro-title {
+  margin: 0 0 0.375rem;
+  font-family: var(--font-serif);
+  font-size: 1.333rem;
+  font-weight: 500;
+  line-height: 1.25;
+  color: var(--color-ink);
+}
+
+.cx-work-rest__intro-desc {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.4;
+  color: var(--color-ink-muted);
 }
 
 .cx-work-rest__list {
@@ -265,11 +282,7 @@ body.complexity-start.is-resting .cx-work-rest {
 }
 
 /* ——— Footer ——— */
-body.complexity-start.is-resting .cx-footer__complex {
-  display: none;
-}
-
-body.complexity-start.is-resting .cx-footer__clarity {
+body.complexity-start.is-resting:not(.clarity-journey) .cx-footer__complex {
   display: flex;
 }
 
@@ -290,22 +303,22 @@ body.complexity-start.is-resting .cx-footer__clarity {
     --cx-rest-hero-pad-top: 0;
   }
 
-  body.complexity-start.is-resting .cx-hero__inner {
+  body.complexity-start.is-resting:not(.clarity-journey) .cx-hero__inner {
     padding-top: var(--cx-rest-hero-pad-top);
     min-height: auto;
   }
 
-  body.complexity-start.is-resting .cx-hero__content {
+  body.complexity-start.is-resting:not(.clarity-journey) .cx-hero__content {
     min-height: auto;
   }
 
-  body.complexity-start.is-resting .cx-rest-panel {
+  body.complexity-start.is-resting:not(.clarity-journey) .cx-rest-panel {
     flex-direction: column;
     align-items: stretch;
     gap: 1rem;
   }
 
-  body.complexity-start.is-resting .cx-rest-panel__cta {
+  body.complexity-start.is-resting:not(.clarity-journey) .cx-rest-panel__cta {
     justify-content: center;
   }
 }

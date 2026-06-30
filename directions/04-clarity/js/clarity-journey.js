@@ -8,6 +8,7 @@
   const root = document.documentElement;
   const body = document.body;
   const restoreBtn = document.getElementById('restore-slider');
+  const restPanel = document.getElementById('rest-panel');
   const slideHint = document.querySelector('.cx-slider__heading');
   const chaosLayer = document.getElementById('chaos-layer');
   const chaosChat = document.getElementById('chaos-chat');
@@ -40,15 +41,17 @@
   const popTimers = new Map();
   let currentU = 0;
   let isResting = false;
-  let sliderFocused = false;
+  let isRestTransitioning = false;
+  let restEnterTimer = null;
 
   const urgencyPopAt = parseFloat(chaosUrgency?.dataset.popAt || '0.06');
   const urgencySlideSpan = parseFloat(chaosUrgency?.dataset.popSlide || '0.06');
   const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   /* Parked for layout-lock experiment — restore via URGENCY-PARKED.md */
-  const URGENCY_BAR_ENABLED = false;
+  const URGENCY_BAR_ENABLED = true;
   const REST_ENTER_DELAY_MS = 1500;
+  const REST_FADE_MS = 180;
   const LAYOUT_LOCK_ENABLED = body.classList.contains('journey-layout-lock');
 
   const urlParams = new URLSearchParams(window.location.search);
@@ -74,7 +77,8 @@
   }
 
   function tickCountdown() {
-    if (!URGENCY_BAR_ENABLED || !countdownEl || isResting || currentU > 0.1) return;
+    if (!URGENCY_BAR_ENABLED || !countdownEl || isResting) return;
+    if (currentU >= urgencyPopAt + urgencySlideSpan) return;
     countdownEl.textContent = formatCountdown(countdownSeconds);
     countdownSeconds = Math.max(0, countdownSeconds - 1);
     if (countdownSeconds === 0) countdownSeconds = 4 * 3600 + 32 * 60 + 12;
@@ -305,27 +309,31 @@
     return LAYOUT_LOCK_ENABLED ? getComputedStyle(body) : getComputedStyle(root);
   }
 
+  function measureCompactSliderHeight() {
+    const slider = document.querySelector('.cx-slider');
+    if (!slider) return 0;
+
+    const savedU = currentU;
+    root.style.setProperty('--u', '1');
+    const height = slider.offsetHeight;
+    root.style.setProperty('--u', String(savedU));
+    root.style.setProperty('--cx-layout-control-h-compact', `${height}px`);
+    return height;
+  }
+
   function captureLayoutZones() {
     if (!LAYOUT_LOCK_ENABLED) return;
 
     const layout = getLayoutStyles();
-    const headerH = parseFloat(layout.getPropertyValue('--cx-layout-header-h'));
-    const controlY = parseFloat(layout.getPropertyValue('--cx-layout-control-y'));
-    const controlEl = (() => {
-      const block = document.querySelector('.cx-hero__slider-block');
-      if (block?.offsetHeight) return block;
-      const slider = document.querySelector('.cx-slider');
-      const panel = document.querySelector('.cx-rest-panel');
-      if (slider?.offsetHeight) return slider;
-      if (panel?.offsetHeight) return panel;
-      return block || slider || panel;
-    })();
+    const contentEl = document.querySelector('.cx-hero__content');
     const gapRaw = layout.getPropertyValue('--cx-layout-content-gap').trim();
     const contentTopRaw = layout.getPropertyValue('--cx-layout-hero-content-top').trim();
+    const heroPadBottomRaw = layout.getPropertyValue('--cx-layout-hero-pad-bottom').trim();
     const rootPx = parseFloat(getComputedStyle(root).fontSize) || 16;
     const toPx = (raw) => (raw.endsWith('rem') ? parseFloat(raw) * rootPx : parseFloat(raw) || 0);
     const gap = gapRaw ? toPx(gapRaw) : 20;
     const contentTop = contentTopRaw ? toPx(contentTopRaw) : 0;
+    const heroPadBottom = heroPadBottomRaw ? toPx(heroPadBottomRaw) : toPx('1.5rem');
     const bonusRaw = layout.getPropertyValue('--cx-layout-headline-zone-bonus').trim();
     const bonus = bonusRaw ? toPx(bonusRaw) : 0;
     const eyebrowSlotRaw = layout.getPropertyValue('--cx-layout-eyebrow-slot').trim();
@@ -347,8 +355,10 @@
         root.style.setProperty('--cx-layout-eyebrow-slot', `${eyebrowSlot}px`);
       }
     }
-    const controlH = controlEl?.offsetHeight ?? 0;
-    const zoneH = Math.max(120, controlY - headerH - contentTop - controlH - gap + bonus);
+    const compactControlH = measureCompactSliderHeight();
+    const contentH = contentEl?.offsetHeight ?? 0;
+    const sliderTopInContent = contentH - heroPadBottom - compactControlH;
+    const zoneH = Math.max(120, sliderTopInContent - contentTop - gap + bonus);
     const titleZoneH = Math.max(80, zoneH - eyebrowSlot);
 
     root.style.setProperty('--cx-headline-zone-height', `${zoneH}px`);
@@ -1284,9 +1294,45 @@
   }
 
   function resetToStart() {
+    clearRestEnterTimer();
     resetHeadlineBaseline();
     resetAllPops();
     setClarity(0);
+  }
+
+  function clearRestEnterTimer() {
+    if (restEnterTimer) {
+      clearTimeout(restEnterTimer);
+      restEnterTimer = null;
+    }
+  }
+
+  function beginRestTransition() {
+    if (isResting || isRestTransitioning || currentU < 0.995) return;
+    clearRestEnterTimer();
+    isRestTransitioning = true;
+    restPanel?.removeAttribute('hidden');
+    body.classList.add('is-entering-rest');
+    setTimeout(() => {
+      body.classList.remove('is-entering-rest');
+      enterRestingState();
+      isRestTransitioning = false;
+    }, REST_FADE_MS);
+  }
+
+  function maybeScheduleRestEnter() {
+    if (isResting || isRestTransitioning || currentU < 0.995) return;
+    clearRestEnterTimer();
+    restEnterTimer = setTimeout(() => {
+      restEnterTimer = null;
+      beginRestTransition();
+    }, REST_ENTER_DELAY_MS);
+  }
+
+  function maybeRestEnterOnBlur() {
+    if (isResting || isRestTransitioning || currentU < 0.995) return;
+    clearRestEnterTimer();
+    beginRestTransition();
   }
 
   function setClarity(value) {
@@ -1307,6 +1353,9 @@
     }
 
     if (TUNE_ENABLED) updateTunePanelLive();
+
+    if (currentU >= 0.995) maybeScheduleRestEnter();
+    else clearRestEnterTimer();
   }
 
   function snapshotRestTypography() {
@@ -1331,21 +1380,19 @@
 
   function enterRestingState() {
     if (isResting) return;
-    syncJourneyChrome(1);
-    snapshotRestTypography();
     isResting = true;
+    restPanel?.removeAttribute('hidden');
     body.classList.add('is-resting');
-    resetHeadlineBaseline();
-    if (headline) headline.style.minHeight = '';
-    captureLayoutZones();
-    updateLayoutDebug();
     document.title = 'Andrew Sheerin — Product Design Leader';
     try { localStorage.setItem(STORAGE_KEY, 'true'); } catch (_) { /* ignore */ }
   }
 
   function exitRestingState() {
     isResting = false;
-    body.classList.remove('is-resting');
+    isRestTransitioning = false;
+    clearRestEnterTimer();
+    restPanel?.setAttribute('hidden', '');
+    body.classList.remove('is-resting', 'is-entering-rest');
     document.title = 'Andrew Sheerin — Complexity → Clarity';
     try { localStorage.removeItem(STORAGE_KEY); } catch (_) { /* ignore */ }
 
@@ -1368,10 +1415,7 @@
     }
 
     if (params.get('resting') === '1') {
-      syncJourneyMotionVars(1);
-      currentU = 1;
-      slider.value = 100;
-      syncJourneyChrome(1);
+      setClarity(100);
       enterRestingState();
       return true;
     }
@@ -1384,9 +1428,7 @@
 
     try {
       if (localStorage.getItem(STORAGE_KEY) === 'true') {
-        syncJourneyMotionVars(1);
-        currentU = 1;
-        slider.value = 100;
+        setClarity(100);
         enterRestingState();
         return true;
       }
@@ -1403,19 +1445,8 @@
     setClarity(parseInt(e.target.value, 10));
   });
 
-  slider.addEventListener('focus', () => {
-    sliderFocused = true;
-  });
-
   slider.addEventListener('blur', () => {
-    sliderFocused = false;
-    if (currentU >= 0.995 && !isResting) {
-      setTimeout(() => {
-        if (!sliderFocused && currentU >= 0.995) {
-          enterRestingState();
-        }
-      }, REST_ENTER_DELAY_MS);
-    }
+    maybeRestEnterOnBlur();
   });
 
   restoreBtn?.addEventListener('click', exitRestingState);
