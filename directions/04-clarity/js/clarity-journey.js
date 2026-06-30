@@ -980,13 +980,43 @@
     resetVennMetrics();
     root.style.removeProperty('--headline-budget-height');
     root.style.removeProperty('--headline-slot-height');
-    root.style.setProperty('--headline-font-size', '1.333rem');
-    root.style.setProperty('--headline-line-height', '1.3');
+    root.style.removeProperty('--headline-font-size');
+    root.style.removeProperty('--headline-line-height');
     root.style.setProperty('--headline-grow', '0');
     root.style.setProperty('--headline-morph', '0');
     root.style.setProperty('--headline-free-grow', '0');
     if (headline) headline.style.minHeight = '';
   }
+
+  function refreshJourneyLayout() {
+    if (isResting) return;
+
+    root.style.removeProperty('--cx-eyebrow-reserved-height');
+    root.style.removeProperty('--cx-layout-eyebrow-slot');
+
+    resetHeadlineBaseline();
+    captureEyebrowReservedHeight();
+    captureVennSlotWidth();
+    captureHeadlineBaseline();
+    captureLayoutZones();
+
+    const u = currentU;
+    syncJourneyMotionVars(u);
+    updateHeadlineLayout(u);
+    updateHeadlineFragments(u);
+    syncJourneyChrome(u);
+    updateChaosWidgets(u);
+
+    if (slideHint) {
+      slideHint.style.visibility = u > 0.12 ? 'hidden' : '';
+    }
+
+    if (TUNE_ENABLED) updateTunePanelLive();
+    if (currentU >= 0.995) maybeScheduleRestEnter();
+    else clearRestEnterTimer();
+  }
+
+  let journeyResizeTimer = null;
 
   function resetVennMetrics() {
     vennSlotPx = null;
@@ -999,21 +1029,34 @@
   let vennSlotPx = null;
 
   function captureVennSlotWidth() {
-    if (vennSlotPx != null || isResting) return;
+    if (isResting) return;
+
     const vennEl = document.querySelector('.cx-hero__venn');
     const row = vennEl?.closest('.cx-hero__headline-row');
     if (!vennEl || !row) return;
+
+    const vennStyle = getComputedStyle(vennEl);
+    if (vennStyle.display === 'none' || vennStyle.visibility === 'hidden') {
+      vennSlotPx = 0;
+      root.style.setProperty('--venn-slot-px', '0px');
+      return;
+    }
+
+    if (vennSlotPx != null && vennSlotPx > 0) return;
 
     const rootPx = parseFloat(getComputedStyle(root).fontSize) || 16;
     const liftPx = parseFloat(
       getComputedStyle(root).getPropertyValue('--cx-hero-lift')
     ) || 70;
+    const vennScale = parseFloat(
+      getComputedStyle(body).getPropertyValue('--cx-venn-slot-scale')
+    ) || 1;
     const rowW = row.getBoundingClientRect().width;
     const w = Math.ceil(Math.min(
       18.75 * rootPx,
       rowW * 0.48,
       28 * rootPx - liftPx * 0.55
-    ));
+    ) * vennScale);
 
     if (w < 80 || w > 520) return;
     vennSlotPx = w;
@@ -1489,11 +1532,8 @@
 
   window.addEventListener('resize', () => {
     if (isResting) return;
-    resetVennMetrics();
-    resetHeadlineBaseline();
-    captureHeadlineBaseline();
-    captureLayoutZones();
-    updateHeadlineLayout();
+    clearTimeout(journeyResizeTimer);
+    journeyResizeTimer = setTimeout(refreshJourneyLayout, 100);
   });
 
   if (!prefersReduced && !isResting) {

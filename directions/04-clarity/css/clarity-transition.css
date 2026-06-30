@@ -26,6 +26,13 @@ body.clarity-journey {
   --width-site: calc(1280px - var(--u) * 300px);
   --urgency-visible: calc(1 - var(--urgency-progress));
   --cx-urgency-red-dark: #c0392b;
+  --cx-headline-start-size: 1.333rem;
+  --cx-headline-copy-max: 80%;
+  --cx-venn-copy-gap: 1.5rem;
+  --cx-venn-slot-scale: 1;
+  --cx-hero-portrait-w: 20.056rem;
+  --cx-hero-portrait-h: 29.5rem;
+  --cx-hero-portrait-gap: 4rem;
   --cx-slider-thumb-fill: color-mix(
     in srgb,
     var(--cx-urgency-red-dark) calc((1 - var(--u)) * 100%),
@@ -38,6 +45,7 @@ body.clarity-journey {
   --cx-slider-pad-bottom: calc(1.075rem - var(--u) * 0.35rem);
   overflow-x: clip;
   max-width: 100%;
+  min-width: 900px;
   /* Pull: body + header move up; .cx-page pad stays fixed so headline–header gap holds */
   padding-top: calc(var(--cx-urgency-height) * var(--urgency-visible));
 }
@@ -143,8 +151,8 @@ body.clarity-journey .cx-hero__slider-block {
 
 body.clarity-journey .cx-hero__portrait {
   opacity: 1;
-  width: 20.056rem;
-  height: 29.5rem;
+  width: var(--cx-hero-portrait-w);
+  height: var(--cx-hero-portrait-h);
   margin-top: auto;
   margin-bottom: -1.5rem;
   align-self: flex-end;
@@ -163,7 +171,7 @@ body.clarity-journey .cx-hero__portrait img {
 }
 
 body.clarity-journey .cx-hero {
-  overflow-x: clip;
+  overflow-x: visible;
   overflow-y: hidden;
 }
 
@@ -171,7 +179,7 @@ body.clarity-journey .cx-hero__headline-row {
   position: relative;
   align-items: flex-start;
   gap: 0;
-  overflow-x: clip;
+  overflow-x: visible;
 }
 
 body.clarity-journey .cx-hero__venn {
@@ -179,7 +187,7 @@ body.clarity-journey .cx-hero__venn {
   top: 0;
   right: 0;
   z-index: 1;
-  width: var(--venn-slot-px);
+  width: calc(var(--venn-slot-px) * var(--cx-venn-slot-scale, 1));
   height: auto;
   flex: none;
   transform-origin: top right;
@@ -195,7 +203,7 @@ body.clarity-journey .cx-hero__copy {
   flex-grow: 1;
   min-width: 0;
   max-width: var(--cx-headline-copy-max, 80%);
-  margin-right: calc((var(--venn-slot-px) + 1.5rem) * (1 - var(--venn-space, 0)));
+  margin-right: calc((var(--venn-slot-px) + var(--cx-venn-copy-gap, 1.5rem)) * (1 - var(--venn-space, 0)));
 }
 
 body.clarity-journey .cx-hero__eyebrow {
@@ -229,7 +237,7 @@ body.clarity-journey .cx-hero__title-complex {
     var(--headline-morph) * var(--cx-rest-title-max-w)
     + (1 - var(--headline-morph)) * 100%
   );
-  font-size: var(--headline-font-size, 1.333rem);
+  font-size: var(--headline-font-size, var(--cx-headline-start-size, 1.333rem));
   line-height: var(--headline-line-height, 1.3);
   letter-spacing: calc(-0.02em * (var(--headline-grow) * (1 - var(--headline-morph)) + var(--headline-morph)));
   text-align: left;
@@ -283,7 +291,7 @@ body.clarity-journey .cx-hero__title .frag-verb-ing.is-faded {
 
 @media (min-width: 769px) {
   body.clarity-journey .cx-hero__content {
-    margin-left: calc((20.056rem + 4rem) * (1 - var(--portrait-shrink)));
+    margin-left: calc((var(--cx-hero-portrait-w) + var(--cx-hero-portrait-gap)) * (1 - var(--portrait-shrink)));
   }
 }
 
@@ -493,10 +501,10 @@ body.clarity-journey .cx-rest-panel {
   gap: 1.5rem;
   width: 100%;
   padding: 0 var(--cx-slider-pad-x);
-  background: var(--color-paper-warm);
+  background: var(--cx-slider-bg, #fff);
   border: 1px solid var(--color-rule);
   border-left: 3px solid var(--color-accent);
-  box-shadow: 0 2px 14px rgba(28, 28, 28, 0.06);
+  box-shadow: var(--cx-slider-shadow, 0 0 36px rgba(28, 28, 28, 0.22), 0 0 10px rgba(28, 28, 28, 0.1));
   box-sizing: border-box;
   opacity: 0;
   pointer-events: none;

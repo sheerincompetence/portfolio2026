@@ -22,6 +22,8 @@ body.complexity-start {
   --cx-slider-label-gap: 1rem;
   --cx-slider-label-mb: 0.85rem;
   --cx-slider-thumb-fill: var(--color-ink);
+  --cx-slider-bg: #fff;
+  --cx-slider-shadow: 0 0 36px rgba(28, 28, 28, 0.22), 0 0 10px rgba(28, 28, 28, 0.1);
 }
 
 body.complexity-start .chaos-urgency {
@@ -314,7 +316,7 @@ body.complexity-start:not(.is-resting) .cx-nav--complex {
 .cx-hero__title {
   margin: 0;
   font-family: var(--font-serif);
-  font-size: 1.333rem;
+  font-size: var(--cx-headline-start-size, 1.333rem);
   font-weight: 500;
   line-height: 1.3;
   color: var(--color-ink);
@@ -368,10 +370,10 @@ body.complexity-start:not(.is-resting) .cx-nav--complex {
   position: relative;
   width: 100%;
   padding: var(--cx-slider-pad-top) var(--cx-slider-pad-x) var(--cx-slider-pad-bottom);
-  background: var(--color-paper-warm);
+  background: var(--cx-slider-bg, #fff);
   border: 1px solid var(--color-rule);
   border-left: 3px solid var(--color-accent);
-  box-shadow: 0 2px 14px rgba(28, 28, 28, 0.06);
+  box-shadow: var(--cx-slider-shadow, 0 0 36px rgba(28, 28, 28, 0.22), 0 0 10px rgba(28, 28, 28, 0.1));
 }
 
 .cx-slider__labels {
