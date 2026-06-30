@@ -11,27 +11,33 @@ Read `directions/04-clarity/MILESTONES.md` before editing files in this folder.
 ## Locked until user explicitly asks otherwise
 
 - **Milestone 1 (Complexity start):** `css/complexity-start.css`, starting-state markup in `journey.html`
-- **Milestone 2 (Resting):** `css/clarity-rest.css`, resting markup in `journey.html`
+- **Milestone 2 (Resting v2):** `css/clarity-rest.css`, resting markup in `journey.html`
+- **Milestone 3 (Transitions):** `css/clarity-transition.css`, `css/clarity-layout-lock.css`, `js/clarity-journey.js`
 
-Do not refactor, restyle, or “improve” parked milestones while working on transitions or other features.
+Do not refactor, restyle, or “improve” parked milestones without explicit user approval.
 
-## Active / safe to change
+## Minor tweaks only (default)
 
-- `css/clarity-transition.css` — slider-driven motion only; guard with `:not(.is-resting)` where needed
-- `js/clarity-journey.js` — slider, pop-outs, resting toggle
+Threshold nudges, pop timing (`data-pop-at` / `data-pop-delay`), font keyframe values, and copy edits are OK when the user asks. Structural layout changes are not.
 
-## When user says “park it” / “sign off” / “keep that”
+## Urgency bar
+
+Parked on `journey.html` (`journey-no-urgency`). See `URGENCY-PARKED.md` to restore.
+
+## Critical regression guards
+
+At `?start=1` with `--u:0`: layout must match Milestone 1 (hero, header, nav, slider).
+
+At `?resting=1` or slider at 100% + rest: must match Milestone 2 v2 / `u=100` geometry (95px headline, 980px width, nav gaps even).
+
+After any edit, verify both URLs before ending the session.
+
+## When user says “park it” / “sign off” / “lock it in”
 
 1. Update `MILESTONES.md` with status and date.
-2. Remind user to commit (or commit if they ask).
-3. Do not revisit parked CSS unless they explicitly request a change to that milestone.
-
-## Regression checks before ending a session
-
-On `journey.html?start=1`: urgency bar (10px pad), dots ~0.26, slider draggable, Slide me position, portrait on HR, social proof at 8px/1.25rem, nav 7-wide on one row.
-
-On `journey.html?resting=1`: resting layout unchanged from signed-off spec.
+2. Commit if asked.
+3. Do not revisit parked CSS unless they explicitly reopen a milestone.
 
 ## Common false alarm
 
-Missing urgency bar usually means **resting state** persisted in `localStorage` (`portfolio-clarity-resting`). Use `?start=1` to reset — not a CSS removal.
+Missing widgets or wrong layout often means **resting state** in `localStorage` (`portfolio-clarity-resting`). Use `?start=1`.

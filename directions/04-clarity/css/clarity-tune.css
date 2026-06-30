@@ -1,0 +1,154 @@
+/* Font keyframe tuner (?tune=1) */
+
+body.clarity-journey.has-font-tune .cx-font-tune {
+  display: flex;
+}
+
+.cx-font-tune {
+  display: none;
+  position: fixed;
+  top: 0.75rem;
+  left: 0.75rem;
+  z-index: 10000;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: min(22rem, calc(100vw - 1.5rem));
+  max-height: calc(100vh - 1.5rem);
+  padding: 0.75rem;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.68rem;
+  line-height: 1.4;
+  color: #f5f5f5;
+  background: rgba(12, 12, 12, 0.92);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 0.35rem;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.25);
+  overflow: auto;
+  pointer-events: auto;
+}
+
+.cx-font-tune__title {
+  margin: 0;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #c4b5fd;
+}
+
+.cx-font-tune__hint {
+  margin: 0;
+  color: #aaa;
+  font-size: 0.62rem;
+}
+
+.cx-font-tune__live {
+  margin: 0;
+  padding: 0.35rem 0.45rem;
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 0.25rem;
+  color: #ddd;
+}
+
+.cx-font-tune__live strong {
+  color: #fff;
+}
+
+.cx-font-tune__toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  cursor: pointer;
+  user-select: none;
+  color: #ddd;
+}
+
+.cx-font-tune__toggle input {
+  accent-color: #c4b5fd;
+}
+
+.cx-font-tune__rows {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.cx-font-tune__row {
+  display: grid;
+  grid-template-columns: 2.5rem 2.75rem 3.25rem 1fr auto;
+  gap: 0.35rem;
+  align-items: center;
+}
+
+.cx-font-tune__row label {
+  color: #9fdcff;
+  font-weight: 600;
+}
+
+.cx-font-tune__row input[type="number"] {
+  width: 100%;
+  padding: 0.2rem 0.35rem;
+  font: inherit;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 0.2rem;
+}
+
+.cx-font-tune__row input[type="text"] {
+  width: 100%;
+  padding: 0.2rem 0.35rem;
+  font: inherit;
+  color: #eee;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 0.2rem;
+}
+
+.cx-font-tune__btn {
+  padding: 0.25rem 0.45rem;
+  font: inherit;
+  font-size: 0.62rem;
+  color: #111;
+  background: #c4b5fd;
+  border: none;
+  border-radius: 0.2rem;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.cx-font-tune__btn:hover {
+  background: #ddd6fe;
+}
+
+.cx-font-tune__btn--ghost {
+  color: #ddd;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.cx-font-tune__btn--ghost:hover {
+  background: rgba(255, 255, 255, 0.16);
+}
+
+.cx-font-tune__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.cx-font-tune__copy-status {
+  margin: 0;
+  min-height: 1em;
+  color: #7dffb2;
+  font-size: 0.62rem;
+}
+
+@media (max-width: 768px) {
+  .cx-font-tune__row {
+    grid-template-columns: 2.25rem 2.5rem 3rem 1fr;
+  }
+
+  .cx-font-tune__row .cx-font-tune__btn--jump {
+    grid-column: 1 / -1;
+  }
+}

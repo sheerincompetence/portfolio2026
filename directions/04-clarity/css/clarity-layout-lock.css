@@ -1,0 +1,246 @@
+/* Fixed chrome stack — journey experiment (?start=1 / layout-lock)
+   Targets (no urgency bar): header 82px + hero 544px = 626px; control top at 487px */
+
+body.complexity-start.journey-layout-lock {
+  --cx-urgency-height: 0px;
+  --cx-layout-header-h: 82px;
+  --cx-layout-hero-h: 544px;
+  --cx-layout-stack-h: 626px;
+  --cx-layout-control-y: 487px;
+  --cx-layout-control-in-hero: calc(var(--cx-layout-control-y) - var(--cx-layout-header-h));
+  --cx-layout-hero-content-top: 2rem;
+  --cx-layout-content-gap: 1.25rem;
+  --cx-layout-headline-zone-bonus: 28px;
+  --cx-layout-eyebrow-slot: calc(0.667rem * 1.4 + max(0.5rem, calc(1rem - var(--cx-hero-lift) * 0.15)));
+  --cx-layout-headline-drift: 1.75rem;
+  --cx-header-height: var(--cx-layout-header-h);
+  --cx-top-chrome: var(--cx-layout-header-h);
+  --cx-headline-zone-height: 320px;
+}
+
+/* ——— Urgency parked (see URGENCY-PARKED.md) ——— */
+body.journey-no-urgency .chaos-urgency {
+  display: none !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+
+body.journey-no-urgency.clarity-journey:not(.is-resting) {
+  padding-top: 0;
+}
+
+body.journey-no-urgency.clarity-journey:not(.is-resting) .cx-header.site-header,
+body.journey-no-urgency.complexity-start .cx-header.site-header {
+  top: 0;
+}
+
+body.journey-no-urgency .cx-page {
+  padding-top: var(--cx-layout-header-h);
+}
+
+/* ——— Shared fixed header ——— */
+body.journey-layout-lock .cx-header.site-header {
+  top: 0;
+  min-height: var(--cx-layout-header-h);
+  box-sizing: border-box;
+}
+
+body.journey-layout-lock.is-resting .cx-header.site-header {
+  position: fixed;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  padding-block: 1.333rem;
+  border-bottom: 1px solid var(--color-rule);
+  background: var(--color-paper);
+}
+
+body.journey-layout-lock.is-resting .cx-page {
+  padding-top: var(--cx-layout-header-h);
+}
+
+/* ——— Fixed hero shell ——— */
+body.journey-layout-lock.clarity-journey:not(.is-resting) .cx-hero,
+body.journey-layout-lock.complexity-start:not(.is-resting) .cx-hero {
+  overflow-x: visible;
+  overflow-y: hidden;
+}
+
+body.journey-layout-lock.clarity-journey:not(.is-resting) .cx-hero__inner,
+body.journey-layout-lock.clarity-journey:not(.is-resting) .cx-hero__content,
+body.journey-layout-lock.clarity-journey:not(.is-resting) .cx-hero__headline-row {
+  overflow-x: visible;
+}
+
+body.journey-layout-lock .cx-hero {
+  height: var(--cx-layout-hero-h);
+  max-height: var(--cx-layout-hero-h);
+  overflow-y: hidden;
+  box-sizing: border-box;
+}
+
+body.journey-layout-lock .cx-hero__inner {
+  position: relative;
+  height: 100%;
+  min-height: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+  box-sizing: border-box;
+}
+
+body.journey-layout-lock .cx-hero__content {
+  position: relative;
+  height: 100%;
+  min-height: 0;
+  box-sizing: border-box;
+  gap: 0;
+  padding-top: var(--cx-layout-hero-content-top);
+}
+
+/* Headline row — no overflow clip; keyframe font curve controls size */
+body.journey-layout-lock.clarity-journey .cx-hero__headline-row,
+body.journey-layout-lock.complexity-start .cx-hero__headline-row {
+  min-width: 0;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Site narrows 1280 → 980 with slider (content focus) — do not freeze at 1280 */
+body.journey-layout-lock.clarity-journey:not(.is-resting) {
+  --width-site: calc(1280px - var(--u) * 300px);
+}
+
+/* Copy grows as venn slot collapses */
+body.journey-layout-lock.clarity-journey:not(.is-resting) .cx-hero__copy,
+body.journey-layout-lock.complexity-start:not(.is-resting) .cx-hero__copy {
+  position: relative;
+  z-index: 0;
+  flex: 1 1 100%;
+  flex-grow: 1;
+  min-width: 0;
+  max-width: var(--cx-headline-copy-max, 80%);
+  margin-right: calc((var(--venn-slot-px) + 1.5rem) * (1 - var(--venn-space, 0)));
+  padding-top: calc(var(--headline-free-grow, 0) * var(--cx-layout-headline-drift));
+}
+
+body.journey-layout-lock.clarity-journey:not(.is-resting) .cx-hero__title-complex {
+  min-height: 0;
+}
+
+body.journey-layout-lock.clarity-journey:not(.is-resting) .cx-hero__headline-row {
+  position: relative;
+  gap: 0;
+  overflow-x: visible;
+}
+
+body.journey-layout-lock.clarity-journey:not(.is-resting) .cx-hero__venn,
+body.journey-layout-lock.complexity-start:not(.is-resting) .cx-hero__venn {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 1;
+  flex: none;
+  width: var(--venn-slot-px);
+  transform: translateX(var(--venn-slide, 0));
+}
+
+/* Skills bullets: stagger out but keep full row height (don't collapse to one line) */
+body.journey-layout-lock.clarity-journey:not(.is-resting) .cx-hero__eyebrow {
+  flex-shrink: 0;
+  min-height: var(--cx-eyebrow-reserved-height, var(--cx-layout-eyebrow-slot));
+  max-height: none;
+  margin-bottom: max(0.5rem, calc(1rem - var(--cx-hero-lift) * 0.15));
+  overflow: visible;
+  pointer-events: none;
+  opacity: 1;
+}
+
+/* Block transition.css rest-morph from shifting vertical chrome */
+body.journey-layout-lock.clarity-journey:not(.is-resting) .cx-hero__inner {
+  padding-top: 0;
+  padding-bottom: 0;
+  min-height: 100%;
+}
+
+/* Control rail: slider (transition) + rest panel share Y with start slider */
+body.journey-layout-lock.clarity-journey .cx-hero__slider-block,
+body.journey-layout-lock.complexity-start .cx-hero__slider-block {
+  position: absolute;
+  top: var(--cx-layout-control-in-hero);
+  left: 0;
+  right: 0;
+  width: 100%;
+  margin-top: 0;
+  z-index: 2;
+}
+
+body.journey-layout-lock.clarity-journey:not(.is-resting) .cx-hero__content {
+  gap: 0;
+  margin-left: calc((20.056rem + 4rem) * (1 - var(--portrait-shrink)));
+}
+
+/* Rest: mirror u=100 layout-lock geometry */
+body.journey-layout-lock.is-resting .cx-hero__inner {
+  padding-top: 0;
+  padding-bottom: 0;
+  min-height: 100%;
+}
+
+body.journey-layout-lock.is-resting .cx-hero__content {
+  gap: 0;
+  margin-left: 0;
+  height: 100%;
+  min-height: 0;
+  padding-top: var(--cx-layout-hero-content-top);
+  box-sizing: border-box;
+}
+
+body.journey-layout-lock.is-resting .cx-hero__headline-row {
+  flex: none;
+  width: 100%;
+}
+
+body.journey-layout-lock.is-resting .cx-hero__copy {
+  flex: 1 1 100%;
+  min-width: 0;
+  max-width: var(--cx-headline-copy-max, 80%);
+  margin-right: 0;
+  padding-top: var(--cx-layout-headline-drift);
+  position: relative;
+  z-index: 0;
+}
+
+body.journey-layout-lock.is-resting .cx-hero__title-clarity {
+  font-size: var(--cx-rest-title-size);
+  line-height: var(--cx-rest-title-lh);
+  letter-spacing: -0.02em;
+  max-width: var(--cx-rest-title-max-w);
+}
+
+body.journey-layout-lock.is-resting .cx-rest-panel {
+  min-height: auto;
+}
+
+/* Transition: don't morph hero padding while layout-locked */
+body.journey-layout-lock.clarity-journey:not(.is-resting) .cx-page {
+  padding-top: var(--cx-layout-header-h);
+}
+
+@media (max-width: 768px) {
+  body.complexity-start.journey-layout-lock {
+    --cx-layout-header-h: 72px;
+    --cx-layout-hero-h: min(544px, 85vh);
+    --cx-layout-stack-h: calc(var(--cx-layout-header-h) + var(--cx-layout-hero-h));
+    --cx-layout-control-y: calc(var(--cx-layout-header-h) + var(--cx-layout-hero-h) - 5.5rem);
+  }
+
+  body.journey-layout-lock .cx-hero__slider-block {
+    position: relative;
+    top: auto;
+  }
+
+  body.journey-layout-lock .cx-hero__headline-row,
+  body.journey-layout-lock .cx-hero__copy {
+    max-height: none;
+  }
+}

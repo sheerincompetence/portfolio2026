@@ -7,28 +7,30 @@
   <meta name="description" content="Andrew Sheerin — I translate ideas into understanding.">
   <link rel="stylesheet" href="../../css/main.css?v=5">
   <link rel="stylesheet" href="css/chaos.css?v=5">
-  <link rel="stylesheet" href="css/complexity-start.css?v=42">
-  <link rel="stylesheet" href="css/clarity-transition.css?v=14">
-  <link rel="stylesheet" href="css/clarity-rest.css?v=8">
+  <link rel="stylesheet" href="css/complexity-start.css?v=43">
+  <link rel="stylesheet" href="css/clarity-transition.css?v=53">
+  <link rel="stylesheet" href="css/clarity-rest.css?v=13">
+  <link rel="stylesheet" href="css/clarity-layout-lock.css?v=17">
+  <link rel="stylesheet" href="css/clarity-tune.css?v=1">
 </head>
-<body class="complexity-start clarity-journey">
+<body class="complexity-start clarity-journey journey-no-urgency journey-layout-lock">
 
   <!-- Chaos overlays (widgets sit above page content) -->
   <div class="chaos-layer" id="chaos-layer" aria-hidden="true">
-    <div class="chaos-urgency" role="presentation" data-pop-at="0.06" data-pop-type="slide">
+    <div class="chaos-urgency" role="presentation" data-pop-at="0.06" data-pop-slide="0.12" data-pop-type="slide">
       ⚠️ Andrew is only available to save your business for the next
       <strong id="countdown">4 hours 32 minutes 12 seconds</strong> — book now!
     </div>
 
-    <div class="chaos-social" role="presentation" data-pop-at="0.14">
+    <div class="chaos-social" id="chaos-social" role="presentation" data-pop-chain-after="chaos-chat" data-pop-delay="650" data-pop-type="finale">
       <span class="chaos-social__dot" aria-hidden="true"></span>
       <span class="chaos-social__num" id="recruiter-count">112</span> recruiters viewed this candidate in the last hour
     </div>
 
     <div class="chaos-stack-left">
-      <button type="button" class="chaos-fab-quote" data-chaos-dead-end data-pop-at="0.44">📞 Call for quote</button>
+      <button type="button" class="chaos-fab-quote" data-chaos-dead-end data-pop-at="0.44" data-pop-delay="850">📞 Call for quote</button>
 
-      <div class="chaos-cookie" role="dialog" aria-label="Cookie consent parody" data-pop-at="0.5">
+      <div class="chaos-cookie" role="dialog" aria-label="Cookie consent parody" data-pop-at="0.44">
         <p>🍪 We use cookies, pixels, beacons, SDKs, and commercial data points extracted from your hopes and dreams to personalise your recruitment experience.</p>
         <div class="chaos-cookie__btns">
           <button type="button" class="chaos-cookie__accept" data-chaos-dead-end>Accept all</button>
@@ -37,7 +39,7 @@
       </div>
     </div>
 
-    <button type="button" class="chaos-newsletter" aria-label="Subscribe for insights" data-chaos-dead-end data-pop-at="0.24">SUBSCRIBE FOR INSIGHTS</button>
+    <button type="button" class="chaos-newsletter" aria-label="Subscribe for insights" data-chaos-dead-end data-pop-at="0.70">SUBSCRIBE FOR INSIGHTS</button>
 
     <div class="chaos-trust" aria-hidden="true" data-pop-at="0.34">
       <span>✓ GDPR</span>
@@ -69,11 +71,14 @@
           <span class="cx-logo__name">Andrew Sheerin<sup class="cx-logo__tm">TM</sup></span>
         </a>
         <nav class="cx-nav cx-nav--complex" aria-label="Primary">
-          <a href="#">Compressing Reality</a>
-          <a href="../../work/dona.html">DONA: Wellbeing Meets Productivity</a>
-          <a href="../../work/education.html">Education &amp; Enablement</a>
-          <a href="../../how-i-work.html">How I Work</a>
-          <a href="../../origins.html">Origins</a>
+          <a href="#" data-threshold="0.06" data-range="0.07">Compressing Reality</a>
+          <a href="../../work/dona.html" data-threshold="0.19" data-range="0.08">DONA: Wellbeing Meets Productivity</a>
+          <a href="../../work/education.html" data-threshold="0.11" data-range="0.07">Education &amp; Enablement</a>
+          <a href="../../how-i-work.html" id="nav-how-i-work" data-nav-href-complex="../../how-i-work.html" data-nav-morph="0.41" data-nav-morph-range="0.14" data-nav-href-clarity="#selected-work">
+            <span class="cx-nav__text cx-nav__text--long">How I Work</span>
+            <span class="cx-nav__text cx-nav__text--short" aria-hidden="true">Work</span>
+          </a>
+          <a href="../../origins.html" data-threshold="0.34" data-range="0.09">Origins</a>
           <a href="../../about.html">About</a>
           <a href="#">Contact</a>
         </nav>
@@ -100,11 +105,27 @@
           <div class="cx-hero__content">
             <div class="cx-hero__headline-row">
               <div class="cx-hero__copy">
-                <p class="cx-hero__eyebrow">🚀 Product design &nbsp; ⚙️ strategy &nbsp; 🤔 behavioural thinking &nbsp; ✨ AI &nbsp; 🤝 SYNERGY</p>
-                <h1 id="hero-heading" class="cx-hero__title">
-                  <span class="cx-hero__title-complex">For 20 years I have been leveraging synergistic design methodologies to unlock transformative outcomes, translating complex ideas — via design, systems thinking and emerging technologies — into products, prototypes, shared understanding and stakeholder alignment.</span>
-                  <span class="cx-hero__title-clarity">I translate ideas into understanding</span>
+                <p class="cx-hero__eyebrow" id="hero-eyebrow">
+                  <span class="eyebrow-skill" data-threshold="0.33" data-range="0.08">🚀 Product design</span><span class="eyebrow-sep" data-threshold="0.33" data-range="0.08" aria-hidden="true"> &nbsp; </span><span class="eyebrow-skill" data-threshold="0.19" data-range="0.08">⚙️ strategy</span><span class="eyebrow-sep" data-threshold="0.19" data-range="0.08" aria-hidden="true"> &nbsp; </span><span class="eyebrow-skill" data-threshold="0.26" data-range="0.08">🤔 behavioural thinking</span><span class="eyebrow-sep" data-threshold="0.26" data-range="0.08" aria-hidden="true"> &nbsp; </span><span class="eyebrow-skill" data-threshold="0.05" data-range="0.08">✨ AI</span><span class="eyebrow-sep" data-threshold="0.05" data-range="0.08" aria-hidden="true"> &nbsp; </span><span class="eyebrow-skill" data-threshold="0.12" data-range="0.08">🤝 SYNERGY</span>
+                </p>
+                <h1 id="hero-heading" class="cx-hero__title cx-hero__title-complex" aria-live="polite">
+                  <span class="frag frag-prefix-i" id="frag-prefix-i">I </span>
+                  <span class="frag frag-s2-for" data-threshold="0.30" data-range="0.06">For </span>
+                  <span class="frag frag-s2-years" data-threshold="0.46" data-range="0.06">20 years </span>
+                  <span class="frag frag-s2-have" data-threshold="0.30" data-range="0.06">I have been </span>
+                  <span class="frag frag-s2-lever" data-threshold="0.46" data-range="0.06">leveraging </span>
+                  <span class="frag" data-threshold="0.14" data-range="0.10">synergistic </span>
+                  <span class="frag frag-s2-dm" data-threshold="0.46" data-range="0.06">design methodologies </span>
+                  <span class="frag frag-s2-to" id="frag-s2-to" data-threshold="0.46" data-range="0.06">to </span>
+                  <span class="frag" data-threshold="0.14" data-range="0.10">to unlock transformative outcomes, </span>
+                  <span class="frag frag-verb-ing" id="frag-verb-ing">translating </span>
+                  <span class="frag frag-verb-plain" id="frag-verb-plain">translate </span>
+                  <span class="frag frag-complex" id="frag-complex" data-threshold="0.70" data-range="0.08">complex </span>
+                  <span class="frag frag-core">ideas </span><br class="frag-ideas-break" aria-hidden="true">
+                  <span class="frag" data-threshold="0.14" data-range="0.12">— via design, systems thinking and emerging technologies — </span>
+                  <span class="frag frag-core">into </span><span class="frag frag-proto-products" id="frag-proto-products" data-threshold="0.70" data-range="0.08">products</span><span class="frag frag-proto-prototypes" data-threshold="0.46" data-range="0.06">, prototypes</span><span class="frag frag-proto-comma" data-threshold="0.30" data-range="0.06">, </span><span class="frag frag-proto-and" id="frag-proto-and" data-threshold="0.70" data-range="0.08"> and </span><span class="frag frag-shared-word" data-threshold="0.70" data-range="0.08">shared </span><span class="frag frag-core">understanding</span><span class="frag frag-stakeholder" data-threshold="0.30" data-range="0.06"> and stakeholder alignment</span>
                 </h1>
+                <span class="cx-hero__title cx-hero__title-clarity">I translate ideas<br>into understanding</span>
               </div>
               <img class="cx-hero__venn" src="../../assets/images/general/venn.png" alt="" width="431" height="369" aria-hidden="true">
             </div>
@@ -276,6 +297,6 @@
     </footer>
   </div>
 
-  <script src="js/clarity-journey.js?v=4"></script>
+  <script src="js/clarity-journey.js?v=54"></script>
 </body>
 </html>
