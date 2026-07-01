@@ -1,0 +1,590 @@
+/* Direction 03 — Playful
+   Portfolio as co-op game. Self-aware, not childish. */
+
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@500;600&family=DM+Sans:wght@400;500;700&family=Zilla+Slab:wght@500;600;700&display=swap');
+
+:root {
+  --cream: #fff8e7;
+  --cream-dark: #f5ecd3;
+  --ink: #1a1a1a;
+  --ink-muted: #5a5348;
+  --mustard: #f4c430;
+  --teal: #2a9d8f;
+  --coral: #e76f51;
+  --purple: #7b5ea7;
+  --border: 3px solid var(--ink);
+  --shadow: 4px 4px 0 var(--ink);
+  --font-display: 'Zilla Slab', Georgia, serif;
+  --font-body: 'DM Sans', system-ui, sans-serif;
+  --font-hand: 'Caveat', cursive;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { font-size: 16px; scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-body);
+  background: var(--cream);
+  color: var(--ink);
+  line-height: 1.55;
+  background-image: radial-gradient(circle, rgba(26,26,26,0.04) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+img { max-width: 100%; height: auto; display: block; }
+
+a { color: var(--teal); font-weight: 500; }
+a:hover { color: var(--coral); }
+
+/* ——— Game chrome ——— */
+.game-nav {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding: 1rem;
+  border-bottom: var(--border);
+  background: var(--mustard);
+}
+
+.game-nav a {
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  color: var(--ink);
+  padding: 0.4rem 0.9rem;
+  border: 2px solid var(--ink);
+  background: white;
+  border-radius: 999px;
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+
+.game-nav a:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 3px 3px 0 var(--ink);
+  color: var(--ink);
+}
+
+.game-nav a[aria-current="page"] {
+  background: var(--ink);
+  color: var(--cream);
+}
+
+.game-card {
+  border: var(--border);
+  box-shadow: var(--shadow);
+  background: white;
+}
+
+.game-card--mustard { background: var(--mustard); }
+.game-card--teal { background: var(--teal); color: white; }
+.game-card--coral { background: var(--coral); color: white; }
+
+.hand-note {
+  font-family: var(--font-hand);
+  font-size: 1.35rem;
+  color: var(--coral);
+  transform: rotate(-2deg);
+  display: inline-block;
+}
+
+.sticker {
+  display: inline-block;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 0.25rem 0.6rem;
+  border: 2px solid var(--ink);
+  border-radius: 4px;
+  background: var(--mustard);
+  transform: rotate(-3deg);
+}
+
+.sticker--teal { background: var(--teal); color: white; }
+.sticker--coral { background: var(--coral); color: white; }
+
+/* ——— Homepage ——— */
+.game-wrap {
+  max-width: 56rem;
+  margin: 0 auto;
+  padding: 2rem 1.5rem 4rem;
+}
+
+.game-title-block {
+  text-align: center;
+  padding: 2.5rem 2rem;
+  margin-bottom: 2rem;
+  position: relative;
+}
+
+.game-title-block .sticker {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+}
+
+.game-title-block__pre {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+
+.game-title-block__title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5vw, 3.25rem);
+  font-weight: 700;
+  line-height: 1.05;
+  margin-bottom: 0.75rem;
+}
+
+.game-title-block__sub {
+  font-size: 1rem;
+  color: var(--ink-muted);
+  max-width: 28rem;
+  margin: 0 auto 1rem;
+}
+
+.game-title-block__fine {
+  font-family: var(--font-hand);
+  font-size: 1.5rem;
+  color: var(--teal);
+}
+
+/* Rules panel */
+.rules-panel {
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.rules-panel h2 {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.rules-panel ol {
+  padding-left: 1.25rem;
+  font-size: 0.9rem;
+}
+
+.rules-panel li {
+  margin-bottom: 0.5rem;
+}
+
+.rules-panel li::marker {
+  font-weight: 700;
+  color: var(--coral);
+}
+
+/* Character sheet */
+.char-sheet {
+  display: grid;
+  grid-template-columns: 8rem 1fr;
+  gap: 1.5rem;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  align-items: start;
+}
+
+.char-sheet__portrait {
+  border: var(--border);
+  box-shadow: var(--shadow);
+  background: white;
+  padding: 0.25rem;
+}
+
+.char-sheet__name {
+  font-family: var(--font-display);
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+}
+
+.char-sheet__class {
+  font-size: 0.85rem;
+  color: var(--ink-muted);
+  margin-bottom: 1rem;
+}
+
+.char-sheet__bio {
+  font-size: 0.9rem;
+  margin-bottom: 1.25rem;
+  line-height: 1.5;
+}
+
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.5rem;
+}
+
+.stat {
+  font-size: 0.75rem;
+}
+
+.stat__label {
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-size: 0.65rem;
+  margin-bottom: 0.2rem;
+}
+
+.stat__bar {
+  height: 0.5rem;
+  background: var(--cream-dark);
+  border: 2px solid var(--ink);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.stat__fill {
+  height: 100%;
+  background: var(--teal);
+}
+
+.stat__fill--max { width: 100%; background: var(--coral); }
+.stat__fill--high { width: 85%; }
+.stat__fill--good { width: 70%; }
+
+.stat__note {
+  font-family: var(--font-hand);
+  font-size: 1rem;
+  color: var(--purple);
+  margin-top: 0.15rem;
+}
+
+/* Quest board */
+.quest-board h2 {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+}
+
+.quest-grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.quest-card {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 1rem;
+  padding: 1.25rem;
+  text-decoration: none;
+  color: inherit;
+  align-items: center;
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+
+.quest-card:hover {
+  transform: translate(-3px, -3px);
+  box-shadow: 7px 7px 0 var(--ink);
+  color: inherit;
+}
+
+.quest-card--locked {
+  opacity: 0.55;
+  pointer-events: none;
+  filter: grayscale(0.3);
+}
+
+.quest-card__level {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1;
+  width: 3.5rem;
+  height: 3.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: var(--border);
+  border-radius: 50%;
+  background: var(--mustard);
+  flex-shrink: 0;
+}
+
+.quest-card--locked .quest-card__level {
+  background: var(--cream-dark);
+}
+
+.quest-card__title {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.quest-card__objective {
+  font-size: 0.85rem;
+  color: var(--ink-muted);
+  line-height: 1.4;
+}
+
+.quest-card__meta {
+  text-align: right;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.quest-card__difficulty {
+  color: var(--coral);
+  margin-bottom: 0.25rem;
+}
+
+.quest-card__status {
+  padding: 0.2rem 0.5rem;
+  border: 2px solid var(--ink);
+  background: var(--teal);
+  color: white;
+  border-radius: 4px;
+}
+
+.quest-card--locked .quest-card__status {
+  background: var(--cream-dark);
+  color: var(--ink-muted);
+}
+
+/* Footer quip */
+.game-footer {
+  text-align: center;
+  padding: 2rem;
+  font-size: 0.8rem;
+  color: var(--ink-muted);
+}
+
+.game-footer .hand-note {
+  display: block;
+  margin-top: 0.5rem;
+  font-size: 1.25rem;
+}
+
+/* ——— Mission (case study) ——— */
+.mission-wrap {
+  max-width: 52rem;
+  margin: 0 auto;
+  padding: 2rem 1.5rem 4rem;
+}
+
+.mission-header {
+  padding: 2rem;
+  margin-bottom: 1.5rem;
+  position: relative;
+}
+
+.mission-header__label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+
+.mission-header__title {
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 4vw, 2.75rem);
+  font-weight: 700;
+  line-height: 1.1;
+  margin-bottom: 1rem;
+}
+
+.mission-header__objective {
+  font-size: 1.05rem;
+  line-height: 1.45;
+  padding: 1rem;
+  border: 2px dashed var(--ink);
+  background: var(--cream);
+  margin-bottom: 1rem;
+}
+
+.mission-brief {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
+  font-size: 0.75rem;
+}
+
+.mission-brief dt {
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-size: 0.6rem;
+  color: var(--ink-muted);
+}
+
+.mission-brief dd {
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+
+.mission-phase {
+  padding: 1.5rem;
+  margin-bottom: 1.25rem;
+  position: relative;
+}
+
+.mission-phase__tag {
+  position: absolute;
+  top: -0.75rem;
+  left: 1rem;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.2rem 0.6rem;
+  border: 2px solid var(--ink);
+  background: var(--mustard);
+}
+
+.mission-phase h2 {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  margin-bottom: 0.75rem;
+  margin-top: 0.5rem;
+}
+
+.mission-phase p {
+  font-size: 0.95rem;
+  margin-bottom: 0.75rem;
+  line-height: 1.55;
+}
+
+.mission-phase ul {
+  padding-left: 1.25rem;
+  font-size: 0.95rem;
+  margin-bottom: 0.75rem;
+}
+
+.mission-phase li { margin-bottom: 0.35rem; }
+
+/* Loot drops (evidence) */
+.loot-drop {
+  margin: 1.25rem 0;
+  border: var(--border);
+  box-shadow: var(--shadow);
+  background: white;
+}
+
+.loot-drop__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 0.75rem;
+  background: var(--purple);
+  color: white;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.loot-drop__rarity {
+  font-family: var(--font-hand);
+  font-size: 1rem;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.loot-drop img {
+  border-bottom: var(--border);
+}
+
+.loot-drop__desc {
+  padding: 0.75rem;
+  font-size: 0.85rem;
+  color: var(--ink-muted);
+}
+
+/* Achievement */
+.achievement {
+  padding: 1.5rem;
+  margin: 1.5rem 0;
+  text-align: center;
+}
+
+.achievement__icon {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.achievement__label {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  opacity: 0.8;
+  margin-bottom: 0.35rem;
+}
+
+.achievement__title {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.achievement p {
+  font-size: 0.9rem;
+  max-width: 32rem;
+  margin: 0 auto;
+  line-height: 1.5;
+}
+
+.achievement--unlocked {
+  background: var(--teal);
+  color: white;
+}
+
+/* XP bar (reading progress - decorative) */
+.xp-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: white;
+  border-top: var(--border);
+  padding: 0.5rem 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.7rem;
+  font-weight: 700;
+  z-index: 50;
+}
+
+.xp-bar__track {
+  flex: 1;
+  height: 0.6rem;
+  background: var(--cream-dark);
+  border: 2px solid var(--ink);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.xp-bar__fill {
+  height: 100%;
+  background: var(--mustard);
+  width: 0%;
+  transition: width 0.1s;
+}
+
+@media (max-width: 640px) {
+  .char-sheet { grid-template-columns: 1fr; }
+  .char-sheet__portrait { max-width: 8rem; }
+  .stat-grid { grid-template-columns: 1fr; }
+  .quest-card { grid-template-columns: auto 1fr; }
+  .quest-card__meta { grid-column: 1 / -1; text-align: left; display: flex; gap: 1rem; }
+  .mission-brief { grid-template-columns: 1fr 1fr; }
+}

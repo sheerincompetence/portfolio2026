@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Creative Directions — Andrew Sheerin Portfolio</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500&family=Source+Serif+4:opsz,wght@8..60,400&display=swap');
+    * { box-sizing: border-box; margin: 0; }
+    body { font-family: 'Source Serif 4', Georgia, serif; background: #f7f5f2; color: #1c1c1c; line-height: 1.6; padding: 4rem 2rem; }
+    .wrap { max-width: 52rem; margin: 0 auto; }
+    h1 { font-size: 2rem; font-weight: 400; margin-bottom: 0.5rem; }
+    .intro { color: #5c5752; margin-bottom: 3rem; max-width: 38rem; }
+    .ref { margin-bottom: 3rem; padding-bottom: 2rem; border-bottom: 1px solid #ddd8d0; }
+    .ref a { color: #3d4f5f; }
+    .grid { display: grid; gap: 1.5rem; }
+    .card { border: 1px solid #ddd8d0; background: #faf8f5; padding: 1.5rem; text-decoration: none; color: inherit; display: block; transition: border-color 0.2s; }
+    .card:hover { border-color: #1c1c1c; }
+    .card--archived { opacity: 0.75; }
+    .card__num { font-family: 'IBM Plex Sans', sans-serif; font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: #8a8480; }
+    .card__title { font-size: 1.35rem; margin: 0.25rem 0 0.5rem; font-weight: 500; }
+    .card__desc { font-size: 0.95rem; color: #5c5752; margin: 0; }
+    .card__tags { font-family: 'IBM Plex Sans', sans-serif; font-size: 0.75rem; color: #8a8480; margin-top: 1rem; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>Creative directions</h1>
+    <p class="intro">Explorations for the portfolio build. The <strong>reference site</strong> at the repo root is the base shell; <strong>interior layout</strong> patterns (catalog IDs SWISS-*) power case study pages. <strong>Clarity/Chaos</strong> remain for the homepage metaphor — see the <a href="../components/index.html">component catalog</a>. Case File and Playful remain here for reference only.</p>
+
+    <p class="ref"><a href="../index.html">→ Reference version</a> (first-pass editorial) · <a href="../components/index.html">Component catalog</a></p>
+
+    <div class="grid">
+      <a href="01-swiss/index.html" class="card">
+        <span class="card__num">Direction 01 · Layout prototype</span>
+        <h2 class="card__title">Case study layout</h2>
+        <p class="card__desc">Poster-style sandbox for interior page structure — numbered sections, bleed figures, case hero. Production case studies use this skeleton with reference tokens (see <code>/work/antare.html</code>).</p>
+        <p class="card__tags">Space Grotesk · layout lab · not the live site shell</p>
+      </a>
+
+      <a href="04-clarity/journey.html" class="card">
+        <span class="card__num">Direction 04 · Target</span>
+        <h2 class="card__title">Complexity → Clarity journey</h2>
+        <p class="card__desc">Full Complexity starting state from Figma (node 33:195) — static layout before slider transitions. Preserves <a href="04-clarity/chaos.html" style="color:inherit">chaos.html</a> for animation reference.</p>
+        <p class="card__tags">Starting state · hero slider · chaos widgets</p>
+      </a>
+
+      <a href="04-clarity/chaos.html" class="card">
+        <span class="card__num">Direction 04 · Reference</span>
+        <h2 class="card__title">Chaos edition (preserved)</h2>
+        <p class="card__desc">Original parody homepage — slider at viewport bottom, dark patterns, fragment animations. Kept for transition reference. <a href="04-clarity/reference.html" style="color:inherit">Calmer reference</a> also available.</p>
+        <p class="card__tags">Slider · statement fragments · chaos layer</p>
+      </a>
+
+      <a href="05-graphic/index.html" class="card">
+        <span class="card__num">Direction 05 · Experiment</span>
+        <h2 class="card__title">Dark Graphic</h2>
+        <p class="card__desc">Bold, dark treatment based on the reference mockup — same complexity→clarity slider, but the clarified state is a full graphic portfolio layout. Includes Antare case study.</p>
+        <p class="card__tags">Bebas Neue · burnt orange · split hero · work grid</p>
+      </a>
+
+      <a href="02-casefile/index.html" class="card card--archived">
+        <span class="card__num">Direction 02 · Reference</span>
+        <h2 class="card__title">Case File</h2>
+        <p class="card__desc">Institutional dossier aesthetic. Archived — not in component library.</p>
+        <p class="card__tags">Reference only</p>
+      </a>
+
+      <a href="03-playful/index.html" class="card card--archived">
+        <span class="card__num">Direction 03 · Reference</span>
+        <h2 class="card__title">Portfolio: The Game</h2>
+        <p class="card__desc">Self-aware portfolio parody. Archived — not in component library.</p>
+        <p class="card__tags">Reference only</p>
+      </a>
+    </div>
+  </div>
+</body>
+</html>

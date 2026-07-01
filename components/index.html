@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Component catalog — Andrew Sheerin Portfolio</title>
+  <meta name="robots" content="noindex">
+  <link rel="stylesheet" href="../css/main.css">
+  <link rel="stylesheet" href="candidates.css">
+  <link rel="stylesheet" href="catalog.css">
+</head>
+<body>
+  <div class="catalog">
+    <aside class="catalog-sidebar">
+      <a href="../index.html" class="catalog-home">← Portfolio</a>
+      <a href="../directions/index.html" class="catalog-home" style="margin-top:0.25rem">Creative directions</a>
+
+      <h2>Core (reference)</h2>
+      <ul>
+        <li><a href="#fnd-tokens">FND-001 Tokens</a></li>
+        <li><a href="#case-narrative">CASE-003 Narrative</a></li>
+        <li><a href="#case-figure">CASE-004 Figure</a></li>
+      </ul>
+
+      <h2>Interior layout</h2>
+      <p class="text-small text-muted" style="margin:0 0 0.5rem;padding:0 1rem">Case study patterns (IDs kept as SWISS-*). Live site: <code>css/case-interior.css</code></p>
+      <ul>
+        <li><a href="#swiss-work-row">SWISS-001 Work row</a></li>
+        <li><a href="#swiss-section">SWISS-002 Numbered section</a></li>
+        <li><a href="#swiss-case-hero">SWISS-003 Case hero</a></li>
+        <li><a href="#swiss-outcome">SWISS-004 Outcome</a></li>
+        <li><a href="#swiss-bottom-nav">SWISS-005 Bottom nav</a></li>
+        <li><a href="#swiss-quote">SWISS-006 Quote band</a></li>
+        <li><a href="#swiss-meta">SWISS-007 Case meta</a></li>
+      </ul>
+
+      <h2>Clarity</h2>
+      <ul>
+        <li><a href="#clarity-slider">CLARITY-001 Slider</a></li>
+        <li><a href="#clarity-statement">CLARITY-002 Statement</a></li>
+        <li><a href="#clarity-sketch">CLARITY-003 Sketch layer</a></li>
+        <li><a href="#clarity-zones">CLARITY-004 UI zones</a></li>
+      </ul>
+
+      <h2>Chaos</h2>
+      <ul>
+        <li><a href="#chaos-layer">CHAOS-001 Layer</a></li>
+        <li><a href="#chaos-urgency">CHAOS-002 Urgency bar</a></li>
+        <li><a href="#chaos-social">CHAOS-003 Social proof</a></li>
+        <li><a href="#chaos-cookie">CHAOS-004 Cookie banner</a></li>
+        <li><a href="#chaos-chat">CHAOS-005 Chatbot</a></li>
+        <li><a href="#chaos-fabs">CHAOS-006 FABs</a></li>
+      </ul>
+    </aside>
+
+    <main class="catalog-main">
+      <header class="catalog-intro">
+        <p class="eyebrow">Build reference</p>
+        <h1>Component catalog</h1>
+        <p class="text-muted">Named components for the portfolio build. Use IDs in conversation — e.g. <em>“use SWISS-002 on Antare”</em> or <em>“drop CHAOS-005 from the homepage.”</em></p>
+
+        <div class="outcome" style="margin:1.5rem 0">
+          <p class="outcome__label">Design direction</p>
+          <p style="margin:0;font-size:0.95rem"><strong>Reference</strong> site shell at the repo root — homepage, nav, tokens, editorial voice (<code>index.html</code> unchanged). <strong>Interior layout</strong> (SWISS-* IDs) is the numbered-section skeleton for case studies, styled with reference tokens in <code>css/case-interior.css</code> — see <a href="../work/antare.html">Antare</a>. <strong>Clarity</strong> interactive metaphor for a future homepage pass. <strong>Chaos</strong> is the parody layer (chaos edition only). <code>directions/01-swiss/</code> remains a layout sandbox.</p>
+        </div>
+
+        <h2 style="font-size:1rem;margin:1.5rem 0 0.75rem">Homepage composition (target)</h2>
+        <pre class="specimen__code">CHAOS-001 layer (max complexity) + CLARITY-003 sketches + CLARITY-002 statement
+  → CLARITY-001 slider drives --u (understanding 0→1)
+  → chaos fades, CLARITY-004 simple zone emerges
+  → at clarity: SWISS-001 work list + SWISS-006 quote (or similar)</pre>
+
+        <h2 style="font-size:1rem;margin:1.5rem 0 0.75rem">Case study composition (live)</h2>
+        <pre class="specimen__code">Reference site-header + footer (main.css)
+  → SWISS-003 case-interior-hero + SWISS-007 case-interior-meta
+  → repeat SWISS-002 case-interior-section + bleed/offset figures
+  → close with SWISS-004 case-interior-outcome</pre>
+
+        <table class="registry">
+          <thead>
+            <tr><th>ID</th><th>Name</th><th>Class / pattern</th><th>Layer</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>FND-001</td><td>Design tokens</td><td><code>:root</code></td><td>Core</td></tr>
+            <tr><td>CASE-003</td><td>Narrative block</td><td><code>.narrative-block</code></td><td>Core · evolving</td></tr>
+            <tr><td>CASE-004</td><td>Figure</td><td><code>.figure</code></td><td>Core</td></tr>
+            <tr><td>SWISS-001</td><td><a href="#swiss-work-row">Work row</a></td><td><code>.work-row</code></td><td>Interior · optional homepage</td></tr>
+            <tr><td>SWISS-002</td><td><a href="#swiss-section">Numbered section</a></td><td><code>.case-interior-section</code></td><td>Interior</td></tr>
+            <tr><td>SWISS-003</td><td><a href="#swiss-case-hero">Case hero</a></td><td><code>.case-interior-hero</code></td><td>Interior</td></tr>
+            <tr><td>SWISS-004</td><td><a href="#swiss-outcome">Outcome</a></td><td><code>.case-interior-outcome</code></td><td>Interior</td></tr>
+            <tr><td>SWISS-005</td><td><a href="#swiss-bottom-nav">Bottom nav</a></td><td><code>.bottom-nav</code></td><td>Interior · sandbox only</td></tr>
+            <tr><td>SWISS-006</td><td><a href="#swiss-quote">Quote band</a></td><td><code>.quote-band</code></td><td>Interior · optional homepage</td></tr>
+            <tr><td>SWISS-007</td><td><a href="#swiss-meta">Case meta</a></td><td><code>.case-interior-meta</code></td><td>Interior</td></tr>
+            <tr><td>CLARITY-001</td><td><a href="#clarity-slider">Slider control</a></td><td><code>.clarity-control</code></td><td>Clarity</td></tr>
+            <tr><td>CLARITY-002</td><td><a href="#clarity-statement">Statement fragments</a></td><td><code>.statement .frag</code></td><td>Clarity</td></tr>
+            <tr><td>CLARITY-003</td><td><a href="#clarity-sketch">Sketch layer</a></td><td><code>.sketch-layer</code></td><td>Clarity</td></tr>
+            <tr><td>CLARITY-004</td><td><a href="#clarity-zones">UI zones</a></td><td><code>.complex-zone</code> / <code>.simple-zone</code></td><td>Clarity</td></tr>
+            <tr><td>CHAOS-001</td><td><a href="#chaos-layer">Chaos layer</a></td><td><code>.chaos-layer</code></td><td>Chaos</td></tr>
+            <tr><td>CHAOS-002</td><td><a href="#chaos-urgency">Urgency bar</a></td><td><code>.chaos-urgency</code></td><td>Chaos</td></tr>
+            <tr><td>CHAOS-003</td><td><a href="#chaos-social">Social proof</a></td><td><code>.chaos-social</code></td><td>Chaos</td></tr>
+            <tr><td>CHAOS-004</td><td><a href="#chaos-cookie">Cookie banner</a></td><td><code>.chaos-cookie</code></td><td>Chaos</td></tr>
+            <tr><td>CHAOS-005</td><td><a href="#chaos-chat">Chatbot</a></td><td><code>.chaos-chat</code></td><td>Chaos</td></tr>
+            <tr><td>CHAOS-006</td><td><a href="#chaos-fabs">FABs</a></td><td><code>.chaos-fab-quote</code> / <code>.chaos-mystery</code></td><td>Chaos</td></tr>
+          </tbody>
+        </table>
+        <p class="text-small text-muted">Full reference implementation: <a href="../work/antare.html">Antare (interior layout)</a> · <a href="../directions/04-clarity/chaos.html">chaos edition</a> · <a href="../directions/04-clarity/reference.html">clarity reference</a> · <a href="../directions/01-swiss/index.html">layout sandbox</a></p>
+      </header>
+
+      <!-- CORE (abbreviated — full set still in main.css) -->
+      <h2 class="specimen-group__title">Core — reference editorial</h2>
+      <p class="text-muted" style="margin:-0.5rem 0 1.5rem;font-size:0.9rem">From the first-pass reference site (<code>css/main.css</code>). CASE-003 and CASE-004 remain useful; other patterns will likely merge with Swiss styling. See <code>index.html</code>, <code>work/antare.html</code>.</p>
+
+      <article class="specimen" id="fnd-tokens">
+        <header class="specimen__header">
+          <p class="specimen__id">FND-001</p>
+          <h2 class="specimen__name">Design tokens</h2>
+          <p class="specimen__meta"><span class="specimen__status specimen__status--core">Core</span> · Will merge with Swiss palette in final build</p>
+        </header>
+        <div class="specimen__preview">
+          <div class="token-grid">
+            <div class="token-swatch"><div class="token-swatch__color" style="background:#f7f5f2"></div><div class="token-swatch__label">--color-paper</div></div>
+            <div class="token-swatch"><div class="token-swatch__color" style="background:#1c1c1c"></div><div class="token-swatch__label">--color-ink</div></div>
+            <div class="token-swatch"><div class="token-swatch__color" style="background:#3d4f5f"></div><div class="token-swatch__label">--color-accent</div></div>
+            <div class="token-swatch"><div class="token-swatch__color" style="background:#e63312"></div><div class="token-swatch__label">Swiss red (target)</div></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="specimen" id="case-narrative">
+        <header class="specimen__header">
+          <p class="specimen__id">CASE-003</p>
+          <h2 class="specimen__name">Narrative block</h2>
+          <p class="specimen__desc">Case study story section. Likely replaced or wrapped by SWISS-002 in final build. Labels: Context, Challenge, What I did, Evidence, What changed.</p>
+        </header>
+        <div class="specimen__preview">
+          <p class="narrative-block__label">Context</p>
+          <h2 style="font-size:1.15rem;margin:0.25rem 0">A camera sees everything.</h2>
+          <p style="margin:0;font-size:0.9rem">Body copy in prose width…</p>
+        </div>
+      </article>
+
+      <article class="specimen" id="case-figure">
+        <header class="specimen__header">
+          <p class="specimen__id">CASE-004</p>
+          <h2 class="specimen__name">Figure</h2>
+          <p class="specimen__desc">Evidence image + caption. Retained across Swiss interior. Modifiers: <code>--wide</code>, <code>--full</code>.</p>
+        </header>
+        <div class="specimen__preview">
+          <figure class="figure" style="margin:0;max-width:16rem">
+            <img src="../assets/images/antare/dual-feeds.png" alt="" loading="lazy">
+            <figcaption class="figure__caption">Caption describes what the evidence shows.</figcaption>
+          </figure>
+        </div>
+      </article>
+
+      <!-- SWISS -->
+      <h2 class="specimen-group__title">Swiss — portfolio interior</h2>
+      <p class="text-muted" style="margin:-0.5rem 0 1.5rem;font-size:0.9rem">Calm, typographic, strong hierarchy. Source: <code>directions/01-swiss/</code> · Styles: <code>components/lib/swiss.css</code></p>
+
+      <article class="specimen" id="swiss-work-row">
+        <header class="specimen__header">
+          <p class="specimen__id">SWISS-001</p>
+          <h2 class="specimen__name">Work row</h2>
+          <p class="specimen__meta"><span class="specimen__status specimen__status--candidate">Target</span></p>
+          <p class="specimen__desc">Tabular project index — number, title, thesis. Hover inverts to black. Replaces HOME-002 work cards on the clarified homepage.</p>
+        </header>
+        <div class="specimen__preview specimen__preview--swiss">
+          <div class="work-list">
+            <div class="work-list__header"><span>No.</span><span>Project</span><span>Thesis</span></div>
+            <a href="#" class="work-row">
+              <span class="work-row__num">01</span>
+              <span class="work-row__title">Antare</span>
+              <span class="work-row__thesis">When AI generates more signal than anyone can process, the design problem becomes editorial.</span>
+            </a>
+          </div>
+        </div>
+        <pre class="specimen__code">&lt;a href="work/antare.html" class="work-row"&gt;
+  &lt;span class="work-row__num"&gt;01&lt;/span&gt;
+  &lt;span class="work-row__title"&gt;Antare&lt;/span&gt;
+  &lt;span class="work-row__thesis"&gt;…&lt;/span&gt;
+&lt;/a&gt;</pre>
+      </article>
+
+      <article class="specimen" id="swiss-section">
+        <header class="specimen__header">
+          <p class="specimen__id">SWISS-002</p>
+          <h2 class="specimen__name">Numbered section</h2>
+          <p class="specimen__desc">Case study narrative unit. Large numeral + red label + heading. Replaces CASE-003 structure.</p>
+        </header>
+        <div class="specimen__preview specimen__preview--swiss">
+          <section class="section-swiss">
+            <span class="section-swiss__num">01</span>
+            <div>
+              <p class="section-swiss__label">Context</p>
+              <h2>A camera sees everything. The feed must not.</h2>
+              <p>Antare builds intelligence from body-worn camera footage…</p>
+            </div>
+          </section>
+        </div>
+      </article>
+
+      <article class="specimen" id="swiss-case-hero">
+        <header class="specimen__header">
+          <p class="specimen__id">SWISS-003</p>
+          <h2 class="specimen__name">Case hero</h2>
+          <p class="specimen__desc">Case study opener — giant index numeral, red label, title, thesis.</p>
+        </header>
+        <div class="specimen__preview specimen__preview--swiss">
+          <header class="case-hero">
+            <span class="case-hero__index">01</span>
+            <p class="case-hero__label">Case study · Antare</p>
+            <h1 class="case-hero__title">Evolution of a Feed</h1>
+            <p class="case-hero__thesis">When AI generates more signal than anyone can process, the design problem becomes editorial.</p>
+          </header>
+        </div>
+      </article>
+
+      <article class="specimen" id="swiss-outcome">
+        <header class="specimen__header">
+          <p class="specimen__id">SWISS-004</p>
+          <h2 class="specimen__name">Outcome block</h2>
+          <p class="specimen__desc">Vermillion "What it proves" closing callout. Replaces CASE-005 outcome styling.</p>
+        </header>
+        <div class="specimen__preview specimen__preview--swiss">
+          <div class="outcome-swiss">
+            <p class="outcome-swiss__label">What it proves</p>
+            <p>AI product design is an editorial problem — deciding what deserves to exist in someone's attention at all.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="specimen" id="swiss-bottom-nav">
+        <header class="specimen__header">
+          <p class="specimen__id">SWISS-005</p>
+          <h2 class="specimen__name">Bottom nav</h2>
+          <p class="specimen__desc">Fixed pill navigation. Alternative to NAV-001 sticky header on interior pages.</p>
+        </header>
+        <div class="specimen__preview specimen__preview--swiss">
+          <nav class="bottom-nav" aria-label="Demo">
+            <a href="#" aria-current="page">Home</a>
+            <span class="nav-divider"></span>
+            <a href="#">Antare</a>
+          </nav>
+        </div>
+      </article>
+
+      <article class="specimen" id="swiss-quote">
+        <header class="specimen__header">
+          <p class="specimen__id">SWISS-006</p>
+          <h2 class="specimen__name">Quote band</h2>
+          <p class="specimen__desc">Full-width philosophy quote — black band, vermillion mark.</p>
+        </header>
+        <div class="specimen__preview specimen__preview--swiss specimen__preview--flush">
+          <blockquote class="quote-band">
+            <span class="quote-band__mark">"</span>
+            <p class="quote-band__text">The most powerful tool is useless if it's not clear how to use it.</p>
+          </blockquote>
+        </div>
+      </article>
+
+      <article class="specimen" id="swiss-meta">
+        <header class="specimen__header">
+          <p class="specimen__id">SWISS-007</p>
+          <h2 class="specimen__name">Case meta strip</h2>
+          <p class="specimen__desc">Horizontal role/org/focus/disciplines — lighter than CASE-002 grid.</p>
+        </header>
+        <div class="specimen__preview specimen__preview--swiss">
+          <dl class="case-meta-swiss">
+            <div><dt>Role</dt><dd>Head of Product Design</dd></div>
+            <div><dt>Org</dt><dd>Antare</dd></div>
+            <div><dt>Focus</dt><dd>AI incident feeds</dd></div>
+          </dl>
+        </div>
+      </article>
+
+      <!-- CLARITY -->
+      <h2 class="specimen-group__title">Clarity — homepage interactive</h2>
+      <p class="text-muted" style="margin:-0.5rem 0 1.5rem;font-size:0.9rem">The chaotic key → refined portfolio. Driven by CSS variable <code>--u</code> (understanding 0–1). Source: <code>directions/04-clarity/</code></p>
+
+      <article class="specimen" id="clarity-slider">
+        <header class="specimen__header">
+          <p class="specimen__id">CLARITY-001</p>
+          <h2 class="specimen__name">Slider control</h2>
+          <p class="specimen__desc">Fixed bottom control. Labels: Complexity ← → Understanding. Sets <code>--u</code> on <code>documentElement</code>. JS: <code>directions/04-clarity/js/chaos.js</code> or <code>slider.js</code>.</p>
+        </header>
+        <p class="specimen__notes">On the live homepage this is fixed to the viewport bottom; always above CHAOS-001 in z-index.</p>
+      </article>
+
+      <article class="specimen" id="clarity-statement">
+        <header class="specimen__header">
+          <p class="specimen__id">CLARITY-002</p>
+          <h2 class="specimen__name">Statement fragments</h2>
+          <p class="specimen__desc">CV copy as spans with <code>data-threshold</code> and <code>data-range</code>. Fades from full sentence to <em>"I translate ideas into understanding."</em></p>
+        </header>
+        <div class="specimen__preview specimen__preview--clarity" data-clarity-demo>
+          <p class="statement">
+            <span class="frag frag-core">I </span>
+            <span class="frag" data-threshold="0.05" data-range="0.15">specialise in helping people </span>
+            <span class="frag" data-threshold="0.12" data-range="0.2">make sense of </span>
+            <span class="frag" data-threshold="0.28" data-range="0.22">complexity </span>
+            <span class="frag frag-core">translate ideas into </span>
+            <span class="frag frag-core">understanding.</span>
+          </p>
+          <div class="clarity-control clarity-control--inline">
+            <div class="clarity-control__labels"><span>Complexity</span><span>Understanding</span></div>
+            <input type="range" min="0" max="1" step="0.01" value="0.2" aria-label="Demo clarity slider">
+          </div>
+        </div>
+        <pre class="specimen__code">&lt;span class="frag" data-threshold="0.28" data-range="0.22"&gt;complexity &lt;/span&gt;</pre>
+      </article>
+
+      <article class="specimen" id="clarity-sketch">
+        <header class="specimen__header">
+          <p class="specimen__id">CLARITY-003</p>
+          <h2 class="specimen__name">Sketch layer</h2>
+          <p class="specimen__desc">Background diagrams + float tags (magic circle, five pillars, buzzwords). Opacity tied to <code>--chaos</code> (= 1 − --u). Also includes body grid via <code>body::before</code>.</p>
+        </header>
+        <div class="specimen__preview specimen__preview--clarity" style="--u:0.15">
+          <span class="float-tag">behavioural insight</span>
+          <p class="statement" style="font-size:0.85rem;margin:0">Background sketches fade as understanding increases.</p>
+        </div>
+      </article>
+
+      <article class="specimen" id="clarity-zones">
+        <header class="specimen__header">
+          <p class="specimen__id">CLARITY-004</p>
+          <h2 class="specimen__name">UI zones</h2>
+          <p class="specimen__desc"><code>.complex-zone</code> — dense homepage (meta cards, pillars, portrait). <code>.simple-zone</code> — minimal work list emerges at high <code>--u</code>. Nav splits: <code>.nav-complex</code> / <code>.nav-simple</code>.</p>
+        </header>
+        <div class="specimen__preview specimen__preview--clarity is-clear">
+          <div class="work-minimal">
+            <h2>Selected work</h2>
+            <ul>
+              <li><a href="#">Antare — Evolution of a Feed</a></li>
+              <li><a href="#">Citrix DONA</a></li>
+            </ul>
+          </div>
+        </div>
+        <p class="specimen__notes">At max clarity, complex-zone hides and simple-zone + SWISS-001 work list take over.</p>
+      </article>
+
+      <!-- CHAOS -->
+      <h2 class="specimen-group__title">Chaos — homepage parody layer</h2>
+      <p class="text-muted" style="margin:-0.5rem 0 1.5rem;font-size:0.9rem">Only at max complexity. Entire <code>.chaos-layer</code> fades with <code>--u</code>. Source: <code>directions/04-clarity/chaos.html</code></p>
+
+      <article class="specimen" id="chaos-layer">
+        <header class="specimen__header">
+          <p class="specimen__id">CHAOS-001</p>
+          <h2 class="specimen__name">Chaos layer</h2>
+          <p class="specimen__desc">Wrapper for all parody widgets. Fixed, full viewport, <code>pointer-events: none</code> on container (auto on children). Hidden when <code>--u</code> &gt; ~0.2.</p>
+        </header>
+        <div class="specimen__preview specimen__preview--chaos">
+          <div class="chaos-stack">
+            <div class="chaos-urgency">⚠️ Andrew is only available to save your business for the next <strong>4:32:01</strong></div>
+            <div class="chaos-social"><span class="chaos-social__num">112</span> recruiters viewed this candidate in the last hour</div>
+            <div class="chaos-cookie"><p>🍪 We use cookies, pixels, beacons, SDKs…</p><button type="button">Accept all</button></div>
+            <div class="chaos-fabs">
+              <button type="button" class="chaos-fab-quote">📞 Call for quote</button>
+              <button type="button" class="chaos-mystery">?</button>
+            </div>
+            <div class="chaos-chat">
+              <div class="chaos-chat__bubble">
+                <p class="chaos-chat__name">TalentBot™</p>
+                <p>Can I help you hire Andrew <em>right now</em>?</p>
+              </div>
+              <button type="button" class="chaos-chat__btn">💬</button>
+            </div>
+          </div>
+          <span class="chaos-newsletter">SUBSCRIBE</span>
+          <p class="chaos-note">Composed of CHAOS-002 – CHAOS-006. All dead-end clicks point users to CLARITY-001.</p>
+        </div>
+      </article>
+
+      <article class="specimen" id="chaos-urgency">
+        <header class="specimen__header">
+          <p class="specimen__id">CHAOS-002</p>
+          <h2 class="specimen__name">Urgency bar</h2>
+          <p class="specimen__desc">Red countdown strip. Live timer in chaos edition JS.</p>
+        </header>
+        <div class="specimen__preview specimen__preview--chaos">
+          <div class="chaos-urgency">⚠️ Only available for the next <strong>4 hours 32 minutes</strong> — book now!</div>
+        </div>
+      </article>
+
+      <article class="specimen" id="chaos-social">
+        <header class="specimen__header">
+          <p class="specimen__id">CHAOS-003</p>
+          <h2 class="specimen__name">Social proof toast</h2>
+          <p class="specimen__desc">"X recruiters viewed this candidate" — number ticks in live version.</p>
+        </header>
+        <div class="specimen__preview specimen__preview--chaos">
+          <div class="chaos-social"><span class="chaos-social__num">112</span> recruiters viewed this candidate in the last hour</div>
+        </div>
+      </article>
+
+      <article class="specimen" id="chaos-cookie">
+        <header class="specimen__header">
+          <p class="specimen__id">CHAOS-004</p>
+          <h2 class="specimen__name">Cookie banner</h2>
+          <p class="specimen__desc">Snarky GDPR parody. Accept button is a dead end → slider hint.</p>
+        </header>
+        <div class="specimen__preview specimen__preview--chaos">
+          <div class="chaos-cookie"><p>🍪 We use cookies, pixels, beacons, SDKs, and probably your hopes and dreams.</p><button type="button">Accept all</button></div>
+        </div>
+      </article>
+
+      <article class="specimen" id="chaos-chat">
+        <header class="specimen__header">
+          <p class="specimen__id">CHAOS-005</p>
+          <h2 class="specimen__name">Chatbot widget</h2>
+          <p class="specimen__desc">TalentBot™ — bobbing bubble, cycling messages, typing dots.</p>
+        </header>
+        <div class="specimen__preview specimen__preview--chaos">
+          <div class="chaos-chat">
+            <div class="chaos-chat__bubble">
+              <p class="chaos-chat__name">TalentBot™</p>
+              <p>Would you like to schedule a synergy call?</p>
+            </div>
+            <button type="button" class="chaos-chat__btn">💬</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="specimen" id="chaos-fabs">
+        <header class="specimen__header">
+          <p class="specimen__id">CHAOS-006</p>
+          <h2 class="specimen__name">Floating action buttons</h2>
+          <p class="specimen__desc"><code>.chaos-fab-quote</code> — Call for quote. <code>.chaos-mystery</code> — the lone ? button seen in the wild.</p>
+        </header>
+        <div class="specimen__preview specimen__preview--chaos">
+          <div class="chaos-fabs">
+            <button type="button" class="chaos-fab-quote">📞 Call for quote</button>
+            <button type="button" class="chaos-mystery">?</button>
+          </div>
+        </div>
+      </article>
+
+      <footer class="site-footer">
+        <div class="site-footer__inner" style="max-width:none;padding:0">
+          <p>Component catalog — build reference only</p>
+          <p><a href="../index.html">Portfolio</a></p>
+        </div>
+      </footer>
+    </main>
+  </div>
+
+  <script src="catalog-demo.js"></script>
+</body>
+</html>

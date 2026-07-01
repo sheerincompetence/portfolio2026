@@ -1,0 +1,10 @@
+.DS_Store
+**/.DS_Store
+Raw Materials/
+.slack-mockup/
+
+__pycache__/
+**/*.pyc
+node_modules/
+dist/
+build/

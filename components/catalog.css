@@ -1,0 +1,275 @@
+/* Component catalog page — layout only; specimens use main.css + candidates.css */
+
+.catalog {
+  display: grid;
+  grid-template-columns: 14rem 1fr;
+  gap: 0;
+  min-height: 100vh;
+}
+
+.catalog-sidebar {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
+  padding: var(--space-md);
+  border-right: 1px solid var(--color-rule);
+  background: var(--color-highlight);
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+}
+
+.catalog-sidebar h2 {
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-ink-faint);
+  margin: var(--space-md) 0 var(--space-xs);
+  font-family: var(--font-sans);
+}
+
+.catalog-sidebar h2:first-child {
+  margin-top: 0;
+}
+
+.catalog-sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.catalog-sidebar a {
+  display: block;
+  padding: 0.25rem 0;
+  color: var(--color-ink-muted);
+  text-decoration: none;
+}
+
+.catalog-sidebar a:hover {
+  color: var(--color-ink);
+}
+
+.catalog-sidebar .catalog-home {
+  font-weight: 500;
+  color: var(--color-ink);
+  margin-bottom: var(--space-sm);
+  display: block;
+}
+
+.catalog-main {
+  padding: var(--space-xl) var(--space-lg);
+  max-width: 52rem;
+}
+
+.catalog-intro {
+  margin-bottom: var(--space-xl);
+  padding-bottom: var(--space-lg);
+  border-bottom: 1px solid var(--color-rule);
+}
+
+.catalog-intro h1 {
+  margin-bottom: var(--space-sm);
+}
+
+/* Registry table */
+.registry {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  margin: var(--space-md) 0 var(--space-xl);
+}
+
+.registry th,
+.registry td {
+  text-align: left;
+  padding: 0.5rem 0.75rem;
+  border-bottom: 1px solid var(--color-rule);
+  vertical-align: top;
+}
+
+.registry th {
+  font-size: 0.65rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-ink-faint);
+  font-weight: 500;
+}
+
+.registry code {
+  font-size: 0.75rem;
+  background: var(--color-accent-light);
+  padding: 0.1rem 0.35rem;
+  border-radius: 2px;
+}
+
+.registry a {
+  color: var(--color-accent);
+  text-decoration: none;
+}
+
+.registry a:hover {
+  text-decoration: underline;
+}
+
+/* Specimen cards */
+.specimen {
+  margin-bottom: var(--space-xl);
+  padding-bottom: var(--space-xl);
+  border-bottom: 1px solid var(--color-rule);
+  scroll-margin-top: var(--space-md);
+}
+
+.specimen:last-child {
+  border-bottom: none;
+}
+
+.specimen__header {
+  margin-bottom: var(--space-md);
+}
+
+.specimen__id {
+  font-family: var(--font-sans);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: var(--color-accent);
+  margin-bottom: 0.25rem;
+}
+
+.specimen__name {
+  font-size: 1.35rem;
+  font-weight: 500;
+  margin: 0 0 var(--space-xs);
+}
+
+.specimen__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1rem;
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  color: var(--color-ink-muted);
+  margin-bottom: var(--space-sm);
+}
+
+.specimen__status {
+  display: inline-block;
+  padding: 0.15rem 0.45rem;
+  border-radius: 3px;
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.specimen__status--core {
+  background: var(--color-accent-light);
+  color: var(--color-accent);
+}
+
+.specimen__status--candidate {
+  background: #f5ecd3;
+  color: #8a6d3b;
+}
+
+.specimen__status--experimental {
+  background: #fce8e8;
+  color: #8b2635;
+}
+
+.specimen__desc {
+  font-size: 0.95rem;
+  color: var(--color-ink-muted);
+  max-width: 40rem;
+  line-height: 1.5;
+}
+
+.specimen__preview {
+  margin: var(--space-md) 0;
+  padding: var(--space-md);
+  background: var(--color-paper);
+  border: 1px solid var(--color-rule);
+}
+
+.specimen__preview--flush {
+  padding: 0;
+  overflow: hidden;
+}
+
+.specimen__preview--dark {
+  background: var(--color-ink);
+  padding: var(--space-md);
+}
+
+.specimen__code {
+  font-family: ui-monospace, 'Cascadia Code', monospace;
+  font-size: 0.72rem;
+  background: var(--color-highlight);
+  border: 1px solid var(--color-rule);
+  padding: var(--space-sm);
+  overflow-x: auto;
+  color: var(--color-ink-muted);
+  line-height: 1.5;
+}
+
+.specimen__notes {
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  color: var(--color-ink-muted);
+  margin-top: var(--space-sm);
+  padding-left: var(--space-sm);
+  border-left: 2px solid var(--color-rule);
+}
+
+.specimen-group__title {
+  font-family: var(--font-sans);
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-ink-faint);
+  margin: var(--space-2xl) 0 var(--space-lg);
+  padding-top: var(--space-lg);
+  border-top: 2px solid var(--color-ink);
+}
+
+.specimen-group__title:first-of-type {
+  margin-top: 0;
+  border-top: none;
+  padding-top: 0;
+}
+
+/* Token swatches */
+.token-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(7rem, 1fr));
+  gap: var(--space-sm);
+}
+
+.token-swatch {
+  border: 1px solid var(--color-rule);
+  font-family: var(--font-sans);
+  font-size: 0.65rem;
+}
+
+.token-swatch__color {
+  height: 3rem;
+}
+
+.token-swatch__label {
+  padding: 0.35rem 0.5rem;
+  background: white;
+}
+
+@media (max-width: 900px) {
+  .catalog {
+    grid-template-columns: 1fr;
+  }
+
+  .catalog-sidebar {
+    position: static;
+    height: auto;
+    border-right: none;
+    border-bottom: 1px solid var(--color-rule);
+  }
+}

@@ -1,0 +1,34 @@
+# Git internals (not useful for semantic search)
+.git/
+
+# Reference archive — 580MB+ of old portfolio exports, project PDFs, screenshots.
+# @-mention a specific file if you need the agent to read something here.
+Raw Materials/
+
+# One-off Python mockup tooling (vendored pylibs, not site source)
+.slack-mockup/
+
+# macOS metadata
+.DS_Store
+**/.DS_Store
+
+# Binary media — agent works from HTML/CSS/JS; images aren't indexed meaningfully
+**/*.png
+**/*.jpg
+**/*.jpeg
+**/*.gif
+**/*.webp
+**/*.svg
+**/*.ico
+**/*.pdf
+**/*.mp4
+**/*.mov
+**/*.zip
+
+# Build / dependency dirs (future-proofing if you add tooling later)
+node_modules/
+dist/
+build/
+.next/
+__pycache__/
+**/*.pyc

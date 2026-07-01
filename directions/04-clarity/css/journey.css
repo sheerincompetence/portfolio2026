@@ -1,0 +1,552 @@
+/* Journey — Complexity → Clarity homepage transition
+   Builds on main.css + chaos.css; driven by --u (0 = chaos, 1 = clarity) */
+
+:root {
+  --u: 0;
+  --chaos: calc(1 - var(--u));
+  --journey-focus-width: calc(100% - var(--u) * 12%);
+  --journey-hero-height: 35.889rem; /* ~646px @ 18px — fixed hero block */
+}
+
+body.journey-mode {
+  --color-bg: color-mix(in srgb, var(--color-paper, #f7f5f2) calc((1 - var(--u)) * 100%), #faf9f7);
+  background: var(--color-bg);
+  transition: background 0.45s ease;
+  padding-top: calc(var(--chaos) * 2.25rem);
+}
+
+/* Page narrowing — site “focuses” as clarity increases */
+.journey-shell {
+  max-width: var(--journey-focus-width);
+  margin-inline: auto;
+  transition: max-width 0.5s ease;
+  position: relative;
+  z-index: 1;
+}
+
+body.journey-mode.is-resting .journey-shell {
+  max-width: 100%;
+  transition: max-width 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* ——— Header: complex ↔ simple nav ——— */
+.journey-header .site-header__inner {
+  align-items: center;
+  position: relative;
+  min-height: 2.5rem;
+}
+
+.journey-nav-slot {
+  position: relative;
+  margin-left: auto;
+  min-width: 12rem;
+  min-height: 2rem;
+}
+
+.journey-nav--complex,
+.journey-nav--simple {
+  transition: opacity 0.45s ease;
+}
+
+.journey-nav--complex {
+  opacity: var(--chaos);
+  pointer-events: calc(var(--chaos) * 1);
+}
+
+.journey-nav--complex.is-hidden {
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+}
+
+.journey-nav--simple {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  opacity: calc(max(0, (var(--u) - 0.55) * 2.2));
+  pointer-events: none;
+}
+
+body.journey-mode.nav-clarity:not(.is-resting) .journey-nav--simple,
+body.journey-mode.is-resting .journey-nav--simple {
+  pointer-events: auto;
+}
+
+.site-nav--wide {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.25rem;
+  justify-content: flex-end;
+  font-size: 0.833rem;
+}
+
+.site-nav--wide a {
+  white-space: nowrap;
+}
+
+body.journey-mode.is-resting .journey-nav--complex {
+  display: none;
+}
+
+body.journey-mode.is-resting .journey-nav--simple {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+body.journey-mode.is-resting .journey-nav--simple .site-nav {
+  visibility: visible;
+}
+
+/* ——— Hero: constant height, slider anchored to bottom ——— */
+.journey-hero {
+  position: relative;
+  min-height: var(--journey-hero-height);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-top: 2.5rem;
+  margin-bottom: 0;
+}
+
+.journey-hero__grid {
+  display: flex;
+  align-items: flex-start;
+  gap: 4rem;
+  flex: 1;
+  padding-bottom: 7.5rem; /* reserve space for slider */
+}
+
+.journey-hero__copy {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  position: relative;
+}
+
+.journey-portrait {
+  flex-shrink: 0;
+  width: 20.055rem;
+  height: 29.5rem;
+  overflow: hidden;
+  opacity: calc(0.35 + var(--u) * 0.65);
+  transform: scale(calc(0.92 + var(--u) * 0.08));
+  transition: opacity 0.5s ease, transform 0.5s ease, max-height 0.5s ease, margin 0.5s ease;
+}
+
+body.journey-mode:not(.is-resting) .journey-portrait {
+  opacity: calc(1 - var(--u) * 0.85);
+}
+
+body.journey-mode.is-resting .journey-portrait,
+body.journey-mode[data-u-high="true"] .journey-portrait {
+  opacity: 0;
+  max-height: 0;
+  width: 0;
+  margin: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.journey-eyebrow {
+  opacity: calc(0.4 + var(--u) * 0.6);
+  transition: opacity 0.45s ease;
+  text-align: right;
+}
+
+body.journey-mode:not(.is-resting) .journey-eyebrow {
+  opacity: calc(1 - var(--u) * 0.5);
+}
+
+.journey-headline {
+  text-align: right;
+  font-size: calc(1.85rem + var(--u) * 0.35rem);
+  line-height: 1.15;
+  transition: font-size 0.45s ease;
+}
+
+.journey-headline .frag {
+  transition: opacity 0.35s ease;
+}
+
+.journey-headline .frag.is-faded {
+  opacity: 0;
+}
+
+.journey-headline .frag-prefix-i {
+  opacity: 0;
+  display: inline;
+}
+
+.journey-headline .frag-prefix-i.is-visible {
+  opacity: 1;
+}
+
+.journey-lead {
+  text-align: left;
+  align-self: flex-start;
+  margin-top: 1rem;
+  opacity: 0;
+  max-height: 0;
+  overflow: hidden;
+  transition: opacity 0.45s ease, max-height 0.45s ease, margin 0.45s ease;
+}
+
+.journey-lead.is-visible {
+  opacity: 1;
+  max-height: 4rem;
+}
+
+.journey-body {
+  text-align: left;
+  align-self: flex-start;
+  opacity: calc(var(--u) * 0.95);
+  max-height: calc(var(--u) * 12rem);
+  overflow: hidden;
+  margin-top: calc(var(--u) * 1.25rem);
+  transition: opacity 0.45s ease, max-height 0.45s ease, margin 0.45s ease;
+}
+
+.journey-venn {
+  position: absolute;
+  top: 0;
+  right: -1rem;
+  width: min(24rem, 45vw);
+  height: auto;
+  opacity: calc(var(--chaos) * 0.95);
+  pointer-events: none;
+  transition: opacity 0.45s ease, transform 0.45s ease;
+  transform: scale(calc(0.9 + var(--chaos) * 0.1));
+}
+
+/* Slider / CTA panel — fixed within hero bottom */
+.journey-hero__control {
+  position: absolute;
+  bottom: 1.5rem;
+  left: 2rem;
+  right: 2rem;
+  z-index: 5;
+}
+
+.journey-slide-hint {
+  font-family: var(--font-sans);
+  font-size: 1.15rem;
+  font-weight: 500;
+  margin-bottom: 0.65rem;
+  opacity: calc(var(--chaos) * 0.85);
+  transition: opacity 0.4s ease;
+}
+
+.journey-control {
+  background: color-mix(in srgb, var(--color-paper, #f7f5f2) 88%, transparent);
+  border: 1px solid color-mix(in srgb, var(--color-ink, #1c1c1c) calc(8% + var(--chaos) * 10%), transparent);
+  border-radius: 2px;
+  padding: 1rem 1.5rem 1.25rem;
+  transition: border-color 0.4s ease, background 0.4s ease, opacity 0.4s ease, transform 0.4s ease;
+}
+
+.journey-control__labels {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  font-weight: 500;
+  margin-bottom: 0.65rem;
+  color: var(--color-ink-muted, #6b6560);
+}
+
+.journey-control input[type="range"] {
+  width: 100%;
+  height: 4px;
+  appearance: none;
+  background: color-mix(in srgb, var(--color-ink, #1c1c1c) 15%, transparent);
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+.journey-control input[type="range"]::-webkit-slider-thumb {
+  appearance: none;
+  width: 1.15rem;
+  height: 1.15rem;
+  border-radius: 50%;
+  background: var(--color-ink, #1c1c1c);
+  border: 2px solid var(--color-paper, #f7f5f2);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
+  cursor: grab;
+}
+
+.journey-control input[type="range"]::-moz-range-thumb {
+  width: 1.15rem;
+  height: 1.15rem;
+  border-radius: 50%;
+  background: var(--color-ink, #1c1c1c);
+  border: 2px solid var(--color-paper, #f7f5f2);
+  cursor: grab;
+}
+
+.journey-control--rest {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1.25rem 1.5rem;
+  text-align: center;
+}
+
+.journey-cta {
+  display: inline-block;
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--color-ink, #1c1c1c);
+  padding: 0.85rem 2.5rem;
+  border: 1px solid var(--color-ink, #1c1c1c);
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.journey-cta:hover {
+  background: var(--color-ink, #1c1c1c);
+  color: var(--color-paper, #f7f5f2);
+}
+
+.journey-restore {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  background: none;
+  border: none;
+  color: var(--color-ink-muted, #6b6560);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+  padding: 0.25rem;
+}
+
+.journey-restore:hover {
+  color: var(--color-ink, #1c1c1c);
+}
+
+body.journey-mode.is-resting .journey-control--slider {
+  display: none;
+}
+
+body.journey-mode.is-resting .journey-control--rest {
+  display: flex;
+}
+
+body.journey-mode:not(.is-resting) .journey-control--rest {
+  display: none;
+}
+
+body.journey-mode.is-resting .journey-slide-hint {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* ——— Complexity-only bands ——— */
+.journey-complex-band {
+  opacity: calc(var(--chaos) * 0.95);
+  max-height: calc(var(--chaos) * 12rem);
+  overflow: hidden;
+  transition: opacity 0.45s ease, max-height 0.5s ease, margin 0.5s ease;
+  margin-block: calc(var(--chaos) * 1rem);
+}
+
+.journey-complex-band__inner {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem 2.5rem;
+  padding-block: 2.5rem;
+  font-family: var(--font-sans);
+  font-size: 1.85rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+.journey-complex-pillars {
+  opacity: calc(var(--chaos) * 0.9);
+  max-height: calc(var(--chaos) * 14rem);
+  overflow: hidden;
+  transition: opacity 0.45s ease, max-height 0.5s ease;
+}
+
+.journey-pillars {
+  display: flex;
+  gap: 1.5rem;
+  align-items: flex-start;
+  padding-block: 1rem 2rem;
+}
+
+.journey-pillars__icon {
+  width: 6.111rem;
+  height: 6.056rem;
+  object-fit: cover;
+  flex-shrink: 0;
+  opacity: 0.85;
+}
+
+.journey-pillars__label {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-bottom: 0.75rem;
+  color: var(--color-ink-muted, #6b6560);
+}
+
+.journey-pillars__row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+}
+
+.journey-pillar {
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  padding: 0.65rem 1rem;
+  border: 1px solid color-mix(in srgb, var(--color-ink, #1c1c1c) 12%, transparent);
+  background: color-mix(in srgb, white 50%, transparent);
+}
+
+.journey-dots-band {
+  opacity: calc(var(--chaos) * 0.85);
+  max-height: calc(var(--chaos) * 16rem);
+  overflow: hidden;
+  transition: opacity 0.45s ease, max-height 0.5s ease;
+}
+
+.journey-dots-band img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+/* Selected work floats up ~80% */
+.journey-work {
+  transform: translateY(calc((1 - min(var(--u) / 0.8, 1)) * 3.5rem));
+  transition: transform 0.55s ease;
+}
+
+body.journey-mode.is-resting .journey-work {
+  transform: none;
+}
+
+/* In-page sections fade with clarity */
+.journey-approach,
+.journey-themes,
+.journey-secondary {
+  opacity: calc(0.25 + var(--u) * 0.75);
+  transition: opacity 0.45s ease;
+}
+
+body.journey-mode.is-resting .journey-approach,
+body.journey-mode.is-resting .journey-themes,
+body.journey-mode.is-resting .journey-secondary {
+  opacity: 1;
+}
+
+.journey-rule {
+  opacity: calc(0.3 + var(--u) * 0.7);
+  transition: opacity 0.45s ease;
+}
+
+/* Work cards simplify at mid clarity */
+body.journey-mode:not(.is-resting) .work-card__image {
+  opacity: calc(var(--u) * 0.85 + 0.15);
+  max-height: calc(2rem + var(--u) * 14rem);
+  overflow: hidden;
+  object-fit: cover;
+  transition: opacity 0.45s ease, max-height 0.5s ease;
+}
+
+/* ——— Chaos layer: no gradual fade — pop / slide instead ——— */
+body.journey-mode .chaos-layer {
+  opacity: 1;
+  transition: none;
+}
+
+body.journey-mode .chaos-layer > * {
+  transition: none;
+}
+
+.chaos-pop-out {
+  animation: chaos-pop-vanish 0.38s cubic-bezier(0.55, 0, 1, 0.45) forwards;
+  pointer-events: none !important;
+}
+
+.chaos-slide-off {
+  animation: chaos-urgency-exit 0.55s cubic-bezier(0.55, 0, 1, 0.45) forwards;
+  pointer-events: none !important;
+}
+
+@keyframes chaos-pop-vanish {
+  0%   { transform: scale(1); opacity: 1; }
+  12%  { transform: scale(1) translate(1px, -1px); opacity: 1; }
+  24%  { transform: scale(1) translate(-1px, 1px); opacity: 1; }
+  36%  { transform: scale(1) translate(1px, 0); opacity: 1; }
+  48%  { transform: scale(1.06); opacity: 1; }
+  100% { transform: scale(0); opacity: 0; }
+}
+
+@keyframes chaos-urgency-exit {
+  0%   { transform: translateY(0); opacity: 1; }
+  100% { transform: translateY(-120%); opacity: 0; }
+}
+
+/* ——— Responsive ——— */
+@media (max-width: 900px) {
+  .journey-hero__grid {
+    flex-direction: column;
+    gap: var(--space-lg, 2rem);
+    padding-bottom: 9rem;
+  }
+
+  .journey-hero__copy {
+    align-items: flex-start;
+  }
+
+  .journey-headline,
+  .journey-eyebrow {
+    text-align: left;
+  }
+
+  .journey-venn {
+    position: static;
+    width: min(18rem, 80vw);
+    margin-top: 1rem;
+    align-self: center;
+  }
+
+  .journey-nav--complex {
+    position: static;
+    transform: none;
+    margin-left: auto;
+  }
+
+  .site-nav--wide {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .journey-shell,
+  .journey-portrait,
+  .journey-headline .frag,
+  .journey-work,
+  .chaos-pop-out,
+  .chaos-slide-off {
+    transition: none !important;
+    animation: none !important;
+  }
+
+  .chaos-pop-out,
+  .chaos-slide-off {
+    opacity: 0 !important;
+    visibility: hidden !important;
+  }
+}

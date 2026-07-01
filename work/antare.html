@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Antare — Evolution of a Feed — Andrew Sheerin</title>
+  <meta name="description" content="Designing editorial intelligence for AI-generated incident feeds at Antare.">
+  <link rel="stylesheet" href="../css/main.css">
+  <link rel="stylesheet" href="../css/case-interior.css?v=2">
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <a href="../index.html" class="site-logo">Andrew Sheerin</a>
+      <nav aria-label="Primary">
+        <ul class="site-nav">
+          <li><a href="antare.html" aria-current="page">Antare</a></li>
+          <li><a href="dona.html">DONA</a></li>
+          <li><a href="education.html">Education</a></li>
+          <li><a href="../how-i-work.html">How I Work</a></li>
+          <li><a href="../origins.html">Origins</a></li>
+          <li><a href="../about.html">About</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <header class="case-interior-hero">
+      <span class="case-interior-hero__index" aria-hidden="true">01</span>
+      <p class="case-interior-hero__label">Case study · Antare</p>
+      <h1 class="case-interior-hero__title">Evolution of a Feed</h1>
+      <p class="case-interior-hero__thesis">When AI generates more signal than anyone can process, the design problem becomes editorial — deciding what deserves attention, and for whom.</p>
+    </header>
+
+    <dl class="case-interior-meta">
+      <div>
+        <dt>Role</dt>
+        <dd>Head of Product Design</dd>
+      </div>
+      <div>
+        <dt>Organisation</dt>
+        <dd>Antare</dd>
+      </div>
+      <div>
+        <dt>Focus</dt>
+        <dd>AI incident feeds, body-worn camera intelligence</dd>
+      </div>
+      <div>
+        <dt>Disciplines</dt>
+        <dd>Product strategy, IA, AI UX evaluation, systems design</dd>
+      </div>
+    </dl>
+
+    <article class="case-interior-article">
+      <section class="case-interior-section" id="context">
+        <span class="case-interior-section__num" aria-hidden="true">01</span>
+        <div>
+          <p class="case-interior-section__label">Context</p>
+          <h2>A camera sees everything. The feed must not.</h2>
+          <p>Antare builds intelligence from body-worn camera footage — turning continuous video into structured events that operators can act on. The AI pipeline works: cameras capture, models classify, incidents appear. The problem is what happens next.</p>
+          <p>Early feeds were clogged with neutral and low-value events. Routine customer service flagged as incidents. Colleagues gossiping classified as "inappropriate conduct." Break-room behaviour judged as on-floor misconduct. The system was generating narrative faster than humans could evaluate it — and much of that narrative was wrong, exaggerated, or simply not worth anyone's attention.</p>
+        </div>
+      </section>
+
+      <figure class="case-interior-figure case-interior-figure--bleed">
+        <img src="../assets/images/antare/clogged-feed.png" alt="Feed interface showing numerous low-value and neutral events" loading="lazy">
+        <figcaption class="case-interior-figure__cap">The feed before editorial design: high volume, mixed valence, unclear prioritisation. Operators faced noise, not intelligence.</figcaption>
+      </figure>
+
+      <section class="case-interior-section" id="challenge">
+        <span class="case-interior-section__num" aria-hidden="true">02</span>
+        <div>
+          <p class="case-interior-section__label">Challenge</p>
+          <h2>From datagrid to editorial system</h2>
+          <p>The first design instinct — a sophisticated datagrid — treated the feed as a database to be sorted and filtered. That solved the wrong problem. Operators don't need more columns. They need a system that understands <em>why</em> someone is looking, and <em>what kind of attention</em> each event deserves.</p>
+          <p>Three layers of complexity had to be separated:</p>
+          <ul>
+            <li><strong>Reality</strong> — immutable media, the factual record</li>
+            <li><strong>Narrative</strong> — AI-generated incident descriptions, editable and contestable</li>
+            <li><strong>Evidence</strong> — the assembled case, built from incidents for action</li>
+          </ul>
+          <p>Each layer has different rules, different audiences, and different design requirements. Conflating them produces the kind of overconfident, context-blind output the audit revealed.</p>
+        </div>
+      </section>
+
+      <figure class="case-interior-figure case-interior-figure--offset">
+        <img src="../assets/images/antare/conceptual-model.png" alt="Conceptual model showing Stream, Incident, and Case layers" loading="lazy">
+        <figcaption class="case-interior-figure__cap">Reality, narrative, and evidence as distinct layers — each with its own design constraints and edit permissions.</figcaption>
+      </figure>
+
+      <figure class="case-interior-figure case-interior-figure--offset">
+        <img src="../assets/images/antare/datagrid-iteration.png" alt="Early feed design as a datagrid" loading="lazy">
+        <figcaption class="case-interior-figure__cap">First iteration: a capable datagrid that solved sorting but not sense-making.</figcaption>
+      </figure>
+
+      <section class="case-interior-section" id="approach">
+        <span class="case-interior-section__num" aria-hidden="true">03</span>
+        <div>
+          <p class="case-interior-section__label">What I did</p>
+          <h2>Two feeds for two modes of attention</h2>
+          <p>The breakthrough was recognising that operators context-switch between two fundamentally different activities: passive awareness and active triage. These require different information architectures, different ranking logic, and different interaction patterns.</p>
+          <p><strong>Main Feed</strong> — narrative and awareness. Mixed valence (positive, negative, neutral). Probabilistic ranking. Personalised per user. Designed for browsing: "what's happening across my sites?"</p>
+          <p><strong>Triage Feed</strong> — urgency and action. Negative events only. Deterministic ordering. Same for all users. Designed for processing: "what needs my attention right now?"</p>
+          <p>This wasn't a feature split — it was an editorial decision encoded in product architecture. The same underlying events, presented through two different lenses, for two different jobs-to-be-done.</p>
+        </div>
+      </section>
+
+      <figure class="case-interior-figure case-interior-figure--bleed">
+        <img src="../assets/images/antare/dual-feeds.png" alt="Diagram comparing Main Feed and Triage Feed characteristics" loading="lazy">
+        <figcaption class="case-interior-figure__cap">The dual-feed model: context-switching between awareness and action drives fundamentally different design requirements.</figcaption>
+      </figure>
+
+      <figure class="case-interior-figure case-interior-figure--offset">
+        <img src="../assets/images/antare/early-mockup.png" alt="Early mockup of incident cards with mixed valence events" loading="lazy">
+        <figcaption class="case-interior-figure__cap">Moving from datagrid rows to incident cards — each event as a narrative unit, not a data row.</figcaption>
+      </figure>
+
+      <section class="case-interior-section" id="evidence">
+        <span class="case-interior-section__num" aria-hidden="true">04</span>
+        <div>
+          <p class="case-interior-section__label">Evidence</p>
+          <h2>Evaluating AI output as a design discipline</h2>
+          <p>Good feed design requires rigorous evaluation of AI-generated content — not just whether the UI works, but whether the incidents themselves are truthful, useful, and correctly prioritised.</p>
+          <p>I conducted a systematic audit of 36 AI-generated events, scoring each on truthfulness, usefulness, impact categorisation, and whether it belonged in a human review queue. The findings were instructive:</p>
+          <ul>
+            <li><strong>Over-generation:</strong> routine interactions flagged as notable incidents</li>
+            <li><strong>Exaggeration:</strong> LLM invents severity — "unprofessional conduct" for normal banter</li>
+            <li><strong>Context blindness:</strong> break-room behaviour judged as on-floor misconduct</li>
+            <li><strong>Aggregate value missed:</strong> individual routine events worthless, but patterns (parcel process friction recurring across a day) highly valuable</li>
+          </ul>
+          <p>This audit became a calibration tool — defining what "correct," "exaggerated," and "understated" mean in practice, and establishing review queues that route events appropriately.</p>
+        </div>
+      </section>
+
+      <figure class="case-interior-figure case-interior-figure--offset">
+        <img src="../assets/images/antare/classification.png" alt="Event classification components diagram" loading="lazy">
+        <figcaption class="case-interior-figure__cap">Event classification taxonomy — defining how positive, negative, and neutral events are handled, surfaced, and ranked.</figcaption>
+      </figure>
+
+      <figure class="case-interior-figure case-interior-figure--offset">
+        <img src="../assets/images/antare/pipeline.png" alt="Camera to feed pipeline diagram" loading="lazy">
+        <figcaption class="case-interior-figure__cap">The full pipeline: camera capture through AI generation, human review, and continuous learning loop.</figcaption>
+      </figure>
+
+      <section class="case-interior-section" id="outcome">
+        <span class="case-interior-section__num" aria-hidden="true">05</span>
+        <div>
+          <p class="case-interior-section__label">What changed</p>
+          <h2>From volume to editorial intelligence</h2>
+          <p>The feed evolved from a data dump into an editorial system — one that understands operator context, respects the limits of AI narrative, and surfaces the right information for the right mode of attention.</p>
+        </div>
+      </section>
+    </article>
+
+    <section class="case-interior-outcome">
+      <p class="case-interior-outcome__label">What it proves</p>
+        <p>AI product design is not primarily a UI problem. It is an editorial problem: deciding what deserves to exist in someone's attention at all. The most valuable design work here was not wireframes — it was the conceptual model, the evaluation framework, and the courage to split one feed into two when the use cases demanded it.</p>
+    </section>
+
+    <section class="section section--rule">
+      <div class="container">
+        <p class="eyebrow">More work</p>
+        <div class="work-grid">
+          <a href="dona.html" class="work-card">
+            <span class="work-card__number">Project 02</span>
+            <h3 class="work-card__title">Citrix DONA</h3>
+            <p class="work-card__thesis">Behavioural science and organisational influence.</p>
+            <img src="../assets/images/dona/north-star.png" alt="" class="work-card__image" loading="lazy">
+          </a>
+          <a href="education.html" class="work-card">
+            <span class="work-card__number">Project 03</span>
+            <h3 class="work-card__title">Education &amp; Enablement</h3>
+            <p class="work-card__thesis">Systemic product thinking at VMware.</p>
+            <img src="../assets/images/education/conclusion.png" alt="" class="work-card__image" loading="lazy">
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container site-footer__inner">
+      <p>Andrew Sheerin — Product Design Leader</p>
+      <p><a href="../about.html">About &amp; contact</a></p>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+</body>
+</html>

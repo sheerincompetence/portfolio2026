@@ -1,0 +1,6 @@
+/* Target components for the real build — Swiss + Clarity + Chaos
+   Reference editorial components remain in css/main.css */
+
+@import url('lib/swiss.css');
+@import url('lib/clarity.css');
+@import url('lib/chaos.css');

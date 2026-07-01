@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Visibility Creates Responsibility</title>
+  <style>
+    @page {
+      size: 1920px 1080px;
+      margin: 0;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --slide-w: 1920px;
+      --slide-h: 1080px;
+      --bg: #000000;
+      --bg-elevated: #111111;
+      --text: #f5f5f7;
+      --text-secondary: rgba(245, 245, 247, 0.72);
+      --text-tertiary: rgba(245, 245, 247, 0.48);
+      --accent: #2997ff;
+      --accent-warm: #ff6b35;
+      --rule: rgba(245, 245, 247, 0.14);
+      --font: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", sans-serif;
+    }
+
+    html {
+      background: #1a1a1a;
+    }
+
+    body {
+      font-family: var(--font);
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 48px;
+      padding: 48px 0 96px;
+    }
+
+    .slide {
+      width: var(--slide-w);
+      height: var(--slide-h);
+      background: var(--bg);
+      color: var(--text);
+      position: relative;
+      overflow: hidden;
+      flex-shrink: 0;
+      page-break-after: always;
+    }
+
+    .slide::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 15% 20%, rgba(41, 151, 255, 0.07) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 50% at 85% 80%, rgba(255, 107, 53, 0.05) 0%, transparent 55%);
+      pointer-events: none;
+    }
+
+    .slide__inner {
+      position: relative;
+      z-index: 1;
+      height: 100%;
+      padding: 88px 120px 80px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .eyebrow {
+      font-size: 22px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 28px;
+    }
+
+    .title {
+      font-size: 88px;
+      font-weight: 700;
+      letter-spacing: -0.035em;
+      line-height: 1.02;
+      max-width: 14ch;
+      margin-bottom: 56px;
+    }
+
+    .title--centered {
+      max-width: none;
+      text-align: center;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .subtitle {
+      font-size: 36px;
+      font-weight: 400;
+      letter-spacing: -0.02em;
+      line-height: 1.35;
+      color: var(--text-secondary);
+      max-width: 28ch;
+    }
+
+    .subtitle--centered {
+      max-width: 36ch;
+      text-align: center;
+      margin: 0 auto;
+    }
+
+    /* ── Slide 1 layout ── */
+
+    .slide-1 .slide__inner {
+      justify-content: space-between;
+    }
+
+    .slide-1__top {
+      flex: 0 0 auto;
+    }
+
+    .slide-1__middle {
+      display: grid;
+      grid-template-columns: 1fr 80px 1fr;
+      gap: 0;
+      align-items: stretch;
+      flex: 1;
+      max-height: 420px;
+    }
+
+    .feed-card {
+      background: var(--bg-elevated);
+      border: 1px solid var(--rule);
+      border-radius: 20px;
+      padding: 40px 44px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .feed-card__label {
+      font-size: 18px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-tertiary);
+    }
+
+    .feed-card__title {
+      font-size: 40px;
+      font-weight: 600;
+      letter-spacing: -0.025em;
+      line-height: 1.1;
+    }
+
+    .feed-card__job {
+      font-size: 22px;
+      color: var(--text-secondary);
+      line-height: 1.4;
+    }
+
+    .feed-card__tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: auto;
+    }
+
+    .tag {
+      font-size: 17px;
+      font-weight: 500;
+      padding: 8px 16px;
+      border-radius: 100px;
+      background: rgba(245, 245, 247, 0.08);
+      color: var(--text-secondary);
+    }
+
+    .feed-card--research .tag { color: var(--accent); background: rgba(41, 151, 255, 0.12); }
+    .feed-card--triage .tag { color: var(--accent-warm); background: rgba(255, 107, 53, 0.12); }
+
+    .divider {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .divider__line {
+      width: 1px;
+      height: 60%;
+      background: var(--rule);
+    }
+
+    .slide-1__bottom {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: end;
+      padding-top: 48px;
+      border-top: 1px solid var(--rule);
+    }
+
+    .insight-block__label {
+      font-size: 18px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent-warm);
+      margin-bottom: 16px;
+    }
+
+    .insight-block__text {
+      font-size: 30px;
+      font-weight: 500;
+      letter-spacing: -0.02em;
+      line-height: 1.35;
+    }
+
+    .insight-block__text em {
+      font-style: normal;
+      color: var(--text);
+    }
+
+    .event-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .event-list li {
+      font-size: 22px;
+      color: var(--text-tertiary);
+      padding-left: 20px;
+      position: relative;
+    }
+
+    .event-list li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0.65em;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--text-tertiary);
+    }
+
+    /* ── Slide 2 layout ── */
+
+    .slide-2 .slide__inner {
+      gap: 0;
+    }
+
+    .slide-2__header {
+      text-align: center;
+      margin-bottom: 64px;
+    }
+
+    .slide-2__header .title {
+      max-width: none;
+      margin-bottom: 20px;
+    }
+
+    .slide-2__grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      flex: 1;
+    }
+
+    .panel {
+      background: var(--bg-elevated);
+      border: 1px solid var(--rule);
+      border-radius: 20px;
+      padding: 44px 48px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .panel__label {
+      font-size: 17px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-tertiary);
+    }
+
+    .panel__headline {
+      font-size: 34px;
+      font-weight: 600;
+      letter-spacing: -0.025em;
+      line-height: 1.2;
+    }
+
+    .panel__body {
+      font-size: 22px;
+      line-height: 1.5;
+      color: var(--text-secondary);
+    }
+
+    .panel--expected { border-color: rgba(41, 151, 255, 0.25); }
+    .panel--expected .panel__label { color: var(--accent); }
+
+    .panel--happened { border-color: rgba(255, 107, 53, 0.25); }
+    .panel--happened .panel__label { color: var(--accent-warm); }
+
+    .diagnosis-row {
+      display: grid;
+      grid-template-columns: 1fr 48px 1fr;
+      gap: 0;
+      margin-top: 32px;
+      align-items: stretch;
+    }
+
+    .diagnosis-card {
+      padding: 36px 40px;
+      border-radius: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .diagnosis-card--wrong {
+      background: rgba(245, 245, 247, 0.04);
+      border: 1px solid var(--rule);
+    }
+
+    .diagnosis-card--right {
+      background: rgba(41, 151, 255, 0.08);
+      border: 1px solid rgba(41, 151, 255, 0.2);
+    }
+
+    .diagnosis-card__type {
+      font-size: 15px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-tertiary);
+    }
+
+    .diagnosis-card--right .diagnosis-card__type { color: var(--accent); }
+
+    .diagnosis-card__text {
+      font-size: 26px;
+      font-weight: 500;
+      letter-spacing: -0.02em;
+      line-height: 1.3;
+    }
+
+    .diagnosis-arrow {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      color: var(--text-tertiary);
+    }
+
+    .slide-2__footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-top: 48px;
+      padding-top: 40px;
+      border-top: 1px solid var(--rule);
+    }
+
+    .transfer-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+      flex: 1;
+      margin-right: 64px;
+    }
+
+    .transfer-item {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .transfer-item__name {
+      font-size: 17px;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .transfer-item__question {
+      font-size: 15px;
+      line-height: 1.45;
+      color: var(--text-tertiary);
+    }
+
+    .punchline {
+      font-size: 28px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent-warm);
+      white-space: nowrap;
+    }
+
+    @media print {
+      body {
+        background: white;
+        padding: 0;
+        gap: 0;
+      }
+
+      .slide {
+        margin: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- SLIDE 1: The Feed That Should Have Worked -->
+  <section class="slide slide-1" aria-label="Slide 1">
+    <div class="slide__inner">
+      <div class="slide-1__top">
+        <p class="eyebrow">Antare · Evolution of a Feed</p>
+        <h1 class="title">The Feed That<br>Should Have Worked</h1>
+      </div>
+
+      <div class="slide-1__middle">
+        <div class="feed-card feed-card--research">
+          <span class="feed-card__label">View 01</span>
+          <h2 class="feed-card__title">Chronological Feed</h2>
+          <p class="feed-card__job">Research &amp; Review — What happened? What patterns exist?</p>
+          <div class="feed-card__tags">
+            <span class="tag">Discovery</span>
+            <span class="tag">Review</span>
+            <span class="tag">Investigation</span>
+          </div>
+        </div>
+
+        <div class="divider">
+          <div class="divider__line"></div>
+        </div>
+
+        <div class="feed-card feed-card--triage">
+          <span class="feed-card__label">View 02</span>
+          <h2 class="feed-card__title">Triage Feed</h2>
+          <p class="feed-card__job">Respond — What requires action right now?</p>
+          <div class="feed-card__tags">
+            <span class="tag">Urgency</span>
+            <span class="tag">Action</span>
+            <span class="tag">Response</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="slide-1__bottom">
+        <div class="insight-block">
+          <p class="insight-block__label">Then reality arrived</p>
+          <p class="insight-block__text">
+            Users treated every item in the research feed as a task.
+            <em>A feed isn't neutral.</em> It creates a psychological contract:
+            <em>"This is being shown to me because I should care."</em>
+          </p>
+        </div>
+
+        <ul class="event-list" aria-label="Example events">
+          <li>Employee uses phone</li>
+          <li>Customer lingers near exit</li>
+          <li>Stock room door open</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE 2: Visibility Creates Responsibility -->
+  <section class="slide slide-2" aria-label="Slide 2">
+    <div class="slide__inner">
+      <header class="slide-2__header">
+        <p class="eyebrow">The insight</p>
+        <h1 class="title title--centered">Visibility Creates Responsibility</h1>
+        <p class="subtitle subtitle--centered">The problem wasn't the quantity of information. It was how visibility was interpreted.</p>
+      </header>
+
+      <div class="slide-2__grid">
+        <div class="panel panel--expected">
+          <span class="panel__label">What we expected</span>
+          <h2 class="panel__headline">Two modes for two different jobs</h2>
+          <p class="panel__body">Research feed → discovery. Triage feed → action. Information could exist in a neutral state.</p>
+        </div>
+
+        <div class="panel panel--happened">
+          <span class="panel__label">What happened</span>
+          <h2 class="panel__headline">Every visible event became a request for attention</h2>
+          <p class="panel__body">Real operational data turned informational events into cognitive debt. Every item demanded judgement.</p>
+        </div>
+      </div>
+
+      <div class="diagnosis-row">
+        <div class="diagnosis-card diagnosis-card--wrong">
+          <span class="diagnosis-card__type">Everyone's first reaction</span>
+          <p class="diagnosis-card__text">There is too much information.</p>
+        </div>
+
+        <div class="diagnosis-arrow" aria-hidden="true">→</div>
+
+        <div class="diagnosis-card diagnosis-card--right">
+          <span class="diagnosis-card__type">The better question</span>
+          <p class="diagnosis-card__text">What obligations are we creating simply by making something visible?</p>
+        </div>
+      </div>
+
+      <footer class="slide-2__footer">
+        <div class="transfer-grid">
+          <div class="transfer-item">
+            <span class="transfer-item__name">AI Copilots</span>
+            <span class="transfer-item__question">Suggestion or obligation?</span>
+          </div>
+          <div class="transfer-item">
+            <span class="transfer-item__name">Security Alerts</span>
+            <span class="transfer-item__question">Information or task?</span>
+          </div>
+          <div class="transfer-item">
+            <span class="transfer-item__name">Agentic Workflows</span>
+            <span class="transfer-item__question">Advice or responsibility transfer?</span>
+          </div>
+          <div class="transfer-item">
+            <span class="transfer-item__name">Dashboards</span>
+            <span class="transfer-item__question">Insight or expectation to act?</span>
+          </div>
+        </div>
+        <p class="punchline">Discomfort is data</p>
+      </footer>
+    </div>
+  </section>
+
+</body>
+</html>

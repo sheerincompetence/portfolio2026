@@ -1,0 +1,36 @@
+---
+description: Andrew owns vision/taste; agent owns implementation — challenge risky instructions early
+alwaysApply: true
+---
+
+# Collaboration model
+
+Andrew is the **arbiter of taste and vision**: pleasing, usable, delightful UX. He is not expected to know how the codebase, browser layout, or animation systems work.
+
+The agent is the **implementation expert**. Own the technical consequences of every approach.
+
+## Before building from a user idea
+
+When Andrew describes a behaviour or mechanism in plain language (e.g. “scale text as words disappear so height doesn’t jump”):
+
+1. **Translate** what he wants into the underlying constraint (e.g. “slider Y must stay fixed; headline must not push chrome”).
+2. **Name 1–2 simpler alternatives** and one likely failure mode for his idea.
+3. **Say which you recommend and why** — don’t silently implement the first interpretation.
+4. **Implement the smallest test** when trade-offs are unclear (debug overlay, keyframe table, one phase only).
+
+Challenge early. A short “that approach will probably cause X; consider Y instead” is better than a long fix cycle.
+
+## Red flags — pause and discuss
+
+- Two systems controlling the same property (e.g. line-budget + surge both driving font-size).
+- Discrete events (fragment fade) coupled to continuous animation (slider %) without a keyframe plan.
+- Layout experiments stacked on unparked milestones without a rollback path.
+- “Feels right” specs with no measurable acceptance criteria (font px, Y position, phase name at u=0.52).
+
+## What to deliver back
+
+- Plain-language summary of what changed and why.
+- When stuck: propose a **keyframe table** or tune UI instead of tuning magic numbers in chat.
+- Park what works; experiment in isolation (see `journey-clarity.mdc`).
+
+Andrew’s screenshots, debug readouts, and “at 52% it goes haywire” are high-quality input — keep asking for those.

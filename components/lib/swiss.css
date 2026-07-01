@@ -1,0 +1,230 @@
+/* Swiss components — Direction 01 (catalog specimens)
+   Target aesthetic for case studies + inner pages. No global resets. */
+
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap');
+
+.specimen__preview--swiss {
+  --swiss-black: #0a0a0a;
+  --swiss-white: #fafafa;
+  --swiss-gray: #888;
+  --swiss-gray-light: #e5e5e5;
+  --swiss-red: #e63312;
+  font-family: 'Space Grotesk', system-ui, sans-serif;
+  color: var(--swiss-black);
+  background: var(--swiss-white);
+}
+
+/* SWISS-001 Work row */
+.specimen__preview--swiss .work-list {
+  border-top: 3px solid var(--swiss-black);
+}
+
+.specimen__preview--swiss .work-list__header {
+  display: grid;
+  grid-template-columns: 3rem 1fr 1.5fr;
+  padding: 0.5rem 1rem;
+  font-size: 0.6rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--swiss-gray);
+  border-bottom: 1px solid var(--swiss-gray-light);
+}
+
+.specimen__preview--swiss .work-row {
+  display: grid;
+  grid-template-columns: 3rem 1fr 1.5fr;
+  padding: 1rem;
+  border-bottom: 1px solid var(--swiss-gray-light);
+  align-items: center;
+  text-decoration: none;
+  color: inherit;
+  transition: background 0.2s;
+}
+
+.specimen__preview--swiss .work-row:hover {
+  background: var(--swiss-black);
+  color: var(--swiss-white);
+}
+
+.specimen__preview--swiss .work-row:hover .work-row__thesis {
+  color: rgba(255,255,255,0.6);
+}
+
+.specimen__preview--swiss .work-row__num {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--swiss-gray);
+}
+
+.specimen__preview--swiss .work-row__title {
+  font-size: 1.15rem;
+  font-weight: 700;
+}
+
+.specimen__preview--swiss .work-row__thesis {
+  font-size: 0.8rem;
+  color: var(--swiss-gray);
+  padding-left: 0.5rem;
+}
+
+/* SWISS-003 Section numbered */
+.specimen__preview--swiss .section-swiss {
+  display: grid;
+  grid-template-columns: 3rem 1fr;
+  gap: 1rem;
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--swiss-gray-light);
+}
+
+.specimen__preview--swiss .section-swiss__num {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--swiss-gray-light);
+  line-height: 1;
+}
+
+.specimen__preview--swiss .section-swiss__label {
+  font-size: 0.6rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--swiss-red);
+  margin-bottom: 0.35rem;
+}
+
+.specimen__preview--swiss .section-swiss h2 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin: 0 0 0.5rem;
+}
+
+.specimen__preview--swiss .section-swiss p {
+  font-size: 0.85rem;
+  margin: 0;
+  color: #333;
+}
+
+/* SWISS-004 Case hero */
+.specimen__preview--swiss .case-hero {
+  padding: 1rem 0;
+  border-bottom: 3px solid var(--swiss-black);
+}
+
+.specimen__preview--swiss .case-hero__index {
+  font-size: 3rem;
+  font-weight: 700;
+  color: var(--swiss-gray-light);
+  line-height: 0.9;
+}
+
+.specimen__preview--swiss .case-hero__label {
+  font-size: 0.6rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--swiss-red);
+}
+
+.specimen__preview--swiss .case-hero__title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0.25rem 0;
+}
+
+.specimen__preview--swiss .case-hero__thesis {
+  font-size: 0.9rem;
+  color: var(--swiss-gray);
+}
+
+/* SWISS-005 Outcome */
+.specimen__preview--swiss .outcome-swiss {
+  background: var(--swiss-red);
+  color: white;
+  padding: 1rem;
+}
+
+.specimen__preview--swiss .outcome-swiss__label {
+  font-size: 0.6rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  opacity: 0.75;
+  margin-bottom: 0.35rem;
+}
+
+.specimen__preview--swiss .outcome-swiss p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: white;
+}
+
+/* SWISS-006 Bottom nav */
+.specimen__preview--swiss .bottom-nav {
+  display: inline-flex;
+  background: var(--swiss-black);
+  border-radius: 999px;
+  padding: 0.25rem;
+  font-size: 0.7rem;
+}
+
+.specimen__preview--swiss .bottom-nav a {
+  padding: 0.45rem 0.85rem;
+  border-radius: 999px;
+  color: white;
+  text-decoration: none;
+  opacity: 0.6;
+}
+
+.specimen__preview--swiss .bottom-nav a[aria-current="page"] {
+  opacity: 1;
+  background: rgba(255,255,255,0.12);
+}
+
+.specimen__preview--swiss .bottom-nav .nav-divider {
+  width: 1px;
+  background: rgba(255,255,255,0.2);
+  margin: 0.35rem 0;
+}
+
+/* SWISS-007 Quote band */
+.specimen__preview--swiss .quote-band {
+  background: var(--swiss-black);
+  color: white;
+  padding: 1.5rem;
+  display: grid;
+  grid-template-columns: 2rem 1fr;
+  gap: 0.75rem;
+  align-items: start;
+}
+
+.specimen__preview--swiss .quote-band__mark {
+  font-size: 2rem;
+  color: var(--swiss-red);
+  font-weight: 700;
+  line-height: 1;
+}
+
+.specimen__preview--swiss .quote-band__text {
+  font-size: 1rem;
+  line-height: 1.35;
+  margin: 0;
+}
+
+/* SWISS-009 Case meta strip */
+.specimen__preview--swiss .case-meta-swiss {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem 2rem;
+  font-size: 0.7rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--swiss-gray-light);
+}
+
+.specimen__preview--swiss .case-meta-swiss dt {
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--swiss-gray);
+  font-size: 0.55rem;
+}
+
+.specimen__preview--swiss .case-meta-swiss dd {
+  font-weight: 500;
+  margin: 0;
+}

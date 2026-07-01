@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AS-001 Antare — Case File</title>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <nav class="dossier-nav" aria-label="Primary">
+    <a href="../index.html">Personnel file</a>
+    <a href="antare.html" aria-current="page">Case AS-001</a>
+    <a href="../../index.html">All directions</a>
+  </nav>
+
+  <div class="case-dossier">
+    <aside class="case-sidebar">
+      <p class="case-sidebar__ref">REF: AS-001<br>ANTARE / FEED<br>STATUS: COMPLETE</p>
+      <h1 class="case-sidebar__title">Evolution of a Feed</h1>
+      <nav aria-label="Section index">
+        <a href="#summary">Summary</a>
+        <a href="#context">§1 Context</a>
+        <a href="#challenge">§2 Challenge</a>
+        <a href="#approach">§3 Approach</a>
+        <a href="#evidence">§4 Evidence</a>
+        <a href="#findings">§5 Findings</a>
+      </nav>
+    </aside>
+
+    <main class="case-main">
+      <header class="case-main__header" id="summary">
+        <p class="case-main__label">Case file AS-001 · Antare</p>
+        <p class="case-main__thesis">When AI generates more signal than anyone can process, the design problem becomes editorial — deciding what deserves attention, and for whom.</p>
+
+        <table class="meta-table">
+          <tr><th>Subject role</th><td>Head of Product Design</td></tr>
+          <tr><th>Organisation</th><td>Antare</td></tr>
+          <tr><th>Domain</th><td>AI incident feeds, body-worn camera intelligence</td></tr>
+          <tr><th>Disciplines</th><td>Product strategy, IA, AI UX evaluation, systems design</td></tr>
+        </table>
+      </header>
+
+      <section class="brief-section" id="context">
+        <div class="brief-section__head">
+          <span class="brief-section__num">§1</span>
+          <span class="brief-section__label">Context</span>
+        </div>
+        <h2>A camera sees everything. The feed must not.</h2>
+        <p>Antare builds intelligence from body-worn camera footage — turning continuous video into structured events that operators can act on. The AI pipeline works: cameras capture, models classify, incidents appear.</p>
+        <p>Early feeds were clogged with neutral and low-value events. Routine customer service flagged as incidents. Colleagues gossiping classified as "inappropriate conduct." Break-room behaviour judged as on-floor misconduct.</p>
+
+        <figure class="exhibit">
+          <span class="exhibit__label">Exhibit A</span>
+          <img src="../../assets/images/antare/clogged-feed.png" alt="Feed clogged with low-value events" loading="lazy">
+          <figcaption class="exhibit__cap">Feed state prior to editorial redesign. High volume, mixed valence, no clear prioritisation framework.</figcaption>
+        </figure>
+      </section>
+
+      <section class="brief-section" id="challenge">
+        <div class="brief-section__head">
+          <span class="brief-section__num">§2</span>
+          <span class="brief-section__label">Challenge</span>
+        </div>
+        <h2>From datagrid to editorial system</h2>
+        <p>The first design iteration — a sophisticated datagrid — treated the feed as a database to be sorted and filtered. Operators don't need more columns. They need a system that understands why someone is looking, and what kind of attention each event deserves.</p>
+        <p>Three layers of complexity had to be separated: Reality (immutable media), Narrative (AI-generated incidents), and Evidence (assembled cases for action).</p>
+
+        <figure class="exhibit">
+          <span class="exhibit__label">Exhibit B</span>
+          <img src="../../assets/images/antare/conceptual-model.png" alt="Conceptual model layers" loading="lazy">
+          <figcaption class="exhibit__cap">Conceptual separation of stream, incident, and case layers with distinct edit permissions.</figcaption>
+        </figure>
+      </section>
+
+      <section class="brief-section" id="approach">
+        <div class="brief-section__head">
+          <span class="brief-section__num">§3</span>
+          <span class="brief-section__label">Approach</span>
+        </div>
+        <h2>Two feeds for two modes of attention</h2>
+        <p>Operators context-switch between passive awareness and active triage. These require different information architectures, ranking logic, and interaction patterns.</p>
+        <p><strong>Main Feed:</strong> narrative/awareness, mixed valence, probabilistic ranking, per-user. Designed for browsing.</p>
+        <p><strong>Triage Feed:</strong> urgency/action, negative-only, deterministic, shared. Designed for processing.</p>
+
+        <figure class="exhibit">
+          <span class="exhibit__label">Exhibit C</span>
+          <img src="../../assets/images/antare/dual-feeds.png" alt="Dual feed architecture" loading="lazy">
+          <figcaption class="exhibit__cap">Dual-feed model encoding editorial decisions in product architecture.</figcaption>
+        </figure>
+      </section>
+
+      <section class="brief-section" id="evidence">
+        <div class="brief-section__head">
+          <span class="brief-section__num">§4</span>
+          <span class="brief-section__label">Evidence</span>
+        </div>
+        <h2>Systematic audit of AI-generated events</h2>
+        <p>36 events reviewed and scored on truthfulness, usefulness, impact categorisation, and review queue assignment. Key patterns identified:</p>
+        <ul>
+          <li>Over-generation: routine interactions flagged as notable</li>
+          <li>Exaggeration: LLM invents severity for normal behaviour</li>
+          <li>Context blindness: location misinterpreted</li>
+          <li>Aggregate value missed at individual event level</li>
+        </ul>
+
+        <figure class="exhibit">
+          <span class="exhibit__label">Exhibit D</span>
+          <img src="../../assets/images/antare/classification.png" alt="Event classification taxonomy" loading="lazy">
+          <figcaption class="exhibit__cap">Classification taxonomy developed as calibration framework for feed quality.</figcaption>
+        </figure>
+      </section>
+
+      <section class="brief-section" id="findings">
+        <div class="brief-section__head">
+          <span class="brief-section__num">§5</span>
+          <span class="brief-section__label">Findings</span>
+        </div>
+
+        <div class="finding-box">
+          <p class="finding-box__label">Primary finding</p>
+          <p>AI product design is not primarily a UI problem. It is an editorial problem: deciding what deserves to exist in someone's attention at all.</p>
+        </div>
+
+        <p>The most valuable design work was the conceptual model, the evaluation framework, and the decision to split one feed into two when use cases demanded it.</p>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    // Highlight active sidebar section on scroll
+    const sections = document.querySelectorAll('.brief-section, .case-main__header');
+    const links = document.querySelectorAll('.case-sidebar nav a');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          links.forEach(l => l.classList.remove('active'));
+          const active = document.querySelector(`.case-sidebar nav a[href="#${entry.target.id}"]`);
+          if (active) active.classList.add('active');
+        }
+      });
+    }, { rootMargin: '-40% 0px -50% 0px' });
+    sections.forEach(s => { if (s.id) observer.observe(s); });
+  </script>
+</body>
+</html>

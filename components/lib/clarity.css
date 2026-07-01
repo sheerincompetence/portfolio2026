@@ -1,0 +1,131 @@
+/* Clarity components — Direction 04 (catalog specimens)
+   Homepage: complexity → understanding interactive metaphor */
+
+.specimen__preview--clarity {
+  --u: 0.35;
+  --chaos: calc(1 - var(--u));
+  --clarity-paper: #f7f5f2;
+  --clarity-ink: #1c1c1c;
+  --clarity-muted: #6b6560;
+  --clarity-accent: #3d4f5f;
+  --clarity-sketch: rgba(61, 79, 95, 0.35);
+  position: relative;
+  overflow: hidden;
+  min-height: 8rem;
+  background: color-mix(in srgb, var(--clarity-paper) calc((1 - var(--u)) * 100%), #faf9f7);
+  padding: 1rem;
+  font-family: 'Source Serif 4', Georgia, serif;
+}
+
+.specimen__preview--clarity.is-clear {
+  --u: 0.95;
+}
+
+.specimen__preview--clarity::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(var(--clarity-sketch) 1px, transparent 1px),
+    linear-gradient(90deg, var(--clarity-sketch) 1px, transparent 1px);
+  background-size: calc(24px - var(--u) * 14px) calc(24px - var(--u) * 14px);
+  opacity: calc(0.3 * var(--chaos));
+  pointer-events: none;
+}
+
+/* CLARITY-002 Statement */
+.specimen__preview--clarity .statement {
+  position: relative;
+  z-index: 1;
+  font-size: calc(0.95rem + var(--u) * 0.25rem);
+  line-height: 1.5;
+  max-width: 28rem;
+}
+
+.specimen__preview--clarity .statement .frag.is-faded {
+  opacity: 0;
+}
+
+/* CLARITY-001 Slider (inline demo, not fixed) */
+.specimen__preview--clarity .clarity-control--inline {
+  position: relative;
+  z-index: 2;
+  margin-top: 1rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid rgba(0,0,0,0.08);
+  font-family: 'IBM Plex Sans', system-ui, sans-serif;
+}
+
+.specimen__preview--clarity .clarity-control__labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.6rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--clarity-muted);
+  margin-bottom: 0.4rem;
+}
+
+.specimen__preview--clarity .clarity-control--inline input[type="range"] {
+  width: 100%;
+  cursor: pointer;
+}
+
+/* CLARITY-005 Simple zone preview */
+.specimen__preview--clarity .work-minimal {
+  position: relative;
+  z-index: 1;
+  opacity: var(--u);
+  font-family: 'IBM Plex Sans', system-ui, sans-serif;
+  margin-top: 0.75rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid rgba(0,0,0,0.1);
+}
+
+.specimen__preview--clarity .work-minimal h2 {
+  font-size: 0.6rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--clarity-muted);
+  font-weight: 500;
+  margin: 0 0 0.5rem;
+}
+
+.specimen__preview--clarity .work-minimal ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-size: 0.85rem;
+}
+
+.specimen__preview--clarity .work-minimal a {
+  color: var(--clarity-ink);
+  text-decoration: none;
+}
+
+/* CLARITY-003 Float tag (sketch layer element) */
+.specimen__preview--clarity .float-tag {
+  position: absolute;
+  font-family: 'IBM Plex Sans', system-ui, sans-serif;
+  font-size: 0.55rem;
+  padding: 0.2rem 0.4rem;
+  border: 1px solid rgba(61, 79, 95, 0.3);
+  color: var(--clarity-muted);
+  opacity: calc(var(--chaos) * 0.8);
+  transform: rotate(-4deg);
+  top: 0.5rem;
+  right: 0.5rem;
+}
+
+.specimen__preview--clarity .hero__hint--parody {
+  position: relative;
+  z-index: 1;
+  font-family: 'IBM Plex Sans', system-ui, sans-serif;
+  font-size: 0.7rem;
+  color: #c0392b;
+  border: 1px dashed #c0392b;
+  padding: 0.4rem 0.6rem;
+  background: rgba(192, 57, 43, 0.05);
+  margin-top: 0.75rem;
+  opacity: calc(var(--chaos) * 0.9);
+}

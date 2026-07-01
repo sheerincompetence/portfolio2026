@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Level 01: The Feed Crisis — Portfolio: The Game</title>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <nav class="game-nav" aria-label="Primary">
+    <a href="../index.html">Start</a>
+    <a href="antare.html" aria-current="page">Level 01</a>
+    <a href="../../index.html">Other directions</a>
+  </nav>
+
+  <main class="mission-wrap">
+    <header class="mission-header game-card game-card--teal">
+      <p class="mission-header__label">Level 01 · Antare</p>
+      <h1 class="mission-header__title">The Feed Crisis</h1>
+      <div class="mission-header__objective">
+        <strong>Quest objective:</strong> When AI generates more signal than anyone can process, the design problem becomes editorial — deciding what deserves attention, and for whom.
+      </div>
+      <dl class="mission-brief">
+        <div><dt>Your role</dt><dd>Head of Product Design</dd></div>
+        <div><dt>Organisation</dt><dd>Antare</dd></div>
+        <div><dt>Difficulty</dt><dd>★★★★☆</dd></div>
+        <div><dt>Domain</dt><dd>AI incident feeds</dd></div>
+        <div><dt>Party size</dt><dd>Cross-functional</dd></div>
+        <div><dt>Est. read time</dt><dd>6 min</dd></div>
+      </dl>
+    </header>
+
+    <p class="hand-note" style="margin-bottom: 1rem; font-size: 1.5rem;">Achievement available: "Read the methodology section"</p>
+
+    <section class="mission-phase game-card" id="phase-1">
+      <span class="mission-phase__tag">Phase 1 — Context</span>
+      <h2>A camera sees everything. The feed must not.</h2>
+      <p>Antare builds intelligence from body-worn camera footage — turning continuous video into structured events that operators can act on. The AI pipeline works. Cameras capture, models classify, incidents appear.</p>
+      <p>The problem is what happens next. Early feeds were clogged with neutral and low-value events. Routine customer service flagged as incidents. Colleagues gossiping classified as "inappropriate conduct." The system generated narrative faster than humans could evaluate it — and much of it was wrong.</p>
+
+      <figure class="loot-drop">
+        <div class="loot-drop__header">
+          <span>Loot drop</span>
+          <span class="loot-drop__rarity">Common evidence</span>
+        </div>
+        <img src="../../assets/images/antare/clogged-feed.png" alt="Feed clogged with low-value events" loading="lazy">
+        <figcaption class="loot-drop__desc">The feed before editorial design. High volume, mixed valence, unclear prioritisation. A classic "too much signal" boss fight.</figcaption>
+      </figure>
+    </section>
+
+    <section class="mission-phase game-card" id="phase-2">
+      <span class="mission-phase__tag sticker--coral" style="background: var(--coral); color: white;">Phase 2 — Challenge</span>
+      <h2>From datagrid to editorial system</h2>
+      <p>The first design instinct — a sophisticated datagrid — treated the feed as a database. Operators don't need more columns. They need a system that understands <em>why</em> someone is looking.</p>
+      <p>Three layers had to be separated: <strong>Reality</strong> (immutable media), <strong>Narrative</strong> (AI-generated incidents), and <strong>Evidence</strong> (assembled cases for action). Conflating them produces overconfident, context-blind output.</p>
+
+      <figure class="loot-drop">
+        <div class="loot-drop__header">
+          <span>Loot drop</span>
+          <span class="loot-drop__rarity">Rare — conceptual model</span>
+        </div>
+        <img src="../../assets/images/antare/conceptual-model.png" alt="Conceptual model layers" loading="lazy">
+        <figcaption class="loot-drop__desc">Reality, narrative, and evidence as distinct layers. Each has different rules and edit permissions.</figcaption>
+      </figure>
+    </section>
+
+    <section class="mission-phase game-card" id="phase-3">
+      <span class="mission-phase__tag">Phase 3 — Strategy</span>
+      <h2>Two feeds for two modes of attention</h2>
+      <p>Operators context-switch between passive awareness and active triage. These need different architectures entirely.</p>
+      <p><strong>Main Feed</strong> — narrative, mixed valence, probabilistic, personalised. For browsing.</p>
+      <p><strong>Triage Feed</strong> — urgency, negative-only, deterministic, shared. For processing.</p>
+      <p>This wasn't a feature split. It was an editorial decision encoded in product architecture. <span class="hand-note">the bit where design actually matters</span></p>
+
+      <figure class="loot-drop">
+        <div class="loot-drop__header">
+          <span>Loot drop</span>
+          <span class="loot-drop__rarity">Legendary — dual feed model</span>
+        </div>
+        <img src="../../assets/images/antare/dual-feeds.png" alt="Dual feed architecture" loading="lazy">
+        <figcaption class="loot-drop__desc">Same events, two lenses, two jobs-to-be-done. Context-switching drives the architecture.</figcaption>
+      </figure>
+    </section>
+
+    <section class="mission-phase game-card" id="phase-4">
+      <span class="mission-phase__tag">Phase 4 — Evidence</span>
+      <h2>Evaluating AI output as a design discipline</h2>
+      <p>I audited 36 AI-generated events, scoring truthfulness, usefulness, and impact. Because "the UI works" isn't the same as "the incidents are correct."</p>
+      <ul>
+        <li>Over-generation of routine interactions</li>
+        <li>LLM exaggeration of severity</li>
+        <li>Context blindness (break-room ≠ shop floor)</li>
+        <li>Aggregate patterns missed at event level</li>
+      </ul>
+
+      <figure class="loot-drop">
+        <div class="loot-drop__header">
+          <span>Loot drop</span>
+          <span class="loot-drop__rarity">Epic — classification taxonomy</span>
+        </div>
+        <img src="../../assets/images/antare/classification.png" alt="Event classification" loading="lazy">
+        <figcaption class="loot-drop__desc">Calibration framework for what "correct," "exaggerated," and "understated" mean in practice.</figcaption>
+      </figure>
+    </section>
+
+    <section class="achievement achievement--unlocked game-card" id="victory">
+      <div class="achievement__icon">🏆</div>
+      <p class="achievement__label">Achievement unlocked</p>
+      <h2 class="achievement__title">Editorial Thinking</h2>
+      <p>AI product design is not primarily a UI problem. It is an editorial problem: deciding what deserves to exist in someone's attention at all. The most valuable work was the conceptual model, the evaluation framework, and the courage to split one feed into two.</p>
+    </section>
+
+    <p style="text-align: center; margin-top: 1.5rem;">
+      <a href="../index.html" style="font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; font-size: 0.85rem;">← Return to quest board</a>
+    </p>
+  </main>
+
+  <div class="xp-bar" aria-hidden="true">
+    <span>READ XP</span>
+    <div class="xp-bar__track"><div class="xp-bar__fill" id="xp-fill"></div></div>
+    <span id="xp-pct">0%</span>
+  </div>
+
+  <script>
+    const fill = document.getElementById('xp-fill');
+    const pct = document.getElementById('xp-pct');
+    window.addEventListener('scroll', () => {
+      const h = document.documentElement.scrollHeight - window.innerHeight;
+      const p = h > 0 ? Math.round((window.scrollY / h) * 100) : 0;
+      fill.style.width = p + '%';
+      pct.textContent = p + '%';
+    });
+  </script>
+</body>
+</html>
