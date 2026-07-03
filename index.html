@@ -10,10 +10,31 @@
   <link rel="stylesheet" href="directions/04-clarity/css/complexity-start.css?v=47">
   <link rel="stylesheet" href="directions/04-clarity/css/clarity-transition.css?v=72">
   <link rel="stylesheet" href="directions/04-clarity/css/clarity-rest.css?v=19">
-  <link rel="stylesheet" href="directions/04-clarity/css/clarity-layout-lock.css?v=34">
+  <link rel="stylesheet" href="directions/04-clarity/css/clarity-layout-lock.css?v=38">
   <link rel="stylesheet" href="directions/04-clarity/css/clarity-tune.css?v=1">
+  <script>
+    (function () {
+      try {
+        var p = new URLSearchParams(location.search);
+        if (p.get('start') === '1' || p.get('tune') === '1') return;
+        var skip = ['direct', 'skip', 'clarity', 'resting'].some(function (k) { return p.get(k) === '1'; })
+          || localStorage.getItem('portfolio-clarity-resting') === 'true';
+        if (!skip) return;
+        document.documentElement.classList.add('journey-skip-entry');
+        document.documentElement.style.setProperty('--u', '1');
+        document.documentElement.style.setProperty('--urgency-progress', '1');
+      } catch (e) { /* ignore */ }
+    })();
+  </script>
 </head>
 <body class="complexity-start clarity-journey journey-layout-lock">
+  <script>
+    (function () {
+      if (!document.documentElement.classList.contains('journey-skip-entry')) return;
+      document.body.classList.add('is-resting', 'journey-skip-entry');
+      document.title = 'Andrew Sheerin — Product Design Leader';
+    })();
+  </script>
 
   <!-- Chaos overlays (widgets sit above page content) -->
   <div class="chaos-layer" id="chaos-layer" aria-hidden="true">
@@ -263,7 +284,7 @@
     </footer>
   </div>
 
-  <script src="directions/04-clarity/js/clarity-journey.js?v=67"></script>
+  <script src="directions/04-clarity/js/clarity-journey.js?v=70"></script>
   <script src="js/play-ribbon.js?v=1"></script>
 </body>
 </html>
