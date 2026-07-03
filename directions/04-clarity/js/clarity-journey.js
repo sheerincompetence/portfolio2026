@@ -90,7 +90,7 @@
   }
 
   function cycleChat() {
-    if (!chatMessage || isResting || popped.get(chaosChat) || currentU > 0.5) return;
+    if (!chatMessage || isResting || popped.get(chaosChat) || currentU > 0.5 || chaosChat?.classList.contains('chaos-chat--open')) return;
     chatMessage.style.opacity = '0';
     setTimeout(() => {
       chatIndex = (chatIndex + 1) % CHAT_LINES.length;
@@ -147,47 +147,36 @@
     const start = parseFloat(navHowIWork.dataset.navMorph);
     const range = parseFloat(navHowIWork.dataset.navMorphRange || '0.1');
     const end = start + range;
-    const longLabel = navHowIWork.querySelector('.cx-nav__text--long');
-    const shortLabel = navHowIWork.querySelector('.cx-nav__text--short');
-    const clarityHref = navHowIWork.dataset.navHrefClarity || '#selected-work';
-    const complexHref = navHowIWork.dataset.navHrefComplex || '../../how-i-work.html';
+    const clarityHref = navHowIWork.dataset.navHrefClarity || 'work/';
+    const complexHref = navHowIWork.dataset.navHrefComplex || 'about/how-i-work.html';
 
     if (u <= start) {
-      navHowIWork.classList.remove('is-nav-work');
       navHowIWork.setAttribute('href', complexHref);
-      if (longLabel) longLabel.style.opacity = '';
-      if (shortLabel) {
-        shortLabel.style.opacity = '';
-        shortLabel.setAttribute('aria-hidden', 'true');
-      }
+      navHowIWork.setAttribute('aria-label', 'How I Work');
+      navHowIWork.style.removeProperty('--nav-prefix-t');
       return;
     }
+
+    navHowIWork.setAttribute('href', clarityHref);
 
     if (u >= end) {
-      navHowIWork.classList.add('is-nav-work');
-      navHowIWork.setAttribute('href', clarityHref);
-      if (longLabel) longLabel.style.opacity = '';
-      if (shortLabel) {
-        shortLabel.style.opacity = '';
-        shortLabel.setAttribute('aria-hidden', 'false');
-      }
+      navHowIWork.removeAttribute('aria-label');
+      navHowIWork.style.setProperty('--nav-prefix-t', '1');
       return;
     }
 
-    const t = (u - start) / range;
-    navHowIWork.classList.toggle('is-nav-work', t >= 0.5);
-    navHowIWork.setAttribute('href', t >= 0.5 ? clarityHref : complexHref);
-    if (longLabel) longLabel.style.opacity = String(1 - t);
-    if (shortLabel) {
-      shortLabel.style.opacity = String(t);
-      shortLabel.style.display = t > 0 ? 'inline' : 'none';
-      shortLabel.setAttribute('aria-hidden', t < 0.5 ? 'true' : 'false');
-    }
+    navHowIWork.setAttribute('aria-label', 'How I Work');
+    navHowIWork.style.setProperty('--nav-prefix-t', String((u - start) / range));
+  }
+
+  function syncNavModeFlags(u = currentU) {
+    body.classList.toggle('is-nav-simplified', isResting || u >= 0.55);
   }
 
   function syncNavItems(u) {
     navFadeLinks.forEach((link) => setFragOpacity(link, u));
     syncNavMorph(u);
+    syncNavModeFlags(u);
   }
 
   function syncJourneyChrome(u) {
@@ -1475,6 +1464,7 @@
     dismissChaosForResting();
     restPanel?.removeAttribute('hidden');
     body.classList.add('is-resting');
+    syncNavModeFlags();
     document.title = 'Andrew Sheerin — Product Design Leader';
     try { localStorage.setItem(STORAGE_KEY, 'true'); } catch (_) { /* ignore */ }
   }
@@ -1500,6 +1490,7 @@
       chaosLayer.setAttribute('aria-hidden', 'true');
     }
     setClarity(100);
+    syncNavModeFlags();
     slider.focus();
   }
 

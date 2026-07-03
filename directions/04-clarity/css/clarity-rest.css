@@ -50,23 +50,12 @@ body.complexity-start.is-resting:not(.clarity-journey) .cx-logo__name {
 }
 
 body.complexity-start.is-resting:not(.clarity-journey) .cx-nav--complex {
-  display: flex;
-}
-
-body.complexity-start.is-resting:not(.clarity-journey) .cx-nav--complex a[data-threshold] {
   display: none;
-}
-
-body.complexity-start.is-resting:not(.clarity-journey) .cx-nav--complex #nav-how-i-work .cx-nav__text--long {
-  display: none;
-}
-
-body.complexity-start.is-resting:not(.clarity-journey) .cx-nav--complex #nav-how-i-work .cx-nav__text--short {
-  display: inline;
 }
 
 body.complexity-start.is-resting:not(.clarity-journey) .cx-nav--clarity {
-  display: none;
+  display: flex;
+  align-items: center;
 }
 
 /* ——— Hero ——— */
