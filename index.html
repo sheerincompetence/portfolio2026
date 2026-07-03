@@ -6,14 +6,35 @@
   <title>Andrew Sheerin — Complexity → Clarity</title>
   <meta name="description" content="Andrew Sheerin — I translate ideas into understanding.">
   <link rel="stylesheet" href="css/main.css?v=5">
-  <link rel="stylesheet" href="directions/04-clarity/css/chaos.css?v=5">
-  <link rel="stylesheet" href="directions/04-clarity/css/complexity-start.css?v=47">
-  <link rel="stylesheet" href="directions/04-clarity/css/clarity-transition.css?v=72">
-  <link rel="stylesheet" href="directions/04-clarity/css/clarity-rest.css?v=19">
-  <link rel="stylesheet" href="directions/04-clarity/css/clarity-layout-lock.css?v=34">
+  <link rel="stylesheet" href="directions/04-clarity/css/chaos.css?v=13">
+  <link rel="stylesheet" href="directions/04-clarity/css/complexity-start.css?v=51">
+  <link rel="stylesheet" href="directions/04-clarity/css/clarity-transition.css?v=82">
+  <link rel="stylesheet" href="directions/04-clarity/css/clarity-rest.css?v=21">
+  <link rel="stylesheet" href="directions/04-clarity/css/clarity-layout-lock.css?v=38">
   <link rel="stylesheet" href="directions/04-clarity/css/clarity-tune.css?v=1">
+  <script>
+    (function () {
+      try {
+        var p = new URLSearchParams(location.search);
+        if (p.get('start') === '1' || p.get('tune') === '1') return;
+        var skip = ['direct', 'skip', 'clarity', 'resting'].some(function (k) { return p.get(k) === '1'; })
+          || localStorage.getItem('portfolio-clarity-resting') === 'true';
+        if (!skip) return;
+        document.documentElement.classList.add('journey-skip-entry');
+        document.documentElement.style.setProperty('--u', '1');
+        document.documentElement.style.setProperty('--urgency-progress', '1');
+      } catch (e) { /* ignore */ }
+    })();
+  </script>
 </head>
 <body class="complexity-start clarity-journey journey-layout-lock">
+  <script>
+    (function () {
+      if (!document.documentElement.classList.contains('journey-skip-entry')) return;
+      document.body.classList.add('is-resting', 'journey-skip-entry');
+      document.title = 'Andrew Sheerin — Product Design Leader';
+    })();
+  </script>
 
   <!-- Chaos overlays (widgets sit above page content) -->
   <div class="chaos-layer" id="chaos-layer" aria-hidden="true">
@@ -28,18 +49,29 @@
     </div>
 
     <div class="chaos-stack-left">
-      <button type="button" class="chaos-fab-quote" data-chaos-dead-end data-pop-at="0.33" data-pop-delay="850">📞 Call for quote</button>
+      <button type="button" class="chaos-fab-quote" data-pop-at="0.33" data-pop-delay="850"><span class="chaos-fab-quote__label">📞 Call for quote</span></button>
 
       <div class="chaos-cookie" role="dialog" aria-label="Cookie consent parody" data-pop-at="0.33">
         <p>🍪 We use cookies, pixels, beacons, SDKs, and commercial data points extracted from your hopes and dreams to personalise your recruitment experience.</p>
         <div class="chaos-cookie__btns">
-          <button type="button" class="chaos-cookie__accept" data-chaos-dead-end>Accept all</button>
-          <button type="button" class="chaos-cookie__reject" data-chaos-dead-end>Essential only</button>
+          <button type="button" class="chaos-cookie__accept">Accept all</button>
+          <button type="button" class="chaos-cookie__reject">Essential only</button>
         </div>
+        <p class="chaos-cookie__meta" hidden>That's right, sometimes it's easier to give in than work out the way forward. Your preferences have been noted. Forever.</p>
       </div>
     </div>
 
-    <button type="button" class="chaos-newsletter" aria-label="Subscribe for insights" data-chaos-dead-end data-pop-at="0.70">SUBSCRIBE FOR INSIGHTS</button>
+    <div class="chaos-newsletter-wrap" data-pop-at="0.70" tabindex="-1">
+      <button type="button" class="chaos-newsletter" aria-label="Subscribe for insights">SUBSCRIBE FOR INSIGHTS</button>
+      <div class="chaos-newsletter-panel" hidden>
+        <p class="chaos-newsletter__intro">You have been auto-subscribed to <strong>Insights Hourly™</strong>. Every hour you can look forward to wisdom like…</p>
+        <div class="chaos-newsletter__quote-row">
+          <button type="button" class="chaos-newsletter__prev" aria-label="Previous insight">‹</button>
+          <p class="chaos-newsletter__platitude"></p>
+          <button type="button" class="chaos-newsletter__next" aria-label="Next insight">›</button>
+        </div>
+      </div>
+    </div>
 
     <div class="chaos-trust" aria-hidden="true" data-pop-at="0.34">
       <span>✓ GDPR</span>
@@ -49,15 +81,28 @@
       <span>✓ AS SEEN ON LINKEDIN</span>
     </div>
 
-    <div class="chaos-chat" id="chaos-chat" data-pop-at="0.88" data-pop-delay="500">
-      <div class="chaos-chat__bubble">
-        <p class="chaos-chat__name">
-          TalentBot™
-          <span class="chaos-chat__typing" aria-hidden="true"><span></span><span></span><span></span></span>
-        </p>
-        <p id="chat-message">Hi! 👋 I'm <strong>TalentBot™</strong>. Can I help you hire Andrew <em>right now</em>?</p>
+    <div class="chaos-chat" id="chaos-chat" data-pop-at="0.88" data-pop-delay="500" tabindex="-1">
+      <div class="chaos-chat__teaser">
+        <div class="chaos-chat__bubble">
+          <p class="chaos-chat__name">
+            TalentBot™
+            <span class="chaos-chat__typing" aria-hidden="true"><span></span><span></span><span></span></span>
+          </p>
+          <p id="chat-message">Hi! 👋 I'm <strong>TalentBot™</strong>. Can I help you hire Andrew <em>right now</em>?</p>
+        </div>
       </div>
-      <button type="button" class="chaos-chat__btn" aria-label="Open chat" data-chaos-dead-end>💬</button>
+      <div class="chaos-chat__panel" hidden>
+        <p class="chaos-chat__panel-title">TalentBot™</p>
+        <div class="chaos-chat__log" aria-live="polite"></div>
+        <form class="chaos-chat__form">
+          <label class="chaos-chat__input-row">
+            <span class="visually-hidden">Ask about Andrew</span>
+            <input type="text" class="chaos-chat__input" placeholder="What would you like to know about Andrew?" autocomplete="off">
+            <button type="submit" class="chaos-chat__send">Ask</button>
+          </label>
+        </form>
+      </div>
+      <button type="button" class="chaos-chat__btn" aria-label="Open chat">💬</button>
     </div>
 
     <button type="button" class="chaos-mystery" aria-label="Mystery help button" data-chaos-dead-end data-pop-at="0.58">?</button>
@@ -71,21 +116,18 @@
           <span class="cx-logo__name">Andrew Sheerin<sup class="cx-logo__tm">TM</sup></span>
         </a>
         <nav class="cx-nav cx-nav--complex" aria-label="Primary">
-          <a href="#" data-threshold="0.06" data-range="0.07">Compressing Reality</a>
+          <a href="work/antare.html" data-threshold="0.06" data-range="0.07">Compressing Reality</a>
           <a href="work/dona.html" data-threshold="0.19" data-range="0.08">DONA: Wellbeing Meets Productivity</a>
           <a href="work/education.html" data-threshold="0.11" data-range="0.07">Education &amp; Enablement</a>
-          <a href="how-i-work.html" id="nav-how-i-work" data-nav-href-complex="how-i-work.html" data-nav-morph="0.41" data-nav-morph-range="0.14" data-nav-href-clarity="#selected-work">
-            <span class="cx-nav__text cx-nav__text--long">How I Work</span>
-            <span class="cx-nav__text cx-nav__text--short" aria-hidden="true">Work</span>
-          </a>
-          <a href="origins.html" data-threshold="0.34" data-range="0.09">Origins</a>
-          <a href="about.html">About</a>
-          <a href="#">Contact</a>
+          <a href="about/how-i-work.html" id="nav-how-i-work" aria-label="How I Work" data-nav-href-complex="about/how-i-work.html" data-nav-morph="0.45" data-nav-morph-range="0.10" data-nav-href-clarity="work/"><span class="cx-nav__prefix">How I</span><span class="cx-nav__gap" aria-hidden="true"></span>Work</a>
+          <a href="about/before-product-design.html" data-threshold="0.34" data-range="0.09">Origins</a>
+          <a href="about/">About</a>
+          <a href="contact/">Contact</a>
         </nav>
         <nav class="cx-nav cx-nav--clarity" aria-label="Primary">
-          <a href="#selected-work">Work</a>
-          <a href="about.html">About</a>
-          <a href="#">Contact</a>
+          <a href="work/">Work</a>
+          <a href="about/">About</a>
+          <a href="contact/">Contact</a>
         </nav>
       </div>
     </header>
@@ -142,7 +184,7 @@
                 <input type="range" class="cx-slider__input" id="clarity-slider" min="0" max="100" step="1" value="0" aria-label="Adjust from complexity to clarity">
               </div>
               <div class="cx-rest-panel" id="rest-panel" hidden>
-                <a href="#selected-work" class="cx-rest-panel__cta">Take a look</a>
+                <a href="work/index.html" class="cx-rest-panel__cta">Take a look</a>
                 <button type="button" class="cx-rest-panel__restore" id="restore-slider">Give me back the slider</button>
               </div>
             </div>
@@ -258,12 +300,13 @@
     <footer class="cx-footer site-footer">
       <div class="container cx-footer__inner cx-footer__complex">
         <p>Andrew Sheerin — Product Design Leader</p>
-        <p><a href="#">Contact</a> | <a href="#">CV</a></p>
+        <p><a href="contact/">Contact</a> | <a href="#">CV</a></p>
       </div>
     </footer>
   </div>
 
-  <script src="directions/04-clarity/js/clarity-journey.js?v=67"></script>
+  <script src="directions/04-clarity/js/clarity-journey.js?v=75"></script>
+  <script src="directions/04-clarity/js/chaos-widgets.js?v=7"></script>
   <script src="js/play-ribbon.js?v=1"></script>
 </body>
 </html>

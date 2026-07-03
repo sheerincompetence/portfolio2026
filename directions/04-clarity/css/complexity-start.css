@@ -104,10 +104,13 @@ body.complexity-start .chaos-mystery {
   bottom: 5.5rem;
 }
 
-body.complexity-start .chaos-newsletter {
+body.complexity-start .chaos-newsletter-wrap {
   top: 50%;
   right: 0;
   transform: translateY(-50%);
+}
+
+body.complexity-start .chaos-newsletter-wrap .chaos-newsletter {
   font-size: 0.55rem;
   font-weight: 600;
   padding: 0.5rem 0.35rem;
@@ -205,12 +208,24 @@ body.complexity-start .cx-header.site-header {
   color: var(--color-ink);
 }
 
-/* Complexity start: only the long nav; clarity nav appears at resting */
-body.complexity-start:not(.is-resting) .cx-nav--clarity {
+.cx-nav--clarity {
+  align-items: center;
+}
+
+/* Complexity start: only the long nav; clarity nav when simplified */
+body.complexity-start:not(.is-resting):not(.clarity-journey) .cx-nav--clarity {
   display: none;
 }
 
-body.complexity-start:not(.is-resting) .cx-nav--complex {
+body.complexity-start:not(.is-resting):not(.clarity-journey) .cx-nav--complex {
+  display: flex;
+}
+
+body.complexity-start.is-nav-simplified .cx-nav--complex {
+  display: none;
+}
+
+body.complexity-start.is-nav-simplified .cx-nav--clarity {
   display: flex;
 }
 

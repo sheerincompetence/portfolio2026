@@ -24,6 +24,19 @@ body.complexity-start.journey-layout-lock {
   --cx-headline-zone-height: 320px;
 }
 
+/* Urgency strip slides off; header always owns that slot (paper) — no top/fill handoff bounce */
+body.journey-layout-lock.clarity-journey {
+  padding-top: 0;
+  --cx-top-chrome: calc(var(--cx-layout-header-h-live) + var(--cx-urgency-height));
+  --cx-layout-control-y: calc(
+    var(--cx-urgency-height) +
+    var(--cx-layout-header-h-live) +
+    var(--cx-layout-hero-h) -
+    var(--cx-layout-hero-pad-bottom) -
+    var(--cx-layout-control-h-compact, 4.5rem)
+  );
+}
+
 /* ——— Urgency parked (see URGENCY-PARKED.md) ——— */
 body.journey-no-urgency .chaos-urgency {
   display: none !important;
@@ -53,9 +66,24 @@ body.journey-no-urgency.complexity-start.journey-layout-lock {
 
 /* ——— Shared fixed header ——— */
 body.journey-layout-lock .cx-header.site-header {
-  top: var(--cx-urgency-height);
-  min-height: var(--cx-layout-header-h);
+  top: 0;
+  min-height: calc(var(--cx-layout-header-h) + var(--cx-urgency-height));
   box-sizing: border-box;
+}
+
+/* Urgency height is permanent padding — strip animates out; header geometry unchanged */
+body.journey-layout-lock.clarity-journey .cx-header.site-header {
+  padding-top: calc(
+    var(--cx-urgency-height) +
+    var(--cx-header-pad-top-complex, 1.333rem) +
+    var(--u) * (var(--cx-header-pad-top-compact, 2.333rem) - var(--cx-header-pad-top-complex, 1.333rem))
+  );
+  height: calc(var(--cx-layout-header-h-live, var(--cx-layout-header-h)) + var(--cx-urgency-height));
+  min-height: calc(var(--cx-layout-header-h-live, var(--cx-layout-header-h)) + var(--cx-urgency-height));
+  transition:
+    height 0.35s ease,
+    min-height 0.35s ease,
+    padding-bottom 0.35s ease;
 }
 
 /* Resting: header/page geometry stays on u=1 transition values — no swap */
@@ -178,7 +206,9 @@ body.journey-layout-lock.clarity-journey .cx-hero__content {
 
 /* ——— Fixed hero shell ——— */
 body.journey-layout-lock.clarity-journey .cx-page {
-  padding-top: var(--cx-layout-header-h-live, var(--cx-layout-header-h));
+  padding-top: calc(
+    var(--cx-layout-header-h-live, var(--cx-layout-header-h)) + var(--cx-urgency-height)
+  );
 }
 
 @media (max-width: 768px) {
@@ -204,7 +234,26 @@ body.journey-layout-lock.clarity-journey .cx-page {
 /* clarity-transition sets live header token; bind after base tokens (this file loads last) */
 body.journey-layout-lock.clarity-journey {
   --cx-layout-header-h: var(--cx-layout-header-h-live);
-  --cx-top-chrome: var(--cx-layout-header-h-live);
+}
+
+/* Skip / cold resting — no chaos flash before clarity-journey.js */
+html.journey-skip-entry .chaos-layer,
+body.clarity-journey.is-resting .chaos-layer {
+  display: none !important;
+  visibility: hidden !important;
+}
+
+html.journey-skip-entry body.clarity-journey .cx-slider__heading,
+html.journey-skip-entry body.clarity-journey .cx-slider {
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+html.journey-skip-entry body.clarity-journey .cx-rest-panel[hidden] {
+  display: flex !important;
+  opacity: 1 !important;
+  pointer-events: auto !important;
 }
 
 /* ——— Journey responsive (min 900px) ——— */

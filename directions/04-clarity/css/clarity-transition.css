@@ -101,16 +101,27 @@ body.clarity-journey .cx-nav--complex a[data-threshold].is-faded {
   display: none;
 }
 
-body.clarity-journey .cx-nav--complex .cx-nav__text--short {
-  display: none;
+body.clarity-journey .cx-nav--complex #nav-how-i-work {
+  --nav-prefix-t: 0;
 }
 
-body.clarity-journey .cx-nav--complex a.is-nav-work .cx-nav__text--long {
-  display: none;
+body.clarity-journey .cx-nav--complex #nav-how-i-work .cx-nav__prefix {
+  display: inline-block;
+  max-width: calc((1 - var(--nav-prefix-t)) * 5ch);
+  overflow: hidden;
+  white-space: nowrap;
+  vertical-align: bottom;
+  opacity: calc(1 - var(--nav-prefix-t));
+  transition: opacity 0.25s ease, max-width 0.35s ease;
 }
 
-body.clarity-journey .cx-nav--complex a.is-nav-work .cx-nav__text--short {
-  display: inline;
+body.clarity-journey .cx-nav--complex #nav-how-i-work .cx-nav__gap {
+  display: inline-block;
+  width: calc((1 - var(--nav-prefix-t)) * 0.25em);
+  overflow: hidden;
+  vertical-align: bottom;
+  opacity: calc(1 - var(--nav-prefix-t));
+  transition: opacity 0.25s ease, width 0.35s ease;
 }
 
 /* ——— Logo — u-driven shrink; TM fades by ~50% ——— */
@@ -131,12 +142,20 @@ body.clarity-journey .cx-header__inner {
 }
 
 body.clarity-journey .cx-nav--complex {
-  opacity: 1;
-  pointer-events: auto;
+  display: flex;
+}
+
+body.clarity-journey.is-nav-simplified .cx-nav--complex {
+  display: none;
 }
 
 body.clarity-journey .cx-nav--clarity {
   display: none;
+  align-items: center;
+}
+
+body.clarity-journey.is-nav-simplified .cx-nav--clarity {
+  display: flex;
 }
 
 /* ——— Hero ——— */
@@ -550,6 +569,11 @@ body.clarity-journey .chaos-layer > * {
   pointer-events: none !important;
 }
 
+body.clarity-journey .chaos-newsletter-wrap.chaos-pop-out {
+  animation: cx-chaos-pop-vanish-tab 0.38s cubic-bezier(0.55, 0, 1, 0.45) forwards;
+}
+
+/* legacy: button-only pop target before wrap refactor */
 body.clarity-journey .chaos-newsletter.chaos-pop-out {
   animation: cx-chaos-pop-vanish-tab 0.38s cubic-bezier(0.55, 0, 1, 0.45) forwards;
 }

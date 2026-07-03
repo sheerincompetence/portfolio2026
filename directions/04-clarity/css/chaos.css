@@ -118,6 +118,12 @@
   display: flex;
   gap: 0.5rem;
   flex-wrap: wrap;
+  position: relative;
+}
+
+.chaos-cookie__accept,
+.chaos-cookie__reject {
+  will-change: transform;
 }
 
 .chaos-cookie button {
@@ -143,12 +149,114 @@
   font-weight: 400;
 }
 
+.chaos-cookie__meta {
+  margin: 0;
+  font-size: 0.68rem;
+  line-height: 1.45;
+  color: #bdc3c7;
+  font-style: italic;
+}
+
+.chaos-cookie--surrendered {
+  border: 1px solid #27ae60;
+}
+
 /* ——— Newsletter intercept ——— */
-.chaos-newsletter {
+.chaos-newsletter-wrap {
   position: fixed;
   top: 50%;
   right: 0;
   transform: translateY(-50%);
+  z-index: 92;
+  display: inline-flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-end;
+  align-items: flex-start;
+  max-width: calc(100vw - 1rem);
+}
+
+.chaos-newsletter-wrap .chaos-newsletter {
+  position: static;
+  transform: none;
+  flex: 0 0 auto;
+  align-self: flex-start;
+}
+
+.chaos-newsletter-panel {
+  flex: 0 1 auto;
+  min-width: 0;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: stretch;
+  gap: 0.35rem;
+  background: #8e44ad;
+  color: #fff;
+  font-family: var(--font-sans);
+  font-size: 0.62rem;
+  line-height: 1.3;
+  padding: 0;
+  border-radius: 0;
+  overflow: hidden;
+  max-width: 0;
+  max-height: 0;
+  opacity: 0;
+  pointer-events: none;
+  transition: max-width 0.4s ease, max-height 0.4s ease, opacity 0.3s ease, padding 0.4s ease;
+}
+
+.chaos-newsletter-wrap.is-open .chaos-newsletter-panel {
+  max-width: 18rem;
+  opacity: 1;
+  padding: 0.4rem 0.5rem;
+  pointer-events: auto;
+}
+
+.chaos-newsletter__intro {
+  margin: 0;
+  font-size: 0.56rem;
+  line-height: 1.3;
+}
+
+.chaos-newsletter__intro strong {
+  font-weight: 700;
+}
+
+.chaos-newsletter__quote-row {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.chaos-newsletter-wrap.is-open .chaos-newsletter {
+  border-radius: 0;
+}
+
+.chaos-newsletter__platitude {
+  margin: 0;
+  flex: 1;
+  font-style: italic;
+}
+
+.chaos-newsletter__prev,
+.chaos-newsletter__next {
+  flex-shrink: 0;
+  width: 1.35rem;
+  height: 1.35rem;
+  padding: 0;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 50%;
+  background: transparent;
+  color: #fff;
+  font-size: 0.85rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+/* ——— Newsletter tab (legacy selector; positioning on wrap) ——— */
+.chaos-newsletter {
   background: #8e44ad;
   color: white;
   font-family: var(--font-sans);
@@ -173,12 +281,6 @@
   cursor: pointer;
   appearance: none;
   -webkit-appearance: none;
-  animation: chaos-tab-pulse 3s ease-in-out infinite;
-}
-
-@keyframes chaos-tab-pulse {
-  0%, 100% { right: 0; }
-  50% { right: 4px; }
 }
 
 /* ——— Chatbot ——— */
@@ -273,6 +375,91 @@
   50% { box-shadow: 0 4px 28px rgba(52, 152, 219, 0.7); }
 }
 
+.chaos-chat--open {
+  width: 17.5rem;
+  animation: none;
+}
+
+.chaos-chat__panel {
+  width: 100%;
+  background: #fff;
+  border: 2px solid #3498db;
+  border-radius: 8px;
+  padding: 0.65rem;
+  margin-bottom: 0.5rem;
+  box-shadow: 0 4px 16px rgba(52, 152, 219, 0.25);
+  box-sizing: border-box;
+}
+
+.chaos-chat__panel-title {
+  margin: 0 0 0.5rem;
+  font-family: var(--font-sans);
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: #3498db;
+}
+
+.chaos-chat__log {
+  max-height: 7rem;
+  overflow-y: auto;
+  margin-bottom: 0.5rem;
+  font-family: var(--font-sans);
+  font-size: 0.68rem;
+  line-height: 1.4;
+}
+
+.chaos-chat__msg {
+  margin: 0 0 0.45rem;
+}
+
+.chaos-chat__msg--user {
+  text-align: right;
+  color: #2c3e50;
+}
+
+.chaos-chat__msg--bot {
+  color: #34495e;
+}
+
+.chaos-chat__input-row {
+  display: flex;
+  gap: 0.35rem;
+}
+
+.chaos-chat__input {
+  flex: 1;
+  min-width: 0;
+  font-family: var(--font-sans);
+  font-size: 0.65rem;
+  padding: 0.35rem 0.5rem;
+  border: 1px solid #bdc3c7;
+  border-radius: 4px;
+}
+
+.chaos-chat__send {
+  font-family: var(--font-sans);
+  font-size: 0.62rem;
+  font-weight: 600;
+  padding: 0.35rem 0.55rem;
+  border: none;
+  border-radius: 4px;
+  background: #3498db;
+  color: #fff;
+  cursor: pointer;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 /* ——— FAB: Call for quote ——— */
 .chaos-fab-quote {
   position: fixed;
@@ -299,6 +486,66 @@
   15% { transform: scale(1.05); }
   30% { transform: scale(1); }
   45% { transform: scale(1.03); }
+}
+
+.chaos-fab-quote.is-queue {
+  max-width: 14rem;
+  text-transform: none;
+  font-weight: 500;
+  font-size: 0.62rem;
+  line-height: 1.4;
+  letter-spacing: 0;
+  text-align: left;
+  animation: none;
+  cursor: default;
+  white-space: normal;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.35rem;
+}
+
+.chaos-fab-quote.is-queue strong {
+  font-weight: 700;
+  color: #fff3e0;
+}
+
+.chaos-fab-quote__connect {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-size: 0.58rem;
+}
+
+.chaos-fab-quote__phone {
+  display: inline-block;
+  animation: chaos-phone-quiver 0.55s ease-in-out infinite;
+}
+
+@keyframes chaos-phone-quiver {
+  0%, 100% { transform: rotate(-8deg) translateY(0); }
+  25% { transform: rotate(6deg) translateY(-1px); }
+  50% { transform: rotate(-4deg) translateY(0); }
+  75% { transform: rotate(8deg) translateY(-1px); }
+}
+
+.chaos-fab-quote__dots {
+  opacity: 0.95;
+  animation: chaos-connect-pulse 1s ease-in-out infinite;
+}
+
+@keyframes chaos-connect-pulse {
+  0%, 100% { opacity: 0.55; }
+  50% { opacity: 1; }
+}
+
+.chaos-fab-quote__queue-text {
+  font-weight: 500;
+  text-transform: none;
+  letter-spacing: 0;
 }
 
 /* ——— Mystery ? button ——— */
@@ -436,7 +683,7 @@ body.chaos-mode .hero__hint--parody {
   .chaos-chat { width: 14rem; right: 0.75rem; }
   .chaos-fab-quote { font-size: 0.6rem; padding: 0.7rem 0.9rem; }
   .chaos-cookie { max-width: none; }
-  .chaos-newsletter { display: none; }
+  .chaos-newsletter-wrap { display: none; }
 }
 
 @media (prefers-reduced-motion: reduce) {

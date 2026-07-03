@@ -90,7 +90,7 @@
   }
 
   function cycleChat() {
-    if (!chatMessage || isResting || popped.get(chaosChat) || currentU > 0.5) return;
+    if (!chatMessage || isResting || popped.get(chaosChat) || currentU > 0.5 || chaosChat?.classList.contains('chaos-chat--open')) return;
     chatMessage.style.opacity = '0';
     setTimeout(() => {
       chatIndex = (chatIndex + 1) % CHAT_LINES.length;
@@ -147,47 +147,36 @@
     const start = parseFloat(navHowIWork.dataset.navMorph);
     const range = parseFloat(navHowIWork.dataset.navMorphRange || '0.1');
     const end = start + range;
-    const longLabel = navHowIWork.querySelector('.cx-nav__text--long');
-    const shortLabel = navHowIWork.querySelector('.cx-nav__text--short');
-    const clarityHref = navHowIWork.dataset.navHrefClarity || '#selected-work';
-    const complexHref = navHowIWork.dataset.navHrefComplex || '../../how-i-work.html';
+    const clarityHref = navHowIWork.dataset.navHrefClarity || 'work/';
+    const complexHref = navHowIWork.dataset.navHrefComplex || 'about/how-i-work.html';
 
     if (u <= start) {
-      navHowIWork.classList.remove('is-nav-work');
       navHowIWork.setAttribute('href', complexHref);
-      if (longLabel) longLabel.style.opacity = '';
-      if (shortLabel) {
-        shortLabel.style.opacity = '';
-        shortLabel.setAttribute('aria-hidden', 'true');
-      }
+      navHowIWork.setAttribute('aria-label', 'How I Work');
+      navHowIWork.style.removeProperty('--nav-prefix-t');
       return;
     }
+
+    navHowIWork.setAttribute('href', clarityHref);
 
     if (u >= end) {
-      navHowIWork.classList.add('is-nav-work');
-      navHowIWork.setAttribute('href', clarityHref);
-      if (longLabel) longLabel.style.opacity = '';
-      if (shortLabel) {
-        shortLabel.style.opacity = '';
-        shortLabel.setAttribute('aria-hidden', 'false');
-      }
+      navHowIWork.removeAttribute('aria-label');
+      navHowIWork.style.setProperty('--nav-prefix-t', '1');
       return;
     }
 
-    const t = (u - start) / range;
-    navHowIWork.classList.toggle('is-nav-work', t >= 0.5);
-    navHowIWork.setAttribute('href', t >= 0.5 ? clarityHref : complexHref);
-    if (longLabel) longLabel.style.opacity = String(1 - t);
-    if (shortLabel) {
-      shortLabel.style.opacity = String(t);
-      shortLabel.style.display = t > 0 ? 'inline' : 'none';
-      shortLabel.setAttribute('aria-hidden', t < 0.5 ? 'true' : 'false');
-    }
+    navHowIWork.setAttribute('aria-label', 'How I Work');
+    navHowIWork.style.setProperty('--nav-prefix-t', String((u - start) / range));
+  }
+
+  function syncNavModeFlags(u = currentU) {
+    body.classList.toggle('is-nav-simplified', isResting || u >= 0.55);
   }
 
   function syncNavItems(u) {
     navFadeLinks.forEach((link) => setFragOpacity(link, u));
     syncNavMorph(u);
+    syncNavModeFlags(u);
   }
 
   function syncJourneyChrome(u) {
@@ -1356,6 +1345,7 @@
     isRestTransitioning = true;
     restPanel?.removeAttribute('hidden');
     body.classList.add('is-entering-rest');
+    snapshotRestTypography();
     setTimeout(() => {
       body.classList.remove('is-entering-rest');
       enterRestingState();
@@ -1416,31 +1406,91 @@
       );
       root.style.setProperty('--cx-rest-title-size', `${endFont}px`);
       root.style.setProperty('--cx-rest-title-lh', String(lh));
+      applyHeadlineTypography(endFont, lh);
     } else {
       root.style.setProperty('--cx-rest-title-size', `${endFont}px`);
+      applyHeadlineTypography(endFont, 1.08);
     }
+  }
+
+  function dismissChaosForResting() {
+    root.style.setProperty('--urgency-progress', '1');
+    if (chaosLayer) {
+      chaosLayer.classList.add('is-gone');
+      chaosLayer.setAttribute('aria-hidden', 'true');
+    }
+    popWidgets.forEach((widget) => {
+      clearPopTimer(widget);
+      popped.set(widget, true);
+    });
+  }
+
+  /** Cold load → resting (localStorage / ?direct=1). Layout before is-resting or headline shrinks on refresh. */
+  function hydrateRestingFromColdStart() {
+    clearRestEnterTimer();
+    resetHeadlineBaseline();
+    resetAllPops();
+
+    currentU = 1;
+    syncJourneyMotionVars(1);
+    slider.value = 100;
+    slider.setAttribute('aria-valuenow', '100');
+
+    syncHeadlineFragments(1);
+    syncJourneyChrome(1);
+    dismissChaosForResting();
+
+    if (slideHint) slideHint.style.visibility = 'hidden';
+    restPanel?.removeAttribute('hidden');
+
+    captureEyebrowReservedHeight();
+    captureHeadlineBaseline();
+    captureLayoutZones();
+
+    const frames = (TUNE_ENABLED && tuneUsePreview) ? tuneKeyframes : FONT_KEYFRAMES;
+    applyKeyframeFont(1, frames);
+    snapshotRestTypography();
+
+    enterRestingState();
+  }
+
+  function wantsDirectPortfolio(params) {
+    return ['resting', 'direct', 'skip', 'clarity'].some((key) => params.get(key) === '1');
   }
 
   function enterRestingState() {
     if (isResting) return;
     isResting = true;
+    dismissChaosForResting();
     restPanel?.removeAttribute('hidden');
     body.classList.add('is-resting');
+    syncNavModeFlags();
     document.title = 'Andrew Sheerin — Product Design Leader';
     try { localStorage.setItem(STORAGE_KEY, 'true'); } catch (_) { /* ignore */ }
+  }
+
+  function clearSkipEntryClasses() {
+    document.documentElement.classList.remove('journey-skip-entry');
+    body.classList.remove('journey-skip-entry');
   }
 
   function exitRestingState() {
     isResting = false;
     isRestTransitioning = false;
     clearRestEnterTimer();
+    clearSkipEntryClasses();
     restPanel?.setAttribute('hidden', '');
     body.classList.remove('is-resting', 'is-entering-rest');
     document.title = 'Andrew Sheerin — Complexity → Clarity';
     try { localStorage.removeItem(STORAGE_KEY); } catch (_) { /* ignore */ }
 
     resetAllPops();
+    if (chaosLayer) {
+      chaosLayer.classList.remove('is-gone');
+      chaosLayer.setAttribute('aria-hidden', 'true');
+    }
     setClarity(100);
+    syncNavModeFlags();
     slider.focus();
   }
 
@@ -1457,9 +1507,8 @@
       return true;
     }
 
-    if (params.get('resting') === '1') {
-      setClarity(100);
-      enterRestingState();
+    if (wantsDirectPortfolio(params)) {
+      hydrateRestingFromColdStart();
       return true;
     }
 
@@ -1471,8 +1520,7 @@
 
     try {
       if (localStorage.getItem(STORAGE_KEY) === 'true') {
-        setClarity(100);
-        enterRestingState();
+        hydrateRestingFromColdStart();
         return true;
       }
     } catch (_) { /* ignore */ }
