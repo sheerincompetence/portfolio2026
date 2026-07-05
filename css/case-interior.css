@@ -1,9 +1,5 @@
 /* Interior case layout — 01-swiss skeleton, reference tokens
-   Full-width grid, large index numbers, bleed figures. */
-
-:root {
-  --case-gutter: max(1.5rem, calc((100vw - min(var(--width-full), calc(100% - 2rem))) / 2));
-}
+   In-page width aligns with site-shell header/footer (--case-gutter on body.site-shell); bleed figures stay full viewport. */
 
 .case-interior-hero {
   min-height: 65vh;
