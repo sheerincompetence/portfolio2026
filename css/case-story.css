@@ -315,11 +315,6 @@
   margin-right: 0;
 }
 
-.story-feed-hero__copy .story-caption {
-  text-align: left;
-  margin: 0;
-}
-
 .story-band--dark .story-caption {
   background: rgba(255, 255, 255, 0.06);
   border-color: rgba(255, 255, 255, 0.1);
@@ -337,19 +332,45 @@
 
 .story-diary__label {
   font-family: var(--font-sans);
-  font-size: 0.55rem;
-  letter-spacing: 0.28em;
-  text-transform: uppercase;
+  font-size: 0.72rem;
+  font-variant: small-caps;
+  font-style: normal;
+  letter-spacing: 0.22em;
+  text-transform: lowercase;
   color: var(--story-faint);
-  margin: 0 0 0.75rem;
+  margin: 0 0 1.45rem;
 }
 
-.story-diary p {
+.story-diary__body,
+.story-diary p:not(.story-diary__label) {
   font-style: italic;
   font-size: 1.05rem;
   line-height: 1.75;
   color: var(--story-muted);
   margin: 0;
+}
+
+.story-diary__body em,
+.story-diary p:not(.story-diary__label) em {
+  color: var(--story-ink);
+  font-style: italic;
+}
+
+.story-diary__body strong,
+.story-diary p:not(.story-diary__label) strong {
+  color: var(--story-ink);
+  font-weight: 500;
+}
+
+.story-diary__body--punch {
+  margin-top: 2.5rem;
+  font-weight: calc(400 + var(--punch-emphasis, 0) * 280);
+  color: color-mix(
+    in srgb,
+    var(--story-muted) calc(100% - var(--punch-emphasis, 0) * 72%),
+    var(--story-ink)
+  );
+  transition: color 0.2s ease, font-weight 0.2s ease;
 }
 
 .story-pull {
@@ -668,48 +689,157 @@
   .story-pair { grid-template-columns: 1fr; }
 }
 
-/* ——— Feed evolved scroll-over ——— */
-.story-feed-hero {
-  position: relative;
-  min-height: 160vh;
-  margin: 3rem 0;
+/* ——— Feed stage (auto-pan + diary rise) ——— */
+.story-feed-stage {
+  margin: 2rem calc(50% - 50vw) 0;
+  width: 100vw;
 }
 
-.story-feed-hero__sticky {
-  position: sticky;
-  top: calc(var(--play-ribbon-h, 0px) + var(--cx-shell-header-h, 5.111rem));
-  height: calc(100vh - var(--play-ribbon-h, 0px) - var(--cx-shell-header-h, 5.111rem));
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.story-feed-stage__viewport {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(16rem, 0.72fr);
+  min-height: clamp(24rem, 72vh, 40rem);
   overflow: hidden;
-  pointer-events: none;
-  z-index: 0;
+  background: var(--story-paper);
 }
 
-.story-feed-hero__img {
-  width: min(96vw, 1100px);
-  max-height: 85vh;
-  object-fit: contain;
-  opacity: calc(1 - var(--feed-fade, 0) * 0.92);
-  transform: scale(calc(1 - var(--feed-fade, 0) * 0.04));
-  filter: blur(calc(var(--feed-fade, 0) * 6px));
-  transition: none;
+.story-feed-stage__feed {
+  background-image: var(--feed-img);
+  background-repeat: no-repeat;
+  background-size: 100% auto;
+  background-position: center 0%;
 }
 
-.story-feed-hero__scrim {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to bottom, transparent 40%, var(--story-paper) 95%);
-  opacity: calc(0.3 + var(--feed-fade, 0) * 0.7);
+.story-feed-stage.is-playing .story-feed-stage__feed {
+  animation: story-feed-pan-y 32s ease-in-out forwards;
 }
 
-.story-feed-hero__copy {
-  position: relative;
-  z-index: 1;
-  max-width: var(--story-prose);
-  margin: 0 auto 0 var(--story-prose-inset);
-  padding: 50vh 2rem 4rem;
+.story-feed-stage__diary {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0;
+  max-width: none;
+  padding: clamp(1.75rem, 4vw, 2.75rem) clamp(3.25rem, 7.5vw, 5rem) clamp(1.75rem, 4vw, 2.75rem) clamp(2.75rem, 6.5vw, 4.5rem);
+  background: rgba(26, 25, 23, 0.035);
+  border: none;
+  border-left: 1px solid rgba(19, 18, 16, 0.08);
+  transform: translateY(105%);
+  opacity: 0;
+}
+
+.story-feed-stage.is-playing .story-feed-stage__diary {
+  animation: story-diary-rise 1.15s cubic-bezier(0.22, 1, 0.36, 1) 0.4s forwards;
+}
+
+.story-feed-stage__copy > *,
+.story-feed-stage__diary > .story-diary__label {
+  opacity: 0;
+  transform: translateY(1.15rem);
+}
+
+.story-feed-stage.is-playing .story-diary__label {
+  animation: story-diary-bounce-in 0.95s var(--story-ease) 0.62s forwards;
+}
+
+.story-feed-stage.is-playing .story-feed-stage__copy .story-diary__body:first-child {
+  animation: story-diary-bounce-in 0.95s var(--story-ease) 0.78s forwards;
+}
+
+.story-feed-stage.is-playing .story-diary__body--punch {
+  animation: story-diary-bounce-in 0.95s var(--story-ease) 0.94s forwards;
+}
+
+.story-feed-stage.is-complete .story-feed-stage__feed {
+  animation: none;
+  background-position: center 100%;
+}
+
+.story-feed-stage.is-complete .story-feed-stage__diary {
+  animation: none;
+  transform: none;
+  opacity: 1;
+}
+
+.story-feed-stage.is-complete .story-feed-stage__copy > *,
+.story-feed-stage.is-complete .story-feed-stage__diary > .story-diary__label {
+  animation: none;
+  opacity: 1;
+  transform: none;
+}
+
+@keyframes story-feed-pan-y {
+  from { background-position: center 0%; }
+  to { background-position: center 100%; }
+}
+
+@keyframes story-diary-rise {
+  from {
+    transform: translateY(105%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes story-diary-bounce-in {
+  0% {
+    opacity: 0;
+    transform: translateY(1.15rem);
+  }
+  62% {
+    opacity: 1;
+    transform: translateY(-0.28rem);
+  }
+  82% {
+    transform: translateY(0.12rem);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 820px) {
+  .story-feed-stage__viewport {
+    grid-template-columns: 1fr;
+    min-height: auto;
+  }
+
+  .story-feed-stage__feed {
+    min-height: clamp(16rem, 48vw, 22rem);
+  }
+
+  .story-feed-stage__diary {
+    border-left: none;
+    border-top: 1px solid rgba(19, 18, 16, 0.08);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .story-feed-stage__feed {
+    background-position: center 50%;
+  }
+
+  .story-feed-stage__diary {
+    transform: none;
+    opacity: 1;
+  }
+
+  .story-feed-stage__copy > *,
+  .story-feed-stage__diary > .story-diary__label {
+    opacity: 1;
+    transform: none;
+  }
+
+  .story-feed-stage.is-playing .story-feed-stage__feed,
+  .story-feed-stage.is-playing .story-feed-stage__diary,
+  .story-feed-stage.is-playing .story-diary__label,
+  .story-feed-stage.is-playing .story-feed-stage__copy > * {
+    animation: none;
+  }
 }
 
 /* ——— Classification watermark ——— */

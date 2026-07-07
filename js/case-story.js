@@ -145,21 +145,65 @@
     tick();
   }
 
-  /* ——— Feed hero fade ——— */
-  function initFeedHero() {
-    var stage = document.querySelector('[data-sequence="feed-hero"]');
+  /* ——— Feed stage (auto-pan + diary rise) ——— */
+  function smoothstep(t) {
+    return t * t * (3 - 2 * t);
+  }
+
+  function initFeedStage() {
+    var stage = document.querySelector('[data-sequence="feed-stage"]');
     if (!stage) return;
+
+    var punch = stage.querySelector('[data-feed-punch]');
+
+    function tickPunch() {
+      if (!punch) return;
+      var rect = stage.getBoundingClientRect();
+      var vh = window.innerHeight;
+      var raw = (vh * 0.58 - rect.top) / (rect.height * 0.72);
+      var t = smoothstep(clamp(raw, 0, 1));
+      stage.style.setProperty('--punch-emphasis', t.toFixed(3));
+    }
+
     if (reduced) {
-      stage.style.setProperty('--feed-fade', '0');
+      stage.classList.add('is-complete');
+      stage.style.setProperty('--punch-emphasis', '1');
       return;
     }
-    function tick() {
-      var t = progressInView(stage, 0.9, 0.05);
-      stage.style.setProperty('--feed-fade', t);
+
+    var played = false;
+
+    function play() {
+      if (played) return;
+      played = true;
+      stage.classList.add('is-playing');
+      stage.addEventListener('animationend', function (e) {
+        if (e.target.classList.contains('story-feed-stage__feed')) {
+          stage.classList.add('is-complete');
+        }
+      });
     }
-    window.addEventListener('scroll', tick, { passive: true });
-    window.addEventListener('resize', tick);
-    tick();
+
+    if (!('IntersectionObserver' in window)) {
+      play();
+    } else {
+      var io = new IntersectionObserver(
+        function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              play();
+              io.unobserve(stage);
+            }
+          });
+        },
+        { threshold: 0.35 }
+      );
+      io.observe(stage);
+    }
+
+    window.addEventListener('scroll', tickPunch, { passive: true });
+    window.addEventListener('resize', tickPunch);
+    tickPunch();
   }
 
   /* ——— Card assemble ——— */
@@ -346,7 +390,7 @@
   initBeats();
   initChapterScores();
   initPipeline();
-  initFeedHero();
+  initFeedStage();
   initCardAssemble();
   initCardLayers();
   initThen();

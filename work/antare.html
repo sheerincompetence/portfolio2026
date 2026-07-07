@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="../css/main.css?v=7">
   <link rel="stylesheet" href="../css/site-shell.css?v=6">
   <link rel="stylesheet" href="../css/case-interior.css?v=3">
-  <link rel="stylesheet" href="../css/case-story.css?v=23">
+  <link rel="stylesheet" href="../css/case-story.css?v=28">
 </head>
 <body class="site-shell story">
   <a href="#main" class="skip-link">Skip to content</a>
@@ -176,18 +176,22 @@
             </div>
           </div>
           <div class="story-block__body">
-          <div class="story-diary" data-beat>
-            <p class="story-diary__label">Design diary</p>
-            <p>"Reimagining the data-table as a foundational admin tool... the current design feels outdated and just <em>wrong</em> for something so sophisticated. Realising the data table is just a tool to get the user to a goal helped sidestep it — or imagine what other tools might work. Our interface might have <strong>more in common with a social media feed</strong> than an excel spreadsheet."</p>
-          </div>
-
-          <div class="story-feed-hero" data-sequence="feed-hero">
-            <div class="story-feed-hero__sticky" aria-hidden="true">
-              <img class="story-feed-hero__img" src="../assets/images/antare-curated/feed-evolved.png" alt="">
-              <div class="story-feed-hero__scrim"></div>
-            </div>
-            <div class="story-feed-hero__copy">
-              <p class="story-caption">More in common with a social media feed than an excel spreadsheet — a dramatic leap from the static datagrid, large enough to feel the shift without demanding you inspect every pixel.</p>
+          <div class="story-feed-stage" data-sequence="feed-stage">
+            <div class="story-feed-stage__viewport">
+              <div
+                class="story-feed-stage__feed"
+                style="--feed-img: url('../assets/images/antare-curated/feed-evolved.png')"
+                role="img"
+                aria-label="Evolved Antare feed — card-based event stream"
+              ></div>
+              <blockquote class="story-feed-stage__diary story-diary">
+                <p class="story-diary__label">Design diary</p>
+                <div class="story-feed-stage__copy">
+                  <p class="story-diary__body">"Reimagining the data-table as a foundational admin tool… the current design feels outdated and just <em>wrong</em> for something so sophisticated. Realising the data table is just a tool to get the user to a goal helped sidestep it — or imagine what other tools might work."</p>
+                  <p>&nbsp;</p>
+                  <p class="story-diary__body story-diary__body--punch" data-feed-punch>"Our interface might have more in common with a social media feed than an excel spreadsheet."</p>
+                </div>
+              </blockquote>
             </div>
           </div>
           </div>
@@ -585,6 +589,6 @@
   </footer>
 
   <script src="../js/play-ribbon.js?v=3"></script>
-  <script src="../js/case-story.js?v=10"></script>
+  <script src="../js/case-story.js?v=13"></script>
 </body>
 </html>
