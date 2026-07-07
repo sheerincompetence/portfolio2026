@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Exhibit — Horizontal staged reveal</title>
+  <link rel="stylesheet" href="../../../css/main.css">
+  <link rel="stylesheet" href="../../../css/site-shell.css">
+  <link rel="stylesheet" href="../../../css/case-interior.css">
+  <link rel="stylesheet" href="../../../css/case-story.css">
+  <link rel="stylesheet" href="../../../css/exhibits/horizontal-staged-reveal.css">
+</head>
+<body class="site-shell story">
+  <main class="container case-interior" id="main" style="padding-top: 6rem;">
+    <p class="story-chapter__label" style="margin-bottom: 2rem;">Exhibit — Horizontal staged reveal</p>
+    <p class="story-prose" style="max-width: 42rem; margin-bottom: 2rem;">
+      Archived scroll-pinned carousel. Superseded on the Antare case study by the scannable pipeline pulse.
+    </p>
+
+    <div class="story-pipeline story-pipeline--staged" data-sequence="pipeline-staged">
+      <div class="story-pipeline__sticky">
+        <div class="story-pipeline__viewport">
+          <div class="story-pipeline__track" role="list" aria-label="Camera to human pipeline">
+            <div class="story-pipeline__item story-pipeline__item--camera" data-pipeline-step role="listitem">
+              <img src="../../../assets/images/antare-curated/camera.png" alt="Antare bodyworn camera" loading="lazy">
+              <p class="story-pipeline__camera-label">
+                <span class="story-pipeline__camera-label-main">Bodyworn camera</span>
+                <span class="story-pipeline__camera-label-sub">Always recording</span>
+              </p>
+            </div>
+            <span class="story-pipeline__arrow" data-pipeline-arrow aria-hidden="true"></span>
+            <div class="story-pipeline__item" data-pipeline-step role="listitem">
+              <div class="story-pipeline__card">Generates:<br>Video, audio,<br>metadata</div>
+            </div>
+            <span class="story-pipeline__arrow" data-pipeline-arrow aria-hidden="true"></span>
+            <div class="story-pipeline__item" data-pipeline-step role="listitem">
+              <div class="story-pipeline__card">AI identifies<br>events</div>
+            </div>
+            <span class="story-pipeline__arrow" data-pipeline-arrow aria-hidden="true"></span>
+            <div class="story-pipeline__item" data-pipeline-step role="listitem">
+              <div class="story-pipeline__card">AI summarises<br>events</div>
+            </div>
+            <span class="story-pipeline__arrow" data-pipeline-arrow aria-hidden="true"></span>
+            <div class="story-pipeline__item" data-pipeline-step role="listitem">
+              <div class="story-pipeline__card">Event cards<br>in feed</div>
+            </div>
+            <span class="story-pipeline__arrow" data-pipeline-arrow aria-hidden="true"></span>
+            <div class="story-pipeline__item story-pipeline__item--finale" data-pipeline-step role="listitem">
+              <div class="story-pipeline__flip">
+                <div class="story-pipeline__flip-inner">
+                  <div class="story-pipeline__card story-pipeline__card--finale story-pipeline__flip-front">Human<br>decision</div>
+                  <div class="story-pipeline__card story-pipeline__card--finale story-pipeline__card--revealed story-pipeline__flip-back">
+                    <span class="story-pipeline__outcome">Respond</span>
+                    <span class="story-pipeline__outcome">Escalate</span>
+                    <span class="story-pipeline__outcome story-pipeline__outcome--or">or Ignore</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  <script src="../../../js/exhibits/horizontal-staged-reveal.js"></script>
+</body>
+</html>
