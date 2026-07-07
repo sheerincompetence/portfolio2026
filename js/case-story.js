@@ -395,12 +395,23 @@
     var el = document.querySelector('[data-sequence="then"]');
     if (!el) return;
     var dots = el.querySelectorAll('[data-then-dot]');
+    var prevBand = el.previousElementSibling;
+    var prevPara = prevBand ? prevBand.querySelector('.story-prose p:last-child') : null;
+
+    function thenGate() {
+      if (!prevPara) return 1;
+      var rect = prevPara.getBoundingClientRect();
+      var comfort = window.innerHeight * 0.42;
+      return clamp((comfort - rect.bottom) / (window.innerHeight * 0.1), 0, 1);
+    }
 
     function tickThen() {
-      var t = progressInView(el, 0.88, 0.1);
-      el.style.setProperty('--then-on', clamp(t * 3.2, 0, 1).toFixed(3));
+      var gate = thenGate();
+      var t = progressInView(el, 0.9, 0.05);
+      var on = gate * clamp((t - 0.04) / 0.16, 0, 1);
+      el.style.setProperty('--then-on', on.toFixed(3));
       dots.forEach(function (dot, n) {
-        dot.classList.toggle('is-on', t > 0.44 + n * 0.1);
+        dot.classList.toggle('is-on', on > 0.9 && t > 0.3 + n * 0.06);
       });
     }
 
@@ -428,18 +439,25 @@
       return;
     }
 
+    function snapIn(raw) {
+      var t = clamp(raw, 0, 1);
+      if (t > 0.68) return 1;
+      return clamp(t * 1.45, 0, 1);
+    }
+
+    var cardGap = 0.11;
+    var cardSnap = 0.07;
+    var fifthStart = 4 * cardGap;
+
     function tick() {
-      var t = progressInView(stage, 0.88, 0.02);
+      var t = progressInView(stage, 0.9, 0.08);
       cards.forEach(function (card, i) {
-        var delay = i * 0.14;
-        var enter = clamp((t - delay) / 0.22, 0, 1);
-        var settle = clamp((t - 0.55) / 0.2, 0, 1);
-        var yStack = i * settle * 52;
-        card.style.setProperty('--card-in', enter);
-        card.style.setProperty('--card-ty', yStack);
-        card.style.top = yStack + 'px';
+        var delay = i * cardGap;
+        card.style.setProperty('--card-in', snapIn((t - delay) / cardSnap));
       });
-      if (quote) quote.style.setProperty('--quote-on', clamp((t - 0.78) / 0.15, 0, 1));
+      if (quote) {
+        quote.style.setProperty('--quote-on', snapIn((t - fifthStart) / 0.1));
+      }
     }
 
     window.addEventListener('scroll', tick, { passive: true });
