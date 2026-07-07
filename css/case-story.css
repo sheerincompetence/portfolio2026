@@ -295,13 +295,35 @@
 }
 
 .story-caption {
-  font-family: var(--font-sans);
-  font-size: 0.75rem;
-  color: var(--story-faint);
-  line-height: 1.55;
+  font-family: var(--font-serif);
+  font-size: 0.6875rem;
+  font-style: italic;
+  color: var(--story-muted);
+  line-height: 1.5;
   text-align: center;
-  margin: 0.75rem auto 0;
-  max-width: 32rem;
+  margin: 0.65rem auto 0;
+  max-width: 36rem;
+  padding: 0.7rem 0.9rem;
+  border: 1px dotted rgba(19, 18, 16, 0.27);
+  border-radius: 2px;
+  box-sizing: border-box;
+}
+
+.story-pair > div > .story-caption {
+  max-width: none;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.story-feed-hero__copy .story-caption {
+  text-align: left;
+  margin: 0;
+}
+
+.story-band--dark .story-caption {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.1);
+  color: #a8a49c;
 }
 
 /* ——— Diary pull ——— */
