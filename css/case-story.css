@@ -20,6 +20,9 @@
     3.25rem,
     calc((var(--story-content-w) - var(--story-prose) - 4.2rem) / 2)
   );
+  --story-sec-col: 2.85rem;
+  --story-sec-gap: 1.35rem;
+  --story-sec-rail: calc(var(--story-sec-col) + var(--story-sec-gap));
 }
 
 /* ——— Beats & reveals ——— */
@@ -55,7 +58,7 @@
 }
 
 .story-rail {
-  margin-left: var(--story-prose-inset);
+  margin-left: calc(var(--story-prose-inset) + var(--story-sec-rail));
   margin-right: auto;
   max-width: var(--story-prose);
 }
@@ -231,9 +234,9 @@
 
 .story-block__lead {
   display: grid;
-  grid-template-columns: 2.85rem minmax(0, 1fr);
-  gap: 0 1.35rem;
-  max-width: calc(var(--story-prose) + 4.2rem);
+  grid-template-columns: var(--story-sec-col) minmax(0, 1fr);
+  gap: 0 var(--story-sec-gap);
+  max-width: calc(var(--story-prose) + var(--story-sec-rail));
   margin-left: var(--story-prose-inset);
   margin-right: auto;
 }
@@ -250,7 +253,7 @@
 
 .story-block__body > .story-prose {
   max-width: var(--story-prose);
-  margin-left: var(--story-prose-inset);
+  margin-left: calc(var(--story-prose-inset) + var(--story-sec-rail));
   margin-right: auto;
 }
 
@@ -279,6 +282,11 @@
 .story-band--dark .story-sec-title { color: var(--story-paper); }
 
 @media (max-width: 600px) {
+  .story {
+    --story-sec-col: 2.25rem;
+    --story-sec-gap: 1rem;
+  }
+
   .story-block__lead {
     grid-template-columns: 2.25rem minmax(0, 1fr);
     gap: 0 1rem;
@@ -304,7 +312,7 @@
   margin: 0.65rem auto 0;
   max-width: 36rem;
   padding: 0.7rem 0.9rem;
-  border: 1px dotted rgba(19, 18, 16, 0.27);
+  border-top: 1px dotted rgba(19, 18, 16, 0.17);
   border-radius: 2px;
   box-sizing: border-box;
 }
@@ -842,26 +850,35 @@
   }
 }
 
-/* ——— Classification watermark ——— */
-.story-classify {
-  position: relative;
-  padding: 4rem var(--case-gutter);
-  overflow: hidden;
+.story-caption strong {
+  color: var(--story-ink);
+  font-weight: 500;
 }
 
-.story-classify__bg {
-  position: absolute;
-  inset: -10% -5%;
-  background: url('../assets/images/antare-curated/classification.png') center / contain no-repeat;
-  opacity: 0.12;
-  pointer-events: none;
+/* ——— Single figure + caption ——— */
+.story-figure {
+  max-width: min(46rem, 100%);
+  margin: 2.5rem auto 0;
 }
 
-.story-classify__inner {
-  position: relative;
-  max-width: var(--story-prose);
-  margin-left: var(--story-prose-inset);
-  margin-right: auto;
+.story-figure__frame {
+  background: #fff;
+  border: 1px solid var(--color-rule);
+  border-radius: 6px;
+  padding: 1.25rem;
+  box-shadow: 0 1px 3px rgba(19, 18, 16, 0.04);
+}
+
+.story-figure__frame img {
+  width: 100%;
+  display: block;
+}
+
+.story-figure .story-caption {
+  border-top: none;
+  padding: 0;
+  margin-top: 1.35rem;
+  max-width: 34rem;
 }
 
 /* ——— Event card anatomy ——— */
