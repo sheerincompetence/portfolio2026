@@ -497,23 +497,49 @@
     });
   }
 
+  /* ——— Act V chapter ——— */
+  function initActVChapter() {
+    var header = document.querySelector('[data-sequence="act-v-chapter"]');
+    if (!header) return;
+    if (reduced) {
+      header.style.setProperty('--act-label', '1');
+      header.style.setProperty('--act-title', '1');
+      return;
+    }
+    function tick() {
+      var t = progressInView(header, 0.82, 0.28);
+      header.style.setProperty('--act-label', clamp((t - 0.12) / 0.16, 0, 1));
+      header.style.setProperty('--act-title', clamp((t - 0.32) / 0.16, 0, 1));
+    }
+    window.addEventListener('scroll', tick, { passive: true });
+    window.addEventListener('resize', tick);
+    tick();
+  }
+
   /* ——— Principle ——— */
   function initPrinciple() {
     var block = document.querySelector('[data-sequence="principle"]');
     if (!block) return;
+
+    function snapBrisk(raw) {
+      var t = clamp(raw, 0, 1);
+      if (t > 0.66) return 1;
+      return clamp(t * 1.55, 0, 1);
+    }
+
     if (reduced) {
-      block.classList.add('is-lit');
-      block.style.setProperty('--glow', '1');
+      block.style.setProperty('--principle-block', '1');
+      block.style.setProperty('--principle-lead', '1');
       return;
     }
     function tick() {
-      var rect = block.getBoundingClientRect();
-      var vh = window.innerHeight;
-      var t = clamp(1 - rect.top / vh, 0, 1);
-      block.style.setProperty('--glow', t);
-      if (t > 0.5) block.classList.add('is-lit');
+      var t = progressInView(block, 0.9, 0.14);
+      block.style.setProperty('--principle-block', snapBrisk((t - 0.05) / 0.2));
+      var leadRaw = clamp(t / 0.72, 0, 1);
+      block.style.setProperty('--principle-lead', Math.pow(leadRaw, 2.4).toFixed(3));
     }
     window.addEventListener('scroll', tick, { passive: true });
+    window.addEventListener('resize', tick);
     tick();
   }
 
@@ -569,6 +595,7 @@
   initThen();
   initOverwhelm();
   initWrong();
+  initActVChapter();
   initPrinciple();
   initSurfaces();
   initCompress();
