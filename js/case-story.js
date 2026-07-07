@@ -468,18 +468,28 @@
   /* ——— Wrongness steps ——— */
   function initWrong() {
     var blocks = document.querySelectorAll('[data-sequence="wrong"]');
+
+    function snapBrisk(raw) {
+      var t = clamp(raw, 0, 1);
+      if (t > 0.66) return 1;
+      return clamp(t * 1.55, 0, 1);
+    }
+
     blocks.forEach(function (block) {
       if (reduced) {
-        block.style.setProperty('--w1', '1');
-        block.style.setProperty('--w2', '1');
-        block.style.setProperty('--w3', '1');
+        block.style.setProperty('--w-head', '1');
+        block.style.setProperty('--w-img', '1');
+        block.style.setProperty('--w-note', '1');
         return;
       }
       function tick() {
-        var t = progressInView(block, 0.8, 0.05);
-        block.style.setProperty('--w1', clamp(t / 0.25, 0, 1));
-        block.style.setProperty('--w2', clamp((t - 0.28) / 0.28, 0, 1));
-        block.style.setProperty('--w3', clamp((t - 0.58) / 0.32, 0, 1));
+        var t = progressInView(block, 0.9, 0.18);
+        var head = snapBrisk(t / 0.2);
+        var img = head > 0.88 ? snapBrisk((t - 0.2) / 0.18) : 0;
+        var note = img > 0.92 ? snapBrisk((t - 0.42) / 0.09) : 0;
+        block.style.setProperty('--w-head', head);
+        block.style.setProperty('--w-img', img);
+        block.style.setProperty('--w-note', note);
       }
       window.addEventListener('scroll', tick, { passive: true });
       window.addEventListener('resize', tick);

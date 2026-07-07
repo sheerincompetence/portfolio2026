@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="../css/main.css?v=7">
   <link rel="stylesheet" href="../css/site-shell.css?v=6">
   <link rel="stylesheet" href="../css/case-interior.css?v=3">
-  <link rel="stylesheet" href="../css/case-story.css?v=53">
+  <link rel="stylesheet" href="../css/case-story.css?v=55">
 </head>
 <body class="site-shell story">
   <a href="#main" class="skip-link">Skip to content</a>
@@ -423,7 +423,7 @@
           </div>
         </div>
 
-        <div class="story-wrong" data-sequence="wrong" style="--wrong-color: #c45a3a; margin-top: 3rem;">
+        <div class="story-wrong" data-sequence="wrong" style="--wrong-color: #c45a3a; --note-from-x: -3.25rem;">
           <div class="story-wrong__head">
             <span class="story-wrong__num">1</span>
             <span class="story-wrong__title">Factually incorrect</span>
@@ -433,12 +433,13 @@
             <img src="../assets/images/antare-curated/wrong-factually.png" alt="Example of factually incorrect event" loading="lazy">
           </div>
           <div class="story-wrong__note">
+            <span class="story-wrong__arrow" aria-hidden="true">↓</span>
             <p class="story-wrong__scribble">a straightforward fix</p>
             <span class="story-wrong__diag">training problem · easy to correct</span>
           </div>
         </div>
 
-        <div class="story-wrong" data-sequence="wrong" style="--wrong-color: #b8860b;">
+        <div class="story-wrong" data-sequence="wrong" style="--wrong-color: #b8860b; --note-from-x: 3.25rem;">
           <div class="story-wrong__head">
             <span class="story-wrong__num">2</span>
             <span class="story-wrong__title">Factually correct but never useful</span>
@@ -448,12 +449,13 @@
             <img src="../assets/images/antare-curated/wrong-never-useful.png" alt="Example of never-useful event" loading="lazy">
           </div>
           <div class="story-wrong__note">
+            <span class="story-wrong__arrow" aria-hidden="true">↓</span>
             <p class="story-wrong__scribble">another filter, another rule</p>
             <span class="story-wrong__diag">threshold problem · also easy to correct</span>
           </div>
         </div>
 
-        <div class="story-wrong" data-sequence="wrong" style="--wrong-color: #2a7a72;">
+        <div class="story-wrong" data-sequence="wrong" style="--wrong-color: #2a7a72; --note-from-x: -3.25rem;">
           <div class="story-wrong__head">
             <span class="story-wrong__num">3</span>
             <span class="story-wrong__title">Factually correct but not individually useful</span>
@@ -463,6 +465,7 @@
             <img src="../assets/images/antare-curated/wrong-individually-useful.png" alt="Example of individually non-useful event" loading="lazy">
           </div>
           <div class="story-wrong__note">
+            <span class="story-wrong__arrow" aria-hidden="true">↓</span>
             <p class="story-wrong__scribble">This is the most interesting&#10;and difficult type of wrong.</p>
             <span class="story-wrong__diag">presentation problem · harder to fix</span>
           </div>
@@ -622,6 +625,6 @@
   </footer>
 
   <script src="../js/play-ribbon.js?v=3"></script>
-  <script src="../js/case-story.js?v=32"></script>
+  <script src="../js/case-story.js?v=34"></script>
 </body>
 </html>
