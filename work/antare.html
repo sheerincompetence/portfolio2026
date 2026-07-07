@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="../css/main.css?v=7">
   <link rel="stylesheet" href="../css/site-shell.css?v=6">
   <link rel="stylesheet" href="../css/case-interior.css?v=3">
-  <link rel="stylesheet" href="../css/case-story.css?v=30">
+  <link rel="stylesheet" href="../css/case-story.css?v=41">
 </head>
 <body class="site-shell story">
   <a href="#main" class="skip-link">Skip to content</a>
@@ -239,42 +239,69 @@
           </div>
           <div class="story-block__body">
 
-          <div class="story-card-exhibit" data-sequence="card-assemble">
+          <div class="story-card-exhibit" id="card" data-sequence="card-assemble">
             <div class="story-card-exhibit__visual">
               <div class="story-card-exhibit__frame">
-                <img src="../assets/images/antare-curated/event-card.png" alt="Event card anatomy" loading="lazy">
+                <div class="story-card-stack" data-card-stack>
+                  <img class="story-card-stack__base" src="../assets/images/antare-curated/event-card.png" alt="" aria-hidden="true">
+                  <div class="story-card-slice" data-card-slice="0" data-color="#4b6bff" aria-hidden="true"><img src="../assets/images/antare-curated/event-human-action.png" alt=""></div>
+                  <div class="story-card-slice" data-card-slice="1" data-color="#f4913a" aria-hidden="true"><img src="../assets/images/antare-curated/event-statusrow.png" alt=""></div>
+                  <div class="story-card-slice" data-card-slice="2" data-color="#e84e3b" aria-hidden="true"><img src="../assets/images/antare-curated/event-impactlozenge.png" alt=""></div>
+                  <div class="story-card-slice" data-card-slice="3" data-color="#27a99e" aria-hidden="true"><img src="../assets/images/antare-curated/event-title.png" alt=""></div>
+                  <div class="story-card-slice" data-card-slice="4" data-color="#1b4d5c" aria-hidden="true"><img src="../assets/images/antare-curated/event-summary.png" alt=""></div>
+                  <div class="story-card-slice" data-card-slice="5" data-color="#8b31f0" aria-hidden="true"><img src="../assets/images/antare-curated/event-thumb.png" alt=""></div>
+                  <div class="story-card-slice" data-card-slice="6" data-color="#d4741a" aria-hidden="true"><img src="../assets/images/antare-curated/event-metadata.png" alt=""></div>
+                </div>
               </div>
             </div>
-            <div class="story-card-exhibit__layers">
-              <p class="story-card-exhibit__hint">Explore each layer</p>
-              <div class="story-card-layer" data-card-layer data-color="#4b6bff">
-                <p class="story-card-layer__name">Human action row</p>
-                <p class="story-card-layer__meta">← Other users · Update, reassure, validate</p>
-              </div>
-              <div class="story-card-layer" data-card-layer data-color="#f4913a">
-                <p class="story-card-layer__name">Status row</p>
-                <p class="story-card-layer__meta">← System + wearer · Urgency + orientation</p>
-              </div>
-              <div class="story-card-layer" data-card-layer data-color="#e84e3b">
-                <p class="story-card-layer__name">Impact colour lozenge</p>
-                <p class="story-card-layer__meta">← AI + design system · "How worried should I be?"</p>
-              </div>
-              <div class="story-card-layer" data-card-layer data-color="#27a99e">
-                <p class="story-card-layer__name">Title</p>
-                <p class="story-card-layer__meta">← AI · Scannable in 2 seconds</p>
-              </div>
-              <div class="story-card-layer" data-card-layer data-color="#1b4d5c">
-                <p class="story-card-layer__name">Summary</p>
-                <p class="story-card-layer__meta">← AI · One-line story for the feed</p>
-              </div>
-              <div class="story-card-layer" data-card-layer data-color="#8b31f0">
-                <p class="story-card-layer__name">Thumbnail + key moments</p>
-                <p class="story-card-layer__meta">← AI + video UX · Trust / verification</p>
-              </div>
-              <div class="story-card-layer" data-card-layer data-color="#d4741a">
-                <p class="story-card-layer__name">Metadata</p>
-                <p class="story-card-layer__meta">← System · Context, geographic and staff orientation</p>
-              </div>
+            <div class="story-card-exhibit__spec">
+              <table class="story-card-table">
+                <caption class="sr-only">Event card layer specification</caption>
+                <thead>
+                  <tr>
+                    <th scope="col">Layer</th>
+                    <th scope="col">Source</th>
+                    <th scope="col">Purpose</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr data-card-layer="0" data-color="#4b6bff" tabindex="0">
+                    <th scope="row">Human action row</th>
+                    <td>Other users</td>
+                    <td>Update, reassure, validate</td>
+                  </tr>
+                  <tr data-card-layer="1" data-color="#f4913a" tabindex="0">
+                    <th scope="row">Status row</th>
+                    <td>System + wearer</td>
+                    <td>Urgency + orientation</td>
+                  </tr>
+                  <tr data-card-layer="2" data-color="#e84e3b" tabindex="0">
+                    <th scope="row">Impact colour lozenge</th>
+                    <td>AI + design system</td>
+                    <td>"How worried should I be?"</td>
+                  </tr>
+                  <tr data-card-layer="3" data-color="#27a99e" tabindex="0">
+                    <th scope="row">Title</th>
+                    <td>AI</td>
+                    <td>Scannable in 2 seconds</td>
+                  </tr>
+                  <tr data-card-layer="4" data-color="#1b4d5c" tabindex="0">
+                    <th scope="row">Summary</th>
+                    <td>AI</td>
+                    <td>One-line story for the feed</td>
+                  </tr>
+                  <tr data-card-layer="5" data-color="#8b31f0" tabindex="0">
+                    <th scope="row">Thumbnail + key moments</th>
+                    <td>AI + video UX</td>
+                    <td>Trust / verification</td>
+                  </tr>
+                  <tr data-card-layer="6" data-color="#d4741a" tabindex="0">
+                    <th scope="row">Metadata</th>
+                    <td>System</td>
+                    <td>Context, geographic and staff orientation</td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
           </div>
 
@@ -291,8 +318,8 @@
               <h3>We realised there wasn't one feed, but two</h3>
               <p>Interviewing security professionals, two distinct mental models emerged:</p>
               <ul class="story-list">
-                <li><strong>Research &amp; review</strong> — open minded, information gathering, not guided by a single goal</li>
-                <li><strong>Respond</strong> — focused, single-minded, fire-fighting and minimising</li>
+                <li><strong>Research &amp; review</strong> - open minded, information gathering, not guided by a single goal</li>
+                <li><strong>Respond</strong> - focused, single-minded, fire-fighting and minimising</li>
               </ul>
             </div>
           </div>
@@ -590,6 +617,6 @@
   </footer>
 
   <script src="../js/play-ribbon.js?v=3"></script>
-  <script src="../js/case-story.js?v=13"></script>
+  <script src="../js/case-story.js?v=21"></script>
 </body>
 </html>

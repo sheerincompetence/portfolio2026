@@ -206,46 +206,182 @@
     tickPunch();
   }
 
-  /* ——— Card assemble ——— */
-  function initCardAssemble() {
+  /* ——— Event card exhibit (assemble + layers) ——— */
+  function initCardExhibit() {
     var exhibit = document.querySelector('[data-sequence="card-assemble"]');
     if (!exhibit) return;
+
+    var frame = exhibit.querySelector('.story-card-exhibit__frame');
+    var visual = exhibit.querySelector('.story-card-exhibit__visual');
+    var stack = exhibit.querySelector('[data-card-stack]');
+    var spec = exhibit.querySelector('.story-card-exhibit__spec');
+    var slices = exhibit.querySelectorAll('[data-card-slice]');
+    var layers = exhibit.querySelectorAll('[data-card-layer]');
+    var hitMaps = [];
+    var hoverLock = false;
+    var count = layers.length;
+
+    function buildHitMap(img) {
+      var canvas = document.createElement('canvas');
+      var w = canvas.width = img.naturalWidth;
+      var h = canvas.height = img.naturalHeight;
+      var ctx = canvas.getContext('2d');
+      if (!ctx || !w || !h) return null;
+      ctx.drawImage(img, 0, 0);
+      return { w: w, h: h, data: ctx.getImageData(0, 0, w, h).data };
+    }
+
+    function hitSlice(n, relX, relY) {
+      var map = hitMaps[n];
+      if (!map) return false;
+      var px = Math.min(map.w - 1, Math.max(0, Math.floor(relX * map.w)));
+      var py = Math.min(map.h - 1, Math.max(0, Math.floor(relY * map.h)));
+      return map.data[(py * map.w + px) * 4 + 3] > 24;
+    }
+
+    slices.forEach(function (slice, n) {
+      var img = slice.querySelector('img');
+      var color = slice.getAttribute('data-color') || (layers[n] && layers[n].getAttribute('data-color')) || '';
+      if (color) slice.style.setProperty('--layer-color', color);
+      if (!img) return;
+      function bindMask() {
+        var src = img.currentSrc || img.src;
+        if (src) slice.style.setProperty('--slice-mask', 'url("' + src + '")');
+      }
+      bindMask();
+      img.addEventListener('load', bindMask);
+      function capture() {
+        hitMaps[n] = buildHitMap(img);
+      }
+      if (img.complete) capture();
+      else img.addEventListener('load', capture);
+    });
+
+    function setActive(index) {
+      var i = typeof index === 'number' ? index : -1;
+      slices.forEach(function (slice, n) {
+        var color = (layers[n] && layers[n].getAttribute('data-color')) || '';
+        if (color) slice.style.setProperty('--layer-color', color);
+        slice.classList.toggle('is-active', n === i);
+      });
+      layers.forEach(function (layer, n) {
+        layer.classList.toggle('is-active', n === i);
+        if (n === i) {
+          layer.style.setProperty('--layer-color', layer.getAttribute('data-color') || '');
+        }
+      });
+      exhibit.classList.toggle('is-layered', i >= 0);
+      if (frame) {
+        if (i >= 0 && layers[i]) {
+          frame.style.setProperty('--layer-color', layers[i].getAttribute('data-color') || '');
+          frame.style.setProperty('--card-glow', '1');
+        } else {
+          frame.style.setProperty('--card-glow', '0');
+        }
+      }
+    }
+
+    function updateFromScroll() {
+      if (hoverLock || !count || exhibit.style.getPropertyValue('--card-assembled') !== '1') return;
+      var rect = exhibit.getBoundingClientRect();
+      if (rect.bottom < window.innerHeight * 0.15 || rect.top > window.innerHeight * 0.92) return;
+
+      var focusY = window.innerHeight * 0.38;
+      var active = -1;
+      layers.forEach(function (layer, n) {
+        var lr = layer.getBoundingClientRect();
+        var mid = lr.top + lr.height * 0.45;
+        if (mid <= focusY) active = n;
+      });
+      setActive(active);
+    }
+
+    function lockHover(index) {
+      hoverLock = true;
+      exhibit.dataset.hover = '1';
+      setActive(index);
+    }
+
+    function unlockHover() {
+      hoverLock = false;
+      exhibit.dataset.hover = '';
+      updateFromScroll();
+    }
+
+    function tickAssemble() {
+      var target = visual || frame || exhibit;
+      var t = progressInView(target, 0.97, 0.78);
+      exhibit.style.setProperty('--card-assemble', t.toFixed(3));
+      if (t > 0.45) {
+        exhibit.style.setProperty('--card-assembled', '1');
+        exhibit.classList.add('is-assembled');
+      } else {
+        exhibit.style.setProperty('--card-assembled', '0');
+        exhibit.classList.remove('is-assembled');
+      }
+    }
+
+    function tick() {
+      tickAssemble();
+      updateFromScroll();
+    }
+
+    function wireInteractions() {
+      layers.forEach(function (layer, n) {
+        layer.addEventListener('mouseenter', function () { lockHover(n); });
+      });
+
+      if (stack) {
+        stack.addEventListener('mousemove', function (e) {
+          if (exhibit.style.getPropertyValue('--card-assembled') !== '1') return;
+          var rect = stack.getBoundingClientRect();
+          var rx = (e.clientX - rect.left) / rect.width;
+          var ry = (e.clientY - rect.top) / rect.height;
+          for (var n = count - 1; n >= 0; n--) {
+            if (hitSlice(n, rx, ry)) {
+              lockHover(n);
+              return;
+            }
+          }
+          hoverLock = false;
+          exhibit.dataset.hover = '';
+          setActive(-1);
+        });
+
+        stack.addEventListener('mouseleave', function () {
+          hoverLock = false;
+          exhibit.dataset.hover = '';
+          setActive(-1);
+        });
+      }
+
+      exhibit.addEventListener('focusin', function (e) {
+        var layer = e.target.closest('[data-card-layer]');
+        if (layer) lockHover(Number(layer.getAttribute('data-card-layer')));
+      });
+
+      exhibit.addEventListener('focusout', function (e) {
+        if (!exhibit.contains(e.relatedTarget)) unlockHover();
+      });
+
+      exhibit.addEventListener('mouseleave', unlockHover);
+    }
+
     if (reduced) {
       exhibit.style.setProperty('--card-assemble', '1');
+      exhibit.style.setProperty('--card-assembled', '1');
+      exhibit.classList.add('is-assembled');
+      wireInteractions();
+      setActive(-1);
       return;
     }
-    function tick() {
-      var t = progressInView(exhibit, 0.75, 0.2);
-      exhibit.style.setProperty('--card-assemble', t);
-    }
+
+    wireInteractions();
+    setActive(-1);
+
     window.addEventListener('scroll', tick, { passive: true });
     window.addEventListener('resize', tick);
     tick();
-  }
-
-  /* ——— Event card layer hover ——— */
-  function initCardLayers() {
-    var layers = document.querySelectorAll('[data-card-layer]');
-    var frame = document.querySelector('.story-card-exhibit__frame');
-    if (!layers.length) return;
-    layers.forEach(function (layer) {
-      var color = layer.getAttribute('data-color');
-      function on() {
-        layers.forEach(function (l) { l.classList.remove('is-active'); });
-        layer.classList.add('is-active');
-        if (frame) frame.style.setProperty('--card-glow', '1');
-        if (frame && color) frame.style.setProperty('--layer-color', color);
-      }
-      function off() {
-        layer.classList.remove('is-active');
-        if (frame) frame.style.setProperty('--card-glow', '0');
-      }
-      layer.addEventListener('mouseenter', on);
-      layer.addEventListener('focus', on);
-      layer.addEventListener('mouseleave', off);
-      layer.addEventListener('blur', off);
-      layer.setAttribute('tabindex', '0');
-    });
   }
 
   /* ——— Then break ——— */
@@ -391,8 +527,7 @@
   initChapterScores();
   initPipeline();
   initFeedStage();
-  initCardAssemble();
-  initCardLayers();
+  initCardExhibit();
   initThen();
   initOverwhelm();
   initWrong();
