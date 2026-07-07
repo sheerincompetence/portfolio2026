@@ -17,8 +17,8 @@
   }
 
   /* ——— Beat reveals ——— */
-  function initBeats() {
-    var els = document.querySelectorAll('[data-beat]');
+  function initReveal(selector) {
+    var els = document.querySelectorAll(selector);
     if (!els.length) return;
     if (reduced || !('IntersectionObserver' in window)) {
       els.forEach(function (el) { el.classList.add('is-on'); });
@@ -33,15 +33,21 @@
           }
         });
       },
-      { threshold: 0.1, rootMargin: '0px 0px -5% 0px' }
+      { threshold: 0.12, rootMargin: '0px 0px -6% 0px' }
     );
     els.forEach(function (el) { io.observe(el); });
-
-    /* Above-fold: don't wait for scroll */
     els.forEach(function (el) {
       var rect = el.getBoundingClientRect();
       if (rect.top < window.innerHeight * 0.92) el.classList.add('is-on');
     });
+  }
+
+  function initBeats() {
+    initReveal('[data-beat]');
+  }
+
+  function initBob() {
+    initReveal('[data-bob]');
   }
 
   /* ——— Pipeline scan pulse ——— */
@@ -388,22 +394,25 @@
   function initThen() {
     var el = document.querySelector('[data-sequence="then"]');
     if (!el) return;
+    var dots = el.querySelectorAll('[data-then-dot]');
+
+    function tickThen() {
+      var t = progressInView(el, 0.88, 0.1);
+      el.style.setProperty('--then-on', clamp(t * 3.2, 0, 1).toFixed(3));
+      dots.forEach(function (dot, n) {
+        dot.classList.toggle('is-on', t > 0.44 + n * 0.1);
+      });
+    }
+
     if (reduced) {
       el.style.setProperty('--then-on', '1');
+      dots.forEach(function (dot) { dot.classList.add('is-on'); });
       return;
     }
-    var io = new IntersectionObserver(
-      function (entries) {
-        entries.forEach(function (e) {
-          if (e.isIntersecting) {
-            el.style.setProperty('--then-on', '1');
-            io.disconnect();
-          }
-        });
-      },
-      { threshold: 0.4 }
-    );
-    io.observe(el);
+
+    window.addEventListener('scroll', tickThen, { passive: true });
+    window.addEventListener('resize', tickThen);
+    tickThen();
   }
 
   /* ——— Overwhelm stagger ——— */
@@ -524,6 +533,7 @@
   }
 
   initBeats();
+  initBob();
   initChapterScores();
   initPipeline();
   initFeedStage();

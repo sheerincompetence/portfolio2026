@@ -22,6 +22,8 @@
   );
   --story-sec-col: 2.85rem;
   --story-sec-gap: 1.35rem;
+  --story-pull-ink: #9a9288;
+  --story-pull-rule: #b5aea3;
   --story-sec-rail: calc(var(--story-sec-col) + var(--story-sec-gap));
 }
 
@@ -37,8 +39,27 @@
   transform: none;
 }
 
+/* Bob-in for paired figures */
+[data-bob] {
+  opacity: 0;
+  transform: translateY(1.35rem);
+  transition:
+    opacity 0.82s var(--story-ease),
+    transform 0.82s var(--story-ease);
+}
+
+[data-bob].is-on {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+[data-bob][data-bob-delay="1"] {
+  transition-delay: 0.22s;
+}
+
 @media (prefers-reduced-motion: reduce) {
-  [data-beat] {
+  [data-beat],
+  [data-bob] {
     opacity: 1;
     transform: none;
     transition: none;
@@ -83,15 +104,20 @@
 }
 
 .story-list li {
-  display: flex;
-  gap: 0.75rem;
+  position: relative;
+  padding-left: 1.15rem;
   margin-bottom: 0.5rem;
 }
 
 .story-list li::before {
   content: '○';
+  position: absolute;
+  left: 0;
+  top: 0.82em;
+  transform: translateY(-50%);
+  font-size: 0.75em;
+  line-height: 1;
   color: var(--story-faint);
-  flex-shrink: 0;
 }
 
 /* ——— Section & act markers ——— */
@@ -383,16 +409,16 @@
 
 .story-pull {
   max-width: var(--story-prose);
-  margin: 2.5rem auto 2.5rem var(--story-prose-inset);
+  margin: 3.75rem auto 6.25rem var(--story-prose-inset);
   padding-left: 1.5rem;
-  border-left: 2px solid var(--story-ink);
+  border-left: 2px solid var(--story-pull-rule);
 }
 
 .story-pull p {
   font-size: clamp(1.05rem, 2vw, 1.3rem);
   font-style: italic;
   line-height: 1.6;
-  color: var(--story-ink);
+  color: var(--story-pull-ink);
   margin: 0;
 }
 
@@ -1113,23 +1139,43 @@
 
 /* ——— "Then…" break ——— */
 .story-then {
-  min-height: 55vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   background: var(--story-warm);
   text-align: center;
-  padding: 4rem 2rem;
 }
 
-.story-then p {
+.story-band--warm:has(+ .story-then) {
+  padding-bottom: 2rem;
+}
+
+.story-then__track {
+  min-height: calc(22vh + 9rem);
+  padding: calc(7vh + 2rem) 2rem 2.5rem;
+}
+
+.story-then__line {
+  position: sticky;
+  top: 50%;
+  transform: translateY(-50%);
   font-size: clamp(4rem, 11vw, 8rem);
   font-weight: 400;
   font-style: italic;
   line-height: 1;
   margin: 0;
   opacity: var(--then-on, 0);
-  transition: opacity 2.5s ease;
+  transition: opacity 0.4s ease;
+}
+
+.story-then__dot {
+  display: inline-block;
+  opacity: 0;
+  transform: scale(0.55);
+  transition: none;
+}
+
+.story-then__dot.is-on {
+  opacity: 1;
+  transform: scale(1);
+  transition: opacity 0.06s step-end, transform 0.1s cubic-bezier(0.34, 1.45, 0.64, 1);
 }
 
 /* ——— Overwhelm stagger ——— */
