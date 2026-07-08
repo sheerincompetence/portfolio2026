@@ -151,6 +151,34 @@
 /* ——— Front matter: one line into the story, not four ——— */
 .story .case-interior-hero {
   border-bottom: none;
+  min-height: auto;
+  padding: 0;
+}
+
+.case-intro {
+  display: flex;
+  flex-direction: column;
+  --case-intro-divider-gap: 1.35rem;
+  --case-intro-head-pad: 3rem;
+  margin-bottom: 3rem;
+}
+
+.case-intro__head {
+  padding: var(--case-intro-head-pad) var(--case-gutter);
+}
+
+.case-intro__threshold {
+  margin-inline: var(--case-gutter);
+  margin-top: 0;
+  width: auto;
+  max-width: none;
+}
+
+.case-intro .case-interior-jumps {
+  width: 100%;
+  max-width: none;
+  box-sizing: border-box;
+  padding: var(--case-intro-divider-gap) var(--case-gutter) 0.25rem;
 }
 
 .story .case-interior-frontmatter {
@@ -159,28 +187,12 @@
   margin-bottom: 0;
 }
 
-.case-intro {
-  display: flex;
-  flex-direction: column;
-  --case-intro-divider-gap: 1.35rem;
-  margin-bottom: 3rem;
-}
-
-.case-intro__threshold {
-  margin-inline: var(--case-gutter);
-  margin-top: var(--case-intro-divider-gap);
-}
-
-.case-intro .case-interior-jumps {
-  padding: var(--case-intro-divider-gap) var(--case-gutter) 0.25rem;
-}
-
 .story .case-interior-meta {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 1.35rem 2rem;
   border-bottom: none;
-  padding: 1.35rem var(--case-gutter) 0;
+  padding: 1.35rem 0 0;
   margin: 0;
 }
 
@@ -189,15 +201,49 @@
 }
 
 .story .case-interior-meta dt {
-  font-size: 0.58rem;
-  letter-spacing: 0.14em;
-  margin-bottom: 0.4rem;
+  font-size: 0.52rem;
+  letter-spacing: 0.13em;
+  margin-bottom: 0.32rem;
 }
 
 .story .case-interior-meta dd {
-  font-size: 0.82rem;
+  font-size: 0.75rem;
   font-weight: 400;
-  line-height: 1.45;
+  line-height: 1.4;
+}
+
+@media (min-width: 920px) {
+  .case-intro {
+    --case-intro-head-pad: 2.75rem;
+  }
+
+  .case-intro__head {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(10.5rem, 15.5rem);
+    gap: 2rem 3rem;
+    align-items: end;
+  }
+
+  .story .case-interior-frontmatter {
+    border-top: none;
+    padding: 0;
+    align-self: end;
+  }
+
+  .story .case-interior-meta {
+    grid-template-columns: 1fr;
+    gap: 0.95rem;
+    padding: 0 0 0.15rem 2.25rem;
+    border-left: 1px solid var(--color-rule);
+  }
+
+  .story .case-interior-hero {
+    padding: 0;
+  }
+
+  .story .case-interior-hero__thesis {
+    max-width: 36rem;
+  }
 }
 
 .case-interior-jumps {
@@ -205,7 +251,6 @@
   flex-wrap: wrap;
   align-items: baseline;
   gap: 0.25rem 0.55rem;
-  max-width: var(--story-content-w);
   margin: 0;
   padding: var(--case-intro-divider-gap, 1.35rem) 0 0.25rem;
 }
@@ -265,12 +310,23 @@
 #the-problem,
 #reflections,
 #do-differently {
-  scroll-margin-top: calc(var(--play-ribbon-h, 0px) + var(--cx-shell-header-h, 5.111rem) + 1.25rem);
+  scroll-margin-top: calc(var(--play-ribbon-h, 0px) + var(--cx-shell-header-h, 5.111rem) + 0.65rem);
 }
 
-@media (max-width: 900px) {
+.case-jump-target {
+  display: block;
+  width: 0;
+  height: 0;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+@media (max-width: 919px) {
   .story .case-interior-meta {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+    padding-top: 1.35rem;
   }
 }
 

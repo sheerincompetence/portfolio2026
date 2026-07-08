@@ -8,8 +8,7 @@
   <link rel="stylesheet" href="../css/main.css?v=7">
   <link rel="stylesheet" href="../css/site-shell.css?v=6">
   <link rel="stylesheet" href="../css/case-interior.css?v=10">
-  <link rel="stylesheet" href="../css/case-story.css?v=67">
-  <link rel="stylesheet" href="../css/case-intro-variants.css?v=2">
+  <link rel="stylesheet" href="../css/case-story.css?v=70">
 </head>
 <body class="site-shell story">
   <a href="#main" class="skip-link">Skip to content</a>
@@ -29,32 +28,34 @@
 
   <main id="main">
     <div class="case-intro" id="case-intro">
-      <header class="case-interior-hero">
-        <span class="case-interior-hero__index" aria-hidden="true">01</span>
-        <p class="case-interior-hero__label">Case study · Antare</p>
-        <h1 class="case-interior-hero__title">Compressing Reality</h1>
-        <p class="case-interior-hero__thesis">When AI generates more signal than anyone can process, the design problem becomes editorial - <strong>what deserves attention, and why?</strong></p>
-      </header>
+      <div class="case-intro__head">
+        <header class="case-interior-hero">
+          <span class="case-interior-hero__index" aria-hidden="true">01</span>
+          <p class="case-interior-hero__label">Case study · Antare</p>
+          <h1 class="case-interior-hero__title">Compressing Reality</h1>
+          <p class="case-interior-hero__thesis">When AI generates more signal than anyone can process, the design problem becomes editorial - <strong>what deserves attention, and why?</strong></p>
+        </header>
 
-      <div class="case-interior-frontmatter">
-        <dl class="case-interior-meta">
-          <div>
-            <dt>Role</dt>
-            <dd>Head of Product Design</dd>
-          </div>
-          <div>
-            <dt>Organisation</dt>
-            <dd>Antare</dd>
-          </div>
-          <div>
-            <dt>Focus</dt>
-            <dd>AI incident feeds, body-worn camera intelligence</dd>
-          </div>
-          <div>
-            <dt>Disciplines</dt>
-            <dd>Product strategy, IA, AI UX evaluation, systems design</dd>
-          </div>
-        </dl>
+        <div class="case-interior-frontmatter">
+          <dl class="case-interior-meta">
+            <div>
+              <dt>Role</dt>
+              <dd>Head of Product Design</dd>
+            </div>
+            <div>
+              <dt>Organisation</dt>
+              <dd>Antare</dd>
+            </div>
+            <div>
+              <dt>Focus</dt>
+              <dd>AI incident feeds, body-worn camera intelligence</dd>
+            </div>
+            <div>
+              <dt>Disciplines</dt>
+              <dd>Product strategy, IA, AI UX evaluation, systems design</dd>
+            </div>
+          </dl>
+        </div>
       </div>
 
       <div class="story-threshold case-intro__threshold" aria-hidden="true"></div>
@@ -62,7 +63,7 @@
       <nav class="case-interior-jumps" aria-label="Jump to sections">
         <span class="case-interior-jumps__label">Jump straight to:</span>
         <a href="#the-problem">The problem</a>
-        <a href="#reflections" class="case-interior-jumps__link--soft">Reflections</a>
+        <a href="#reflections">Reflections</a>
         <a href="#do-differently">Things I'd do differently</a>
       </nav>
     </div>
@@ -378,7 +379,8 @@
 
       <!-- Act III -->
       <section class="story-band story-band--ash">
-        <header class="story-chapter" id="the-problem" data-beat>
+        <header class="story-chapter" data-beat>
+          <span class="case-jump-target" id="the-problem" tabindex="-1"></span>
           <p class="story-chapter__label">Act III</p>
           <h2 class="story-chapter__title">Reality arrives.</h2>
         </header>
@@ -607,14 +609,16 @@
     </article>
 
     <section class="case-interior-outcome">
-      <p class="case-interior-outcome__label" id="reflections">Reflections</p>
+      <span class="case-jump-target" id="reflections" tabindex="-1"></span>
+      <p class="case-interior-outcome__label">Reflections</p>
       <p>We assumed we had an AI problem. Then a prioritisation problem. Then a categorisation problem. But the issue ran deeper. </p>
       <p>This isn't a story about feeds or AI - it's about designing around the psychology of attention itself. </p>
     </section>
 
     <section class="case-interior-retro">
       <p class="case-interior-retro__kicker">Present day reflections</p>
-      <div class="case-interior-retro__head" id="do-differently">
+      <span class="case-jump-target" id="do-differently" tabindex="-1"></span>
+      <div class="case-interior-retro__head">
         <h2 class="case-interior-retro__label">
           <svg class="case-interior-retro__icon" viewBox="0 0 17 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
             <rect x="0.75" y="0.75" width="12.5" height="16.5" rx="1.25" stroke="currentColor" stroke-width="1.15"/>
@@ -663,18 +667,7 @@
     </div>
   </footer>
 
-  <div class="intro-variant-demo" aria-label="Intro layout experiments">
-    <span class="intro-variant-demo__label">Intro layout</span>
-    <div class="intro-variant-demo__buttons" role="group" aria-label="Choose intro treatment">
-      <button type="button" class="intro-variant-demo__btn" data-intro="0">A · Current</button>
-      <button type="button" class="intro-variant-demo__btn" data-intro="1">B · Inline</button>
-      <button type="button" class="intro-variant-demo__btn is-active" data-intro="2">C · Whisper</button>
-      <button type="button" class="intro-variant-demo__btn" data-intro="3">D · Essential</button>
-      <button type="button" class="intro-variant-demo__btn" data-intro="4">E · Rail</button>
-    </div>
-  </div>
-
   <script src="../js/play-ribbon.js?v=3"></script>
-  <script src="../js/case-story.js?v=41"></script>
+  <script src="../js/case-story.js?v=43"></script>
 </body>
 </html>

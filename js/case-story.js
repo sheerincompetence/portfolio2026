@@ -586,20 +586,15 @@
     });
   }
 
-  /* ——— Jump nav — instant scroll (smooth scroll drifts through sticky sequences) ——— */
-  function jumpScrollOffset() {
-    var root = document.documentElement;
-    var ribbon = parseFloat(getComputedStyle(root).getPropertyValue('--play-ribbon-h')) || 0;
-    var header = document.querySelector('.cx-header.site-header');
-    var headerH = header ? header.getBoundingClientRect().height : 0;
-    return ribbon + headerH + 14;
-  }
-
-  function scrollToJumpTarget(id, behavior) {
+  /* ——— Jump nav — instant scroll + scroll-margin anchors (smooth scroll drifts through sticky sequences) ——— */
+  function scrollToJumpTarget(id) {
     var el = document.getElementById(id);
     if (!el) return;
-    var top = el.getBoundingClientRect().top + window.pageYOffset - jumpScrollOffset();
-    window.scrollTo({ top: Math.max(0, top), behavior: behavior || 'auto' });
+    var root = document.documentElement;
+    var prev = root.style.scrollBehavior;
+    root.style.scrollBehavior = 'auto';
+    el.scrollIntoView({ block: 'start', behavior: 'auto' });
+    root.style.scrollBehavior = prev;
   }
 
   function initJumps() {
@@ -611,7 +606,7 @@
         var id = link.getAttribute('href').slice(1);
         if (!id || !document.getElementById(id)) return;
         e.preventDefault();
-        scrollToJumpTarget(id, reduced ? 'auto' : 'auto');
+        scrollToJumpTarget(id);
         if (history.replaceState) {
           history.replaceState(null, '', '#' + id);
         } else {
@@ -620,55 +615,14 @@
       });
     });
 
-    if (location.hash) {
+    function applyHashScroll() {
+      if (!location.hash) return;
       var hashId = location.hash.slice(1);
-      if (document.getElementById(hashId)) {
-        requestAnimationFrame(function () {
-          scrollToJumpTarget(hashId, 'auto');
-        });
-      }
-    }
-  }
-
-  /* ——— Intro layout experiments (?intro=0–4) ——— */
-  function initIntroVariants() {
-    var demo = document.querySelector('.intro-variant-demo');
-    if (!demo) return;
-
-    var valid = ['0', '1', '2', '3', '4'];
-    var params = new URLSearchParams(location.search);
-    var current = params.get('intro');
-    if (valid.indexOf(current) === -1) current = '2';
-
-    function applyVariant(id) {
-      document.body.classList.remove('intro-v0', 'intro-v1', 'intro-v2', 'intro-v3', 'intro-v4');
-      document.body.classList.add('intro-v' + id);
-      demo.querySelectorAll('[data-intro]').forEach(function (btn) {
-        btn.classList.toggle('is-active', btn.getAttribute('data-intro') === id);
-      });
-      try {
-        localStorage.setItem('antare-intro-variant', id);
-      } catch (err) { /* ignore */ }
+      if (document.getElementById(hashId)) scrollToJumpTarget(hashId);
     }
 
-    if (!params.has('intro')) {
-      try {
-        var saved = localStorage.getItem('antare-intro-variant');
-        if (valid.indexOf(saved) !== -1) current = saved;
-      } catch (err) { /* ignore */ }
-    }
-
-    applyVariant(current);
-
-    demo.querySelectorAll('[data-intro]').forEach(function (btn) {
-      btn.addEventListener('click', function () {
-        var id = btn.getAttribute('data-intro');
-        applyVariant(id);
-        params.set('intro', id);
-        var next = location.pathname + '?' + params.toString() + location.hash;
-        history.replaceState(null, '', next);
-      });
-    });
+    applyHashScroll();
+    window.addEventListener('load', applyHashScroll);
   }
 
   initBeats();
@@ -685,5 +639,4 @@
   initSurfaces();
   initCompress();
   initJumps();
-  initIntroVariants();
 })();
