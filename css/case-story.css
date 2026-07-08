@@ -153,9 +153,132 @@
   border-bottom: none;
 }
 
+.story .case-interior-frontmatter {
+  border-top: 1px solid var(--color-rule);
+  padding: 0;
+  margin-bottom: 0;
+}
+
+.case-intro {
+  display: flex;
+  flex-direction: column;
+  --case-intro-divider-gap: 1.35rem;
+  margin-bottom: 3rem;
+}
+
+.case-intro__threshold {
+  margin-inline: var(--case-gutter);
+  margin-top: var(--case-intro-divider-gap);
+}
+
+.case-intro .case-interior-jumps {
+  padding: var(--case-intro-divider-gap) var(--case-gutter) 0.25rem;
+}
+
 .story .case-interior-meta {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1.35rem 2rem;
   border-bottom: none;
-  padding-bottom: 2.5rem;
+  padding: 1.35rem var(--case-gutter) 0;
+  margin: 0;
+}
+
+.story .case-interior-meta > div {
+  min-width: 0;
+}
+
+.story .case-interior-meta dt {
+  font-size: 0.58rem;
+  letter-spacing: 0.14em;
+  margin-bottom: 0.4rem;
+}
+
+.story .case-interior-meta dd {
+  font-size: 0.82rem;
+  font-weight: 400;
+  line-height: 1.45;
+}
+
+.case-interior-jumps {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.25rem 0.55rem;
+  max-width: var(--story-content-w);
+  margin: 0;
+  padding: var(--case-intro-divider-gap, 1.35rem) 0 0.25rem;
+}
+
+.case-interior-jumps__label {
+  font-family: var(--font-sans);
+  font-size: 0.58rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(19, 18, 16, 0.38);
+}
+
+.case-interior-jumps a {
+  font-family: var(--font-sans);
+  font-size: 0.7rem;
+  font-weight: 400;
+  color: var(--color-ink-muted);
+  text-decoration: none;
+  border-bottom: none;
+  transition: color 0.15s ease;
+}
+
+.case-interior-jumps a:hover {
+  color: var(--color-ink);
+  text-decoration: underline;
+  text-decoration-color: rgba(19, 18, 16, 0.25);
+  text-underline-offset: 0.18em;
+}
+
+.case-interior-jumps a[href="#do-differently"] {
+  font-weight: 500;
+  color: var(--color-ink);
+}
+
+.story-threshold {
+  width: 100%;
+  max-width: var(--story-content-w);
+  height: calc(1px + var(--story-score-depth));
+  background: linear-gradient(
+    to bottom,
+    var(--story-score-hi) 0,
+    var(--story-score-hi) 1px,
+    var(--color-ink) 1px,
+    var(--color-ink) calc(1px + var(--story-score-depth))
+  );
+}
+
+.case-interior-article--has-jumps .story-chapter--first::before {
+  display: none;
+}
+
+.case-interior-article--has-jumps .story-chapter--first {
+  padding-top: 2.15rem;
+}
+
+#the-problem,
+#reflections,
+#do-differently {
+  scroll-margin-top: calc(var(--play-ribbon-h, 0px) + var(--cx-shell-header-h, 5.111rem) + 1.25rem);
+}
+
+@media (max-width: 900px) {
+  .story .case-interior-meta {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 520px) {
+  .story .case-interior-meta {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
 }
 
 /* ——— Chapter thresholds (Prologue, Act I–V) ——— */
