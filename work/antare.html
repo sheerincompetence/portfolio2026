@@ -3,161 +3,636 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Antare — Evolution of a Feed — Andrew Sheerin</title>
+  <title>Antare - Evolution of a Feed - Andrew Sheerin</title>
   <meta name="description" content="Designing editorial intelligence for AI-generated incident feeds at Antare.">
-  <link rel="stylesheet" href="../css/main.css">
-  <link rel="stylesheet" href="../css/case-interior.css?v=2">
+  <link rel="stylesheet" href="../css/main.css?v=7">
+  <link rel="stylesheet" href="../css/site-shell.css?v=6">
+  <link rel="stylesheet" href="../css/case-interior.css?v=10">
+  <link rel="stylesheet" href="../css/case-story.css?v=70">
 </head>
-<body>
+<body class="site-shell story">
   <a href="#main" class="skip-link">Skip to content</a>
 
-  <header class="site-header">
-    <div class="container site-header__inner">
-      <a href="../index.html" class="site-logo">Andrew Sheerin</a>
-      <nav aria-label="Primary">
-        <ul class="site-nav">
-          <li><a href="antare.html" aria-current="page">Antare</a></li>
-          <li><a href="dona.html">DONA</a></li>
-          <li><a href="education.html">Education</a></li>
-          <li><a href="../how-i-work.html">How I Work</a></li>
-          <li><a href="../origins.html">Origins</a></li>
-          <li><a href="../about.html">About</a></li>
-        </ul>
+  <header class="cx-header site-header">
+    <div class="container cx-header__inner">
+      <a href="../index.html" class="cx-logo">
+        <span class="cx-logo__name">Andrew Sheerin<sup class="cx-logo__tm">TM</sup></span>
+      </a>
+      <nav class="cx-nav cx-nav--clarity" aria-label="Primary">
+        <a href="../work/" aria-current="page">Work</a>
+        <a href="../about/">About</a>
+        <a href="../contact/">Contact</a>
       </nav>
     </div>
   </header>
 
   <main id="main">
-    <header class="case-interior-hero">
-      <span class="case-interior-hero__index" aria-hidden="true">01</span>
-      <p class="case-interior-hero__label">Case study · Antare</p>
-      <h1 class="case-interior-hero__title">Evolution of a Feed</h1>
-      <p class="case-interior-hero__thesis">When AI generates more signal than anyone can process, the design problem becomes editorial — deciding what deserves attention, and for whom.</p>
-    </header>
+    <div class="case-intro" id="case-intro">
+      <div class="case-intro__head">
+        <header class="case-interior-hero">
+          <span class="case-interior-hero__index" aria-hidden="true">01</span>
+          <p class="case-interior-hero__label">Case study · Antare</p>
+          <h1 class="case-interior-hero__title">Compressing Reality</h1>
+          <p class="case-interior-hero__thesis">When AI generates more signal than anyone can process, the design problem becomes editorial - <strong>what deserves attention, and why?</strong></p>
+        </header>
 
-    <dl class="case-interior-meta">
-      <div>
-        <dt>Role</dt>
-        <dd>Head of Product Design</dd>
+        <div class="case-interior-frontmatter">
+          <dl class="case-interior-meta">
+            <div>
+              <dt>Role</dt>
+              <dd>Head of Product Design</dd>
+            </div>
+            <div>
+              <dt>Organisation</dt>
+              <dd>Antare</dd>
+            </div>
+            <div>
+              <dt>Focus</dt>
+              <dd>AI incident feeds, body-worn camera intelligence</dd>
+            </div>
+            <div>
+              <dt>Disciplines</dt>
+              <dd>Product strategy, IA, AI UX evaluation, systems design</dd>
+            </div>
+          </dl>
+        </div>
       </div>
-      <div>
-        <dt>Organisation</dt>
-        <dd>Antare</dd>
-      </div>
-      <div>
-        <dt>Focus</dt>
-        <dd>AI incident feeds, body-worn camera intelligence</dd>
-      </div>
-      <div>
-        <dt>Disciplines</dt>
-        <dd>Product strategy, IA, AI UX evaluation, systems design</dd>
-      </div>
-    </dl>
 
-    <article class="case-interior-article">
-      <section class="case-interior-section" id="context">
-        <span class="case-interior-section__num" aria-hidden="true">01</span>
-        <div>
-          <p class="case-interior-section__label">Context</p>
-          <h2>A camera sees everything. The feed must not.</h2>
-          <p>Antare builds intelligence from body-worn camera footage — turning continuous video into structured events that operators can act on. The AI pipeline works: cameras capture, models classify, incidents appear. The problem is what happens next.</p>
-          <p>Early feeds were clogged with neutral and low-value events. Routine customer service flagged as incidents. Colleagues gossiping classified as "inappropriate conduct." Break-room behaviour judged as on-floor misconduct. The system was generating narrative faster than humans could evaluate it — and much of that narrative was wrong, exaggerated, or simply not worth anyone's attention.</p>
+      <div class="story-threshold case-intro__threshold" aria-hidden="true"></div>
+
+      <nav class="case-interior-jumps" aria-label="Jump to sections">
+        <span class="case-interior-jumps__label">Jump straight to:</span>
+        <a href="#the-problem">The problem</a>
+        <a href="#reflections">Reflections</a>
+        <a href="#do-differently">Things I'd do differently</a>
+      </nav>
+    </div>
+
+    <article class="case-interior-article case-interior-article--has-jumps">
+
+      <!-- Prologue -->
+      <section class="story-band">
+        <header class="story-chapter story-chapter--first" data-beat>
+          <p class="story-chapter__label">Prologue</p>
+        </header>
+
+        <div class="story-block" data-beat>
+          <div class="story-block__lead">
+            <span class="story-sec">§1</span>
+            <div class="story-prose">
+              <p>Antare had an idea for a new type of smart body-worn camera that is always recording. Realising this idea, we thought we were changing the nature of surveillance and intelligence. </p>
+              <p>But we were actually redesigning how reality gets presented - and we soon discovered the consequences of getting that wrong.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="story-pipeline story-pipeline--scan" data-sequence="pipeline-scan">
+          <div class="story-pipeline__viewport">
+            <div class="story-pipeline__track" role="list" aria-label="Camera to human pipeline">
+              <div class="story-pipeline__item story-pipeline__item--camera" data-pipeline-step role="listitem">
+                <div class="story-pipeline__camera-unit">
+                  <img src="../assets/images/antare-curated/camera.png?v=2" alt="Antare bodyworn camera" loading="lazy">
+                  <p class="story-pipeline__camera-label">
+                    <span class="story-pipeline__camera-label-main">Bodyworn camera</span>
+                    <span class="story-pipeline__camera-label-sub">Always recording</span>
+                  </p>
+                </div>
+              </div>
+              <div class="story-pipeline__cluster">
+                <span class="story-pipeline__arrow story-pipeline__arrow--lead" aria-hidden="true"></span>
+                <div class="story-pipeline__cluster-strip">
+                <div class="story-pipeline__item" data-pipeline-step role="listitem">
+                  <div class="story-pipeline__card">Video, audio,<br>metadata</div>
+                </div>
+                <span class="story-pipeline__arrow" aria-hidden="true"></span>
+                <div class="story-pipeline__item" data-pipeline-step role="listitem">
+                  <div class="story-pipeline__card">AI identifies<br>event</div>
+                </div>
+                <span class="story-pipeline__arrow" aria-hidden="true"></span>
+                <div class="story-pipeline__item" data-pipeline-step role="listitem">
+                  <div class="story-pipeline__card">AI summarises<br>event</div>
+                </div>
+                <span class="story-pipeline__arrow" aria-hidden="true"></span>
+                <div class="story-pipeline__item" data-pipeline-step role="listitem">
+                  <div class="story-pipeline__card">Event card<br>in feed</div>
+                </div>
+                <span class="story-pipeline__arrow" aria-hidden="true"></span>
+                <div class="story-pipeline__item story-pipeline__item--finale" data-pipeline-step role="listitem">
+                  <div class="story-pipeline__flip">
+                    <div class="story-pipeline__flip-inner">
+                      <div class="story-pipeline__card story-pipeline__card--finale story-pipeline__flip-front">Human<br>decision</div>
+                      <div class="story-pipeline__card story-pipeline__card--finale story-pipeline__card--revealed story-pipeline__flip-back">
+                        <span class="story-pipeline__outcome">Respond</span>
+                        <span class="story-pipeline__outcome">Escalate</span>
+                        <span class="story-pipeline__outcome story-pipeline__outcome--or">or Ignore</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                </div>
+              </div>
+            </div>
         </div>
       </section>
 
-      <figure class="case-interior-figure case-interior-figure--bleed">
-        <img src="../assets/images/antare/clogged-feed.png" alt="Feed interface showing numerous low-value and neutral events" loading="lazy">
-        <figcaption class="case-interior-figure__cap">The feed before editorial design: high volume, mixed valence, unclear prioritisation. Operators faced noise, not intelligence.</figcaption>
-      </figure>
+      <!-- Act I -->
+      <section class="story-band story-band--warm">
+        <header class="story-chapter" data-beat>
+          <p class="story-chapter__label">Act I</p>
+          <h2 class="story-chapter__title">New methods require new models.</h2>
+        </header>
 
-      <section class="case-interior-section" id="challenge">
-        <span class="case-interior-section__num" aria-hidden="true">02</span>
-        <div>
-          <p class="case-interior-section__label">Challenge</p>
-          <h2>From datagrid to editorial system</h2>
-          <p>The first design instinct — a sophisticated datagrid — treated the feed as a database to be sorted and filtered. That solved the wrong problem. Operators don't need more columns. They need a system that understands <em>why</em> someone is looking, and <em>what kind of attention</em> each event deserves.</p>
-          <p>Three layers of complexity had to be separated:</p>
-          <ul>
-            <li><strong>Reality</strong> — immutable media, the factual record</li>
-            <li><strong>Narrative</strong> — AI-generated incident descriptions, editable and contestable</li>
-            <li><strong>Evidence</strong> — the assembled case, built from incidents for action</li>
-          </ul>
-          <p>Each layer has different rules, different audiences, and different design requirements. Conflating them produces the kind of overconfident, context-blind output the audit revealed.</p>
+        <div class="story-block" data-beat>
+          <div class="story-block__lead">
+            <span class="story-sec">§2</span>
+            <div class="story-prose">
+              <p>Antare set out to disrupt physical security by introducing an intelligent body-worn camera that is always on, massively increasing observable reality. Traditional security systems miss incidents - but ours risked creating too many.</p>
+              <p>We needed a place and a method to surface it.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="story-block" data-beat>
+          <div class="story-block__lead">
+            <span class="story-sec">§3</span>
+            <div class="story-prose">
+              <p>The traditional datagrid that forms the backbone of every DEMS works great when humans have pre-filtered your event list by pressing "record."</p>
+            </div>
+          </div>
+          <div class="story-block__body">
+            <div class="story-pair">
+            <div>
+              <p class="story-pair__label">Industry standard</p>
+              <div class="story-pair__frame" data-bob>
+                <img src="../assets/images/antare-curated/datagrid.png" alt="Typical DEMS datagrid" loading="lazy">
+              </div>
+              <p class="story-caption">A typical DEMS datagrid: fine for 5 events; useless for 500.</p>
+            </div>
+            <div>
+              <p class="story-pair__label">Our first attempt</p>
+              <div class="story-pair__frame" data-bob data-bob-delay="1">
+                <img src="../assets/images/antare-curated/antare-datagrid.png" alt="Antare datagrid iteration" loading="lazy">
+              </div>
+              <p class="story-caption">My first instinct was to improve what exists. Only then did I ask what else there could be.</p>
+            </div>
+            </div>
+            <div class="story-prose">
+            <p>But a datagrid clearly wasn't going to work when clips go from 5 per camera, per day, to <strong>200+</strong>. You can improve design as much as you want - if the fundamental model is wrong, you're not improving anything.</p>
+          </div>
+          </div>
+        </div>
+
+        <div class="story-block" data-beat>
+          <div class="story-block__lead">
+            <span class="story-sec">§4</span>
+            <div class="story-prose">
+              <h3>Borrowing from somewhere unexpected</h3>
+              <p>Social media had already solved one problem: humans scanning large numbers of events - not operationally, but cognitively. Maybe this could work for us…</p>
+            </div>
+          </div>
+          <div class="story-block__body">
+          <div class="story-feed-stage" data-sequence="feed-stage">
+            <div class="story-feed-stage__viewport">
+              <div
+                class="story-feed-stage__feed"
+                style="--feed-img: url('../assets/images/antare-curated/feed-evolved.png')"
+                role="img"
+                aria-label="Evolved Antare feed - card-based event stream"
+              ></div>
+              <blockquote class="story-feed-stage__diary story-diary">
+                <p class="story-diary__label">Design diary</p>
+                <div class="story-feed-stage__copy">
+                  <p class="story-diary__body">"Reimagining the data-table as a foundational admin tool… the current design feels outdated and just <em>wrong</em> for something so sophisticated. Realising the data table is just a tool to get the user to a goal helped sidestep it - or imagine what other tools might work."</p>
+                  <p>&nbsp;</p>
+                  <p class="story-diary__body story-diary__body--punch" data-feed-punch>"Our interface might have more in common with a social media feed than an excel spreadsheet."</p>
+                </div>
+              </blockquote>
+            </div>
+          </div>
+          </div>
         </div>
       </section>
 
-      <figure class="case-interior-figure case-interior-figure--offset">
-        <img src="../assets/images/antare/conceptual-model.png" alt="Conceptual model showing Stream, Incident, and Case layers" loading="lazy">
-        <figcaption class="case-interior-figure__cap">Reality, narrative, and evidence as distinct layers — each with its own design constraints and edit permissions.</figcaption>
-      </figure>
+      <!-- Act II -->
+      <section class="story-band">
+        <header class="story-chapter" data-beat>
+          <p class="story-chapter__label">Act II</p>
+          <h2 class="story-chapter__title">Accidentally designing a language between AI and humans.</h2>
+        </header>
 
-      <figure class="case-interior-figure case-interior-figure--offset">
-        <img src="../assets/images/antare/datagrid-iteration.png" alt="Early feed design as a datagrid" loading="lazy">
-        <figcaption class="case-interior-figure__cap">First iteration: a capable datagrid that solved sorting but not sense-making.</figcaption>
-      </figure>
+        <div class="story-block" data-beat>
+          <div class="story-block__lead">
+            <span class="story-sec">§5</span>
+            <div class="story-prose">
+              <p>Populating the feed are countless AI-identified and AI-summarised events. Even camera-wearers pressing their button have the resulting footage parsed by AI.</p>
+              <p>But to do that right, we need to generate: narrative, identity, trust, classification and explanation. I set about drafting frameworks - contracts between AI and human - that would answer:</p>
+              <ul class="story-list">
+                <li>What constitutes an event?</li>
+                <li>What sort of event is it?</li>
+                <li>What is the overall story and main narrative beats?</li>
+                <li>Why might it be important?</li>
+              </ul>
+            </div>
+          </div>
+          <div class="story-block__body">
+            <figure class="story-figure">
+              <div class="story-figure__frame">
+                <img src="../assets/images/antare-curated/classification.png" alt="Dual classification frameworks for impact severity and event type" loading="lazy">
+              </div>
+              <figcaption class="story-caption">Events are classified along two valences: <strong>how severe is the impact?</strong> and <strong>what type of thing is it?</strong> - a new language for categorising and prioritising what the AI sees.</figcaption>
+            </figure>
+          </div>
+        </div>
 
-      <section class="case-interior-section" id="approach">
-        <span class="case-interior-section__num" aria-hidden="true">03</span>
-        <div>
-          <p class="case-interior-section__label">What I did</p>
-          <h2>Two feeds for two modes of attention</h2>
-          <p>The breakthrough was recognising that operators context-switch between two fundamentally different activities: passive awareness and active triage. These require different information architectures, different ranking logic, and different interaction patterns.</p>
-          <p><strong>Main Feed</strong> — narrative and awareness. Mixed valence (positive, negative, neutral). Probabilistic ranking. Personalised per user. Designed for browsing: "what's happening across my sites?"</p>
-          <p><strong>Triage Feed</strong> — urgency and action. Negative events only. Deterministic ordering. Same for all users. Designed for processing: "what needs my attention right now?"</p>
-          <p>This wasn't a feature split — it was an editorial decision encoded in product architecture. The same underlying events, presented through two different lenses, for two different jobs-to-be-done.</p>
+        <div class="story-block" data-beat>
+          <div class="story-block__lead">
+            <span class="story-sec">§6</span>
+            <div class="story-prose">
+              <h3>Anatomy of an event card</h3>
+              <p>Event cards are the atoms of the feed. Inter-connected chunks of system and AI-generated data - independently and collectively verifiable. Every visible field is an explicit AI contract.</p>
+            </div>
+          </div>
+          <div class="story-block__body">
+
+          <div class="story-card-exhibit" id="card" data-sequence="card-assemble">
+            <div class="story-card-exhibit__visual">
+              <div class="story-card-exhibit__frame">
+                <div class="story-card-stack" data-card-stack>
+                  <img class="story-card-stack__base" src="../assets/images/antare-curated/event-card.png" alt="" aria-hidden="true">
+                  <div class="story-card-slice" data-card-slice="0" data-color="#4b6bff" aria-hidden="true"><img src="../assets/images/antare-curated/event-human-action.png" alt=""></div>
+                  <div class="story-card-slice" data-card-slice="1" data-color="#f4913a" aria-hidden="true"><img src="../assets/images/antare-curated/event-statusrow.png" alt=""></div>
+                  <div class="story-card-slice" data-card-slice="2" data-color="#e84e3b" aria-hidden="true"><img src="../assets/images/antare-curated/event-impactlozenge.png" alt=""></div>
+                  <div class="story-card-slice" data-card-slice="3" data-color="#27a99e" aria-hidden="true"><img src="../assets/images/antare-curated/event-title.png" alt=""></div>
+                  <div class="story-card-slice" data-card-slice="4" data-color="#1b4d5c" aria-hidden="true"><img src="../assets/images/antare-curated/event-summary.png" alt=""></div>
+                  <div class="story-card-slice" data-card-slice="5" data-color="#8b31f0" aria-hidden="true"><img src="../assets/images/antare-curated/event-thumb.png" alt=""></div>
+                  <div class="story-card-slice" data-card-slice="6" data-color="#d4741a" aria-hidden="true"><img src="../assets/images/antare-curated/event-metadata.png" alt=""></div>
+                </div>
+              </div>
+            </div>
+            <div class="story-card-exhibit__spec">
+              <table class="story-card-table">
+                <caption class="sr-only">Event card layer specification</caption>
+                <thead>
+                  <tr>
+                    <th scope="col">Layer</th>
+                    <th scope="col">Source</th>
+                    <th scope="col">Purpose</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr data-card-layer="0" data-color="#4b6bff" tabindex="0">
+                    <th scope="row">Human action row</th>
+                    <td>Other users</td>
+                    <td>Update, reassure, validate</td>
+                  </tr>
+                  <tr data-card-layer="1" data-color="#f4913a" tabindex="0">
+                    <th scope="row">Status row</th>
+                    <td>System + wearer</td>
+                    <td>Urgency + orientation</td>
+                  </tr>
+                  <tr data-card-layer="2" data-color="#e84e3b" tabindex="0">
+                    <th scope="row">Impact colour lozenge</th>
+                    <td>AI + design system</td>
+                    <td>"How worried should I be?"</td>
+                  </tr>
+                  <tr data-card-layer="3" data-color="#27a99e" tabindex="0">
+                    <th scope="row">Title</th>
+                    <td>AI</td>
+                    <td>Scannable in 2 seconds</td>
+                  </tr>
+                  <tr data-card-layer="4" data-color="#1b4d5c" tabindex="0">
+                    <th scope="row">Summary</th>
+                    <td>AI</td>
+                    <td>One-line story for the feed</td>
+                  </tr>
+                  <tr data-card-layer="5" data-color="#8b31f0" tabindex="0">
+                    <th scope="row">Thumbnail + key moments</th>
+                    <td>AI + video UX</td>
+                    <td>Trust / verification</td>
+                  </tr>
+                  <tr data-card-layer="6" data-color="#d4741a" tabindex="0">
+                    <th scope="row">Metadata</th>
+                    <td>System</td>
+                    <td>Context, geographic and staff orientation</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="story-pull" data-beat>
+            <p>Impact level, title language, key moment, thumbnail choice and ultimately video and transcript evidence all line up and agree with each other. Even an event that is wrongly classified doesn't erode trust - there is still visible internal consistency.</p>
+          </div>
+          </div>
+        </div>
+
+        <div class="story-block" data-beat>
+          <div class="story-block__lead">
+            <span class="story-sec">§7</span>
+            <div class="story-prose">
+              <h3>We realised there wasn't one feed, but two</h3>
+              <p>Interviewing security professionals, two distinct mental models emerged:</p>
+              <ul class="story-list">
+                <li><strong>Research &amp; review</strong> - open minded, information gathering, not guided by a single goal</li>
+                <li><strong>Respond</strong> - focused, single-minded, fire-fighting and minimising</li>
+              </ul>
+            </div>
+          </div>
+          <div class="story-block__body">
+          <div class="story-feeds-compact">
+            <div data-bob>
+              <p class="story-feeds-compact__tag">Chronological · all events</p>
+              <img src="../assets/images/antare-curated/feed-chrono.png" alt="Chronological feed mode" loading="lazy">
+            </div>
+            <div data-bob data-bob-delay="1">
+              <p class="story-feeds-compact__tag">Priority · concern + risk + critical</p>
+              <img src="../assets/images/antare-curated/feed-impact.png" alt="Priority feed mode" loading="lazy">
+            </div>
+          </div>
+          <p class="story-caption">Same org, same day - different job to be done.</p>
+          </div>
         </div>
       </section>
 
-      <figure class="case-interior-figure case-interior-figure--bleed">
-        <img src="../assets/images/antare/dual-feeds.png" alt="Diagram comparing Main Feed and Triage Feed characteristics" loading="lazy">
-        <figcaption class="case-interior-figure__cap">The dual-feed model: context-switching between awareness and action drives fundamentally different design requirements.</figcaption>
-      </figure>
-
-      <figure class="case-interior-figure case-interior-figure--offset">
-        <img src="../assets/images/antare/early-mockup.png" alt="Early mockup of incident cards with mixed valence events" loading="lazy">
-        <figcaption class="case-interior-figure__cap">Moving from datagrid rows to incident cards — each event as a narrative unit, not a data row.</figcaption>
-      </figure>
-
-      <section class="case-interior-section" id="evidence">
-        <span class="case-interior-section__num" aria-hidden="true">04</span>
-        <div>
-          <p class="case-interior-section__label">Evidence</p>
-          <h2>Evaluating AI output as a design discipline</h2>
-          <p>Good feed design requires rigorous evaluation of AI-generated content — not just whether the UI works, but whether the incidents themselves are truthful, useful, and correctly prioritised.</p>
-          <p>I conducted a systematic audit of 36 AI-generated events, scoring each on truthfulness, usefulness, impact categorisation, and whether it belonged in a human review queue. The findings were instructive:</p>
-          <ul>
-            <li><strong>Over-generation:</strong> routine interactions flagged as notable incidents</li>
-            <li><strong>Exaggeration:</strong> LLM invents severity — "unprofessional conduct" for normal banter</li>
-            <li><strong>Context blindness:</strong> break-room behaviour judged as on-floor misconduct</li>
-            <li><strong>Aggregate value missed:</strong> individual routine events worthless, but patterns (parcel process friction recurring across a day) highly valuable</li>
-          </ul>
-          <p>This audit became a calibration tool — defining what "correct," "exaggerated," and "understated" mean in practice, and establishing review queues that route events appropriately.</p>
+      <!-- §8 calm before storm -->
+      <section class="story-band story-band--warm">
+        <div class="story-block" data-beat>
+          <div class="story-block__lead">
+            <span class="story-sec">§8</span>
+            <div class="story-prose">
+              <h3>Everything looked right</h3>
+              <p>We tested with customers, dummy data, synthetic data, actors improvising events, footage of us in the office.</p>
+              <p>It looked great. Worked better than we expected.</p>
+            </div>
+          </div>
         </div>
       </section>
 
-      <figure class="case-interior-figure case-interior-figure--offset">
-        <img src="../assets/images/antare/classification.png" alt="Event classification components diagram" loading="lazy">
-        <figcaption class="case-interior-figure__cap">Event classification taxonomy — defining how positive, negative, and neutral events are handled, surfaced, and ranked.</figcaption>
-      </figure>
-
-      <figure class="case-interior-figure case-interior-figure--offset">
-        <img src="../assets/images/antare/pipeline.png" alt="Camera to feed pipeline diagram" loading="lazy">
-        <figcaption class="case-interior-figure__cap">The full pipeline: camera capture through AI generation, human review, and continuous learning loop.</figcaption>
-      </figure>
-
-      <section class="case-interior-section" id="outcome">
-        <span class="case-interior-section__num" aria-hidden="true">05</span>
-        <div>
-          <p class="case-interior-section__label">What changed</p>
-          <h2>From volume to editorial intelligence</h2>
-          <p>The feed evolved from a data dump into an editorial system — one that understands operator context, respects the limits of AI narrative, and surfaces the right information for the right mode of attention.</p>
+      <section class="story-then" data-sequence="then" aria-label="Turning point">
+        <div class="story-then__track">
+          <div class="story-then__pin">
+            <p class="story-then__line">Then<span class="story-then__dot" data-then-dot="0">.</span><span class="story-then__dot" data-then-dot="1">.</span><span class="story-then__dot" data-then-dot="2">.</span></p>
+          </div>
+          <div class="story-then__spacer" aria-hidden="true"></div>
         </div>
       </section>
+
+      <!-- Act III -->
+      <section class="story-band story-band--ash">
+        <header class="story-chapter" data-beat>
+          <span class="case-jump-target" id="the-problem" tabindex="-1"></span>
+          <p class="story-chapter__label">Act III</p>
+          <h2 class="story-chapter__title">Reality arrives.</h2>
+        </header>
+
+        <div class="story-block" data-beat>
+          <div class="story-block__lead">
+            <span class="story-sec">§9</span>
+            <div class="story-prose">
+              <h3>Then we received our first full day of footage from a real customer</h3>
+              <p>And it was totally wrong.</p>
+              <p>Not because AI failed. Not because summaries were bad. Because something <em>felt</em> wrong.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="story-overwhelm" data-sequence="overwhelm">
+          <div class="story-overwhelm__sticky">
+            <div class="story-overwhelm__stack">
+              <div class="story-overwhelm__card" data-overwhelm-card style="--card-rot: -2.5; --card-tx: -14; --card-from-x: -165px; --card-z: 1;">
+                <img src="../assets/images/antare-curated/overwhelm-neutral-landlord-message.png" alt="Neutral event: landlord message" loading="lazy">
+              </div>
+              <div class="story-overwhelm__card" data-overwhelm-card style="--card-rot: 1.8; --card-tx: 16; --card-from-x: 185px; --card-z: 2;">
+                <img src="../assets/images/antare-curated/overwhelm-neutral-on-phone.png" alt="Neutral event: on phone" loading="lazy">
+              </div>
+              <div class="story-overwhelm__card" data-overwhelm-card style="--card-rot: -1.2; --card-tx: -8; --card-from-x: -140px; --card-z: 3;">
+                <img src="../assets/images/antare-curated/overwhelm-chocolates.png" alt="Faulty product event" loading="lazy">
+              </div>
+              <div class="story-overwhelm__card" data-overwhelm-card style="--card-rot: 3.1; --card-tx: 12; --card-from-x: 160px; --card-z: 4;">
+                <img src="../assets/images/antare-curated/overwhelm-fatigue.png" alt="Wellbeing event" loading="lazy">
+              </div>
+              <div class="story-overwhelm__card" data-overwhelm-card style="--card-rot: -0.9; --card-tx: -6; --card-from-x: -130px; --card-z: 5;">
+                <img src="../assets/images/antare-curated/overwhelm-package.png" alt="Security pattern event" loading="lazy">
+              </div>
+            </div>
+            <div class="story-overwhelm__quote" data-overwhelm-quote>
+              <blockquote>"It's overwhelming."</blockquote>
+              <cite>The customer summed it up best</cite>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Act IV -->
+      <section class="story-band story-band--warm">
+        <header class="story-chapter" data-beat>
+          <p class="story-chapter__label">Act IV</p>
+          <h2 class="story-chapter__title">Different types of wrong.</h2>
+        </header>
+
+        <div class="story-block" data-beat>
+          <div class="story-block__lead">
+            <span class="story-sec">§10</span>
+            <div class="story-prose">
+              <p>For something so clearly broken, there was pressure to fix it immediately. But the interesting thing wasn't that real data felt "wrong" - it was wrong in <em>several different ways</em>. As I unpacked the feed, I identified three types of wrong:</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="story-wrong" data-sequence="wrong" style="--wrong-color: #c45a3a; --note-from-x: -3.25rem;">
+          <div class="story-wrong__head">
+            <span class="story-wrong__num">1</span>
+            <span class="story-wrong__title">Factually incorrect</span>
+            <p class="story-wrong__sub">AI pipeline wrongly interprets reality</p>
+          </div>
+          <div class="story-wrong__img">
+            <img src="../assets/images/antare-curated/wrong-factually.png" alt="Example of factually incorrect event" loading="lazy">
+          </div>
+          <div class="story-wrong__note">
+            <span class="story-wrong__arrow" aria-hidden="true">↓</span>
+            <p class="story-wrong__scribble">a straightforward fix</p>
+            <span class="story-wrong__diag">training problem · easy to correct</span>
+          </div>
+        </div>
+
+        <div class="story-wrong" data-sequence="wrong" style="--wrong-color: #b8860b; --note-from-x: 3.25rem;">
+          <div class="story-wrong__head">
+            <span class="story-wrong__num">2</span>
+            <span class="story-wrong__title">Factually correct but never useful</span>
+            <p class="story-wrong__sub">Correct representation of reality, but irrelevant</p>
+          </div>
+          <div class="story-wrong__img">
+            <img src="../assets/images/antare-curated/wrong-never-useful.png" alt="Example of never-useful event" loading="lazy">
+          </div>
+          <div class="story-wrong__note">
+            <span class="story-wrong__arrow" aria-hidden="true">↓</span>
+            <p class="story-wrong__scribble">another filter, another rule</p>
+            <span class="story-wrong__diag">threshold problem · also easy to correct</span>
+          </div>
+        </div>
+
+        <div class="story-wrong" data-sequence="wrong" style="--wrong-color: #2a7a72; --note-from-x: -3.25rem;">
+          <div class="story-wrong__head">
+            <span class="story-wrong__num">3</span>
+            <span class="story-wrong__title">Factually correct but not individually useful</span>
+            <p class="story-wrong__sub">Correct and possibly relevant - but not in isolation</p>
+          </div>
+          <div class="story-wrong__img">
+            <img src="../assets/images/antare-curated/wrong-individually-useful.png" alt="Example of individually non-useful event" loading="lazy">
+          </div>
+          <div class="story-wrong__note">
+            <span class="story-wrong__arrow" aria-hidden="true">↓</span>
+            <p class="story-wrong__scribble">This is the most interesting&#10;and difficult type of wrong.</p>
+            <span class="story-wrong__diag">presentation problem · harder to fix</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Act V -->
+      <section class="story-band story-band--dark">
+        <header class="story-chapter story-chapter--dark" data-sequence="act-v-chapter">
+          <p class="story-chapter__label">Act V</p>
+          <h2 class="story-chapter__title">The hidden contract.</h2>
+        </header>
+
+        <div class="story-principle" data-sequence="principle">
+          <p class="story-principle__text">
+            <span class="story-principle__block">
+              <span class="story-principle__lead">Visibility</span><br>
+              <span class="story-principle__rest">creates<br>obligation.</span>
+            </span>
+          </p>
+        </div>
+
+        <div class="story-block" data-beat style="padding-bottom: 4rem;">
+          <div class="story-block__lead">
+            <span class="story-sec">§11</span>
+            <div class="story-prose">
+              <p>There was something in the very appearance of an event that implied some sort of expectation to act.</p>
+              <p>Every card says: <em>"Look at me; there's a reason I exist."</em> Which immediately creates the question <em>"Should I do something?"</em></p>
+              <p>That's the hidden contract.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="story-band">
+        <div class="story-block" data-beat>
+          <div class="story-block__lead">
+            <span class="story-sec">§12</span>
+            <div class="story-prose">
+              <h3>Once we saw it, everything changed</h3>
+              <p>Feeds are not neutral - they are editorial. Nothing is neutral within an operational space.</p>
+              <p>We weren't designing an operational intelligence platform… <strong>we were designing a collection of obligations.</strong></p>
+            </div>
+          </div>
+        </div>
+
+        <div class="story-block" data-beat>
+          <div class="story-block__lead">
+            <span class="story-sec">§13</span>
+            <div class="story-prose">
+              <h3>The feed shrinks; the product expands.</h3>
+              <p>"Visibility creates obligation" gave us a strategy for building different intelligence surfaces for different kinds of information:</p>
+            </div>
+          </div>
+          <div class="story-block__body">
+            <div class="story-surfaces">
+            <div class="story-surface">
+              <div class="story-surface__row">
+                <span class="story-surface__name">The Feed</span>
+                <span class="story-surface__promise">Promises immediacy.</span>
+              </div>
+              <p class="story-surface__desc">Operational, individual, can be dealt with immediately.</p>
+            </div>
+            <div class="story-surface">
+              <div class="story-surface__row">
+                <span class="story-surface__name">Data Dashboard</span>
+                <span class="story-surface__promise">Promises patterns.</span>
+              </div>
+              <p class="story-surface__desc">Patterns, aggregation, repetition, analysis across time.</p>
+            </div>
+            <div class="story-surface">
+              <div class="story-surface__row">
+                <span class="story-surface__name">Daily / Weekly Summaries</span>
+                <span class="story-surface__promise">Promises reflection.</span>
+              </div>
+              <p class="story-surface__desc">Trends, emotional truth, outcomes, friction points and successes.</p>
+            </div>
+            </div>
+
+          <div class="story-compress" data-beat>
+            <p class="story-compress__intro">Compression techniques - click any fragment to expand</p>
+            <div class="story-compress__grid">
+              <button type="button" class="story-compress__tile" data-expand-src="../assets/images/antare-curated/dashboard.png" data-expand-alt="Dashboard full view" style="background-image: url('../assets/images/antare-curated/fragment-dashboard1.png');" aria-label="Dashboard fragment: overview metrics"></button>
+              <button type="button" class="story-compress__tile" data-expand-src="../assets/images/antare-curated/dashboard.png" data-expand-alt="Dashboard full view" style="background-image: url('../assets/images/antare-curated/fragment-dashboard2.png');" aria-label="Dashboard fragment: incident trends"></button>
+              <button type="button" class="story-compress__tile" data-expand-src="../assets/images/antare-curated/dashboard.png" data-expand-alt="Dashboard full view" style="background-image: url('../assets/images/antare-curated/fragment-dashboard3.png');" aria-label="Dashboard fragment: location breakdown"></button>
+              <button type="button" class="story-compress__tile" data-expand-src="../assets/images/antare-curated/dashboard.png" data-expand-alt="Dashboard full view" style="background-image: url('../assets/images/antare-curated/fragment-dashboard4.png');" aria-label="Dashboard fragment: severity distribution"></button>
+              <button type="button" class="story-compress__tile" data-expand-src="../assets/images/antare-curated/summary.png" data-expand-alt="Summary full view" style="background-image: url('../assets/images/antare-curated/fragment-summary1.png');" aria-label="Summary fragment: headline"></button>
+              <button type="button" class="story-compress__tile" data-expand-src="../assets/images/antare-curated/summary.png" data-expand-alt="Summary full view" style="background-image: url('../assets/images/antare-curated/fragment-summary2.png');" aria-label="Summary fragment: narrative"></button>
+              <button type="button" class="story-compress__tile" data-expand-src="../assets/images/antare-curated/summary.png" data-expand-alt="Summary full view" style="background-image: url('../assets/images/antare-curated/fragment-summary3.png');" aria-label="Summary fragment: key moments"></button>
+              <button type="button" class="story-compress__tile" data-expand-src="../assets/images/antare-curated/summary.png" data-expand-alt="Summary full view" style="background-image: url('../assets/images/antare-curated/fragment-summary4.png');" aria-label="Summary fragment: outcomes"></button>
+            </div>
+            <p class="story-caption">Dashboard for aggregated insights; summaries for human stories over time.</p>
+          </div>
+          </div>
+        </div>
+
+        <div class="story-block" data-beat>
+          <div class="story-block__lead">
+            <span class="story-sec">§14</span>
+            <div class="story-prose">
+              <p>We stopped thinking about where information <em>could</em> be shown and started asking where it <em>deserved</em> to exist.</p>
+              <p>Every surface carries an implicit promise. Those promises became vital framings for understanding the data itself.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="story-block" data-beat>
+          <div class="story-block__lead">
+            <span class="story-sec">§15</span>
+            <div class="story-prose">
+              <h3 class="story-sec-title">Beyond the product</h3>
+              <p>I see this heuristic everywhere now. Regardless of AI, good design needs pre-armed answers to:</p>
+              <ul class="story-list">
+                <li>Why now?</li>
+                <li>Why this person?</li>
+                <li>What expectation does this create?</li>
+                <li>What promise does this surface make?</li>
+                <li>Should this be shown at all?</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
     </article>
 
     <section class="case-interior-outcome">
-      <p class="case-interior-outcome__label">What it proves</p>
-        <p>AI product design is not primarily a UI problem. It is an editorial problem: deciding what deserves to exist in someone's attention at all. The most valuable design work here was not wireframes — it was the conceptual model, the evaluation framework, and the courage to split one feed into two when the use cases demanded it.</p>
+      <span class="case-jump-target" id="reflections" tabindex="-1"></span>
+      <p class="case-interior-outcome__label">Reflections</p>
+      <p>We assumed we had an AI problem. Then a prioritisation problem. Then a categorisation problem. But the issue ran deeper. </p>
+      <p>This isn't a story about feeds or AI - it's about designing around the psychology of attention itself. </p>
+    </section>
+
+    <section class="case-interior-retro">
+      <p class="case-interior-retro__kicker">Present day reflections</p>
+      <span class="case-jump-target" id="do-differently" tabindex="-1"></span>
+      <div class="case-interior-retro__head">
+        <h2 class="case-interior-retro__label">
+          <svg class="case-interior-retro__icon" viewBox="0 0 17 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <rect x="0.75" y="0.75" width="12.5" height="16.5" rx="1.25" stroke="currentColor" stroke-width="1.15"/>
+            <path d="M3.5 5.5h7M3.5 8.75h7M3.5 12h4.5" stroke="currentColor" stroke-width="1.15" stroke-linecap="round"/>
+            <path d="M13.25 3.5v13" stroke="currentColor" stroke-width="1.15" stroke-linecap="round" opacity="0.45"/>
+          </svg>
+          Things I'd do differently
+        </h2>
+      </div>
+      <ul class="case-interior-retro__list">
+        <li>Easy to say in hindsight but I would try to be less enamoured with the technology. Because it felt so magical, the temptation was to show everything; I definitely got carried away by how cool the product was.</li>
+        <li>The one assumption I never questioned: why is the primary artefact video? Just because we're making and selling video cameras, that seems to make sense but... the video is just an evidence layer. People don't buy body-worn cameras because they love watching videos - and that's the bit I would drill into now.</li>
+        <li>The technology wasn't available at the time, but now I would build two competing views of the feed; one deterministic and one algorithmic and I would set up reporting and measurement pipelines on both. While my hunch was that critical operations required transparent structures and rules, being able to push and test that boundary would be fascinating</li>
+      </ul>
     </section>
 
     <section class="section section--rule">
@@ -181,13 +656,18 @@
     </section>
   </main>
 
-  <footer class="site-footer">
-    <div class="container site-footer__inner">
-      <p>Andrew Sheerin — Product Design Leader</p>
-      <p><a href="../about.html">About &amp; contact</a></p>
+  <dialog id="story-expand-dialog" class="story-expand">
+    <img src="" alt="">
+  </dialog>
+
+  <footer class="cx-footer site-footer">
+    <div class="container cx-footer__inner">
+      <p>Andrew Sheerin - Product Design Leader</p>
+      <p><a href="../contact/">Contact</a> | <a href="#">CV</a></p>
     </div>
   </footer>
 
-  <script src="../js/main.js"></script>
+  <script src="../js/play-ribbon.js?v=3"></script>
+  <script src="../js/case-story.js?v=43"></script>
 </body>
 </html>
