@@ -1012,7 +1012,7 @@
   }
 
   function captureHeadlineBaseline() {
-    if (!headline || headlineBaseline || isResting) return;
+    if (!headline || headlineBaseline || isResting || body.classList.contains('is-resting')) return;
 
     const style = getComputedStyle(headline);
     const baseFontPx = parseFloat(style.fontSize);
@@ -1695,11 +1695,49 @@
     });
   }
 
+  function seedColdRestBaseline() {
+    if (headlineBaseline || !headline) return;
+
+    const restTarget = readRestTitleMetrics();
+    const endFont = clampHeadlineFontPx(interpolateFontKeyframes(FONT_KEYFRAMES, 1));
+    const layout = getLayoutStyles();
+    const rootPx = parseFloat(getComputedStyle(root).fontSize) || 16;
+    const startSizeRaw = layout.getPropertyValue('--cx-headline-start-size').trim() || '1.333rem';
+    const baseFontPx = startSizeRaw.endsWith('rem')
+      ? parseFloat(startSizeRaw) * rootPx
+      : parseFloat(startSizeRaw) || 24;
+
+    headlineBaseline = {
+      budgetHeight: headline.offsetHeight || 120,
+      startLines: getHeadlineLineCount(headline),
+      baseFontPx,
+      baseLineHeight: 1.3,
+      maxFontPx: endFont,
+      restUncappedMaxPx: endFont,
+      restLineHeight: restTarget.lineHeight,
+      restTarget,
+      slotCaptured: true,
+      slotHeight: headline.offsetHeight || 0,
+    };
+
+    root.style.setProperty('--headline-budget-height', `${headlineBaseline.budgetHeight}px`);
+    if (headlineBaseline.slotHeight) {
+      root.style.setProperty('--headline-slot-height', `${headlineBaseline.slotHeight}px`);
+    }
+  }
+
   /** Cold load → resting (localStorage / ?direct=1). Layout before is-resting or headline shrinks on refresh. */
   function hydrateRestingFromColdStart() {
     clearRestEnterTimer();
-    resetHeadlineBaseline();
-    resetAllPops();
+    const skipPaint = document.documentElement.classList.contains('journey-skip-entry');
+    isResting = true;
+
+    if (!skipPaint) {
+      resetHeadlineBaseline();
+      resetAllPops();
+    } else {
+      resetAllPops();
+    }
 
     currentU = 1;
     syncJourneyMotionVars(1);
@@ -1714,7 +1752,12 @@
     restPanel?.removeAttribute('hidden');
 
     captureEyebrowReservedHeight();
-    captureHeadlineBaseline();
+
+    if (skipPaint) {
+      seedColdRestBaseline();
+    } else {
+      captureHeadlineBaseline();
+    }
     captureLayoutZones();
 
     const frames = (TUNE_ENABLED && tuneUsePreview) ? tuneKeyframes : FONT_KEYFRAMES;
@@ -1735,11 +1778,12 @@
       currentU = 1;
       syncJourneyMotionVars(1);
       root.style.setProperty('--urgency-progress', '1');
-      if (MOBILE_MQ.matches) {
-        root.style.setProperty('--headline-morph', '1');
-      }
+      root.style.setProperty('--headline-morph', '1');
       dismissChaosForResting();
       restPanel?.removeAttribute('hidden');
+      syncHeadlineFragments(1);
+      syncJourneyChrome(1);
+      if (!headlineBaseline) seedColdRestBaseline();
       captureEyebrowReservedHeight();
       const frames = (TUNE_ENABLED && tuneUsePreview) ? tuneKeyframes : FONT_KEYFRAMES;
       applyKeyframeFont(1, frames);
@@ -1747,7 +1791,6 @@
       clearSkipEntryClasses();
       requestAnimationFrame(() => {
         syncMobileSliderDock();
-        updateHeadlineLayout(1);
       });
       return;
     }
@@ -1757,7 +1800,7 @@
   }
 
   function enterRestingState() {
-    if (isResting) return;
+    const wasResting = isResting;
     isResting = true;
     dismissChaosForResting();
     restPanel?.removeAttribute('hidden');
@@ -1765,6 +1808,9 @@
     syncNavModeFlags();
     document.title = 'Andrew Sheerin — Product Design Leader';
     try { localStorage.setItem(STORAGE_KEY, 'true'); } catch (_) { /* ignore */ }
+    if (!wasResting || document.documentElement.classList.contains('journey-skip-entry')) {
+      clearSkipEntryClasses();
+    }
   }
 
   function clearSkipEntryClasses() {

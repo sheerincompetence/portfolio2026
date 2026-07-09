@@ -311,3 +311,45 @@ body.complexity-start.is-resting:not(.clarity-journey) .cx-footer__complex {
     justify-content: center;
   }
 }
+
+/* Cold resting — paint final headline before clarity-journey.js (no size jump on refresh) */
+html.journey-skip-entry body.clarity-journey .cx-hero__title-complex {
+  max-width: var(--cx-rest-title-max-w);
+  letter-spacing: -0.02em;
+}
+
+html.journey-skip-entry body.clarity-journey .cx-hero__title-complex .frag[data-threshold],
+html.journey-skip-entry body.clarity-journey .cx-hero__title-complex #frag-verb-ing {
+  opacity: 0 !important;
+  position: absolute;
+  width: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+html.journey-skip-entry body.clarity-journey .cx-hero__title-complex .frag-ideas-break {
+  display: inline;
+}
+
+html.journey-skip-entry body.clarity-journey .cx-hero__title-complex #frag-verb-plain,
+html.journey-skip-entry body.clarity-journey .cx-hero__title-complex #frag-prefix-i {
+  opacity: 1;
+}
+
+html.journey-skip-entry body.clarity-journey .cx-hero__eyebrow [data-threshold] {
+  opacity: 0 !important;
+  position: absolute;
+  width: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+html.journey-skip-entry body.clarity-journey .cx-hero__venn {
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+html.journey-skip-entry body.clarity-journey .cx-hero__portrait {
+  opacity: 0;
+  pointer-events: none;
+}

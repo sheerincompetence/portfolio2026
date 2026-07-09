@@ -10,8 +10,8 @@
   <link rel="stylesheet" href="directions/04-clarity/css/chaos.css?v=14">
   <link rel="stylesheet" href="directions/04-clarity/css/complexity-start.css?v=54">
   <link rel="stylesheet" href="directions/04-clarity/css/clarity-transition.css?v=82">
-  <link rel="stylesheet" href="directions/04-clarity/css/clarity-rest.css?v=21">
-  <link rel="stylesheet" href="directions/04-clarity/css/clarity-layout-lock.css?v=39">
+  <link rel="stylesheet" href="directions/04-clarity/css/clarity-rest.css?v=22">
+  <link rel="stylesheet" href="directions/04-clarity/css/clarity-layout-lock.css?v=40">
   <link rel="stylesheet" href="directions/04-clarity/css/clarity-layout-mobile.css?v=1">
   <link rel="stylesheet" href="directions/04-clarity/css/clarity-tune.css?v=1">
   <script>
@@ -25,6 +25,21 @@
         document.documentElement.classList.add('journey-skip-entry');
         document.documentElement.style.setProperty('--u', '1');
         document.documentElement.style.setProperty('--urgency-progress', '1');
+        document.documentElement.style.setProperty('--venn-exit', '1');
+        document.documentElement.style.setProperty('--venn-space', '1');
+        document.documentElement.style.setProperty('--venn-slide', '0');
+        document.documentElement.style.setProperty('--headline-morph', '1');
+        document.documentElement.style.setProperty('--headline-grow', '1');
+        document.documentElement.style.setProperty('--headline-free-grow', '1');
+        var mobile = window.matchMedia('(max-width: 768px)').matches;
+        var restFont = mobile
+          ? Math.min(58, Math.round(window.innerWidth * 0.148))
+          : 95;
+        var restLh = mobile ? '1.14' : '1.08';
+        document.documentElement.style.setProperty('--headline-font-size', restFont + 'px');
+        document.documentElement.style.setProperty('--headline-line-height', restLh);
+        document.documentElement.style.setProperty('--cx-rest-title-size', restFont + 'px');
+        document.documentElement.style.setProperty('--cx-rest-title-lh', restLh);
       } catch (e) { /* ignore */ }
     })();
   </script>
@@ -33,7 +48,7 @@
   <script>
     (function () {
       if (!document.documentElement.classList.contains('journey-skip-entry')) return;
-      document.body.classList.add('is-resting', 'journey-skip-entry');
+      document.body.classList.add('is-resting', 'journey-skip-entry', 'is-nav-simplified');
       document.title = 'Andrew Sheerin — Product Design Leader';
     })();
   </script>
@@ -180,6 +195,12 @@
                   <span class="frag" data-threshold="0.14" data-range="0.12">— via design, systems thinking and emerging technologies — </span>
                   <span class="frag frag-core">into </span><span class="frag frag-proto-products" id="frag-proto-products" data-threshold="0.70" data-range="0.08">products</span><span class="frag frag-proto-prototypes" data-threshold="0.46" data-range="0.06">, prototypes</span><span class="frag frag-proto-comma" data-threshold="0.30" data-range="0.06">, </span><span class="frag frag-proto-and" id="frag-proto-and" data-threshold="0.70" data-range="0.08"> and </span><span class="frag frag-shared-word" data-threshold="0.70" data-range="0.08">shared </span><span class="frag frag-core">understanding</span><span class="frag frag-stakeholder" data-threshold="0.30" data-range="0.06"> and stakeholder alignment</span>
                 </h1>
+                <script>
+                  (function () {
+                    if (!document.documentElement.classList.contains('journey-skip-entry')) return;
+                    document.getElementById('hero-heading')?.classList.add('is-final-phrase');
+                  })();
+                </script>
                 <span class="cx-hero__title cx-hero__title-clarity">I translate ideas<br>into understanding</span>
               </div>
               <img class="cx-hero__venn" src="assets/images/general/venn.png" alt="" width="431" height="369" aria-hidden="true">
@@ -318,8 +339,8 @@
     </footer>
   </div>
 
-  <script src="directions/04-clarity/js/clarity-journey.js?v=96"></script>
+  <script src="directions/04-clarity/js/clarity-journey.js?v=97"></script>
   <script src="directions/04-clarity/js/chaos-widgets.js?v=7"></script>
-  <script src="js/play-ribbon.js?v=6"></script>
+  <script src="js/play-ribbon.js?v=7"></script>
 </body>
 </html>

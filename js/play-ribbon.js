@@ -32,11 +32,4 @@
   document.head.appendChild(style);
   document.body.classList.add('has-play-ribbon');
   document.body.appendChild(bar);
-
-  function syncRibbonHeight() {
-    document.documentElement.style.setProperty('--play-ribbon-h', bar.offsetHeight + 'px');
-  }
-
-  syncRibbonHeight();
-  window.addEventListener('resize', syncRibbonHeight);
 })();

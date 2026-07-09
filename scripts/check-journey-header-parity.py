@@ -74,6 +74,10 @@ def main() -> int:
         errors.append("play-ribbon.js offsets .cx-header top — play header will not match main.")
     if ".cx-page" in ribbon and "padding-top" in ribbon:
         errors.append("play-ribbon.js overrides .cx-page padding — play header stack will not match main.")
+    if re.search(r"setProperty\s*\(\s*['\"]--play-ribbon-h['\"]", ribbon):
+        errors.append(
+            "play-ribbon.js sets --play-ribbon-h at runtime — site-shell interior headers will shift on :8766."
+        )
 
     # Delegate media-block brace validation
     checker = ROOT / "scripts/check-css-media-blocks.py"
