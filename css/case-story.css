@@ -15,7 +15,7 @@
   --story-score-hi: rgba(255, 255, 255, 0.9);
   --story-score-depth: 3px;
   /* Reading rail — § + prose stay indented; chapters align to container */
-  --story-content-w: calc(min(var(--width-site), 100vw) - 4rem);
+  --story-content-w: calc(min(var(--width-site), 100%) - 4rem);
   --story-prose-inset: max(
     3.25rem,
     calc((var(--story-content-w) - var(--story-prose) - 4.2rem) / 2)
@@ -25,6 +25,16 @@
   --story-pull-ink: #9a9288;
   --story-pull-rule: #b5aea3;
   --story-sec-rail: calc(var(--story-sec-col) + var(--story-sec-gap));
+}
+
+body.site-shell.story .case-interior-article {
+  overflow-x: clip;
+  max-width: 100%;
+}
+
+body.site-shell.story .story-then {
+  overflow-x: clip;
+  max-width: 100%;
 }
 
 /* ——— Beats & reveals ——— */
@@ -622,11 +632,19 @@
   max-width: var(--story-content-w);
   margin: 0 0 0.5rem;
   padding: 0.25rem 0 1rem;
+  overflow-x: clip;
 }
 
 .story-pipeline--scan .story-pipeline__viewport {
   width: 100%;
-  overflow: visible;
+  max-width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.story-pipeline--scan .story-pipeline__viewport::-webkit-scrollbar {
+  display: none;
 }
 
 .story-pipeline--scan .story-pipeline__track {
@@ -916,6 +934,15 @@
 .story-feed-stage {
   margin: 2rem calc(50% - 50vw) 0;
   width: 100vw;
+  max-width: 100%;
+}
+
+@media (max-width: 768px) {
+  .story-feed-stage {
+    margin: 2rem 0 0;
+    width: 100%;
+    max-width: 100%;
+  }
 }
 
 .story-feed-stage__viewport {
@@ -1380,6 +1407,7 @@
   margin-top: 3.5rem;
   min-height: 168vh;
   padding-bottom: 1.5rem;
+  overflow-x: clip;
 }
 
 .story-overwhelm__sticky {
@@ -1392,7 +1420,7 @@
   align-items: center;
   justify-content: flex-start;
   padding: 1.5rem 1rem 2rem;
-  overflow: visible;
+  overflow-x: clip;
 }
 
 .story-overwhelm__stack {
@@ -1400,6 +1428,7 @@
   width: min(92vw, 480px);
   height: 34rem;
   flex-shrink: 0;
+  overflow-x: clip;
 }
 
 .story-overwhelm__card {

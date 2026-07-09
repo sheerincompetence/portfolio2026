@@ -6,7 +6,7 @@
   <meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
   <title>Antare — Apple Keynote direction</title>
   <link rel="stylesheet" href="../../css/main.css?v=6">
-  <link rel="stylesheet" href="../../css/site-shell.css?v=6">
+  <link rel="stylesheet" href="../../css/site-shell.css?v=9">
   <link rel="stylesheet" href="../../css/antare-cinema-base.css?v=1">
   <link rel="stylesheet" href="css/apple.css?v=1">
 </head>
@@ -17,6 +17,13 @@
       <nav class="cx-nav cx-nav--clarity" aria-label="Primary">
         <a href="index.html">Directions</a>
       </nav>
+        <button type="button" class="cx-nav-toggle" aria-expanded="false" aria-controls="cx-mobile-nav" aria-label="Open menu">
+          <span class="cx-nav-toggle__bar" aria-hidden="true"></span>
+          <span class="cx-nav-toggle__bar" aria-hidden="true"></span>
+          <span class="cx-nav-toggle__bar" aria-hidden="true"></span>
+        </button>
+        <nav id="cx-mobile-nav" class="cx-mobile-nav" aria-label="Mobile" hidden></nav>
+        <button type="button" class="cx-mobile-nav-backdrop" hidden aria-label="Close menu"></button>
     </div>
   </header>
 
@@ -130,5 +137,6 @@
   <p class="dir-apple__back"><a href="index.html">← All directions</a></p>
   <script src="../../js/play-ribbon.js?v=3"></script>
   <script src="../../js/antare-cinema.js?v=1"></script>
+  <script src="../../js/mobile-nav.js?v=1"></script>
 </body>
 </html>

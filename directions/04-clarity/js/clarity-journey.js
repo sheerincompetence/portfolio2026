@@ -47,11 +47,41 @@
   const urgencyPopAt = parseFloat(chaosUrgency?.dataset.popAt || '0.06');
   const urgencySlideSpan = parseFloat(chaosUrgency?.dataset.popSlide || '0.06');
   const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const MOBILE_MQ = window.matchMedia('(max-width: 768px)');
+
+  function getMobileHeadlineCapPx(u = currentU) {
+    if (!MOBILE_MQ.matches) return null;
+    const morph = parseFloat(getComputedStyle(root).getPropertyValue('--headline-morph')) || 0;
+    const isClarityPhrase = u >= 0.78 || morph >= 0.5 || headline?.classList.contains('is-final-phrase');
+    if (isClarityPhrase) {
+      return Math.round(Math.min(58, window.innerWidth * 0.148));
+    }
+    return Math.round(Math.min(40, window.innerWidth * 0.1));
+  }
+
+  function clampHeadlineFontPx(fontPx) {
+    const cap = getMobileHeadlineCapPx();
+    return cap ? Math.min(fontPx, cap) : fontPx;
+  }
+
+  function clampHeadlineLineHeight(lineHeightRatio, fontPx) {
+    if (!MOBILE_MQ.matches) return lineHeightRatio;
+    const cap = getMobileHeadlineCapPx();
+    if (cap && fontPx >= cap * 0.9) return Math.max(lineHeightRatio, 1.14);
+    return lineHeightRatio;
+  }
+
+  function syncMobileHeadlineSlot(u) {
+    if (!MOBILE_MQ.matches) return;
+    if (u >= 0.78 || isResting) {
+      root.style.setProperty('--headline-slot-height', 'auto');
+    }
+  }
 
   /* Parked for layout-lock experiment — restore via URGENCY-PARKED.md */
   const URGENCY_BAR_ENABLED = true;
   const REST_ENTER_DELAY_MS = 1500;
-  const REST_FADE_MS = 180;
+  const REST_FADE_MS = 280;
   const LAYOUT_LOCK_ENABLED = body.classList.contains('journey-layout-lock');
 
   const urlParams = new URLSearchParams(window.location.search);
@@ -192,8 +222,10 @@
   }
 
   function applyHeadlineTypography(fontPx, lineHeightRatio) {
-    root.style.setProperty('--headline-font-size', `${fontPx}px`);
-    root.style.setProperty('--headline-line-height', String(lineHeightRatio));
+    const clampedFont = clampHeadlineFontPx(fontPx);
+    const clampedLh = clampHeadlineLineHeight(lineHeightRatio, clampedFont);
+    root.style.setProperty('--headline-font-size', `${clampedFont}px`);
+    root.style.setProperty('--headline-line-height', String(clampedLh));
   }
 
   function setHeadlineGrowFromFont(fontPx) {
@@ -311,7 +343,7 @@
   }
 
   function captureLayoutZones() {
-    if (!LAYOUT_LOCK_ENABLED) return;
+    if (!LAYOUT_LOCK_ENABLED || MOBILE_MQ.matches) return;
 
     const layout = getLayoutStyles();
     const contentEl = document.querySelector('.cx-hero__content');
@@ -423,6 +455,45 @@
   let sliderAnchorY = null;
   let layoutDebugPanel = null;
   const layoutDebugGuides = {};
+
+  function initMobileNav() {
+    const toggle = document.querySelector('.cx-nav-toggle');
+    const menu = document.getElementById('cx-mobile-nav');
+    const backdrop = document.querySelector('.cx-mobile-nav-backdrop');
+    const source = document.querySelector('.cx-nav--clarity');
+    if (!toggle || !menu) return;
+
+    if (!menu.querySelector('a') && source) {
+      menu.innerHTML = source.innerHTML;
+    }
+
+    const setOpen = (open) => {
+      const isOpen = Boolean(open);
+      toggle.setAttribute('aria-expanded', String(isOpen));
+      toggle.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+      menu.hidden = !isOpen;
+      if (backdrop) backdrop.hidden = !isOpen;
+      body.classList.toggle('is-mobile-nav-open', isOpen);
+    };
+
+    toggle.addEventListener('click', () => {
+      setOpen(toggle.getAttribute('aria-expanded') !== 'true');
+    });
+
+    backdrop?.addEventListener('click', () => setOpen(false));
+
+    menu.querySelectorAll('a').forEach((link) => {
+      link.addEventListener('click', () => setOpen(false));
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') setOpen(false);
+    });
+
+    MOBILE_MQ.addEventListener('change', (e) => {
+      if (!e.matches) setOpen(false);
+    });
+  }
 
   function initLayoutDebug() {
     const params = new URLSearchParams(window.location.search);
@@ -669,14 +740,18 @@
       if (!headlineBaseline) return;
     }
 
-    const fontPx = interpolateFontKeyframes(frames, u);
+    const fontPx = clampHeadlineFontPx(interpolateFontKeyframes(frames, u));
     const { baseFontPx, baseLineHeight, restUncappedMaxPx, maxFontPx, restLineHeight } = headlineBaseline;
     const maxPx = restUncappedMaxPx || maxFontPx;
-    const lineHeight = lerpLineHeight(fontPx, baseFontPx, baseLineHeight, maxPx, restLineHeight);
+    const lineHeight = clampHeadlineLineHeight(
+      lerpLineHeight(fontPx, baseFontPx, baseLineHeight, maxPx, restLineHeight),
+      fontPx
+    );
     const morph = computeRestMorph(u);
 
     root.style.setProperty('--headline-morph', morph.toFixed(3));
     applyHeadlineTypography(fontPx, lineHeight);
+    syncMobileHeadlineSlot(u);
     setHeadlineGrowFromTuneFont(fontPx);
     if (TUNE_ENABLED) updateTunePanelLive();
   }
@@ -944,6 +1019,10 @@
     const baseLineHeight = parseFloat(style.lineHeight) / baseFontPx;
     const start = measureHeadlineAt(baseFontPx, baseLineHeight);
     const restTarget = readRestTitleMetrics();
+    if (MOBILE_MQ.matches) {
+      restTarget.fontPx = clampHeadlineFontPx(restTarget.fontPx);
+      restTarget.lineHeight = Math.max(restTarget.lineHeight, 1.14);
+    }
 
     headlineBaseline = {
       budgetHeight: start.height,
@@ -1003,9 +1082,63 @@
     if (TUNE_ENABLED) updateTunePanelLive();
     if (currentU >= 0.995) maybeScheduleRestEnter();
     else clearRestEnterTimer();
+    syncMobileSliderDock();
+  }
+
+  function syncMobileSliderDock() {
+    const block = document.querySelector('.cx-hero__slider-block');
+    const stack = document.querySelector('.chaos-stack-left');
+    const chat = document.querySelector('.chaos-chat');
+    if (!block || !MOBILE_MQ.matches || isResting) {
+      stack?.style.removeProperty('bottom');
+      chat?.style.removeProperty('bottom');
+      return;
+    }
+
+    const vv = window.visualViewport;
+    if (vv) {
+      const gap = Math.max(0, window.innerHeight - vv.height - vv.offsetTop);
+      block.style.bottom = gap > 0 ? `${gap}px` : '';
+    } else {
+      block.style.bottom = '';
+    }
+
+    const dockPx = Math.ceil(block.getBoundingClientRect().height);
+    const trayTopFromBottom = Math.ceil(window.innerHeight - block.getBoundingClientRect().top);
+    const gapPx = Math.round((parseFloat(getComputedStyle(body).fontSize) || 16) * 0.65);
+
+    body.style.setProperty('--cx-mobile-slider-dock-h', `${dockPx + 2}px`);
+    body.style.setProperty('--cx-mobile-chaos-offset', `${trayTopFromBottom}px`);
+
+    if (stack) {
+      stack.style.bottom = `${trayTopFromBottom + gapPx}px`;
+    }
+    if (chat && stack) {
+      chat.style.bottom = `${trayTopFromBottom + stack.offsetHeight + gapPx}px`;
+    }
+  }
+
+  let sliderDockObserver = null;
+
+  function observeSliderDock() {
+    const block = document.querySelector('.cx-hero__slider-block');
+    const stack = document.querySelector('.chaos-stack-left');
+    if (!block) return;
+    if (!sliderDockObserver) {
+      sliderDockObserver = new ResizeObserver(() => syncMobileSliderDock());
+    }
+    sliderDockObserver.observe(block);
+    if (stack) sliderDockObserver.observe(stack);
   }
 
   let journeyResizeTimer = null;
+
+  function onViewportChange() {
+    if (isResting) return;
+    syncMobileSliderDock();
+    clearTimeout(journeyResizeTimer);
+    journeyResizeTimer = setTimeout(refreshJourneyLayout, 100);
+  }
 
   function resetVennMetrics() {
     vennSlotPx = null;
@@ -1061,14 +1194,16 @@
 
   const SLIDER_HINT_IDLE_MS = 5000;
   const SLIDER_HINT_PEAK = 5;
-  const SLIDER_HINT_OUT_MS = 520;
-  const SLIDER_HINT_HOLD_MS = 140;
-  const SLIDER_HINT_BACK_MS = 240;
+  const SLIDER_HINT_OUT_MS = 130;
+  const SLIDER_HINT_BACK_MS = 230;
+  const SLIDER_ARROW_CUE_MS = 2200;
 
   let sliderHintTimer = null;
   let sliderHintRaf = null;
+  let sliderArrowCueTimer = null;
   let sliderHintActive = false;
   const sliderBlock = document.querySelector('.cx-slider');
+  const sliderChrome = document.querySelector('.cx-hero__slider-block');
 
   /* Venn exit timing — single source of truth (CSS reads --venn-slide / --venn-space from JS) */
   const VENN_EXIT_START = 0;
@@ -1116,10 +1251,12 @@
   }
 
   function applyLegacyHeadlineLayout(u) {
-    if (LAYOUT_LOCK_ENABLED && u >= FREE_GROW_START && headlineBaseline.titleZoneHeight) {
+    if (LAYOUT_LOCK_ENABLED && !MOBILE_MQ.matches && u >= FREE_GROW_START && headlineBaseline.titleZoneHeight) {
       root.style.setProperty('--headline-slot-height', `${headlineBaseline.titleZoneHeight}px`);
-    } else if (LAYOUT_LOCK_ENABLED) {
+    } else if (LAYOUT_LOCK_ENABLED && !MOBILE_MQ.matches) {
       root.style.setProperty('--headline-slot-height', `${headlineBaseline.budgetHeight}px`);
+    } else if (MOBILE_MQ.matches) {
+      syncMobileHeadlineSlot(u);
     }
 
     const { baseFontPx, baseLineHeight, maxFontPx, restLineHeight } = headlineBaseline;
@@ -1358,10 +1495,19 @@
     restPanel?.removeAttribute('hidden');
     body.classList.add('is-entering-rest');
     snapshotRestTypography();
+    if (MOBILE_MQ.matches) {
+      syncMobileSliderDock();
+      root.style.setProperty('--headline-morph', '1');
+    }
     setTimeout(() => {
       body.classList.remove('is-entering-rest');
       enterRestingState();
       isRestTransitioning = false;
+      if (MOBILE_MQ.matches) {
+        requestAnimationFrame(() => {
+          syncMobileSliderDock();
+        });
+      }
     }, REST_FADE_MS);
   }
 
@@ -1389,12 +1535,39 @@
       cancelAnimationFrame(sliderHintRaf);
       sliderHintRaf = null;
     }
+    const wasHinting = sliderHintActive;
     sliderHintActive = false;
     slider?.classList.remove('cx-slider__input--hinting');
     sliderBlock?.classList.remove('cx-slider--hint-active');
+    if (wasHinting && currentU <= SLIDER_HINT_PEAK / 100 + 0.01) {
+      setClarity(0);
+    }
+    cancelSliderArrowCue();
   }
 
-  function animateClarityTo(targetPct, durationMs, easeFn, onDone) {
+  function cancelSliderArrowCue() {
+    if (sliderArrowCueTimer) {
+      clearTimeout(sliderArrowCueTimer);
+      sliderArrowCueTimer = null;
+    }
+    sliderChrome?.classList.remove('cx-hero__slider-block--arrow-cue');
+  }
+
+  function startSliderArrowCue() {
+    if (prefersReduced || isResting || TUNE_ENABLED || currentU > 0.001) {
+      scheduleSliderHint();
+      return;
+    }
+
+    sliderChrome?.classList.add('cx-hero__slider-block--arrow-cue');
+    sliderArrowCueTimer = setTimeout(() => {
+      sliderArrowCueTimer = null;
+      sliderChrome?.classList.remove('cx-hero__slider-block--arrow-cue');
+      scheduleSliderHint();
+    }, SLIDER_ARROW_CUE_MS);
+  }
+
+  function animateClarityHint(targetPct, durationMs, easeFn, onDone) {
     const fromPct = currentU * 100;
     const start = performance.now();
 
@@ -1417,7 +1590,8 @@
     sliderHintActive = false;
     slider?.classList.remove('cx-slider__input--hinting');
     sliderBlock?.classList.remove('cx-slider--hint-active');
-    scheduleSliderHint();
+    if (currentU <= SLIDER_HINT_PEAK / 100 + 0.01) setClarity(0);
+    startSliderArrowCue();
   }
 
   function runSliderHint() {
@@ -1427,15 +1601,11 @@
     slider.classList.add('cx-slider__input--hinting');
     sliderBlock?.classList.add('cx-slider--hint-active');
 
-    animateClarityTo(SLIDER_HINT_PEAK, SLIDER_HINT_OUT_MS, easeOutCubic, () => {
+    animateClarityHint(SLIDER_HINT_PEAK, SLIDER_HINT_OUT_MS, easeOutCubic, () => {
       if (!sliderHintActive) return;
-      sliderHintTimer = setTimeout(() => {
-        sliderHintTimer = null;
-        if (!sliderHintActive) return;
-        animateClarityTo(0, SLIDER_HINT_BACK_MS, easeInCubic, () => {
-          if (sliderHintActive) finishSliderHint();
-        });
-      }, SLIDER_HINT_HOLD_MS);
+      animateClarityHint(0, SLIDER_HINT_BACK_MS, easeInCubic, () => {
+        if (sliderHintActive) finishSliderHint();
+      });
     });
   }
 
@@ -1444,7 +1614,7 @@
       clearTimeout(sliderHintTimer);
       sliderHintTimer = null;
     }
-    if (prefersReduced || isResting || TUNE_ENABLED || sliderHintActive || currentU > 0.001) return;
+    if (prefersReduced || isResting || TUNE_ENABLED || sliderHintActive || sliderArrowCueTimer || currentU > 0.001) return;
 
     sliderHintTimer = setTimeout(() => {
       sliderHintTimer = null;
@@ -1471,6 +1641,7 @@
 
     updateChaosWidgets(u);
     updateHeadlineFragments(u);
+    updateHeadlineLayout(u);
     syncJourneyChrome(u);
 
     if (slideHint) {
@@ -1481,28 +1652,34 @@
 
     if (currentU >= 0.995) maybeScheduleRestEnter();
     else clearRestEnterTimer();
+
+    syncMobileSliderDock();
   }
 
   function snapshotRestTypography() {
     const frames = (TUNE_ENABLED && tuneUsePreview) ? tuneKeyframes : FONT_KEYFRAMES;
-    const endFont = interpolateFontKeyframes(frames, 1);
+    const endFont = clampHeadlineFontPx(interpolateFontKeyframes(frames, 1));
 
     if (headlineBaseline) {
       const maxPx = headlineBaseline.restUncappedMaxPx || endFont;
-      const lh = lerpLineHeight(
-        endFont,
-        headlineBaseline.baseFontPx,
-        headlineBaseline.baseLineHeight,
-        maxPx,
-        headlineBaseline.restLineHeight
+      const lh = clampHeadlineLineHeight(
+        lerpLineHeight(
+          endFont,
+          headlineBaseline.baseFontPx,
+          headlineBaseline.baseLineHeight,
+          maxPx,
+          headlineBaseline.restLineHeight
+        ),
+        endFont
       );
       root.style.setProperty('--cx-rest-title-size', `${endFont}px`);
       root.style.setProperty('--cx-rest-title-lh', String(lh));
       applyHeadlineTypography(endFont, lh);
     } else {
       root.style.setProperty('--cx-rest-title-size', `${endFont}px`);
-      applyHeadlineTypography(endFont, 1.08);
+      applyHeadlineTypography(endFont, MOBILE_MQ.matches ? 1.14 : 1.08);
     }
+    syncMobileHeadlineSlot(1);
   }
 
   function dismissChaosForResting() {
@@ -1548,6 +1725,32 @@
 
   function wantsDirectPortfolio(params) {
     return ['resting', 'direct', 'skip', 'clarity'].some((key) => params.get(key) === '1');
+  }
+
+  function repairLayoutAfterCache() {
+    const resting = isResting || body.classList.contains('is-resting');
+    if (resting) {
+      isResting = true;
+      currentU = 1;
+      syncJourneyMotionVars(1);
+      root.style.setProperty('--urgency-progress', '1');
+      root.style.setProperty('--headline-morph', '1');
+      dismissChaosForResting();
+      restPanel?.removeAttribute('hidden');
+      captureEyebrowReservedHeight();
+      const frames = (TUNE_ENABLED && tuneUsePreview) ? tuneKeyframes : FONT_KEYFRAMES;
+      applyKeyframeFont(1, frames);
+      snapshotRestTypography();
+      clearSkipEntryClasses();
+      requestAnimationFrame(() => {
+        syncMobileSliderDock();
+        updateHeadlineLayout(1);
+      });
+      return;
+    }
+    syncJourneyMotionVars(currentU);
+    refreshJourneyLayout();
+    syncMobileSliderDock();
   }
 
   function enterRestingState() {
@@ -1648,6 +1851,7 @@
 
   initLayoutDebug();
   initTunePanel();
+  initMobileNav();
 
   document.querySelectorAll('[data-chaos-dead-end]').forEach((el) => {
     el.addEventListener('click', (e) => {
@@ -1671,6 +1875,8 @@
     captureHeadlineBaseline();
     captureLayoutZones();
     updateHeadlineLayout();
+    observeSliderDock();
+    syncMobileSliderDock();
   });
 
   document.fonts?.ready?.then(() => {
@@ -1681,12 +1887,29 @@
     captureHeadlineBaseline();
     captureLayoutZones();
     updateHeadlineLayout();
+    syncMobileSliderDock();
   });
 
-  window.addEventListener('resize', () => {
-    if (isResting) return;
-    clearTimeout(journeyResizeTimer);
-    journeyResizeTimer = setTimeout(refreshJourneyLayout, 100);
+  window.addEventListener('pageshow', (e) => {
+    if (e.persisted || body.classList.contains('is-resting')) {
+      repairLayoutAfterCache();
+    }
+  });
+
+  document.addEventListener('visibilitychange', () => {
+    if (document.visibilityState === 'visible' && body.classList.contains('is-resting')) {
+      repairLayoutAfterCache();
+    }
+  });
+
+  window.addEventListener('resize', onViewportChange);
+  window.visualViewport?.addEventListener('resize', onViewportChange);
+  window.visualViewport?.addEventListener('scroll', onViewportChange);
+  MOBILE_MQ.addEventListener('change', onViewportChange);
+
+  requestAnimationFrame(() => {
+    observeSliderDock();
+    syncMobileSliderDock();
   });
 
   if (!prefersReduced && !isResting) {
