@@ -43,6 +43,7 @@ body.clarity-journey {
   --cx-slider-label-mb: calc(0.85rem - var(--u) * 0.25rem);
   --cx-slider-pad-top: calc(0.5rem - var(--u) * 0.15rem);
   --cx-slider-pad-bottom: calc(1.075rem - var(--u) * 0.35rem);
+  --cx-slider-thumb-size: calc(1.5rem - var(--u) * 0.45rem);
   overflow-x: clip;
   max-width: 100%;
   min-width: 900px;

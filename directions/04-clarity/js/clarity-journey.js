@@ -115,7 +115,7 @@
   }
 
   function tickRecruiters() {
-    if (!recruiterCount || isResting || currentU > 0.15) return;
+    if (!recruiterCount || isResting || currentU > 0.20) return;
     recruiterCount.textContent = String(108 + Math.floor(Math.random() * 14));
   }
 
@@ -1434,10 +1434,16 @@
     el.style.animation = 'none';
     void el.offsetWidth;
     el.style.animation = '';
+    el.style.removeProperty('opacity');
+    el.style.removeProperty('transform');
   }
 
   function popHysteresis(widget) {
-    return widget.dataset.popType === 'slide' ? 0.02 : 0.1;
+    const at = parseFloat(widget.dataset.popAt);
+    const base = widget.dataset.popType === 'slide' ? 0.02 : 0.1;
+    if (Number.isNaN(at) || at <= 0) return base;
+    /* Cap so low-threshold widgets (e.g. quote at 6%) can restore when u returns to 0 */
+    return Math.min(base, Math.max(0.01, at * 0.45));
   }
 
   function updateChaosWidgets(u) {

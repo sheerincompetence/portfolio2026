@@ -21,6 +21,7 @@ body.complexity-start {
   --cx-slider-label-size: 0.8rem;
   --cx-slider-label-gap: 1rem;
   --cx-slider-label-mb: 0.85rem;
+  --cx-slider-thumb-size: 1.5rem;
   --cx-slider-thumb-fill: var(--color-ink);
   --cx-slider-thumb-dome: radial-gradient(
     circle at 36% 28%,
@@ -472,8 +473,8 @@ body.complexity-start.is-nav-simplified .cx-nav--clarity {
 
 .cx-slider__input::-webkit-slider-thumb {
   appearance: none;
-  width: 1.5rem;
-  height: 1.5rem;
+  width: var(--cx-slider-thumb-size);
+  height: var(--cx-slider-thumb-size);
   border-radius: 50%;
   background-image: var(--cx-slider-thumb-texture), var(--cx-slider-thumb-dome);
   background-size: cover, cover;
@@ -503,8 +504,8 @@ body.complexity-start.is-nav-simplified .cx-nav--clarity {
 }
 
 .cx-slider__input::-moz-range-thumb {
-  width: 1.5rem;
-  height: 1.5rem;
+  width: var(--cx-slider-thumb-size);
+  height: var(--cx-slider-thumb-size);
   border-radius: 50%;
   background-image: var(--cx-slider-thumb-texture), var(--cx-slider-thumb-dome);
   background-size: cover, cover;

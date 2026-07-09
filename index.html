@@ -8,11 +8,11 @@
   <meta name="description" content="Andrew Sheerin — I translate ideas into understanding.">
   <link rel="stylesheet" href="css/main.css?v=5">
   <link rel="stylesheet" href="directions/04-clarity/css/chaos.css?v=14">
-  <link rel="stylesheet" href="directions/04-clarity/css/complexity-start.css?v=55">
-  <link rel="stylesheet" href="directions/04-clarity/css/clarity-transition.css?v=82">
+  <link rel="stylesheet" href="directions/04-clarity/css/complexity-start.css?v=56">
+  <link rel="stylesheet" href="directions/04-clarity/css/clarity-transition.css?v=83">
   <link rel="stylesheet" href="directions/04-clarity/css/clarity-rest.css?v=22">
   <link rel="stylesheet" href="directions/04-clarity/css/clarity-layout-lock.css?v=40">
-  <link rel="stylesheet" href="directions/04-clarity/css/clarity-layout-mobile.css?v=4">
+  <link rel="stylesheet" href="directions/04-clarity/css/clarity-layout-mobile.css?v=6">
   <link rel="stylesheet" href="directions/04-clarity/css/clarity-tune.css?v=1">
   <script>
     (function () {
@@ -55,20 +55,20 @@
 
   <!-- Chaos overlays (widgets sit above page content) -->
   <div class="chaos-layer" id="chaos-layer" aria-hidden="true">
-    <div class="chaos-urgency" role="presentation" data-pop-at="0.50" data-pop-slide="0.08" data-pop-type="slide">
+    <div class="chaos-urgency" role="presentation" data-pop-at="0.40" data-pop-slide="0.08" data-pop-type="slide">
       ⚠️ Andrew is only available to save your business for the next
       <strong id="countdown">4 hours 32 minutes 12 seconds</strong> — book now!
     </div>
 
-    <div class="chaos-social" id="chaos-social" role="presentation" data-pop-chain-after="chaos-chat" data-pop-delay="650" data-pop-type="finale">
+    <div class="chaos-social" id="chaos-social" role="presentation" data-pop-at="0.20" data-pop-type="finale">
       <span class="chaos-social__dot" aria-hidden="true"></span>
       <span class="chaos-social__num" id="recruiter-count">112</span> recruiters viewed this candidate in the last hour
     </div>
 
     <div class="chaos-stack-left">
-      <button type="button" class="chaos-fab-quote" data-pop-at="0.33" data-pop-delay="850"><span class="chaos-fab-quote__label">📞 Call for quote</span></button>
+      <button type="button" class="chaos-fab-quote" id="chaos-quote" data-pop-at="0.06"><span class="chaos-fab-quote__label">📞 Call for quote</span></button>
 
-      <div class="chaos-cookie" role="dialog" aria-label="Cookie consent parody" data-pop-at="0.33">
+      <div class="chaos-cookie" role="dialog" aria-label="Cookie consent parody" data-pop-chain-after="chaos-quote" data-pop-delay="650">
         <p>🍪 We use cookies, pixels, beacons, SDKs, and commercial data points extracted from your hopes and dreams to personalise your recruitment experience.</p>
         <div class="chaos-cookie__btns">
           <button type="button" class="chaos-cookie__accept">Accept all</button>
@@ -78,7 +78,7 @@
       </div>
     </div>
 
-    <div class="chaos-newsletter-wrap" data-pop-at="0.70" tabindex="-1">
+    <div class="chaos-newsletter-wrap" data-pop-at="0.15" tabindex="-1">
       <button type="button" class="chaos-newsletter" aria-label="Subscribe for insights">SUBSCRIBE FOR INSIGHTS</button>
       <div class="chaos-newsletter-panel" hidden>
         <p class="chaos-newsletter__intro">You have been auto-subscribed to <strong>Insights Hourly™</strong>. Every hour you can look forward to wisdom like…</p>
@@ -98,7 +98,7 @@
       <span>✓ AS SEEN ON LINKEDIN</span>
     </div>
 
-    <div class="chaos-chat" id="chaos-chat" data-pop-at="0.88" data-pop-delay="500" tabindex="-1">
+    <div class="chaos-chat" id="chaos-chat" data-pop-chain-after="chaos-social" data-pop-delay="650" tabindex="-1">
       <div class="chaos-chat__teaser">
         <div class="chaos-chat__bubble">
           <p class="chaos-chat__name">
@@ -121,8 +121,6 @@
       </div>
       <button type="button" class="chaos-chat__btn" aria-label="Open chat">💬</button>
     </div>
-
-    <button type="button" class="chaos-mystery" aria-label="Mystery help button" data-chaos-dead-end data-pop-at="0.58">?</button>
   </div>
 
   <div class="cx-page">
@@ -339,7 +337,7 @@
     </footer>
   </div>
 
-  <script src="directions/04-clarity/js/clarity-journey.js?v=98"></script>
+  <script src="directions/04-clarity/js/clarity-journey.js?v=100"></script>
   <script src="directions/04-clarity/js/chaos-widgets.js?v=7"></script>
   <script src="js/play-ribbon.js?v=7"></script>
 </body>

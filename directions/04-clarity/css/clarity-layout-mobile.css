@@ -397,6 +397,7 @@
     --cx-slider-pad-bottom: 1rem;
     --cx-slider-label-size: 0.72rem;
     --cx-slider-label-mb: 0.65rem;
+    --cx-slider-thumb-size: calc(1.75rem - var(--u) * 0.55rem);
   }
 
   body.journey-layout-lock .cx-slider__input {
@@ -405,13 +406,12 @@
 
   body.journey-layout-lock .cx-slider__input::-webkit-slider-thumb,
   body.journey-layout-lock .cx-slider__input::-moz-range-thumb {
-    width: 1.75rem;
-    height: 1.75rem;
+    width: var(--cx-slider-thumb-size);
+    height: var(--cx-slider-thumb-size);
   }
 
-  /* Mobile chaos: hide trust badges and mystery button */
-  body.journey-layout-lock.complexity-start .chaos-trust,
-  body.journey-layout-lock.complexity-start .chaos-mystery {
+  /* Mobile chaos: hide trust badges */
+  body.journey-layout-lock.complexity-start .chaos-trust {
     display: none !important;
   }
 }
