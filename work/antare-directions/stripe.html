@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
+  <title>Antare — Stripe Press direction</title>
+  <link rel="stylesheet" href="../../css/main.css?v=6">
+  <link rel="stylesheet" href="../../css/site-shell.css?v=6">
+  <link rel="stylesheet" href="../../css/antare-cinema-base.css?v=1">
+  <link rel="stylesheet" href="css/stripe.css?v=1">
+</head>
+<body class="site-shell dir-stripe">
+  <header class="cx-header site-header">
+    <div class="container cx-header__inner">
+      <a href="../../index.html" class="cx-logo"><span class="cx-logo__name">Andrew Sheerin</span></a>
+      <nav class="cx-nav cx-nav--clarity" aria-label="Primary">
+        <a href="index.html">Directions</a>
+      </nav>
+    </div>
+  </header>
+
+  <article class="sp-essay">
+    <header data-beat>
+      <p class="sp-chapter__num">Antare</p>
+      <h1 class="sp-essay__title">When the feed worked, and why that wasn't enough</h1>
+      <p class="sp-essay__lede">The AI summarised incidents accurately. Users trusted it. <em>And yet.</em> Something was wrong — not with the technology, but with what we were asking people to look at.</p>
+    </header>
+
+    <section class="sp-chapter" data-beat>
+      <p class="sp-chapter__num">I · The scale</p>
+      <h2>Five clips per camera, per day</h2>
+      <p>Press record on a body-worn camera and the math changes overnight. Two hundred always-on feeds. Every day. The volume alone would have broken any interface designed for occasional review.</p>
+      <figure class="sp-figure sp-figure--wide">
+        <img src="../../assets/images/antare-curated/camera-to-human-diagram.png" alt="Camera to human pipeline diagram" loading="lazy">
+        <figcaption>The pipeline: from sensor to someone who has to decide whether to act.</figcaption>
+      </figure>
+    </section>
+
+    <section class="sp-chapter" data-beat>
+      <p class="sp-chapter__num">II · The wrong tool</p>
+      <h2>Everyone builds a datagrid</h2>
+      <p>Digital evidence management systems default to tables. Rows of events, sortable columns, filters. We built the best datagrid we could — and it still felt like the wrong genre for the job.</p>
+      <div class="sp-duo">
+        <figure><img src="../../assets/images/antare-curated/datagrid.png" alt="Industry DEMS datagrid" loading="lazy"><figcaption>Industry default</figcaption></figure>
+        <figure><img src="../../assets/images/antare-curated/antare-datagrid.png" alt="Antare datagrid" loading="lazy"><figcaption>Our best attempt</figcaption></figure>
+      </div>
+      <p class="sp-pull">The pivot was not incremental. We moved from spreadsheet to feed.</p>
+      <figure class="sp-figure sp-figure--wide">
+        <img src="../../assets/images/antare-curated/feed-evolved.png" alt="Feed interface" loading="lazy">
+        <figcaption>A social feed for operational video — familiar rhythm, unfamiliar stakes.</figcaption>
+      </figure>
+    </section>
+
+    <section class="sp-chapter" data-beat>
+      <p class="sp-chapter__num">III · Making AI legible</p>
+      <h2>Every field is a contract</h2>
+      <p>Event cards are not decoration. Each label — severity, category, confidence — is a promise about what the model saw and what the human should do next. Classification UI is trust infrastructure.</p>
+      <figure class="sp-figure">
+        <img src="../../assets/images/antare-curated/event-card.png" alt="Event card anatomy" loading="lazy">
+        <figcaption>The card as contract between model and operator.</figcaption>
+      </figure>
+      <p>Two feeds for the same organisation on the same day: chronological for audit, priority for triage. Same data, different obligation.</p>
+      <div class="sp-duo">
+        <img src="../../assets/images/antare-curated/feed-chrono.png" alt="Chronological feed" loading="lazy">
+        <img src="../../assets/images/antare-curated/feed-impact.png" alt="Priority feed" loading="lazy">
+      </div>
+      <p>With synthetic data — actors, office CCTV — it looked great. The design held. Then we turned the cameras on.</p>
+    </section>
+
+    <section class="crowd-stage" data-sequence="overwhelm">
+      <div class="crowd-stage__sticky">
+        <p class="crowd-stage__label" data-crowd-label>Real data</p>
+        <div class="crowd-stage__arena">
+          <div data-crowd-card="neutral-a" role="img" aria-label="Feed card"></div>
+          <div data-crowd-card="neutral-b" role="img" aria-label="Feed card"></div>
+          <div data-crowd-card="chocolates" role="img" aria-label="Faulty product"></div>
+          <div data-crowd-card="fatigue" role="img" aria-label="Wellbeing"></div>
+          <div data-crowd-card="package" role="img" aria-label="Security pattern"></div>
+        </div>
+        <p class="crowd-stage__quote" data-crowd-quote>"It's overwhelming."</p>
+      </div>
+    </section>
+
+    <section class="sp-chapter" data-beat>
+      <p class="sp-chapter__num">IV · The investigation</p>
+      <h2>Three types of wrong</h2>
+      <p>Not every card deserved attention. Some were false positives. Some were true but trivial. Some were true and important but arrived in a flood that made action impossible. We had to unpick wrongness before we could fix the feed.</p>
+      <figure class="sp-figure sp-figure--wide">
+        <img src="../../assets/images/antare-curated/unpicking-wrongness.png" alt="Taxonomy of wrongness" loading="lazy">
+        <figcaption>A taxonomy of what "wrong" means in an operational feed.</figcaption>
+      </figure>
+    </section>
+
+    <section class="sp-principle" data-sequence="principle" data-beat>
+      <p class="principle__text">Visibility creates obligation.</p>
+    </section>
+
+    <section class="sp-chapter" data-beat>
+      <p class="sp-chapter__num">V · Resolution</p>
+      <h2>The feed shrinks; the product expands</h2>
+      <p>We stopped trying to show everything. Dashboards for patterns. Summaries for the day. The feed became a pointer, not a warehouse.</p>
+      <div class="sp-duo">
+        <img src="../../assets/images/antare-curated/dashboard.png" alt="Dashboard" loading="lazy">
+        <img src="../../assets/images/antare-curated/summary.png" alt="Summaries" loading="lazy">
+      </div>
+    </section>
+
+    <footer class="sp-coda" data-beat>
+      <p><strong>I went in believing the challenge was trust.</strong> I left believing the harder problem is deciding what deserves a person's attention in the first place. Design for AI is not only about making the model legible — it is about protecting human attention from the model's enthusiasm.</p>
+    </footer>
+  </article>
+
+  <p class="dir-stripe__back"><a href="index.html">← All directions</a></p>
+  <script src="../../js/play-ribbon.js?v=3"></script>
+  <script src="../../js/antare-cinema.js?v=1"></script>
+</body>
+</html>

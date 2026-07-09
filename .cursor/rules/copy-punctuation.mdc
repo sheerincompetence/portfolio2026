@@ -1,0 +1,28 @@
+---
+description: Punctuation rules for all portfolio copy — human and agent-written
+alwaysApply: true
+---
+
+# Copy punctuation
+
+## No em dashes or en dashes
+
+Never use em dashes (`—`, U+2014) or en dashes (`–`, U+2013) in user-facing copy, titles, meta descriptions, alt text, or comments meant for the page.
+
+Use a **hyphen** (`-`, ASCII hyphen-minus) instead:
+
+| Avoid | Use |
+|-------|-----|
+| `Andrew Sheerin — About` | `Andrew Sheerin - About` |
+| `execution — helping teams` | `execution - helping teams` |
+| `2004–2015` | `2004-2015` |
+| `Nudgestock — The Persuasive Power of Play` | `Nudgestock - The Persuasive Power of Play` |
+
+## When editing existing files
+
+If you touch a file that contains `—` or `–` in copy, replace with `-` in the same edit unless Andrew explicitly asks to keep them.
+
+## Exceptions
+
+- Arrow glyphs in product UI screenshots (do not rewrite image assets)
+- Code, URLs, or third-party quotes that must stay verbatim — flag to Andrew instead of silently changing

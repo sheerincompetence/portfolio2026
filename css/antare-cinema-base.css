@@ -1,0 +1,167 @@
+/* Shared cinema components — overwhelm crowd, beat timing */
+
+[data-beat] {
+  opacity: 0;
+  transform: translateY(2rem);
+  transition:
+    opacity 1s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 1s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+[data-beat].is-on {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-beat] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* ——— Overwhelm stage (5 cards) ——— */
+.crowd-stage {
+  position: relative;
+  min-height: 220vh;
+  margin-block: 0;
+}
+
+.crowd-stage__sticky {
+  position: sticky;
+  top: calc(var(--play-ribbon-h, 0px) + var(--cx-shell-header-h, 5.111rem));
+  height: calc(100vh - var(--play-ribbon-h, 0px) - var(--cx-shell-header-h, 5.111rem));
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.crowd-stage__label {
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  opacity: calc(var(--crowd, 0));
+  transform: translateY(calc((1 - var(--crowd, 0)) * 12px));
+  transition: opacity 0.3s;
+  margin-bottom: 1.5rem;
+  z-index: 2;
+}
+
+.crowd-stage__arena {
+  position: relative;
+  width: min(92vw, 1100px);
+  height: min(62vh, 520px);
+}
+
+[data-crowd-card] {
+  --crowd: 0;
+  --exit: 0;
+  position: absolute;
+  width: clamp(200px, 28vw, 320px);
+  aspect-ratio: 16 / 11;
+  border-radius: 4px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, calc(0.08 + var(--crowd) * 0.18));
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: calc(var(--crowd) * (1 - var(--exit) * 0.85));
+  transform:
+    translate(
+      calc(var(--from-x) * (1 - var(--crowd)) + var(--to-x) * var(--crowd)),
+      calc(var(--from-y) * (1 - var(--crowd)) + var(--to-y) * var(--crowd))
+    )
+    scale(calc(0.72 + var(--crowd) * 0.28 - var(--exit) * 0.15))
+    rotate(calc(var(--rot) * var(--crowd) * (1 - var(--exit))));
+  transition: box-shadow 0.2s;
+  z-index: calc(1 + var(--z, 0));
+}
+
+/* Split neutral image into two cards */
+[data-crowd-card="neutral-a"] {
+  background-image: url('../assets/images/antare-curated/overwhelm-neutral.png');
+  background-size: 200% 100%;
+  background-position: left center;
+  --from-x: -120%;
+  --from-y: -40%;
+  --to-x: -28%;
+  --to-y: -18%;
+  --rot: -2deg;
+  --z: 2;
+}
+
+[data-crowd-card="neutral-b"] {
+  background-image: url('../assets/images/antare-curated/overwhelm-neutral.png');
+  background-size: 200% 100%;
+  background-position: right center;
+  --from-x: 120%;
+  --from-y: -35%;
+  --to-x: 22%;
+  --to-y: -12%;
+  --rot: 1.5deg;
+  --z: 3;
+}
+
+[data-crowd-card="chocolates"] {
+  background-image: url('../assets/images/antare-curated/overwhelm-chocolates.png');
+  --from-x: -90%;
+  --from-y: 80%;
+  --to-x: -38%;
+  --to-y: 22%;
+  --rot: -1deg;
+  --z: 4;
+}
+
+[data-crowd-card="fatigue"] {
+  background-image: url('../assets/images/antare-curated/overwhelm-fatigue.png');
+  --from-x: 95%;
+  --from-y: 75%;
+  --to-x: 35%;
+  --to-y: 18%;
+  --rot: 2deg;
+  --z: 5;
+}
+
+[data-crowd-card="package"] {
+  background-image: url('../assets/images/antare-curated/overwhelm-package.png');
+  --from-x: 0%;
+  --from-y: 110%;
+  --to-x: 0%;
+  --to-y: 38%;
+  --rot: 0deg;
+  --z: 6;
+  width: clamp(220px, 32vw, 360px);
+}
+
+.crowd-stage__quote {
+  position: absolute;
+  bottom: 12%;
+  left: 50%;
+  transform: translateX(-50%) translateY(calc((1 - var(--crowd, 0)) * 24px));
+  opacity: calc(var(--crowd, 0));
+  font-size: clamp(1.75rem, 4vw, 3rem);
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  text-align: center;
+  white-space: nowrap;
+  z-index: 10;
+  pointer-events: none;
+}
+
+/* Principle climax */
+[data-sequence="principle"] {
+  --glow: 0;
+}
+
+[data-sequence="principle"] .principle__text {
+  opacity: calc(0.35 + var(--glow) * 0.65);
+  transform: scale(calc(0.94 + var(--glow) * 0.06));
+  transition: opacity 0.15s, transform 0.15s;
+}
+
+[data-sequence="principle"].is-lit .principle__text {
+  opacity: 1;
+  transform: scale(1);
+}

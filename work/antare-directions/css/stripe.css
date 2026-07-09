@@ -1,0 +1,189 @@
+/* Direction 02 — Stripe Press */
+.dir-stripe {
+  --paper: #faf8f4;
+  --ink: #1a1a1a;
+  --ink-soft: #4a4a4a;
+  --rule: #e8e4dc;
+  --accent: #635bff;
+  background: var(--paper);
+  color: var(--ink);
+}
+
+.dir-stripe .cx-header.site-header {
+  background: var(--paper);
+  border-bottom-color: var(--rule);
+}
+
+.sp-essay {
+  max-width: 38rem;
+  margin: 0 auto;
+  padding: 4rem 2rem 8rem;
+}
+
+.sp-essay__title {
+  font-family: var(--font-serif);
+  font-size: clamp(2.25rem, 5vw, 3.25rem);
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  margin: 0 0 2rem;
+}
+
+.sp-essay__lede {
+  font-family: var(--font-serif);
+  font-size: 1.35rem;
+  line-height: 1.55;
+  color: var(--ink-soft);
+  margin: 0 0 3rem;
+}
+
+.sp-essay__lede em { font-style: italic; color: var(--ink); }
+
+.sp-chapter {
+  margin-top: 4rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--rule);
+}
+
+.sp-chapter__num {
+  font-family: var(--font-sans);
+  font-size: 0.65rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin: 0 0 0.75rem;
+}
+
+.sp-chapter h2 {
+  font-family: var(--font-serif);
+  font-size: 1.75rem;
+  font-weight: 400;
+  margin: 0 0 1.25rem;
+  line-height: 1.25;
+}
+
+.sp-chapter p {
+  font-family: var(--font-serif);
+  font-size: 1.125rem;
+  line-height: 1.7;
+  margin: 0 0 1.25rem;
+  color: var(--ink-soft);
+}
+
+.sp-chapter p strong { color: var(--ink); font-weight: 500; }
+
+.sp-figure {
+  margin: 2.5rem -2rem;
+  padding: 0 2rem;
+}
+
+.sp-figure img {
+  width: 100%;
+  border-radius: 2px;
+  box-shadow: 0 2px 24px rgba(0,0,0,0.06);
+}
+
+.sp-figure--wide {
+  max-width: 52rem;
+  margin-left: calc(50% - min(26rem, 50vw - 2rem));
+  margin-right: calc(50% - min(26rem, 50vw - 2rem));
+}
+
+.sp-figure figcaption {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  color: var(--ink-soft);
+  margin-top: 0.75rem;
+  line-height: 1.5;
+  max-width: 32rem;
+}
+
+.sp-pull {
+  font-family: var(--font-serif);
+  font-size: 1.5rem;
+  font-style: italic;
+  line-height: 1.45;
+  color: var(--ink);
+  margin: 2.5rem 0;
+  padding-left: 1.5rem;
+  border-left: 2px solid var(--accent);
+}
+
+.sp-duo {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin: 2rem 0;
+}
+
+.sp-duo img { width: 100%; border-radius: 2px; }
+
+/* Overwhelm — essay interlude */
+.dir-stripe .crowd-stage {
+  min-height: 200vh;
+  background: #f0ece4;
+  margin: 3rem -2rem;
+  max-width: none;
+}
+
+.dir-stripe .crowd-stage__sticky {
+  background: #f0ece4;
+}
+
+.dir-stripe .crowd-stage__label {
+  font-family: var(--font-sans);
+  color: var(--ink-soft);
+}
+
+.dir-stripe .crowd-stage__quote {
+  font-family: var(--font-serif);
+  font-style: italic;
+  color: var(--ink);
+  white-space: normal;
+  max-width: 20ch;
+}
+
+/* Principle */
+.sp-principle {
+  text-align: center;
+  padding: 5rem 2rem;
+  margin: 4rem -2rem 0;
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.sp-principle .principle__text {
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 400;
+  font-style: italic;
+  line-height: 1.2;
+  max-width: 14ch;
+  margin: 0 auto;
+}
+
+.sp-coda {
+  margin-top: 4rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--rule);
+}
+
+.sp-coda p {
+  font-family: var(--font-serif);
+  font-size: 1.125rem;
+  line-height: 1.7;
+  color: var(--ink-soft);
+}
+
+.dir-stripe__back {
+  text-align: center;
+  padding: 2rem;
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+}
+.dir-stripe__back a { color: var(--ink-soft); }
+
+@media (max-width: 600px) {
+  .sp-duo { grid-template-columns: 1fr; }
+  .sp-figure--wide { margin-left: -2rem; margin-right: -2rem; }
+}

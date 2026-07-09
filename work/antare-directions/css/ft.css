@@ -1,0 +1,214 @@
+/* Direction 03 — Financial Times long-form */
+.dir-ft {
+  --ft-pink: #fff1e5;
+  --ft-ink: #33302e;
+  --ft-muted: #66605c;
+  --ft-rule: #ccc1b7;
+  --ft-accent: #990f3d;
+  background: var(--ft-pink);
+  color: var(--ft-ink);
+}
+
+.dir-ft .cx-header.site-header {
+  background: var(--ft-pink);
+  border-bottom: 3px solid var(--ft-accent);
+}
+
+.ft-article {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem 6rem;
+}
+
+.ft-kicker {
+  font-family: var(--font-sans);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ft-accent);
+  margin: 0 0 0.75rem;
+}
+
+.ft-headline {
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 4.5vw, 2.75rem);
+  font-weight: 500;
+  line-height: 1.12;
+  margin: 0 0 1rem;
+  letter-spacing: -0.01em;
+}
+
+.ft-standfirst {
+  font-family: var(--font-serif);
+  font-size: 1.2rem;
+  line-height: 1.5;
+  color: var(--ft-muted);
+  margin: 0 0 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--ft-rule);
+}
+
+.ft-byline {
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  color: var(--ft-muted);
+  margin: 0 0 2.5rem;
+}
+
+.ft-section {
+  margin-top: 2.5rem;
+}
+
+.ft-section h2 {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ft-accent);
+  margin: 0 0 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--ft-rule);
+}
+
+.ft-section p {
+  font-family: var(--font-serif);
+  font-size: 1.05rem;
+  line-height: 1.65;
+  margin: 0 0 1rem;
+}
+
+.ft-callout {
+  background: #fff;
+  border-left: 4px solid var(--ft-accent);
+  padding: 1.25rem 1.5rem;
+  margin: 2rem 0;
+  font-family: var(--font-sans);
+}
+
+.ft-callout__label {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ft-accent);
+  margin: 0 0 0.5rem;
+}
+
+.ft-callout__stat {
+  font-size: 2.5rem;
+  font-weight: 600;
+  line-height: 1;
+  margin: 0;
+}
+
+.ft-callout__desc {
+  font-size: 0.85rem;
+  color: var(--ft-muted);
+  margin: 0.35rem 0 0;
+}
+
+.ft-figure {
+  margin: 2rem -1.5rem;
+  background: #fff;
+  border: 1px solid var(--ft-rule);
+}
+
+.ft-figure img { width: 100%; display: block; }
+
+.ft-figure figcaption {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  padding: 0.75rem 1rem;
+  color: var(--ft-muted);
+  border-top: 1px solid var(--ft-rule);
+}
+
+.ft-compare {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  border: 1px solid var(--ft-rule);
+  margin: 2rem 0;
+  background: #fff;
+}
+
+.ft-compare__cell {
+  padding: 0.75rem;
+  border-right: 1px solid var(--ft-rule);
+}
+.ft-compare__cell:last-child { border-right: none; }
+
+.ft-compare__cell img { width: 100%; }
+
+.ft-compare__label {
+  font-family: var(--font-sans);
+  font-size: 0.65rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--ft-muted);
+  margin: 0.5rem 0 0;
+}
+
+.ft-pullquote {
+  font-family: var(--font-serif);
+  font-size: 1.35rem;
+  font-weight: 500;
+  line-height: 1.35;
+  color: var(--ft-accent);
+  margin: 2.5rem 0;
+  text-align: center;
+  padding: 0 1rem;
+}
+
+/* Overwhelm */
+.dir-ft .crowd-stage {
+  min-height: 200vh;
+  margin: 2.5rem -1.5rem;
+  background: #2a2826;
+}
+
+.dir-ft .crowd-stage__sticky { background: #2a2826; }
+
+.dir-ft .crowd-stage__label {
+  font-family: var(--font-sans);
+  color: rgba(255,241,229,0.6);
+}
+
+.dir-ft .crowd-stage__quote {
+  font-family: var(--font-serif);
+  color: var(--ft-pink);
+}
+
+/* Principle */
+.ft-principle {
+  background: var(--ft-accent);
+  color: #fff;
+  text-align: center;
+  padding: 4rem 2rem;
+  margin: 3rem -1.5rem;
+}
+
+.ft-principle .principle__text {
+  font-family: var(--font-serif);
+  font-size: clamp(1.75rem, 4vw, 2.75rem);
+  font-weight: 500;
+  line-height: 1.2;
+  max-width: 16ch;
+  margin: 0 auto;
+}
+
+.dir-ft__back {
+  text-align: center;
+  padding: 2rem;
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+}
+.dir-ft__back a { color: var(--ft-muted); }
+
+@media (max-width: 560px) {
+  .ft-compare { grid-template-columns: 1fr; }
+  .ft-compare__cell { border-right: none; border-bottom: 1px solid var(--ft-rule); }
+}

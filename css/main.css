@@ -235,6 +235,61 @@ blockquote p {
   padding-block: var(--space-2xl) 0;
 }
 
+.section--hero:has(.about-hero) {
+  padding-bottom: 0;
+}
+
+.about-hero.ref-hero {
+  padding-top: 0;
+  gap: 2.5rem;
+  align-items: flex-end;
+}
+
+.about-hero .ref-hero__portrait {
+  width: 11.5rem;
+  height: 15.5rem;
+  align-self: flex-end;
+}
+
+.about-hero .ref-hero__content {
+  align-items: flex-start;
+  align-self: flex-end;
+  padding-bottom: 4rem;
+}
+
+.about-hero .ref-hero__eyebrow,
+.about-hero .ref-hero__title,
+.about-hero .ref-hero__lead {
+  text-align: left;
+  max-width: none;
+}
+
+.about-hero .ref-hero__title {
+  font-size: clamp(2rem, 4vw, 2.75rem);
+}
+
+.about-hero .ref-hero__lead {
+  max-width: 36rem;
+}
+
+.about-pull-quote {
+  margin: var(--space-md) clamp(1.5rem, 6vw, 4rem) var(--space-lg);
+  font-size: clamp(1.05rem, 2vw, 1.2rem);
+  line-height: 1.55;
+}
+
+.about-pull-quote p {
+  margin: 0;
+}
+
+.about-biography {
+  padding-bottom: var(--space-lg);
+}
+
+.about-experience {
+  padding-top: var(--space-lg);
+}
+
 /* REF-001 / Hero — matches Figma component */
 .ref-hero {
   display: flex;
@@ -411,18 +466,11 @@ blockquote p {
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: var(--space-lg);
   padding-block: var(--space-xl);
-  justify-content: space-between;
 }
 
 @media (min-width: 901px) {
-  .work-grid {
-    grid-template-columns: repeat(3, 21rem);
-    justify-content: space-between;
-  }
-
   .work-grid--pair {
-    grid-template-columns: repeat(2, 1fr);
-    justify-content: stretch;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
@@ -640,6 +688,45 @@ blockquote p {
   font-family: var(--font-sans);
   font-size: 0.8rem;
   color: var(--color-ink-faint);
+}
+
+.contact-hero .lead {
+  margin-bottom: 0;
+  padding-bottom: 4rem;
+}
+
+.contact-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.contact-links li {
+  padding: var(--space-md) 0;
+  border-bottom: 1px solid var(--color-rule);
+  display: grid;
+  grid-template-columns: 7rem 1fr;
+  gap: var(--space-md);
+  align-items: baseline;
+}
+
+.contact-links li:first-child {
+  border-top: 1px solid var(--color-rule);
+}
+
+.contact-links__label {
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  color: var(--color-ink-faint);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+@media (max-width: 600px) {
+  .contact-links li {
+    grid-template-columns: 1fr;
+    gap: 0.25rem;
+  }
 }
 
 /* ——— Footer ——— */

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
+  <title>Antare — Financial Times direction</title>
+  <link rel="stylesheet" href="../../css/main.css?v=6">
+  <link rel="stylesheet" href="../../css/site-shell.css?v=6">
+  <link rel="stylesheet" href="../../css/antare-cinema-base.css?v=1">
+  <link rel="stylesheet" href="css/ft.css?v=1">
+</head>
+<body class="site-shell dir-ft">
+  <header class="cx-header site-header">
+    <div class="container cx-header__inner">
+      <a href="../../index.html" class="cx-logo"><span class="cx-logo__name">Andrew Sheerin</span></a>
+      <nav class="cx-nav cx-nav--clarity" aria-label="Primary">
+        <a href="index.html">Directions</a>
+      </nav>
+    </div>
+  </header>
+
+  <article class="ft-article">
+    <header data-beat>
+      <p class="ft-kicker">Design &amp; Technology</p>
+      <h1 class="ft-headline">The operational feed trap: when AI visibility outruns human attention</h1>
+      <p class="ft-standfirst">Antare's body-worn camera platform proved that accurate AI summaries are not enough. The harder design problem is deciding what deserves a person's time.</p>
+      <p class="ft-byline">Andrew Sheerin · Case study</p>
+    </header>
+
+    <section class="ft-section" data-beat>
+      <h2>01 · Trust, then volume</h2>
+      <p>The feed worked. It summarised incidents accurately and users trusted the AI. The failure mode arrived with scale: five clips per camera per day, two hundred always-on devices, every day.</p>
+      <div class="ft-callout">
+        <p class="ft-callout__label">Operational load</p>
+        <p class="ft-callout__stat">200+</p>
+        <p class="ft-callout__desc">always-on cameras generating continuous event streams</p>
+      </div>
+      <figure class="ft-figure">
+        <img src="../../assets/images/antare-curated/camera-to-human-diagram.png" alt="Camera to human pipeline" loading="lazy">
+        <figcaption>From sensor capture to human triage — the bottleneck is rarely the model.</figcaption>
+      </figure>
+    </section>
+
+    <section class="ft-section" data-beat>
+      <h2>02 · Industry defaults</h2>
+      <p>Digital evidence management systems converge on datagrids: sortable rows, dense metadata, filter panels. Antare built a competitive datagrid and still found it the wrong interface genre for continuous monitoring.</p>
+      <div class="ft-compare">
+        <div class="ft-compare__cell">
+          <img src="../../assets/images/antare-curated/datagrid.png" alt="Competitor DEMS" loading="lazy">
+          <p class="ft-compare__label">Industry DEMS</p>
+        </div>
+        <div class="ft-compare__cell">
+          <img src="../../assets/images/antare-curated/antare-datagrid.png" alt="Antare datagrid" loading="lazy">
+          <p class="ft-compare__label">Antare datagrid</p>
+        </div>
+      </div>
+      <p>The strategic pivot: from spreadsheet semantics to feed semantics — a familiar social rhythm applied to high-stakes operational video.</p>
+      <figure class="ft-figure">
+        <img src="../../assets/images/antare-curated/feed-evolved.png" alt="Feed interface" loading="lazy">
+        <figcaption>The feed as primary surface — chronological scroll replaces table scan.</figcaption>
+      </figure>
+    </section>
+
+    <section class="ft-section" data-beat>
+      <h2>03 · Contracts and dual modes</h2>
+      <p>Event cards encode AI output as legible contracts: severity, category, confidence. Each field implies an action. The same organisation runs two feeds — audit chronology and priority triage — against identical underlying data.</p>
+      <figure class="ft-figure">
+        <img src="../../assets/images/antare-curated/event-card.png" alt="Event card" loading="lazy">
+        <figcaption>Card anatomy: trust infrastructure, not UI chrome.</figcaption>
+      </figure>
+      <div class="ft-compare">
+        <div class="ft-compare__cell">
+          <img src="../../assets/images/antare-curated/feed-chrono.png" alt="Chronological" loading="lazy">
+          <p class="ft-compare__label">Chronological</p>
+        </div>
+        <div class="ft-compare__cell">
+          <img src="../../assets/images/antare-curated/feed-impact.png" alt="Priority" loading="lazy">
+          <p class="ft-compare__label">Priority</p>
+        </div>
+      </div>
+      <p>Synthetic validation — actors, office CCTV — produced a polished experience. Production data broke the assumption.</p>
+    </section>
+
+    <section class="crowd-stage" data-sequence="overwhelm">
+      <div class="crowd-stage__sticky">
+        <p class="crowd-stage__label" data-crowd-label>Production data</p>
+        <div class="crowd-stage__arena">
+          <div data-crowd-card="neutral-a" role="img" aria-label="Card"></div>
+          <div data-crowd-card="neutral-b" role="img" aria-label="Card"></div>
+          <div data-crowd-card="chocolates" role="img" aria-label="Faulty product"></div>
+          <div data-crowd-card="fatigue" role="img" aria-label="Wellbeing"></div>
+          <div data-crowd-card="package" role="img" aria-label="Security"></div>
+        </div>
+        <p class="crowd-stage__quote" data-crowd-quote>"It's overwhelming."</p>
+      </div>
+    </section>
+
+    <section class="ft-section" data-beat>
+      <h2>04 · Taxonomy of wrongness</h2>
+      <p>User research surfaced three failure modes: false positives, true-but-trivial events, and true-and-important events lost in volume. Fixing the feed required unpicking which kind of "wrong" each card represented.</p>
+      <figure class="ft-figure">
+        <img src="../../assets/images/antare-curated/unpicking-wrongness.png" alt="Wrongness taxonomy" loading="lazy">
+        <figcaption>Classification of error types before interface remediation.</figcaption>
+      </figure>
+    </section>
+
+    <section class="ft-principle" data-sequence="principle" data-beat>
+      <p class="principle__text">Visibility creates obligation.</p>
+    </section>
+
+    <section class="ft-section" data-beat>
+      <h2>05 · Product architecture shift</h2>
+      <p>Resolution: shrink the feed's scope. Expand dashboards for pattern detection and daily summaries for orientation. The feed becomes an index, not an archive.</p>
+      <div class="ft-compare">
+        <div class="ft-compare__cell">
+          <img src="../../assets/images/antare-curated/dashboard.png" alt="Dashboard" loading="lazy">
+          <p class="ft-compare__label">Dashboard</p>
+        </div>
+        <div class="ft-compare__cell">
+          <img src="../../assets/images/antare-curated/summary.png" alt="Summaries" loading="lazy">
+          <p class="ft-compare__label">Summaries</p>
+        </div>
+      </div>
+      <p class="ft-pullquote">I went in believing the challenge was trust. I left believing the harder problem is deciding what deserves attention.</p>
+    </section>
+  </article>
+
+  <p class="dir-ft__back"><a href="index.html">← All directions</a></p>
+  <script src="../../js/play-ribbon.js?v=3"></script>
+  <script src="../../js/antare-cinema.js?v=1"></script>
+</body>
+</html>

@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
+  <title>Antare — Designing the Psychology of Attention (draft) — Andrew Sheerin</title>
+  <meta name="description" content="Draft case study: discovering that visibility creates obligation — and redesigning Antare's information architecture around editorial responsibility.">
+  <link rel="stylesheet" href="../css/main.css?v=6">
+  <link rel="stylesheet" href="../css/site-shell.css?v=6">
+  <link rel="stylesheet" href="../css/case-interior.css?v=3">
+  <style>
+    /* Draft-only — revelation narrative beats */
+    .case-interior-hero__draft-note {
+      font-family: var(--font-sans);
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--color-ink-faint);
+      margin: 0 0 var(--space-sm);
+    }
+    .case-interior-beat {
+      font-family: var(--font-serif);
+      font-size: clamp(1.2rem, 2.2vw, 1.5rem);
+      line-height: 1.45;
+      color: var(--color-ink);
+      max-width: 32rem;
+      margin: var(--space-md) 0;
+    }
+    .case-interior-beat--lead {
+      font-size: clamp(1.35rem, 2.5vw, 1.75rem);
+      max-width: 28rem;
+    }
+    .case-interior-beat em {
+      font-style: italic;
+      color: var(--color-ink-muted);
+    }
+    .case-interior-wrong-types {
+      display: grid;
+      gap: var(--space-md);
+      margin: var(--space-md) 0 var(--space-lg);
+      max-width: 36rem;
+    }
+    .case-interior-wrong-types article {
+      padding: var(--space-md) 0;
+      border-top: 1px solid var(--color-rule);
+    }
+    .case-interior-wrong-types h3 {
+      font-family: var(--font-sans);
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--color-accent);
+      margin: 0 0 0.35rem;
+    }
+    .case-interior-wrong-types p {
+      margin: 0;
+      font-size: 1rem;
+      line-height: var(--line-height-body);
+    }
+    .case-interior-surfaces {
+      margin: var(--space-md) 0;
+      padding-left: 0;
+      list-style: none;
+      max-width: 36rem;
+    }
+    .case-interior-surfaces li {
+      padding: var(--space-sm) 0;
+      border-bottom: 1px solid var(--color-rule);
+      font-size: 1rem;
+      line-height: var(--line-height-body);
+    }
+    .case-interior-surfaces strong {
+      display: block;
+      font-family: var(--font-sans);
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--color-ink);
+      margin-bottom: 0.25rem;
+    }
+    .case-interior-outcome blockquote {
+      font-family: var(--font-serif);
+      font-size: clamp(1.15rem, 2vw, 1.45rem);
+      line-height: 1.45;
+      max-width: 40rem;
+      margin: var(--space-lg) 0 0;
+      padding: 0;
+      border: none;
+      color: var(--color-paper);
+    }
+    .case-interior-outcome blockquote cite {
+      display: block;
+      font-family: var(--font-sans);
+      font-size: 0.7rem;
+      font-style: normal;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--color-ink-faint);
+      margin-top: var(--space-md);
+    }
+  </style>
+</head>
+<body class="site-shell">
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <header class="cx-header site-header">
+    <div class="container cx-header__inner">
+      <a href="../index.html" class="cx-logo">
+        <span class="cx-logo__name">Andrew Sheerin<sup class="cx-logo__tm">TM</sup></span>
+      </a>
+      <nav class="cx-nav cx-nav--clarity" aria-label="Primary">
+        <a href="../work/" aria-current="page">Work</a>
+        <a href="../about/">About</a>
+        <a href="../contact/">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <header class="case-interior-hero">
+      <span class="case-interior-hero__index" aria-hidden="true">01</span>
+      <p class="case-interior-hero__draft-note">Draft narrative · compare with <a href="antare.html">antare.html</a></p>
+      <p class="case-interior-hero__label">Case study · Antare</p>
+      <h1 class="case-interior-hero__title">Designing the Psychology of Attention</h1>
+      <p class="case-interior-hero__thesis">The feed worked perfectly. It summarised incidents accurately. Users trusted the AI. And yet everyone kept saying the same thing: <em>"It's overwhelming."</em></p>
+    </header>
+
+    <dl class="case-interior-meta">
+      <div>
+        <dt>Role</dt>
+        <dd>Head of Product Design</dd>
+      </div>
+      <div>
+        <dt>Organisation</dt>
+        <dd>Antare</dd>
+      </div>
+      <div>
+        <dt>Focus</dt>
+        <dd>Editorial responsibility in AI-generated intelligence</dd>
+      </div>
+      <div>
+        <dt>Disciplines</dt>
+        <dd>Product strategy, behavioural insight, IA, AI evaluation</dd>
+      </div>
+    </dl>
+
+    <article class="case-interior-article">
+      <!-- Act 1 -->
+      <section class="case-interior-section" id="act-1">
+        <span class="case-interior-section__num" aria-hidden="true">I</span>
+        <div>
+          <p class="case-interior-section__label">Act 1</p>
+          <h2>We thought we were designing an event feed</h2>
+          <p>Antare set out to disrupt physical security with an always-on body-worn camera — a massive decrease in missed events, and a massive increase in observable reality. Cameras capture continuously. Models classify. Incidents appear. The obvious product move was somewhere to surface it all.</p>
+          <p>Competitors' digital evidence systems looked like datagrids: rows of clips, sortable columns, filter panels. I designed a top-of-the-range version of the same thing. It was capable. It was familiar. It was wrong for what our hardware would actually produce.</p>
+          <p class="case-interior-beat">If the cameras worked, no one would parse this in a table. We needed to compress reality — not display all of it.</p>
+        </div>
+      </section>
+
+      <figure class="case-interior-figure case-interior-figure--offset">
+        <img src="../assets/images/antare/datagrid-iteration.png" alt="Early incident datagrid — capable sorting, wrong mental model for the volume of events" loading="lazy">
+        <figcaption class="case-interior-figure__cap">First instinct: a sophisticated datagrid. The volume of always-on footage made table parsing impossible.</figcaption>
+      </figure>
+
+      <!-- Act 2 -->
+      <section class="case-interior-section" id="act-2">
+        <span class="case-interior-section__num" aria-hidden="true">II</span>
+        <div>
+          <p class="case-interior-section__label">Act 2</p>
+          <h2>Making AI understandable</h2>
+          <p>We looked to social feeds — LinkedIn, Facebook — as adjacent experience models. If operational workflows could borrow feed behaviour, we might have a product core to match the intelligence of the hardware.</p>
+          <p>But feeds don't work without contracts. With our AI engineer, I co-defined what an incident <em>is</em>: identification rules, impact severity, event type, narrative structure, and a validation checklist so LLM output renders directly into UI — field by field — without a translation layer.</p>
+          <p>Every AI output field mapped to a feed affordance. Impact colour. Scannable title. One-line summary. Thumbnail and key moments threaded through to evidence. If a field didn't earn a place on the card, it didn't belong in the feed. Cross-validation between layers meant that even a wrongly classified event didn't destroy trust — internal consistency made the fix self-evident.</p>
+          <p>Research with prospective customers revealed two mental models: <strong>research &amp; review</strong> (open-ended, information gathering) and <strong>respond</strong> (single-minded, fire-fighting). We split the feed into two modes — chronological breadth for awareness, priority ordering for action. Same underlying incidents. Different jobs to be done.</p>
+          <p class="case-interior-beat"><em>Reader thinks: nice. Clever.</em> Most portfolios would stop here.</p>
+        </div>
+      </section>
+
+      <figure class="case-interior-figure case-interior-figure--bleed">
+        <img src="../assets/images/antare/early-mockup.png" alt="Early incident card mockup with mixed-valence events in feed layout" loading="lazy">
+        <figcaption class="case-interior-figure__cap">From datagrid rows to incident cards — each event as a narrative unit with human and AI components reinforcing trust.</figcaption>
+      </figure>
+
+      <figure class="case-interior-figure case-interior-figure--offset">
+        <img src="../assets/images/antare/classification.png" alt="Parallel classification frameworks for impact severity and event type" loading="lazy">
+        <figcaption class="case-interior-figure__cap">Evidence, not story: dual classification frameworks that let the model categorise, prioritise, and summarise before anything reached the feed.</figcaption>
+      </figure>
+
+      <figure class="case-interior-figure case-interior-figure--offset">
+        <img src="../assets/images/antare/dual-feeds.png" alt="Side-by-side comparison of chronological and priority feed modes" loading="lazy">
+        <figcaption class="case-interior-figure__cap">Same org, same day — different job to be done. Two baked-in modes for research and response.</figcaption>
+      </figure>
+
+      <!-- Act 3 -->
+      <section class="case-interior-section" id="act-3">
+        <span class="case-interior-section__num" aria-hidden="true">III</span>
+        <div>
+          <p class="case-interior-section__label">Act 3</p>
+          <h2>Reality arrives</h2>
+          <p class="case-interior-beat case-interior-beat--lead">Everything looked right until we got our first full day of real footage.</p>
+          <p>Up to that point we'd tested with synthetic data, actor-generated video, office CCTV. It all looked "right." Then we partnered with prospective customers and turned always-on cameras on a live shop floor.</p>
+          <p>At that point it got really messy. The feed worked — technically. Summaries were accurate. Classification held. Users trusted the AI. And yet the word we heard constantly was <strong>overwhelming</strong>.</p>
+          <p>Not because AI failed. Not because summaries were bad. Because something felt wrong about what was appearing — and what it seemed to demand of people looking at it.</p>
+          <p class="case-interior-beat">We assumed we had an AI problem. Then a prioritisation problem. Then a threshold problem. <em>Still no.</em></p>
+        </div>
+      </section>
+
+      <figure class="case-interior-figure case-interior-figure--bleed">
+        <img src="../assets/images/antare/clogged-feed.png" alt="Live feed clogged with individually correct but contextually wrong events" loading="lazy">
+        <figcaption class="case-interior-figure__cap">The feed after reality arrived: factually defensible events that felt wrong to surface one at a time.</figcaption>
+      </figure>
+
+      <!-- Act 4 -->
+      <section class="case-interior-section" id="act-4">
+        <span class="case-interior-section__num" aria-hidden="true">IV</span>
+        <div>
+          <p class="case-interior-section__label">Act 4</p>
+          <h2>The investigation</h2>
+          <p>Instead of arguing in the abstract, I classified what "wrong" actually meant. Three types — a taxonomy the team could point at rather than debate around.</p>
+
+          <div class="case-interior-wrong-types">
+            <article>
+              <h3>Wrong type 1</h3>
+              <p><strong>Factually incorrect.</strong> The model misread what happened — faulty product handling flagged as misconduct, context missed. Easy to catch. We built auto-feedback pipelines to route these into LLM correction funnels.</p>
+            </article>
+            <article>
+              <h3>Wrong type 2</h3>
+              <p><strong>Factually correct, never useful.</strong> Employee wellbeing matters — but a feed card is not how you uncover or address it. Some truths don't belong in an operational surface at all.</p>
+            </article>
+            <article>
+              <h3>Wrong type 3</h3>
+              <p><strong>Factually correct, not individually useful.</strong> Security and efficiency patterns that only make sense in aggregate — parcel-process friction recurring across a day, not as twelve separate incidents. <em>Wait… why is this here?</em></p>
+            </article>
+          </div>
+
+          <p>Type three caused the heated arguments. Some wanted to raise the threshold score. Others wanted a second LLM to decide what to show. Studying each event — and which type of wrong it was — led somewhere deeper than either fix.</p>
+          <p>There was something in the very appearance of an event on a card in a feed that implied duty to act. Every card asked: <em>why am I seeing this?</em> and <em>what do I do?</em></p>
+        </div>
+      </section>
+
+      <!-- Act 5 -->
+      <section class="case-interior-section" id="act-5">
+        <span class="case-interior-section__num" aria-hidden="true">V</span>
+        <div>
+          <p class="case-interior-section__label">Act 5</p>
+          <h2>Visibility creates obligation</h2>
+          <p class="case-interior-beat case-interior-beat--lead">Feeds are not neutral. Every item says: <em>look at me.</em> Which immediately creates: <em>should I do something?</em></p>
+          <p>I coined the phrase to name what we were seeing — not a UX heuristic, but a hidden contract. Visibility alone creates obligation. Once we had that rule, we viewed the entire console through an editorial lens: why is this being shown? Why here? Why now? What do we expect people to do about it?</p>
+          <p>Everything else fell into place. The feed shrank to individually salient events that can — and should — be investigated in isolation. Everything else moved to surfaces built for how intelligence actually needs to appear:</p>
+
+          <ul class="case-interior-surfaces">
+            <li><strong>Feed</strong> Operational, individual, actionable now — editorial judgement about what deserves immediate human attention.</li>
+            <li><strong>Dashboard</strong> Patterns, aggregation, repetition — intelligence that only makes sense across time and volume.</li>
+            <li><strong>Daily &amp; weekly summaries</strong> Trends, emotional truth, friction points and successes — human stories, not incident rows.</li>
+          </ul>
+
+          <p>We stopped thinking about where information <em>could</em> be shown and started asking where it <em>deserved</em> to exist. Every surface carries an implicit promise: feeds promise immediacy; dashboards promise patterns; summaries promise reflection. Those promises became more important than the data itself.</p>
+        </div>
+      </section>
+
+      <figure class="case-interior-figure case-interior-figure--offset">
+        <img src="../assets/images/antare/conceptual-model.png" alt="Conceptual model separating stream, incident, and case layers across intelligence surfaces" loading="lazy">
+        <figcaption class="case-interior-figure__cap">Reality, narrative, and evidence — each layer with different rules, audiences, and surfaces. Conflating them was the original sin.</figcaption>
+      </figure>
+
+      <figure class="case-interior-figure case-interior-figure--offset">
+        <img src="../assets/images/antare/pipeline.png" alt="Camera-to-human pipeline with feedback loops into model behaviour" loading="lazy">
+        <figcaption class="case-interior-figure__cap">Evidence: the full pipeline — capture, generation, human review, and continuous learning. Supporting infrastructure, not the story.</figcaption>
+      </figure>
+    </article>
+
+    <section class="case-interior-outcome">
+      <p class="case-interior-outcome__label">What it proves</p>
+      <p>This is not really a story about feeds. It is a story about editorial responsibility — designing the psychology of attention. Newspapers, social media, dashboards, security software, AI assistants: the domain changes; the question doesn't.</p>
+      <blockquote>
+        <p>I went into Antare believing the challenge would be helping people trust AI-generated events. I left believing the harder problem is deciding what deserves a person's attention in the first place.</p>
+        <cite>Compressing reality is complex and multi-layered; each omission is a decision that needs understanding and justifying for an automated system to be trusted.</cite>
+      </blockquote>
+    </section>
+
+    <section class="section section--rule">
+      <div class="container">
+        <p class="eyebrow">Compare</p>
+        <div class="work-grid">
+          <a href="antare.html" class="work-card">
+            <span class="work-card__number">Published draft</span>
+            <h3 class="work-card__title">Evolution of a Feed</h3>
+            <p class="work-card__thesis">Chronological structure — context, challenge, approach, evidence, outcome.</p>
+            <img src="../assets/images/antare/dual-feeds.png" alt="" class="work-card__image" loading="lazy">
+          </a>
+          <a href="dona.html" class="work-card">
+            <span class="work-card__number">Project 02</span>
+            <h3 class="work-card__title">Citrix DONA</h3>
+            <p class="work-card__thesis">Behavioural science and organisational influence.</p>
+            <img src="../assets/images/dona/north-star.png" alt="" class="work-card__image" loading="lazy">
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="cx-footer site-footer">
+    <div class="container cx-footer__inner">
+      <p>Andrew Sheerin — Product Design Leader</p>
+      <p><a href="../contact/">Contact</a> | <a href="../assets/cv/andrew-sheerin-cv-july-2026.pdf">CV</a></p>
+    </div>
+  </footer>
+
+  <script src="../js/play-ribbon.js?v=3"></script>
+  <script src="../js/main.js"></script>
+</body>
+</html>
