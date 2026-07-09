@@ -46,6 +46,7 @@ body.clarity-journey {
   overflow-x: clip;
   max-width: 100%;
   min-width: 900px;
+  /* Pull: body + header move up; .cx-page pad stays fixed so headline–header gap holds */
   padding-top: calc(var(--cx-urgency-height) * var(--urgency-visible));
 }
 
@@ -321,22 +322,6 @@ body.clarity-journey .cx-hero__inner {
   padding-bottom: 1.5rem;
   align-items: flex-start;
   min-height: calc(29.5rem + var(--cx-hero-pad-top) + 1.5rem - var(--cx-hero-lift) + var(--u) * 2rem);
-}
-
-@media (max-width: 768px) {
-  body.clarity-journey {
-    min-width: 0;
-  }
-
-  body.journey-layout-lock.clarity-journey .cx-hero__inner {
-    min-height: 0;
-    padding-bottom: 0;
-  }
-
-  body.clarity-journey .cx-hero__title-complex {
-    min-height: auto;
-    max-width: 100%;
-  }
 }
 
 @media (min-width: 769px) {

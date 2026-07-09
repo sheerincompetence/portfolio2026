@@ -1,6 +1,6 @@
 /**
  * Sandbox ribbon — play worktree (:8766) or ?env=play only.
- * Fixed top stack matches index.html: ribbon flush above fixed header.
+ * Overlay only: must not shift header/page geometry (main is source of truth).
  */
 (function () {
   function isPlayEnv() {
@@ -15,15 +15,12 @@
   style.textContent =
     ':root{--play-ribbon-h:0px}' +
     '.play-ribbon{' +
-    'position:fixed;top:0;left:0;right:0;z-index:10001;' +
+    'position:fixed;top:0;left:0;right:0;z-index:10002;' +
     'pointer-events:none;margin:0;padding:0.28rem 0.75rem;' +
     'font:600 10px/1.2 system-ui,-apple-system,sans-serif;' +
     'letter-spacing:0.06em;text-transform:uppercase;text-align:center;' +
     'color:#1c1408;background:linear-gradient(90deg,#f5c542,#f59e0b);' +
     'box-shadow:0 1px 6px rgba(0,0,0,0.12);' +
-    '}' +
-    'body.has-play-ribbon .cx-header.site-header{' +
-    'top:var(--play-ribbon-h);' +
     '}';
 
   var bar = document.createElement('div');
