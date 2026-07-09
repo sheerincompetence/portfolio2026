@@ -478,7 +478,7 @@
   z-index: 96;
   text-transform: uppercase;
   letter-spacing: 0.04em;
-  animation: chaos-fab-bounce 2s ease-in-out infinite;
+  animation: none;
 }
 
 @keyframes chaos-fab-bounce {
