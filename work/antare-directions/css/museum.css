@@ -1,0 +1,200 @@
+/* Direction 04 — Museum exhibition */
+.dir-museum {
+  --gallery: #0c0c0c;
+  --gallery-text: #e8e4dc;
+  --gallery-muted: #8a8580;
+  --spot: #fff8ee;
+  --plaque: #1a1918;
+  background: var(--gallery);
+  color: var(--gallery-text);
+}
+
+.dir-museum .cx-header.site-header {
+  background: var(--gallery);
+  border-bottom-color: rgba(255,255,255,0.06);
+}
+.dir-museum .cx-logo__name,
+.dir-museum .cx-nav a { color: var(--gallery-muted); }
+.dir-museum .cx-nav a:hover { color: var(--gallery-text); }
+
+.mu-gallery {
+  padding-bottom: 6rem;
+}
+
+/* Room intro */
+.mu-room {
+  min-height: 70vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 4rem max(2rem, calc((100vw - 900px) / 2 + 2rem)) 3rem;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
+.mu-room__num {
+  font-family: var(--font-sans);
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gallery-muted);
+  margin: 0 0 1rem;
+}
+
+.mu-room__title {
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 400;
+  line-height: 1.1;
+  margin: 0;
+  max-width: 16ch;
+}
+
+.mu-room__desc {
+  font-family: var(--font-serif);
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: var(--gallery-muted);
+  max-width: 36ch;
+  margin: 1.25rem 0 0;
+}
+
+/* Artefact display */
+.mu-artefact {
+  padding: 4rem max(2rem, calc((100vw - 900px) / 2 + 2rem));
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+@media (min-width: 800px) {
+  .mu-artefact {
+    grid-template-columns: 1fr 280px;
+    align-items: end;
+  }
+  .mu-artefact--reverse { grid-template-columns: 280px 1fr; }
+  .mu-artefact--reverse .mu-artefact__plaque { order: -1; }
+}
+
+.mu-artefact__spot {
+  position: relative;
+  background: radial-gradient(ellipse 80% 70% at 50% 60%, rgba(255,248,238,0.08) 0%, transparent 70%);
+  padding: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.mu-artefact__spot img {
+  max-width: 100%;
+  max-height: 65vh;
+  object-fit: contain;
+  filter: drop-shadow(0 24px 48px rgba(0,0,0,0.6));
+}
+
+.mu-artefact__duo {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+.mu-artefact__duo img {
+  width: 100%;
+  filter: drop-shadow(0 16px 32px rgba(0,0,0,0.5));
+}
+
+.mu-artefact__plaque {
+  background: var(--plaque);
+  border: 1px solid rgba(255,255,255,0.08);
+  padding: 1.5rem;
+  font-family: var(--font-serif);
+  font-size: 0.95rem;
+  line-height: 1.65;
+  color: var(--gallery-muted);
+}
+
+.mu-artefact__plaque strong {
+  display: block;
+  font-family: var(--font-sans);
+  font-size: 0.65rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gallery-text);
+  margin-bottom: 0.75rem;
+  font-weight: 500;
+}
+
+/* Vitrine — overwhelm */
+.dir-museum .crowd-stage {
+  min-height: 240vh;
+  background: #080808;
+  border-block: 1px solid rgba(255,255,255,0.06);
+}
+
+.dir-museum .crowd-stage__sticky {
+  background: radial-gradient(ellipse 60% 50% at 50% 45%, rgba(255,248,238,0.04) 0%, #080808 70%);
+}
+
+.dir-museum .crowd-stage__label {
+  font-family: var(--font-sans);
+  letter-spacing: 0.2em;
+  color: var(--gallery-muted);
+}
+
+.dir-museum .crowd-stage__quote {
+  font-family: var(--font-serif);
+  font-style: italic;
+  color: var(--spot);
+  white-space: normal;
+}
+
+.dir-museum [data-crowd-card] {
+  box-shadow: 0 20px 60px rgba(0,0,0,0.7), 0 0 40px rgba(255,248,238,0.06);
+}
+
+/* Climax — lit wall text */
+.mu-climax {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 4rem 2rem;
+  background: radial-gradient(ellipse 70% 50% at 50% 50%, #1a1510 0%, var(--gallery) 80%);
+}
+
+.mu-climax .principle__text {
+  font-family: var(--font-serif);
+  font-size: clamp(2.5rem, 7vw, 5rem);
+  font-weight: 400;
+  line-height: 1.05;
+  color: var(--spot);
+  max-width: 12ch;
+  text-shadow: 0 0 80px rgba(255,248,238,0.15);
+}
+
+.mu-epilogue {
+  padding: 4rem max(2rem, calc((100vw - 900px) / 2 + 2rem));
+  border-top: 1px solid rgba(255,255,255,0.06);
+}
+
+.mu-epilogue p {
+  font-family: var(--font-serif);
+  font-size: 1.15rem;
+  line-height: 1.7;
+  color: var(--gallery-muted);
+  max-width: 38ch;
+}
+
+.mu-epilogue strong { color: var(--gallery-text); font-weight: 500; }
+
+.dir-museum__back {
+  text-align: center;
+  padding: 2rem;
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+}
+.dir-museum__back a { color: var(--gallery-muted); }
+
+@media (max-width: 600px) {
+  .mu-artefact__duo { grid-template-columns: 1fr; }
+}
