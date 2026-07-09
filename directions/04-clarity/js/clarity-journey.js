@@ -1196,7 +1196,7 @@
   const SLIDER_HINT_PEAK = 5;
   const SLIDER_HINT_OUT_MS = 130;
   const SLIDER_HINT_BACK_MS = 230;
-  const SLIDER_ARROW_CUE_MS = 2200;
+  const SLIDER_ARROW_CUE_MS = 2000;
 
   let sliderHintTimer = null;
   let sliderHintRaf = null;

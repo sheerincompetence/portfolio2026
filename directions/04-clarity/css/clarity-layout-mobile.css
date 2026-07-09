@@ -408,4 +408,10 @@
     width: 1.75rem;
     height: 1.75rem;
   }
+
+  /* Mobile chaos: hide trust badges and mystery button */
+  body.journey-layout-lock.complexity-start .chaos-trust,
+  body.journey-layout-lock.complexity-start .chaos-mystery {
+    display: none !important;
+  }
 }
