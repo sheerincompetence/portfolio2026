@@ -1059,6 +1059,17 @@
   const REST_MORPH_START = 0.9;
   const REST_MORPH_END = 1;
 
+  const SLIDER_HINT_IDLE_MS = 5000;
+  const SLIDER_HINT_PEAK = 5;
+  const SLIDER_HINT_OUT_MS = 520;
+  const SLIDER_HINT_HOLD_MS = 140;
+  const SLIDER_HINT_BACK_MS = 240;
+
+  let sliderHintTimer = null;
+  let sliderHintRaf = null;
+  let sliderHintActive = false;
+  const sliderBlock = document.querySelector('.cx-slider');
+
   /* Venn exit timing — single source of truth (CSS reads --venn-slide / --venn-space from JS) */
   const VENN_EXIT_START = 0;
   const VENN_EXIT_END = 0.62;
@@ -1330,6 +1341,7 @@
     resetHeadlineBaseline();
     resetAllPops();
     setClarity(0);
+    scheduleSliderHint();
   }
 
   function clearRestEnterTimer() {
@@ -1366,6 +1378,86 @@
     if (isResting || isRestTransitioning || currentU < 0.995) return;
     clearRestEnterTimer();
     beginRestTransition();
+  }
+
+  function cancelSliderHint() {
+    if (sliderHintTimer) {
+      clearTimeout(sliderHintTimer);
+      sliderHintTimer = null;
+    }
+    if (sliderHintRaf) {
+      cancelAnimationFrame(sliderHintRaf);
+      sliderHintRaf = null;
+    }
+    sliderHintActive = false;
+    slider?.classList.remove('cx-slider__input--hinting');
+    sliderBlock?.classList.remove('cx-slider--hint-active');
+  }
+
+  function animateClarityTo(targetPct, durationMs, easeFn, onDone) {
+    const fromPct = currentU * 100;
+    const start = performance.now();
+
+    function frame(now) {
+      if (!sliderHintActive) return;
+      const t = Math.min(1, (now - start) / durationMs);
+      setClarity(fromPct + (targetPct - fromPct) * easeFn(t));
+      if (t < 1) {
+        sliderHintRaf = requestAnimationFrame(frame);
+        return;
+      }
+      sliderHintRaf = null;
+      onDone?.();
+    }
+
+    sliderHintRaf = requestAnimationFrame(frame);
+  }
+
+  function finishSliderHint() {
+    sliderHintActive = false;
+    slider?.classList.remove('cx-slider__input--hinting');
+    sliderBlock?.classList.remove('cx-slider--hint-active');
+    scheduleSliderHint();
+  }
+
+  function runSliderHint() {
+    if (sliderHintActive || isResting || TUNE_ENABLED || currentU > 0.001) return;
+
+    sliderHintActive = true;
+    slider.classList.add('cx-slider__input--hinting');
+    sliderBlock?.classList.add('cx-slider--hint-active');
+
+    animateClarityTo(SLIDER_HINT_PEAK, SLIDER_HINT_OUT_MS, easeOutCubic, () => {
+      if (!sliderHintActive) return;
+      sliderHintTimer = setTimeout(() => {
+        sliderHintTimer = null;
+        if (!sliderHintActive) return;
+        animateClarityTo(0, SLIDER_HINT_BACK_MS, easeInCubic, () => {
+          if (sliderHintActive) finishSliderHint();
+        });
+      }, SLIDER_HINT_HOLD_MS);
+    });
+  }
+
+  function scheduleSliderHint() {
+    if (sliderHintTimer) {
+      clearTimeout(sliderHintTimer);
+      sliderHintTimer = null;
+    }
+    if (prefersReduced || isResting || TUNE_ENABLED || sliderHintActive || currentU > 0.001) return;
+
+    sliderHintTimer = setTimeout(() => {
+      sliderHintTimer = null;
+      runSliderHint();
+    }, SLIDER_HINT_IDLE_MS);
+  }
+
+  function noteSliderIdleWatch() {
+    if (sliderHintActive || isResting || TUNE_ENABLED || currentU > 0.001) {
+      cancelSliderHint();
+      return;
+    }
+    scheduleSliderHint();
   }
 
   function setClarity(value) {
@@ -1528,12 +1620,24 @@
     return false;
   }
 
+  slider.addEventListener('pointerdown', () => {
+    cancelSliderHint();
+  });
+
+  slider.addEventListener('pointerup', () => {
+    noteSliderIdleWatch();
+  });
+
   slider.addEventListener('input', (e) => {
+    if (sliderHintActive) return;
     setClarity(parseInt(e.target.value, 10));
+    if (currentU > 0.001) cancelSliderHint();
   });
 
   slider.addEventListener('change', (e) => {
+    if (sliderHintActive) return;
     setClarity(parseInt(e.target.value, 10));
+    noteSliderIdleWatch();
   });
 
   slider.addEventListener('blur', () => {
@@ -1554,6 +1658,7 @@
   if (!initFromQueryOrStorage()) {
     resetAllPops();
     setClarity(0);
+    scheduleSliderHint();
   }
 
   requestAnimationFrame(() => {
