@@ -1,0 +1,35 @@
+---
+description: Play branch desktop journey must match main — verify before claiming fixed
+globs: directions/04-clarity/**/*,index.html,js/play-ribbon.js
+alwaysApply: false
+---
+
+# Journey desktop parity (play vs main)
+
+**Main is source of truth for desktop.** Play may add mobile-only behaviour; it must not change desktop header/hero geometry.
+
+## Before saying "fixed" on header, scroll, or layout
+
+1. Run `python3 scripts/check-journey-header-parity.py` (static guards).
+2. At **1370px** and `?start=1`, compare **8767 (main)** vs **8766 (play)** in Browser MCP:
+   - `header.getBoundingClientRect().height`
+   - `header.bottom - urgency.bottom` (white band below urgency)
+   - `hero.top - header.bottom` (gap; must be 0)
+   - `hero.scrollWidth` at `?resting=1` (must equal viewport width)
+3. Report measured numbers — never claim parity without them.
+
+## CSS architecture (do not regress)
+
+| File | Role |
+|------|------|
+| `clarity-layout-lock.css` | Desktop only — keep ~same line count as `main` |
+| `clarity-layout-mobile.css` | All `@media (max-width: 768px)` journey rules |
+| `play-ribbon.js` | Overlay only — **never** set `.cx-header { top }` or `.cx-page { padding-top }` |
+
+## Known failure modes
+
+- Comma instead of `{` in a mobile `@media` block → entire block leaks to desktop (header ~115px vs ~71px).
+- Play ribbon pushing header down without matching page padding → false "header depth" bug.
+- `--venn-slide` left at `48vw` after exit → horizontal scroll on hero at clarity.
+
+After editing layout CSS, run `python3 scripts/check-css-media-blocks.py`.
