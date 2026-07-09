@@ -211,6 +211,21 @@ body.journey-layout-lock.clarity-journey .cx-page {
   );
 }
 
+/* Desktop: hide mobile chrome (markup shared with site-shell pages) */
+body.journey-layout-lock .cx-nav-toggle,
+body.journey-layout-lock .cx-mobile-nav,
+body.journey-layout-lock .cx-mobile-nav-backdrop {
+  display: none;
+}
+
+@media (min-width: 769px) {
+  body.journey-layout-lock.clarity-journey .cx-hero,
+  body.journey-layout-lock.complexity-start .cx-hero,
+  body.journey-layout-lock .cx-hero {
+    overflow-x: clip;
+  }
+}
+
 @media (max-width: 768px) {
   body.complexity-start.journey-layout-lock {
     --cx-layout-header-h: 72px;
