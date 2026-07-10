@@ -3,13 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="../favicon.ico" sizes="48x48">
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../apple-touch-icon.png">
   <meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
-  <title>Education &amp; Enablement — Andrew Sheerin</title>
-  <meta name="description" content="Systemic product thinking: VMware RabbitMQ conversion research and enablement strategy.">
-  <link rel="stylesheet" href="../css/main.css?v=6">
-  <link rel="stylesheet" href="../css/site-shell.css?v=6">
+  <title>Designing Outside the Product - Andrew Sheerin</title>
+  <meta name="description" content="VMware RabbitMQ: when the conversion problem lived outside the product - research, journey mapping, and Education &amp; Enablement.">
+  <link rel="stylesheet" href="../css/main.css?v=8">
+  <link rel="stylesheet" href="../css/site-shell.css?v=12">
+  <link rel="stylesheet" href="../css/case-interior.css?v=11">
+  <link rel="stylesheet" href="../css/case-story.css?v=74">
+  <link rel="stylesheet" href="../css/case-education.css?v=4">
 </head>
-<body class="site-shell">
+<body class="site-shell story">
   <a href="#main" class="skip-link">Skip to content</a>
 
   <header class="cx-header site-header">
@@ -22,131 +28,410 @@
         <a href="../about/">About</a>
         <a href="../contact/">Contact</a>
       </nav>
+      <button type="button" class="cx-nav-toggle" aria-expanded="false" aria-controls="cx-mobile-nav" aria-label="Open menu">
+        <span class="cx-nav-toggle__bar" aria-hidden="true"></span>
+        <span class="cx-nav-toggle__bar" aria-hidden="true"></span>
+        <span class="cx-nav-toggle__bar" aria-hidden="true"></span>
+      </button>
+      <nav id="cx-mobile-nav" class="cx-mobile-nav" aria-label="Mobile" hidden></nav>
+      <button type="button" class="cx-mobile-nav-backdrop" hidden aria-label="Close menu"></button>
     </div>
   </header>
 
   <main id="main">
-    <header class="case-header">
-      <div class="container container--prose">
-        <p class="eyebrow">Case study · VMware</p>
-        <h1>Education &amp; Enablement</h1>
-        <p class="case-thesis">When the real conversion problem isn't the product, it's how people understand it — research, workshops, and systemic thinking to find where value actually lives.</p>
+    <div class="case-intro" id="case-intro">
+      <div class="case-intro__head">
+        <header class="case-interior-hero">
+          <span class="case-interior-hero__index" aria-hidden="true">03</span>
+          <p class="case-interior-hero__label">Case study · VMware</p>
+          <h1 class="case-interior-hero__title">Designing Outside the Product</h1>
+          <p class="case-interior-hero__thesis">Sometimes you have to go beyond the UI to do the best design work.</p>
+        </header>
 
-        <dl class="case-meta">
-          <div>
-            <dt>Role</dt>
-            <dd>Staff Designer</dd>
-          </div>
-          <div>
-            <dt>Organisation</dt>
-            <dd>VMware (Tanzu / RabbitMQ)</dd>
-          </div>
-          <div>
-            <dt>Focus</dt>
-            <dd>Commercial conversion journey, product enablement</dd>
-          </div>
-          <div>
-            <dt>Disciplines</dt>
-            <dd>Research, facilitation, product strategy, content design</dd>
-          </div>
-        </dl>
+        <div class="case-interior-frontmatter">
+          <dl class="case-interior-meta">
+            <div>
+              <dt>Role</dt>
+              <dd>Staff Designer</dd>
+            </div>
+            <div>
+              <dt>Organisation</dt>
+              <dd>VMware (Tanzu / RabbitMQ)</dd>
+            </div>
+            <div>
+              <dt>Focus</dt>
+              <dd>Commercial conversion, education &amp; enablement</dd>
+            </div>
+            <div>
+              <dt>Disciplines</dt>
+              <dd>Research, facilitation, journey mapping, product strategy</dd>
+            </div>
+          </dl>
+        </div>
       </div>
-    </header>
 
-    <article>
-      <section class="narrative-block">
-        <div class="container container--prose">
-          <p class="narrative-block__label">Context</p>
-          <h2>The product wasn't the problem</h2>
-          <p>RabbitMQ is one of the most widely deployed message brokers in the world. Its open-source community is enormous. Its commercial offering — VMware Tanzu RabbitMQ — adds enterprise features, support, and managed deployment. The commercial conversion journey, however, was underperforming.</p>
-          <p>The assumption was familiar: if the product is good enough, customers will upgrade. But the research told a different story. The value proposition wasn't compelling or clear. Feature differences between OSS and commercial were obscure. And the sales process required more human touch than most customers wanted to give.</p>
-        </div>
-      </section>
+      <div class="story-threshold case-intro__threshold" aria-hidden="true"></div>
 
-      <section class="narrative-block">
-        <div class="container container--prose">
-          <p class="narrative-block__label">Challenge</p>
-          <h2>Understanding a journey nobody had mapped</h2>
-          <p>Commercial conversion for developer tools is not a funnel — it's a journey through communities, documentation, trial experiences, pricing pages, sales conversations, and support interactions. Each touchpoint either builds or erodes understanding of what the commercial product offers and why it matters.</p>
-          <p>Nobody had mapped this journey holistically. Product marketing owned messaging. Sales owned conversations. Support owned post-sale relationships. Design sat across all of them, able to see the gaps.</p>
-        </div>
+      <nav class="case-interior-jumps" aria-label="Jump to sections">
+        <span class="case-interior-jumps__label">Jump straight to:</span>
+        <a href="#the-artefact">The artefact</a>
+        <a href="#conclusion">Conclusion</a>
+        <a href="#do-differently">Things I'd do differently</a>
+      </nav>
+    </div>
 
-        <figure class="figure figure--wide container container--prose">
-          <img src="../assets/images/education/empathy-map.png" alt="Empathy map from conversion research" loading="lazy">
-          <figcaption class="figure__caption">Empathy mapping: understanding what customers think, feel, see, and do across the conversion journey.</figcaption>
-        </figure>
-      </section>
+    <article class="case-interior-article case-interior-article--has-jumps">
 
-      <section class="narrative-block">
-        <div class="container container--prose">
-          <p class="narrative-block__label">What I did</p>
-          <h2>Research, workshops, and uncomfortable findings</h2>
-          <p>I led internal research combining interviews, assumption testing, and a virtual offsite workshop (November 2023) with cross-functional stakeholders. The goal was not to validate existing strategy but to stress-test it against evidence.</p>
-          <p>Key findings challenged conventional wisdom:</p>
-          <ul>
-            <li><strong>Support is the conversion driver.</strong> Crisis-driven customers who experience VMware support renew at roughly 2× the initial sale value. This story was buried — not promoted, not easy to discover.</li>
-            <li><strong>Price isn't the problem; opacity is.</strong> "Price itself isn't a problem; the fact it's obscure and requires a lengthy quote process is." Customers compared unfavourably to AWS and CloudAMQP, where managed purchase is low-friction.</li>
-            <li><strong>Feature differentiation fails.</strong> The differences between OSS and commercial RabbitMQ are real but poorly communicated. Customers can't evaluate what they can't understand.</li>
-            <li><strong>Sales process mismatch.</strong> High-touch sales works for enterprise but repels the mid-market developers who represent growth.</li>
-          </ul>
-        </div>
+      <!-- Prologue -->
+      <section class="story-band">
+        <header class="story-chapter story-chapter--first" data-beat>
+          <p class="story-chapter__label">Prologue</p>
+        </header>
 
-        <figure class="figure figure--wide container container--prose">
-          <img src="../assets/images/education/findings.png" alt="Research findings summary" loading="lazy">
-          <figcaption class="figure__caption">Research findings: the gap between product capability and market understanding.</figcaption>
-        </figure>
-      </section>
-
-      <section class="narrative-block">
-        <div class="container container--prose">
-          <p class="narrative-block__label">Evidence</p>
-          <h2>From research to recommendations</h2>
-          <p>The research produced actionable recommendations across product strategy, marketing, partner enablement, and service design:</p>
-          <ul>
-            <li>Review product strategy with conversion evidence, not assumptions</li>
-            <li>Invest in marketing and content clarity — make the commercial value proposition legible</li>
-            <li>Promote the support story as a primary conversion driver</li>
-            <li>Invest in managed service offerings to compete with low-friction alternatives</li>
-            <li>Improve partner enablement so the journey doesn't depend on direct sales alone</li>
-          </ul>
-          <p>This work connected to broader enablement initiatives — including the Intent-Based Guidance Playbook, a 70-page living document codifying how VMware's distributed design team should approach guidance language in admin UX.</p>
-        </div>
-
-        <figure class="figure figure--wide container container--prose">
-          <img src="../assets/images/education/conclusion.png" alt="Research conclusion slide with key recommendations" loading="lazy">
-          <figcaption class="figure__caption">Research conclusion: recommendations grounded in evidence, not optimism.</figcaption>
-        </figure>
-      </section>
-
-      <section class="narrative-block">
-        <div class="container container--prose">
-          <p class="narrative-block__label">What changed</p>
-          <h2>Clarity about where value actually lives</h2>
-          <p>The research didn't produce a redesign — it produced understanding. Stakeholders across product, marketing, and sales had a shared evidence base for decisions that previously relied on intuition. The support-as-conversion-driver insight alone reframed how commercial value should be communicated.</p>
-
-          <div class="outcome">
-            <p class="outcome__label">What it proves</p>
-            <p>Sometimes the most valuable design work is not designing anything. It's the research, facilitation, and synthesis that helps an organisation see its own product clearly — and act on what it finds, even when the findings are uncomfortable.</p>
+        <div class="story-block" data-beat>
+          <div class="story-block__lead">
+            <span class="story-sec">§1</span>
+            <div class="story-prose">
+              <p>RabbitMQ is one of the most widely deployed message brokers in the world. Millions of developers trusted the open-source version, but relatively few paid for the commercial edition.</p>
+              <p>Everyone assumed we needed better features.</p>
+              <p>So did I.</p>
+              <p>Until I realised we were searching for answers in the wrong place.</p>
+            </div>
           </div>
         </div>
       </section>
+
+      <!-- Act I -->
+      <section class="story-band story-band--warm">
+        <header class="story-chapter" data-beat>
+          <p class="story-chapter__label">Act I</p>
+          <h2 class="story-chapter__title">When you assume the problem, every data point confirms it.</h2>
+        </header>
+
+        <div class="story-block" data-beat>
+          <div class="story-block__lead">
+            <span class="story-sec">§2</span>
+            <div class="story-prose">
+              <p>The team had conducted excellent research asking prospective customers which features would persuade them to convert. The result was exactly what you'd expect: a prioritised wishlist.</p>
+              <p>My first task was to help evaluate those ideas and agree a plan of attack. I ran virtual workshops, comparing opportunities, analysing competitors and searching for alignment.</p>
+            </div>
+          </div>
+          <div class="story-block__body">
+            <div class="story-pair">
+              <div>
+                <p class="story-pair__label">Feature evaluation</p>
+                <div class="story-pair__frame" data-bob>
+                  <img src="../assets/images/education/workshop%20on%20features.png" alt="Virtual workshop board evaluating RabbitMQ feature opportunities with RICE scoring" loading="lazy">
+                </div>
+                <p class="story-caption">Workshop: analysing feature opportunities the team believed would drive conversion.</p>
+              </div>
+              <div>
+                <p class="story-pair__label">Conversion scoring</p>
+                <div class="story-pair__frame" data-bob data-bob-delay="1">
+                  <img src="../assets/images/education/workshop%20RMQ%20conversion%20scoring.png" alt="Impact versus effort matrix from a RabbitMQ conversion workshop" loading="lazy">
+                </div>
+                <p class="story-caption">Impact vs effort: the conversation staying firmly inside the product.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="story-block" data-beat>
+          <div class="story-block__lead">
+            <span class="story-sec">§3</span>
+            <div class="story-prose">
+              <p>As the team focused on the technical landscape, I observed an emerging emotional territory.</p>
+            </div>
+          </div>
+          <div class="story-block__body">
+            <div class="edu-chorus" aria-label="Overheard workshop phrases">
+              <p class="edu-chorus__label">Overheard</p>
+              <ul class="edu-chorus__list">
+                <li>“If we don’t …”</li>
+                <li>“Feature parity”</li>
+                <li>“We’re falling behind”</li>
+                <li>“Need something to announce”</li>
+              </ul>
+            </div>
+            <div class="story-prose" style="margin-top: 1.75rem;">
+              <p>The conversation wasn’t really about features, it was about a deep-rooted anxiety that we weren’t competitive.</p>
+              <p>And this niggling doubt drove all their exploration - so of course it was readily confirmed wherever they looked.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Act II -->
+      <section class="story-band">
+        <header class="story-chapter" data-beat>
+          <p class="story-chapter__label">Act II</p>
+          <h2 class="story-chapter__title">I stopped looking at the product.</h2>
+        </header>
+
+        <div class="story-block" data-beat>
+          <div class="story-block__lead">
+            <span class="story-sec">§4</span>
+            <div class="story-prose">
+              <p>After the workshop, I went through the interview recordings and for every “I wish we could…”, I heard smaller claims being made:</p>
+              <ul class="story-list">
+                <li>“I can’t get approval on my own”</li>
+                <li>“don’t have time…”</li>
+                <li>“…complicated…”</li>
+              </ul>
+              <p>None of these were product problems. They were friction surrounding procurement.</p>
+              <p>So I followed that thread and uncovered a truth hiding in plain sight: it was just… awful. And everyone knew it.</p>
+            </div>
+          </div>
+          <div class="story-block__body">
+            <figure class="edu-voice" data-beat>
+              <p class="edu-voice__mark" aria-hidden="true">Voice of the customer</p>
+              <blockquote class="edu-voice__quote">
+                <p>Price itself isn’t a problem; the fact it’s obscure and requires a lengthy quote process is.</p>
+              </blockquote>
+              <figcaption class="edu-voice__attr">Customer · conversion research</figcaption>
+            </figure>
+          </div>
+        </div>
+
+        <div class="story-block" data-beat>
+          <div class="story-block__lead">
+            <span class="story-sec">§5</span>
+            <div class="story-prose">
+              <p>But because no one had ever visualised it, customers were left to navigate a protracted fifteen-stage sales process involving seven separate teams, each sometimes unaware of the others’ involvement.</p>
+              <p>I started mapping this out for my own benefit, but as soon as I started showing it to other people I realised how powerful a simple diagram could be.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Act III -->
+      <section class="story-band story-band--ash">
+        <header class="story-chapter" data-beat>
+          <p class="story-chapter__label">Act III</p>
+          <h2 class="story-chapter__title">Making the invisible visible.</h2>
+        </header>
+
+        <div class="story-block" data-beat>
+          <div class="story-block__lead">
+            <span class="story-sec">§6</span>
+            <div class="story-prose">
+              <p>Once the commercial journey existed on one page, I overlaid the customer’s emotional experience. The result was uncomfortable because it made visible what everyone already knew but no one had seen as a whole.</p>
+            </div>
+          </div>
+          <div class="edu-journey edu-journey--bleed" id="the-artefact" tabindex="-1" data-edu-journey>
+            <div class="edu-journey__toolbar" role="group" aria-label="Journey map view">
+              <button type="button" class="edu-journey__btn is-active" data-journey-view="process" aria-pressed="true">Commercial journey</button>
+              <button type="button" class="edu-journey__btn" data-journey-view="empathy" aria-pressed="false">Customer emotion</button>
+              <button type="button" class="edu-journey__btn" data-journey-view="both" aria-pressed="false">Together</button>
+            </div>
+            <div class="edu-journey__stage">
+              <figure class="edu-journey__panel is-active" data-journey-panel="process">
+                <img src="../assets/images/education/rmq-sales-process.png" alt="Customer journey map of the brownfield migration from open-source RabbitMQ to Tanzu RabbitMQ, showing stages and teams involved" loading="lazy">
+                <figcaption class="story-caption">The commercial journey on one page - discovery through growth, and every team who touched it.</figcaption>
+              </figure>
+              <figure class="edu-journey__panel" data-journey-panel="empathy" hidden>
+                <img src="../assets/images/education/rmq-empathy-journey.png" alt="Customer empathy map plotting emotional highs and lows across the conversion journey" loading="lazy">
+                <figcaption class="story-caption">The same timeline, read as emotion: curiosity, doubt, overwhelm, and thin partnership at the end.</figcaption>
+              </figure>
+              <figure class="edu-journey__panel" data-journey-panel="both" hidden>
+                <img src="../assets/images/education/rqm-sales-and-empathy-together.png" alt="Commercial journey map stacked with the customer empathy overlay" loading="lazy">
+                <figcaption class="story-caption">Process and feeling on the same page - the artefact that said “fix me.”</figcaption>
+              </figure>
+            </div>
+          </div>
+          <div class="story-block__body">
+            <div class="story-pull" data-beat>
+              <p>The value of this artefact is that it was apolitical - it didn’t have to get sponsorship, find allies, persuade or argue. It simply said “fix me!” It was obvious.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Act IV -->
+      <section class="story-band story-band--warm">
+        <header class="story-chapter" data-beat>
+          <p class="story-chapter__label">Act IV</p>
+          <h2 class="story-chapter__title">The question changed.</h2>
+        </header>
+
+        <div class="story-block" data-beat>
+          <div class="story-block__lead">
+            <span class="story-sec">§7</span>
+            <div class="story-prose">
+              <div class="edu-reframe" aria-label="How the question changed">
+                <div class="edu-reframe__from">
+                  <p class="edu-reframe__label">From</p>
+                  <p class="edu-reframe__line">How do we improve the product?</p>
+                </div>
+                <div class="edu-reframe__to">
+                  <p class="edu-reframe__label">To</p>
+                  <p class="edu-reframe__line">How do we improve the experience <em>before</em> the product was even used?</p>
+                </div>
+              </div>
+              <p>An Education &amp; Enablement working group was formed to look into the problems presented at each stage: Sales. Solution engineering. Documentation. Positioning. Messaging. Support. The work expanded beyond software.</p>
+              <p>But there was one question I still wanted answered.</p>
+              <p>Everyone had asked prospective customers what would make them buy. But nobody had asked existing customers why they already had.</p>
+              <p>The answer was incredibly consistent:</p>
+            </div>
+          </div>
+          <div class="story-block__body">
+            <p class="edu-answer" data-beat>Support.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Act V -->
+      <section class="story-band">
+        <header class="story-chapter" data-beat>
+          <p class="story-chapter__label">Act V</p>
+          <h2 class="story-chapter__title">Support is not Support.</h2>
+        </header>
+
+        <div class="story-block" data-beat>
+          <div class="story-block__lead">
+            <span class="story-sec">§8</span>
+            <div class="story-prose">
+              <p>Almost without exception, everyone we spoke to told us they converted in a moment of crisis because they needed dedicated, expert support.</p>
+            </div>
+          </div>
+          <div class="story-block__body">
+            <figure class="edu-voice edu-voice--urgent" data-beat>
+              <p class="edu-voice__mark" aria-hidden="true">Voice of the customer</p>
+              <blockquote class="edu-voice__quote">
+                <p>Customers approach us because they need support yesterday; they are panic-buying for dedicated support in a crisis.</p>
+              </blockquote>
+              <figcaption class="edu-voice__attr">Field insight · conversion research</figcaption>
+            </figure>
+            <div class="story-prose" style="margin-top: 1.75rem;">
+              <p>That’s hard to convert to product value, but if you reframe this as</p>
+              <p class="edu-reframe-inline">“panic-buying certainty that was needed yesterday”</p>
+              <p>then possibilities open up. So I interviewed existing customers about what support had actually given them.</p>
+              <p>It turned out “support” wasn’t support at all.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="story-block" data-beat>
+          <div class="story-block__lead">
+            <span class="story-sec">§9</span>
+            <div class="story-prose">
+              <h3>What support actually unlocked</h3>
+              <p>Support meant confidence, expertise, compliance, safer collaboration, greater risk tolerance, access to new markets, peace of mind.</p>
+              <p>And collectively… those things created something much larger. By freeing up resources, providing stability, giving permission to explore and take risks… this naturally led to growth.</p>
+            </div>
+          </div>
+          <div class="story-block__body">
+            <div class="edu-wheel" data-edu-wheel>
+              <p class="edu-wheel__hint">A path from support to growth - tap a step</p>
+              <div class="edu-wheel__stage">
+                <svg class="edu-wheel__svg" viewBox="-48 -48 576 576" role="img" aria-labelledby="edu-wheel-title edu-wheel-desc">
+                  <title id="edu-wheel-title">Support accumulates toward growth</title>
+                  <desc id="edu-wheel-desc">Interactive diagram: support at the centre unlocks a sequence of outcomes that accumulate around the ring and culminate in growth.</desc>
+                  <defs>
+                    <linearGradient id="edu-wheel-arc-grad" gradientUnits="userSpaceOnUse" x1="240" y1="72" x2="240" y2="408">
+                      <stop offset="0%" stop-color="#8eb0d0" />
+                      <stop offset="55%" stop-color="#2f5d8c" />
+                      <stop offset="100%" stop-color="#b4532a" />
+                    </linearGradient>
+                    <marker id="edu-wheel-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+                      <path d="M 1 1 L 9 5 L 1 9 z" fill="#b4532a" />
+                    </marker>
+                  </defs>
+                  <circle class="edu-wheel__ring edu-wheel__ring--inner" cx="240" cy="240" r="78" fill="none" />
+                  <g class="edu-wheel__path" data-wheel-path aria-hidden="true"></g>
+                  <g class="edu-wheel__hub">
+                    <circle cx="240" cy="240" r="58" />
+                    <text x="240" y="236" text-anchor="middle">Support</text>
+                    <text x="240" y="256" text-anchor="middle" class="edu-wheel__hub-sub">the key</text>
+                  </g>
+                  <g class="edu-wheel__spokes" data-wheel-spokes></g>
+                </svg>
+                <div class="edu-wheel__detail" data-wheel-detail aria-live="polite">
+                  <p class="edu-wheel__detail-kicker">Along the path</p>
+                  <p class="edu-wheel__detail-title">What support unlocked</p>
+                  <p class="edu-wheel__detail-body">Each step builds on the last - permissions that accumulate until growth becomes possible.</p>
+                </div>
+              </div>
+              <p class="edu-wheel__punch" data-beat>
+                <span class="edu-wheel__punch-line">Support. Is. Growth.</span>
+                <span class="edu-wheel__punch-sub">Support solved yesterday’s crisis. Growth explained next year’s renewal.</span>
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Epilogue -->
+      <section class="story-band story-band--dark">
+        <header class="story-chapter story-chapter--dark" data-beat>
+          <p class="story-chapter__label">Epilogue</p>
+          <h2 class="story-chapter__title">Designing outside the product.</h2>
+        </header>
+
+        <div class="story-block" data-beat>
+          <div class="story-block__lead">
+            <span class="story-sec">§10</span>
+            <div class="story-prose">
+              <p>This project permanently changed how I think about design.</p>
+              <p>Sometimes the product isn’t where the product problem lives. Sometimes it exists:</p>
+              <ul class="story-list edu-loci">
+                <li>before the interface</li>
+                <li>after the interface</li>
+                <li>between teams</li>
+                <li>inside organisations</li>
+                <li>inside language</li>
+              </ul>
+              <p>The journey map became the catalyst for creating a permanent Education &amp; Enablement team, reshaping messaging, redesigning the website and rethinking how RabbitMQ’s value was communicated. The artefact wasn’t persuasive because it was beautifully designed.</p>
+              <p><strong>It was persuasive because it allowed dozens of people to see the same problem at the same time</strong>.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
     </article>
+
+    <section class="case-interior-outcome" id="conclusion" tabindex="-1">
+      <p class="case-interior-outcome__label">Conclusion</p>
+      <p>We assumed we had a feature parity problem. The research confirmed it - until I stopped looking at the product. The conversion problem lived in procurement friction, opaque pricing, and a support story nobody had learned to tell.</p>
+      <p>This isn’t a case study about RabbitMQ features, we built lots of those. This is about something rarer - designing at a scale where the real problem lives.</p>
+    </section>
+
+    <section class="case-interior-retro" id="do-differently" tabindex="-1">
+      <p class="case-interior-retro__kicker">Present day reflections</p>
+      <div class="case-interior-retro__head">
+        <h2 class="case-interior-retro__label">
+          <svg class="case-interior-retro__icon" viewBox="0 0 17 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <rect x="0.75" y="0.75" width="12.5" height="16.5" rx="1.25" stroke="currentColor" stroke-width="1.15"/>
+            <path d="M3.5 5.5h7M3.5 8.75h7M3.5 12h4.5" stroke="currentColor" stroke-width="1.15" stroke-linecap="round"/>
+            <path d="M13.25 3.5v13" stroke="currentColor" stroke-width="1.15" stroke-linecap="round" opacity="0.45"/>
+          </svg>
+          Things I'd do differently
+        </h2>
+      </div>
+      <ul class="case-interior-retro__list">
+        <li>Looking back, I wish I’d spent more time with sales, solution engineering and customer success during onboarding. Now I seek those people out first.</li>
+        <li>The bigger reflection - this has changed the scale at which I believe design can and should operate. If I were tackling this today, I would ask permission to address a deeper organisational design question: how did we get here? Every single person from sales to support to customer success was brilliant, helpful, delighted that I was even looking at their corner of the business. There was collective goodwill, capability and desire everywhere to make processes better - yet the system remained broken. That’s a gift of a starting point for real organisational impact. Today I wouldn’t stop at the bandage; I would go back and address the wound.</li>
+      </ul>
+      <p class="case-back-top">
+        <a href="#main">Back to top</a>
+      </p>
+    </section>
 
     <section class="section section--rule">
       <div class="container">
         <p class="eyebrow">More work</p>
         <div class="work-grid">
           <a href="antare.html" class="work-card">
-            <span class="work-card__number">Project 01</span>
-            <h3 class="work-card__title">Antare</h3>
-            <p class="work-card__thesis">Editorial intelligence for AI-generated feeds.</p>
-            <img src="../assets/images/Antare-thumb.png" alt="" class="work-card__image" loading="lazy">
+            <span class="work-card__number">Case Study 01</span>
+            <h3 class="work-card__title">Antare: Compressing reality</h3>
+            <p class="work-card__thesis">When AI produces more signal than anyone can process, the design problem becomes editorial.</p>
+            <img src="../assets/images/Antare-thumb.png" alt="" class="work-card__image" loading="lazy" width="336" height="210">
           </a>
-          <a href="dona.html" class="work-card">
-            <span class="work-card__number">Project 02</span>
-            <h3 class="work-card__title">Citrix DONA</h3>
-            <p class="work-card__thesis">Behavioural science and organisational influence.</p>
-            <img src="../assets/images/DONA-thumb.png" alt="" class="work-card__image" loading="lazy">
+          <a href="#" class="work-card">
+            <span class="work-card__number">Case Study 02</span>
+            <h3 class="work-card__title">Citrix: The hidden cost of good intentions</h3>
+            <p class="work-card__thesis">Behavioural science, organisational influence and an early experiment in sensitive Human-AI interaction.</p>
+            <img src="../assets/images/DONA-thumb.png" alt="" class="work-card__image" loading="lazy" width="336" height="210">
           </a>
         </div>
       </div>
@@ -155,12 +440,14 @@
 
   <footer class="cx-footer site-footer">
     <div class="container cx-footer__inner">
-      <p>Andrew Sheerin — Product Design Leader</p>
+      <p>Andrew Sheerin - Product Design Leader</p>
       <p><a href="../contact/">Contact</a> | <a href="../assets/cv/andrew-sheerin-cv-july-2026.pdf">CV</a></p>
     </div>
   </footer>
 
   <script src="../js/play-ribbon.js?v=7"></script>
-  <script src="../js/main.js"></script>
+  <script src="../js/case-story.js?v=43"></script>
+  <script src="../js/case-education.js?v=3"></script>
+  <script src="../js/mobile-nav.js?v=1"></script>
 </body>
 </html>

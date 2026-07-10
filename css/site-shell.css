@@ -126,7 +126,45 @@ body.site-shell .cx-footer__inner a:hover {
   text-decoration: underline;
 }
 
-/* ——— Mobile nav (shared with journey homepage) ——— */
+.case-back-top {
+  display: flex;
+  justify-content: flex-end;
+  max-width: 42rem;
+  margin: 1.75rem 0 0;
+  padding: 0 var(--case-gutter, 1.5rem);
+  box-sizing: content-box;
+}
+
+.case-interior-retro .case-back-top {
+  margin-top: 2rem;
+  padding: 0;
+}
+
+.case-back-top a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-ink-faint);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.case-back-top a::before {
+  content: "↑";
+  font-size: 0.85em;
+  line-height: 1;
+}
+
+.case-back-top a:hover {
+  color: var(--color-ink);
+}
+
+/* --- Mobile nav (shared with journey homepage) --- */
 body.site-shell .cx-nav-toggle,
 body.site-shell .cx-mobile-nav,
 body.site-shell .cx-mobile-nav-backdrop {

@@ -308,15 +308,18 @@
 }
 
 #the-problem,
+#the-artefact,
+#conclusion,
 #reflections,
-#do-differently {
-  scroll-margin-top: calc(var(--play-ribbon-h, 0px) + var(--cx-shell-header-h, 5.111rem) + 0.65rem);
+#do-differently,
+.case-jump-target {
+  scroll-margin-top: calc(var(--play-ribbon-h, 0px) + var(--cx-shell-header-h, 5.111rem) + 0.85rem);
 }
 
 .case-jump-target {
   display: block;
   width: 0;
-  height: 0;
+  height: 1px;
   margin: 0;
   padding: 0;
   overflow: hidden;
