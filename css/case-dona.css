@@ -1,0 +1,1211 @@
+/* Citrix DONA case - story extensions */
+
+/* --- Prologue peek: linked word opens Workspace modal --- */
+.dona-peek {
+  appearance: none;
+  display: inline;
+  margin: 0;
+  padding: 0;
+  border: none;
+  border-bottom: 1px solid color-mix(in srgb, var(--story-ink) 28%, transparent);
+  background: none;
+  font: inherit;
+  font-weight: 500;
+  color: var(--story-ink);
+  letter-spacing: inherit;
+  cursor: zoom-in;
+  transition: border-color 0.2s ease, color 0.2s ease;
+}
+
+.dona-peek:hover,
+.dona-peek:focus-visible {
+  border-bottom-color: var(--story-ink);
+  outline: none;
+}
+
+.dona-peek:focus-visible {
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--story-ink) 12%, transparent);
+  border-radius: 2px;
+}
+
+/* --- Productivity paradox model --- */
+.dona-paradox {
+  --paradox-heat: 0;
+  --paradox-high: color-mix(
+    in srgb,
+    #f0a060 calc((1 - var(--paradox-heat)) * 100%),
+    #9a2410 calc(var(--paradox-heat) * 100%)
+  );
+  --paradox-high-deep: color-mix(
+    in srgb,
+    #e0893a calc((1 - var(--paradox-heat)) * 100%),
+    #6b1408 calc(var(--paradox-heat) * 100%)
+  );
+  max-width: min(48rem, 100%);
+  margin: 0.5rem auto 0;
+  padding: 1.45rem 1.35rem 1.3rem;
+  background:
+    linear-gradient(
+      165deg,
+      rgba(255, 255, 255, 0.78),
+      color-mix(in srgb, #f7ebe0 calc(var(--paradox-heat) * 55%), rgba(242, 236, 226, 0.92))
+    );
+  border: 1px solid rgba(40, 36, 30, 0.08);
+  border-radius: 2px;
+  box-shadow: 0 14px 36px -28px rgba(154, 36, 16, calc(0.15 + var(--paradox-heat) * 0.45));
+  transition: background 0.35s ease, box-shadow 0.35s ease;
+}
+
+.dona-paradox__toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem 1.25rem;
+  margin-bottom: 1.15rem;
+}
+
+.dona-paradox__title {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: clamp(1.05rem, 2vw, 1.25rem);
+  font-weight: 500;
+  letter-spacing: -0.015em;
+  color: var(--story-ink);
+  line-height: 1.2;
+}
+
+.dona-paradox__control {
+  display: grid;
+  grid-template-columns: auto minmax(7.5rem, 11rem) auto;
+  gap: 0.55rem;
+  align-items: center;
+  flex: 0 1 auto;
+}
+
+.dona-paradox__layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 5.5rem;
+  gap: 1rem 1.15rem;
+  align-items: stretch;
+}
+
+.dona-paradox__day {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-width: 0;
+  min-height: 100%;
+}
+
+.dona-paradox__row {
+  display: grid;
+  grid-template-columns: 6.75rem 1fr;
+  gap: 0.7rem;
+  align-items: center;
+}
+
+.dona-paradox__hour {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  color: var(--story-ink);
+  text-align: right;
+  line-height: 1.25;
+}
+
+.dona-paradox__energy {
+  display: block;
+  margin-top: 0.1rem;
+  font-size: 0.62rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--story-faint);
+}
+
+.dona-paradox__track {
+  position: relative;
+  display: flex;
+  gap: 0.22rem;
+  height: 2.45rem;
+  padding: 0.28rem;
+  background: rgba(255, 255, 255, 0.62);
+  border: 1px solid rgba(40, 36, 30, 0.06);
+  overflow: hidden;
+}
+
+.dona-paradox__task {
+  height: 100%;
+  border-radius: 1px;
+  flex: 0 0 auto;
+  min-width: 0;
+  transition:
+    background 0.4s ease,
+    opacity 0.3s ease,
+    box-shadow 0.35s ease;
+}
+
+.dona-paradox__task--low {
+  background: #c9c2b5;
+}
+
+.dona-paradox__task--empty {
+  background: #ffffff;
+  box-shadow: inset 0 0 0 1px rgba(40, 36, 30, 0.1);
+}
+
+.dona-paradox__task--high {
+  background: linear-gradient(180deg, var(--paradox-high), var(--paradox-high-deep));
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--paradox-high-deep) 25%, transparent);
+}
+
+.dona-paradox__task.is-flipping {
+  animation: dona-paradox-flip 0.45s var(--story-ease);
+}
+
+@keyframes dona-paradox-flip {
+  0% {
+    opacity: 0.35;
+    filter: brightness(1.25);
+  }
+  100% {
+    opacity: 1;
+    filter: none;
+  }
+}
+
+.dona-paradox__queue {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  padding: 0.55rem 0.45rem 0.6rem;
+  background: rgba(255, 255, 255, 0.45);
+  border: 1px dashed rgba(40, 36, 30, 0.14);
+  border-radius: 2px;
+}
+
+.dona-paradox__queue-label {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: 0.62rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--story-faint);
+  text-align: center;
+}
+
+.dona-paradox__queue-stack {
+  /* Cap at ~10 chips so a full backlog doesn't stretch the model */
+  --dona-queue-chip: 0.7rem;
+  --dona-queue-gap: 0.28rem;
+  display: flex;
+  flex-direction: column;
+  gap: var(--dona-queue-gap);
+  height: calc(10 * var(--dona-queue-chip) + 9 * var(--dona-queue-gap));
+  justify-content: flex-start;
+  overflow: hidden;
+}
+
+.dona-paradox__chip {
+  height: var(--dona-queue-chip, 0.7rem);
+  border-radius: 1px;
+  flex: 0 0 auto;
+}
+
+.dona-paradox__chip--low {
+  background: #c9c2b5;
+}
+
+.dona-paradox__chip--high {
+  background: linear-gradient(90deg, #f0a060, #e0893a);
+}
+
+.dona-paradox__queue-empty {
+  margin: auto 0 0;
+  font-family: var(--font-sans);
+  font-size: 0.62rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: var(--story-faint);
+  text-align: center;
+  opacity: 0.7;
+}
+
+.dona-paradox__end {
+  font-family: var(--font-sans);
+  font-size: 0.62rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: var(--story-faint);
+  white-space: nowrap;
+}
+
+.dona-paradox__range {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 0.28rem;
+  border-radius: 999px;
+  background: linear-gradient(
+    90deg,
+    #c9c2b5 0%,
+    #e8a05c 55%,
+    #9a2410 100%
+  );
+  outline: none;
+  cursor: pointer;
+}
+
+.dona-paradox__range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 1.15rem;
+  height: 1.15rem;
+  border-radius: 50%;
+  background: #fff;
+  border: 2px solid #2a2620;
+  box-shadow: 0 2px 8px rgba(40, 36, 30, 0.2);
+  cursor: grab;
+}
+
+.dona-paradox__range::-moz-range-thumb {
+  width: 1.15rem;
+  height: 1.15rem;
+  border-radius: 50%;
+  background: #fff;
+  border: 2px solid #2a2620;
+  box-shadow: 0 2px 8px rgba(40, 36, 30, 0.2);
+  cursor: grab;
+}
+
+.dona-paradox__legend {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem 1.25rem;
+  margin: 1rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.dona-paradox__legend li {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--font-sans);
+  font-size: 0.7rem;
+  font-weight: 500;
+  color: var(--story-muted);
+}
+
+.dona-paradox__swatch {
+  width: 0.7rem;
+  height: 0.7rem;
+  border-radius: 1px;
+}
+
+.dona-paradox__swatch--low { background: #c9c2b5; }
+.dona-paradox__swatch--high {
+  background: linear-gradient(180deg, #f0a060, #c45a28);
+}
+
+@media (max-width: 640px) {
+  .dona-paradox__toolbar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .dona-paradox__control {
+    grid-template-columns: auto 1fr auto;
+    max-width: none;
+  }
+
+  .dona-paradox__layout {
+    grid-template-columns: 1fr;
+  }
+
+  .dona-paradox__queue {
+    flex-direction: row;
+    align-items: center;
+    gap: 0.65rem;
+    padding: 0.55rem 0.7rem;
+  }
+
+  .dona-paradox__queue-label {
+    flex: 0 0 auto;
+  }
+
+  .dona-paradox__queue-stack {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    height: auto;
+    overflow: visible;
+  }
+
+  .dona-paradox__chip {
+    width: 1.35rem;
+    height: 0.65rem;
+  }
+
+  .dona-paradox__row {
+    grid-template-columns: 5.5rem 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dona-paradox__task {
+    transition: none;
+  }
+
+  .dona-paradox__task.is-flipping {
+    animation: none;
+  }
+}
+
+/* --- Evidence: quote + portrait --- */
+.dona-evidence {
+  display: grid;
+  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+  gap: 1.5rem 1.75rem;
+  align-items: stretch;
+  max-width: var(--story-wide);
+  margin: 0.5rem auto 0;
+}
+
+.dona-evidence__portrait {
+  margin: 0;
+  border-radius: 2px;
+  overflow: hidden;
+  background: #1a1814;
+  min-height: 100%;
+}
+
+.dona-evidence__portrait img {
+  width: 100%;
+  height: 100%;
+  min-height: 22rem;
+  object-fit: cover;
+  object-position: center 20%;
+  display: block;
+  filter: grayscale(0.15) contrast(1.05);
+}
+
+.dona-evidence__quote {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0;
+  padding: 1.75rem 1.6rem 1.5rem;
+  background:
+    linear-gradient(180deg, #f7f3eb 0%, #f1ebe1 100%);
+  border-left: 3px solid #b4532a;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.65),
+    0 12px 28px -18px rgba(40, 36, 30, 0.35);
+}
+
+.dona-evidence__mark {
+  margin: 0 0 0.9rem;
+  font-family: var(--font-sans);
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #b4532a;
+}
+
+.dona-evidence__text {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: clamp(1.35rem, 2.8vw, 1.85rem);
+  font-weight: 500;
+  line-height: 1.35;
+  letter-spacing: -0.02em;
+  color: var(--story-ink);
+}
+
+.dona-evidence__text::before {
+  content: "\201C";
+  color: #b4532a;
+  margin-right: 0.05em;
+}
+
+.dona-evidence__text::after {
+  content: "\201D";
+  color: #b4532a;
+  margin-left: 0.05em;
+}
+
+.dona-evidence__attr {
+  margin: 1.25rem 0 0;
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: var(--story-faint);
+}
+
+@media (max-width: 760px) {
+  .dona-evidence {
+    grid-template-columns: 1fr;
+  }
+
+  .dona-evidence__portrait img {
+    min-height: 16rem;
+  }
+}
+
+/* --- Process receipts (workshop + whiteboards) --- */
+.dona-receipts {
+  max-width: var(--story-wide);
+  margin: 0.25rem auto 0;
+}
+
+.dona-receipts__hero {
+  margin: 0;
+  border: 1px solid rgba(40, 36, 30, 0.1);
+  border-radius: 2px;
+  overflow: hidden;
+  background: #fff;
+}
+
+.dona-receipts__hero img {
+  width: 100%;
+  display: block;
+}
+
+.dona-receipts__strip {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 0.45rem;
+  margin-top: 0.55rem;
+}
+
+.dona-receipts__thumb {
+  margin: 0;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border: 1px solid rgba(40, 36, 30, 0.08);
+  border-radius: 1px;
+  background: #ebe6dc;
+}
+
+.dona-receipts__thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: saturate(0.85);
+  opacity: 0.92;
+  transition: opacity 0.2s ease, filter 0.2s ease;
+}
+
+.dona-receipts__thumb:hover img {
+  opacity: 1;
+  filter: saturate(1);
+}
+
+@media (max-width: 640px) {
+  .dona-receipts__strip {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .dona-receipts__thumb:nth-child(n + 4) {
+    display: none;
+  }
+}
+
+/* --- Compact data receipt --- */
+.dona-data-receipt {
+  max-width: min(32rem, 100%);
+  margin: 1.75rem auto 0;
+  padding: 0.85rem;
+  background: #f4f1ea;
+  border: 1px solid rgba(40, 36, 30, 0.1);
+  border-radius: 2px;
+  box-shadow: 0 8px 22px -16px rgba(40, 36, 30, 0.4);
+}
+
+.dona-data-receipt__frame {
+  background: #fff;
+  border: 1px solid rgba(40, 36, 30, 0.08);
+  padding: 0.35rem;
+}
+
+.dona-data-receipt__frame img {
+  width: 100%;
+  display: block;
+}
+
+.dona-data-receipt .story-caption {
+  margin-top: 0.85rem;
+  max-width: none;
+}
+
+/* --- Inline logo float --- */
+.dona-name-block {
+  position: relative;
+  overflow: hidden;
+}
+
+.dona-name-block__logo {
+  float: right;
+  width: min(7.5rem, 28%);
+  margin: 0.15rem 0 1rem 1.35rem;
+  shape-outside: margin-box;
+}
+
+.dona-name-block__logo img {
+  width: 100%;
+  display: block;
+  filter: drop-shadow(0 6px 14px rgba(40, 36, 30, 0.12));
+}
+
+@media (max-width: 520px) {
+  .dona-name-block__logo {
+    float: none;
+    width: 5.5rem;
+    margin: 0 0 1rem;
+  }
+}
+
+/* --- Signal / wellbeing table --- */
+.dona-signal {
+  max-width: var(--story-prose);
+  margin: 1.75rem auto 1.75rem calc(var(--story-prose-inset) + var(--story-sec-rail));
+  padding: 1.15rem 1.15rem 1rem;
+  background: rgba(255, 255, 255, 0.55);
+  border: 1px solid rgba(40, 36, 30, 0.08);
+  border-radius: 2px;
+  box-sizing: border-box;
+}
+
+.dona-signal__table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.92rem;
+  line-height: 1.4;
+}
+
+.dona-signal__table thead th {
+  font-family: var(--font-sans);
+  font-size: 0.62rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--story-faint);
+  text-align: left;
+  padding: 0.15rem 0.55rem 0.65rem;
+  border-bottom: 1px solid var(--color-rule);
+}
+
+.dona-signal__head {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+}
+
+.dona-signal__arrow {
+  font-size: 0.85rem;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--story-ink);
+  opacity: 0.45;
+  line-height: 1;
+}
+
+.dona-signal__table tbody tr {
+  border-bottom: 1px solid color-mix(in srgb, var(--color-rule) 55%, transparent);
+}
+
+.dona-signal__table tbody tr:last-child {
+  border-bottom: 1px solid var(--color-rule);
+}
+
+.dona-signal__table tbody th,
+.dona-signal__table tbody td {
+  padding: 0.8rem 0.55rem;
+  vertical-align: top;
+  text-align: left;
+}
+
+.dona-signal__table tbody th {
+  font-family: var(--font-sans);
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: var(--story-ink);
+  width: 52%;
+}
+
+.dona-signal__metric {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.7rem;
+}
+
+.dona-signal__icon {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.55rem;
+  height: 1.55rem;
+  margin-top: 0.05rem;
+  color: var(--story-ink);
+}
+
+.dona-signal__icon svg {
+  display: block;
+  width: 1.35rem;
+  height: 1.35rem;
+}
+
+.dona-signal__table tbody td {
+  font-family: var(--font-serif);
+  font-style: italic;
+  color: var(--story-muted);
+}
+
+.dona-signal__table tbody tr.is-validate th,
+.dona-signal__table tbody tr.is-validate td {
+  color: var(--story-ink);
+}
+
+.dona-signal__note {
+  margin: 0.85rem 0 0;
+  max-width: none;
+  text-align: left;
+  padding: 0.55rem 0 0;
+  border-top: none;
+}
+
+/* --- Chat model comparison --- */
+.dona-models {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.85rem 0.75rem;
+  max-width: var(--story-wide);
+  margin: 0.5rem auto 0;
+}
+
+.dona-models__card {
+  margin: 0;
+  background: transparent;
+  border: none;
+  outline: none;
+}
+
+.dona-models__card:focus-visible .dona-models__frame {
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--story-ink) 14%, transparent);
+}
+
+.dona-models__frame {
+  position: relative;
+  background: #fff;
+  border: 1px solid rgba(40, 36, 30, 0.1);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.dona-models__frame img {
+  width: 100%;
+  display: block;
+}
+
+.dona-models__overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: flex-end;
+  padding: 0.75rem;
+  background: linear-gradient(
+    180deg,
+    rgba(28, 26, 22, 0.05) 0%,
+    rgba(28, 26, 22, 0.72) 55%,
+    rgba(28, 26, 22, 0.88) 100%
+  );
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.22s ease;
+}
+
+.dona-models__card:hover .dona-models__overlay,
+.dona-models__card:focus-within .dona-models__overlay {
+  opacity: 1;
+}
+
+.dona-models__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  display: grid;
+  gap: 0.35rem;
+}
+
+.dona-models__list li {
+  display: grid;
+  grid-template-columns: 0.85rem 1fr;
+  gap: 0.4rem;
+  align-items: start;
+  font-family: var(--font-sans);
+  font-size: clamp(0.72rem, 1.2vw, 0.82rem);
+  font-weight: 500;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+  color: #f4f1ea;
+}
+
+.dona-models__list li::before {
+  content: "";
+  width: 0.7rem;
+  height: 0.7rem;
+  margin-top: 0.12rem;
+  background: center / contain no-repeat;
+}
+
+.dona-models__list li.is-pro::before {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M2.2 6.2 4.8 8.7 9.8 3.3' fill='none' stroke='%2398d4a8' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+}
+
+.dona-models__list li.is-con::before {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M3.2 3.2 8.8 8.8M8.8 3.2 3.2 8.8' fill='none' stroke='%23f0a090' stroke-width='1.6' stroke-linecap='round'/%3E%3C/svg%3E");
+}
+
+.dona-models__label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.35rem 0.5rem;
+  margin: 0.55rem 0 0;
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--story-faint);
+  text-align: center;
+}
+
+.dona-models__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.28rem;
+  padding: 0.12rem 0.4rem 0.12rem 0.28rem;
+  border: 1px solid color-mix(in srgb, #b8922a 42%, rgba(40, 36, 30, 0.12));
+  border-radius: 999px;
+  font-size: 0.58rem;
+  letter-spacing: 0.1em;
+  color: #6e5618;
+  background: linear-gradient(180deg, #f6e7b0, #e8c96a);
+}
+
+.dona-models__rosette {
+  display: block;
+  flex: 0 0 auto;
+  color: #6e5618;
+  opacity: 0.85;
+}
+
+.dona-models__card.is-winner .dona-models__label {
+  color: var(--story-ink);
+}
+
+@media (hover: none) {
+  .dona-models__overlay {
+    background: linear-gradient(
+      180deg,
+      rgba(28, 26, 22, 0) 0%,
+      rgba(28, 26, 22, 0.55) 42%,
+      rgba(28, 26, 22, 0.9) 100%
+    );
+  }
+}
+
+@media (max-width: 860px) {
+  .dona-models {
+    grid-template-columns: 1fr;
+    max-width: min(22rem, 100%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dona-models__overlay {
+    transition: none;
+  }
+}
+
+/* --- Check-in evolution strip --- */
+.dona-evolve {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.65rem;
+  max-width: var(--story-wide);
+  margin: 0.5rem auto 0;
+}
+
+.dona-evolve__item {
+  margin: 0;
+  background: #fff;
+  border: 1px solid rgba(40, 36, 30, 0.08);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.dona-evolve__item img {
+  width: 100%;
+  display: block;
+  aspect-ratio: 1;
+  object-fit: contain;
+  background: #f7f4ee;
+  padding: 0.55rem;
+}
+
+.dona-evolve__step {
+  margin: 0;
+  padding: 0.45rem 0.55rem 0.55rem;
+  font-family: var(--font-sans);
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--story-faint);
+  border-top: 1px solid rgba(40, 36, 30, 0.06);
+}
+
+@media (max-width: 720px) {
+  .dona-evolve {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* --- Audience storytelling carousel --- */
+.dona-stories {
+  max-width: var(--story-wide);
+  margin: 0.25rem auto 0;
+  --dona-story-pad: 0.15rem;
+}
+
+.dona-stories__chrome {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 0.85rem;
+}
+
+.dona-stories__tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.dona-stories__tab {
+  appearance: none;
+  margin: 0;
+  padding: 0.4rem 0.75rem;
+  border: 1px solid rgba(40, 36, 30, 0.12);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.55);
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--story-muted);
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.dona-stories__tab.is-active {
+  background: var(--story-ink);
+  border-color: var(--story-ink);
+  color: var(--story-paper);
+}
+
+.dona-stories__nav {
+  display: inline-flex;
+  gap: 0.35rem;
+}
+
+.dona-stories__btn {
+  appearance: none;
+  width: 2.15rem;
+  height: 2.15rem;
+  margin: 0;
+  padding: 0;
+  border: 1px solid rgba(40, 36, 30, 0.14);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.7);
+  color: var(--story-ink);
+  font-size: 1rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.dona-stories__btn:hover {
+  background: #fff;
+}
+
+.dona-stories__btn:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+.dona-stories__viewport {
+  overflow: hidden;
+  border: 1px solid rgba(40, 36, 30, 0.1);
+  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.45);
+}
+
+.dona-stories__track {
+  display: flex;
+  transition: transform 0.55s var(--story-ease);
+  will-change: transform;
+}
+
+.dona-stories__slide {
+  flex: 0 0 100%;
+  min-width: 100%;
+  box-sizing: border-box;
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  gap: 1.25rem 1.5rem;
+  padding: 1.35rem 1.35rem 1.45rem;
+  align-items: start;
+}
+
+.dona-stories__copy {
+  min-width: 0;
+}
+
+.dona-stories__kicker {
+  margin: 0 0 0.55rem;
+  font-family: var(--font-sans);
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--story-faint);
+}
+
+.dona-stories__title {
+  margin: 0 0 0.85rem;
+  font-family: var(--font-sans);
+  font-size: clamp(1.25rem, 2.2vw, 1.55rem);
+  font-weight: 500;
+  letter-spacing: -0.015em;
+  color: var(--story-ink);
+  line-height: 1.25;
+}
+
+.dona-stories__copy p {
+  margin: 0 0 0.85rem;
+  font-size: 0.98rem;
+  line-height: 1.65;
+  color: var(--story-muted);
+}
+
+.dona-stories__copy p:last-child {
+  margin-bottom: 0;
+}
+
+.dona-stories__media {
+  margin: 0;
+  min-width: 0;
+}
+
+.dona-stories__media img {
+  width: 100%;
+  display: block;
+  border: 1px solid rgba(40, 36, 30, 0.08);
+  border-radius: 2px;
+  background: #fff;
+}
+
+.dona-stories__media .story-caption {
+  margin-top: 0.75rem;
+  max-width: none;
+}
+
+@media (max-width: 820px) {
+  .dona-stories__slide {
+    grid-template-columns: 1fr;
+  }
+
+  .dona-stories__chrome {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .dona-stories__nav {
+    align-self: flex-end;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dona-stories__track {
+    transition: none;
+  }
+}
+
+/* --- Patent seal moment --- */
+.dona-patent {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 1.15rem 1.35rem;
+  align-items: center;
+  max-width: min(40rem, 100%);
+  margin: 1.25rem auto 0;
+  padding: 1.15rem 1.25rem;
+  background: rgba(255, 255, 255, 0.55);
+  border: 1px solid rgba(40, 36, 30, 0.1);
+  border-radius: 2px;
+}
+
+.dona-patent__seal {
+  width: 4.5rem;
+  height: auto;
+  display: block;
+}
+
+.dona-patent__copy {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: 0.92rem;
+  line-height: 1.55;
+  color: var(--story-muted);
+}
+
+.dona-patent__copy strong {
+  color: var(--story-ink);
+  font-weight: 500;
+}
+
+@media (max-width: 520px) {
+  .dona-patent {
+    grid-template-columns: 1fr;
+    justify-items: start;
+  }
+}
+
+/* --- Hypothesis callout --- */
+.dona-hypothesis {
+  max-width: min(36rem, 100%);
+  margin: 1.25rem 0 0;
+  padding: 1.15rem 1.25rem;
+  background: rgba(255, 255, 255, 0.55);
+  border-left: 3px solid #2f5d8c;
+}
+
+.dona-hypothesis__label {
+  margin: 0 0 0.45rem;
+  font-family: var(--font-sans);
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #2f5d8c;
+}
+
+.dona-hypothesis__line {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: clamp(1.05rem, 2vw, 1.25rem);
+  font-weight: 500;
+  line-height: 1.4;
+  letter-spacing: -0.01em;
+  color: var(--story-ink);
+}
+
+/* --- Punch line (Wizard of Oz reveal) --- */
+.dona-punch {
+  margin: 0.35rem 0 0;
+  font-size: clamp(1.35rem, 2.6vw, 1.7rem);
+  font-weight: 500;
+  line-height: 1.35;
+  letter-spacing: -0.02em;
+  color: var(--story-ink);
+}
+
+/* --- Questions as a wrapping chip strip (own beat, not beside the receipt) --- */
+.dona-questions {
+  list-style: none;
+  margin: 1.1rem auto 0;
+  padding: 0;
+  max-width: min(36rem, 100%);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.45rem 0.5rem;
+}
+
+.dona-questions li {
+  display: inline-block;
+  margin: 0;
+  padding: 0.42rem 0.7rem;
+  font-family: var(--font-sans);
+  font-size: clamp(0.8rem, 1.35vw, 0.92rem);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  line-height: 1.25;
+  color: var(--story-ink);
+  background: rgba(255, 255, 255, 0.78);
+  border: 1px solid rgba(40, 36, 30, 0.1);
+  transform: rotate(var(--dona-q-tilt, 0deg));
+}
+
+.dona-questions li:nth-child(1) { --dona-q-tilt: -0.6deg; }
+.dona-questions li:nth-child(2) { --dona-q-tilt: 0.5deg; }
+.dona-questions li:nth-child(3) { --dona-q-tilt: -0.35deg; }
+.dona-questions li:nth-child(4) { --dona-q-tilt: 0.7deg; }
+.dona-questions li:nth-child(5) { --dona-q-tilt: -0.45deg; }
+
+/* --- Wide pair shared caption --- */
+.dona-pair-caption {
+  max-width: var(--story-wide);
+  margin: 0.85rem auto 0;
+}
+
+/* --- Epilogue aphorism: pause via space + fade, not size --- */
+.story-principle--aphorism {
+  min-height: 0;
+  display: block;
+  text-align: left;
+  padding: 3.75rem 0 4.25rem;
+  max-width: var(--story-prose);
+  margin: 0 auto 0 calc(var(--story-prose-inset) + var(--story-sec-rail));
+}
+
+.story-principle--aphorism .story-principle__text {
+  max-width: 28rem;
+  margin: 0;
+  padding: 0 0 0 1.25rem;
+  border-left: 1.5px solid rgba(242, 239, 233, 0.28);
+  font-family: var(--font-serif);
+  font-size: clamp(1.15rem, 2.2vw, 1.45rem);
+  font-weight: 400;
+  font-style: italic;
+  line-height: 1.5;
+  letter-spacing: -0.01em;
+  color: var(--story-paper);
+  text-align: left;
+}
+
+.story-principle--aphorism .story-principle__block {
+  transform: translateY(calc((1 - var(--principle-block, 0)) * 0.85rem));
+}
+
+.story-principle--aphorism .story-principle__rest {
+  color: rgba(242, 239, 233, 0.72);
+}
+
+.story-principle--aphorism .story-principle__lead {
+  color: var(--story-paper);
+}

@@ -3,13 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="../favicon.ico" sizes="48x48">
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../apple-touch-icon.png">
   <meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
-  <title>Citrix DONA — Andrew Sheerin</title>
-  <meta name="description" content="DONA: wellbeing and productivity assistant embedded in Citrix Workspace — from concept to executive buy-in.">
-  <link rel="stylesheet" href="../css/main.css?v=6">
+  <title>The Hidden Cost of Good Intentions - Andrew Sheerin</title>
+  <meta name="description" content="Citrix DONA: what happens when productivity tools work against the people they are meant to help - behavioural science, Wizard-of-Oz validation, and organisational storytelling.">
+  <link rel="stylesheet" href="../css/main.css?v=8">
   <link rel="stylesheet" href="../css/site-shell.css?v=12">
+  <link rel="stylesheet" href="../css/case-interior.css?v=11">
+  <link rel="stylesheet" href="../css/case-story.css?v=74">
+  <link rel="stylesheet" href="../css/case-dona.css?v=31">
 </head>
-<body class="site-shell">
+<body class="site-shell story">
   <a href="#main" class="skip-link">Skip to content</a>
 
   <header class="cx-header site-header">
@@ -22,149 +28,760 @@
         <a href="../about/">About</a>
         <a href="../contact/">Contact</a>
       </nav>
+      <button type="button" class="cx-nav-toggle" aria-expanded="false" aria-controls="cx-mobile-nav" aria-label="Open menu">
+        <span class="cx-nav-toggle__bar" aria-hidden="true"></span>
+        <span class="cx-nav-toggle__bar" aria-hidden="true"></span>
+        <span class="cx-nav-toggle__bar" aria-hidden="true"></span>
+      </button>
+      <nav id="cx-mobile-nav" class="cx-mobile-nav" aria-label="Mobile" hidden></nav>
+      <button type="button" class="cx-mobile-nav-backdrop" hidden aria-label="Close menu"></button>
     </div>
   </header>
 
   <main id="main">
-    <header class="case-header">
-      <div class="container container--prose">
-        <p class="eyebrow">Case study · Citrix</p>
-        <h1>DONA</h1>
-        <p class="case-thesis">Employers know wellbeing matters but lack the skills and infrastructure to act — DONA turned that gap into a product opportunity, and behavioural insight into organisational influence.</p>
+    <div class="case-intro" id="case-intro">
+      <div class="case-intro__head">
+        <header class="case-interior-hero">
+          <span class="case-interior-hero__index" aria-hidden="true">02</span>
+          <p class="case-interior-hero__label">Case study · Citrix</p>
+          <h1 class="case-interior-hero__title">The Hidden Cost of Good Intentions</h1>
+          <p class="case-interior-hero__thesis">What happens when the thing you're trying to help people with ends up working against them?</p>
+        </header>
 
-        <dl class="case-meta">
-          <div>
-            <dt>Role</dt>
-            <dd>Senior UX Designer → Product Lead</dd>
-          </div>
-          <div>
-            <dt>Organisation</dt>
-            <dd>Citrix</dd>
-          </div>
-          <div>
-            <dt>Focus</dt>
-            <dd>Wellbeing &amp; productivity assistant in Workspace</dd>
-          </div>
-          <div>
-            <dt>Disciplines</dt>
-            <dd>Innovation strategy, behavioural UX, stakeholder comms, service design</dd>
-          </div>
-        </dl>
+        <div class="case-interior-frontmatter">
+          <dl class="case-interior-meta">
+            <div>
+              <dt>Role</dt>
+              <dd>Lead Product Designer</dd>
+            </div>
+            <div>
+              <dt>Organisation</dt>
+              <dd>Citrix</dd>
+            </div>
+            <div>
+              <dt>Focus</dt>
+              <dd>Wellbeing &amp; productivity in Workspace</dd>
+            </div>
+            <div>
+              <dt>Disciplines</dt>
+              <dd>Behavioural design, innovation, stakeholder alignment</dd>
+            </div>
+          </dl>
+        </div>
       </div>
-    </header>
 
-    <article>
-      <section class="narrative-block">
-        <div class="container container--prose">
-          <p class="narrative-block__label">Context</p>
-          <h2>A market gap hiding in plain sight</h2>
-          <p>By the late 2010s, employee wellbeing had moved from fringe benefit to boardroom agenda. Mental health strategies were proliferating. The Right to Disconnect was entering legislation. Productivity loss from poor wellbeing was quantifiable — estimated at around 5% of UK GDP.</p>
-          <p>Yet most employers lacked the skills, budget, and infrastructure to operationalise wellbeing programmes. They knew the problem existed. They didn't know what to do about it — or how to measure whether anything worked.</p>
-          <p>Citrix Workspace, already the daily interface for millions of knowledge workers, was the natural place to embed support — not as a separate app, but as an ambient assistant that understood context, frame of mind, and working patterns.</p>
-        </div>
+      <div class="story-threshold case-intro__threshold" aria-hidden="true"></div>
 
-        <figure class="figure figure--wide container container--prose">
-          <img src="../assets/images/dona/exec-problem.png" alt="Executive pitch slide showing market problem and opportunity" loading="lazy">
-          <figcaption class="figure__caption">The business case: quantifying the gap between wellbeing awareness and organisational capability.</figcaption>
-        </figure>
-      </section>
+      <nav class="case-interior-jumps" aria-label="Jump to sections">
+        <span class="case-interior-jumps__label">Jump straight to:</span>
+        <a href="#the-product">The product</a>
+        <a href="#conclusion">Conclusion</a>
+        <a href="#do-differently">Things I'd do differently</a>
+      </nav>
+    </div>
 
-      <section class="narrative-block">
-        <div class="container container--prose">
-          <p class="narrative-block__label">Challenge</p>
-          <h2>From concept to credible product</h2>
-          <p>DONA needed to be credible to three audiences simultaneously: executives who controlled budget, engineers who would build it, and end users who would (or wouldn't) engage with daily check-ins and suggested programmes.</p>
-          <p>Each audience required a different story, a different level of abstraction, and a different kind of evidence. The design challenge was not just the interface — it was the translation layer between behavioural insight, technical architecture, and commercial narrative.</p>
-        </div>
+    <article class="case-interior-article case-interior-article--has-jumps">
 
-        <figure class="figure figure--full container container--prose">
-          <img src="../assets/images/dona/north-star.png" alt="DONA north star concept showing frame-of-mind dashboard and programme suggestions" loading="lazy">
-          <figcaption class="figure__caption">North star concept: a frame-of-mind dashboard with contextual programme suggestions — Pomodoro, meditation, out-of-hours guard, calendar monitoring.</figcaption>
-        </figure>
-      </section>
+      <!-- Prologue -->
+      <section class="story-band">
+        <header class="story-chapter story-chapter--first" data-beat>
+          <p class="story-chapter__label">Prologue</p>
+        </header>
 
-      <section class="narrative-block">
-        <div class="container container--prose">
-          <p class="narrative-block__label">What I did</p>
-          <h2>Validate before you build</h2>
-          <p>Before committing engineering resources, I designed a series of lean validation experiments:</p>
-          <ul>
-            <li><strong>Slack smoke test</strong> — a "smoke and mirrors" prototype that simulated DONA's check-in prompts in an existing channel, measuring engagement and receptivity with real data</li>
-            <li><strong>Innovation fair booth</strong> — physical presence at Citrix's internal innovation fair, testing the concept with employees in an informal setting</li>
-            <li><strong>Customer Excellence Centre</strong> — installed at the Leyland facility, observing how real users responded to wellbeing prompts in a live workspace environment</li>
-          </ul>
-          <p>Each experiment produced different evidence for different stakeholders. The Slack test gave engineers confidence in interaction patterns. The innovation fair generated internal buzz. The Customer Excellence Centre provided user validation that executives could cite.</p>
-        </div>
-
-        <figure class="figure figure--wide container container--prose">
-          <img src="../assets/images/dona/slack-experiment.png" alt="Slack smoke test prototype for DONA check-in prompts" loading="lazy">
-          <figcaption class="figure__caption">Slack smoke test: validating check-in interaction patterns before writing production code.</figcaption>
-        </figure>
-
-        <figure class="figure figure--wide container container--prose">
-          <img src="../assets/images/dona/innovation-fair.png" alt="Citrix innovation fair booth" loading="lazy">
-          <figcaption class="figure__caption">Innovation fair booth: testing receptivity and gathering qualitative feedback in a low-stakes environment.</figcaption>
-        </figure>
-
-        <figure class="figure figure--wide container container--prose">
-          <img src="../assets/images/dona/checkin-evolution.png" alt="Evolution of DONA emotional check-in interface across three iterations" loading="lazy">
-          <figcaption class="figure__caption">Emotional check-in evolution: three iterations refining tone, timing, and interaction model.</figcaption>
-        </figure>
-      </section>
-
-      <section class="narrative-block">
-        <div class="container container--prose">
-          <p class="narrative-block__label">Evidence</p>
-          <h2>Speaking to every audience</h2>
-          <p>Securing executive buy-in required translating behavioural insight into business language. I produced a series of executive pitch materials covering the problem space, quantified costs, projected benefits, and realistic resourcing requirements.</p>
-          <p>For engineering, the story was architectural: how DONA would integrate with Workspace, communicate via APIs and microservices, and draw on CAS data through a continuous engine. Different fidelity, same product truth.</p>
-          <p>An in-house "Work Anywhere" marketing campaign repurposed existing Citrix brand materials to create internal momentum — turning a product concept into something people were already talking about before it shipped.</p>
-        </div>
-
-        <figure class="figure figure--wide container container--prose">
-          <img src="../assets/images/dona/architecture.png" alt="Technical architecture diagram for DONA integration" loading="lazy">
-          <figcaption class="figure__caption">Engineering-facing architecture: Workspace → DONA interface → API/microservices → CAS data → continuous engine.</figcaption>
-        </figure>
-      </section>
-
-      <section class="narrative-block">
-        <div class="container container--prose">
-          <p class="narrative-block__label">What changed</p>
-          <h2>From sketched concept to live product</h2>
-          <p>DONA moved from whiteboard exploration through validated prototypes to resourced development with a Design/Build/Measure loop. Features sketched years earlier remain in the live Citrix Workspace product.</p>
-
-          <div class="outcome">
-            <p class="outcome__label">What it proves</p>
-            <p>Innovation in large organisations requires more than good design — it requires translation. The ability to reframe the same product truth for executives, engineers, and end users, and to validate each claim with appropriate evidence before asking anyone to commit resources.</p>
+        <div class="story-block" data-beat>
+          <div class="story-block__lead">
+            <span class="story-sec">§1</span>
+            <div class="story-prose">
+              <p><button type="button" class="dona-peek" data-expand-src="../assets/images/dona/Workspace%20-%20Home%20Screen.png" data-expand-alt="Citrix Workspace home screen showing apps, files and recent activity">Workspace</button> was one of Citrix's flagship products. Hundreds of millions of people used it every day, and our team's mission was simple: help people get more done.</p>
+              <p>Everything we measured suggested we were succeeding - except for a single, stubborn metric: how people felt while using the tool.</p>
+              <p>Exploring this one contradiction persuaded an entire company to change course.</p>
+            </div>
           </div>
         </div>
       </section>
+
+      <!-- Act I -->
+      <section class="story-band story-band--warm">
+        <header class="story-chapter" data-beat>
+          <p class="story-chapter__label">Act I</p>
+          <h2 class="story-chapter__title">When success and reality disagree.</h2>
+        </header>
+
+        <div class="story-block" data-beat>
+          <div class="story-block__lead">
+            <span class="story-sec">§2</span>
+            <div class="story-prose">
+              <p>As part of the product-led growth team, my job was to deliver features that made Workspace more sticky and encourage customers to upgrade.</p>
+              <p>But despite improving scores in our regular NPS surveys, there was one statement that tracked in the opposite direction: <em>“I feel satisfied and accomplished using Citrix Workspace.”</em></p>
+            </div>
+          </div>
+          <div class="story-block__body">
+            <figure class="story-figure" data-bob>
+              <div class="story-figure__frame">
+                <img src="../assets/images/dona/satisfaction-graph.png" alt="Line chart showing Workspace efficiency scores rising while satisfaction and accomplishment scores fall after the automation suite release" loading="lazy">
+              </div>
+              <figcaption class="story-caption">While it feels odd to recommend something more strongly when it makes you feel bad, there's a difference (using different part of the brain) between evaluating feature capability and emotional impact.</figcaption>
+            </figure>
+            <div class="story-prose" style="margin-top: 1.75rem;">
+              <p>Since I was the one who lobbied to include a "more emotional" question in the survey, I was asked to try and explain it.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Act II -->
+      <section class="story-band">
+        <header class="story-chapter" data-beat>
+          <p class="story-chapter__label">Act II</p>
+          <h2 class="story-chapter__title">The Productivity Paradox.</h2>
+        </header>
+
+        <div class="story-block" data-beat>
+          <div class="story-block__lead">
+            <span class="story-sec">§3</span>
+            <div class="story-prose">
+              <p>Digging into the data with my behavioural science hat on, I began to believe that productivity may not be a universally positive goal. At least not in isolation.</p>
+              <p>It was no coincidence that we had released a major suite of automation tools around the time these scores started diverging.</p>
+              <p>Automation removes repetitive, low-effort work but it also removes the natural breathing space between demanding tasks. And as more small tasks get automated, only cognitively demanding work is left to fill in the gaps. Which leads to burnout.</p>
+              <p>I called this…</p>
+            </div>
+          </div>
+          <div class="story-block__body">
+            <div class="dona-paradox" data-dona-paradox data-beat style="--paradox-heat: 0;">
+              <div class="dona-paradox__toolbar">
+                <h3 class="dona-paradox__title">The Productivity Paradox</h3>
+                <div class="dona-paradox__control">
+                  <span class="dona-paradox__end" id="paradox-min-label">No optimisation</span>
+                  <input
+                    class="dona-paradox__range"
+                    type="range"
+                    min="0"
+                    max="100"
+                    value="0"
+                    step="1"
+                    data-paradox-slider
+                    aria-valuemin="0"
+                    aria-valuemax="100"
+                    aria-valuenow="0"
+                    aria-labelledby="paradox-min-label paradox-max-label"
+                  >
+                  <span class="dona-paradox__end" id="paradox-max-label">Fully automated</span>
+                </div>
+              </div>
+
+              <div class="dona-paradox__layout">
+                <div class="dona-paradox__day" data-paradox-day aria-hidden="true"></div>
+                <aside class="dona-paradox__queue" aria-label="Task queue">
+                  <p class="dona-paradox__queue-label">To Do</p>
+                  <div class="dona-paradox__queue-stack" data-paradox-queue></div>
+                </aside>
+              </div>
+
+              <ul class="dona-paradox__legend">
+                <li><span class="dona-paradox__swatch dona-paradox__swatch--low" aria-hidden="true"></span> Low-effort tasks</li>
+                <li><span class="dona-paradox__swatch dona-paradox__swatch--high" aria-hidden="true"></span> High-cognitive tasks</li>
+              </ul>
+            </div>
+            <p class="story-caption" style="max-width: min(42rem, 100%); margin: 1.15rem auto 0;">We tend to do the hardest tasks when we have most energy, with low-effort work as breathing space in the lulls. Automate those smaller tasks away, and the gaps refill from the queue - eventually with nothing but cognitively demanding work.</p>
+            <div class="story-pull" data-beat style="margin-top: 2rem;">
+              <p>The more efficiently we helped people work…</p>
+              <p>…the more likely we were to contribute to burnout.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Act III -->
+      <section class="story-band story-band--ash">
+        <header class="story-chapter" data-beat>
+          <p class="story-chapter__label">Act III</p>
+          <h2 class="story-chapter__title">Gathering evidence.</h2>
+        </header>
+
+        <div class="story-block" data-beat>
+          <div class="story-block__lead">
+            <span class="story-sec">§4</span>
+            <div class="story-prose">
+              <p>This made me think about the burgeoning mental health crisis amongst office workers so I conducted some in-depth interviews with those who had been signed off work for stress-related reasons.</p>
+              <p>I was struck by how overwhelmed people were reporting their lives at work and how progressions in technology, productivity and automation hadn't helped; and in some cases made things silently worse. The words of one user really struck a chord:</p>
+            </div>
+          </div>
+          <div class="story-block__body">
+            <div class="dona-evidence" data-beat>
+              <figure class="dona-evidence__portrait">
+                <img src="../assets/images/dona/mental%20health%20illustrative%20portrait.png" alt="Illustrative portrait suggesting the weight of unseen mental health strain at work" loading="lazy">
+              </figure>
+              <blockquote class="dona-evidence__quote">
+                <p class="dona-evidence__mark">User interview</p>
+                <p class="dona-evidence__text">I wasn't aware that things had got on top of me until it was too late</p>
+                <footer class="dona-evidence__attr">Knowledge worker · stress-related leave</footer>
+              </blockquote>
+            </div>
+            <div class="story-prose" style="margin-top: 1.75rem;">
+              <p>This was a pattern that surfaced repeatedly: people rarely recognised burnout while it was happening.</p>
+              <p>What if productivity software could help people notice earlier? What if productivity tools cared about wellbeing too?</p>
+              <p>What if <em>our</em> productivity tool cared as much about <strong>how you felt about work as it did about how much work you got done</strong>?</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Act IV -->
+      <section class="story-band story-band--warm">
+        <header class="story-chapter" data-beat>
+          <p class="story-chapter__label">Act IV</p>
+          <h2 class="story-chapter__title">Testing a different future.</h2>
+        </header>
+
+        <div class="story-block" data-beat>
+          <div class="story-block__lead">
+            <span class="story-sec">§5</span>
+            <div class="story-prose">
+              <div class="dona-hypothesis">
+                <p class="dona-hypothesis__label">In business terms</p>
+                <p class="dona-hypothesis__line">Productivity tools should naturally care about well-being as a function of productivity.</p>
+              </div>
+              <p style="margin-top: 1.35rem;">It was this hypothesis that got me selected for Citrix's internal innovation programme.</p>
+              <p>I assembled a small team and we immediately set about… not building it. Our first goal wasn't to prove the idea. It was to break it.</p>
+            </div>
+          </div>
+          <div class="story-block__body">
+            <div class="dona-receipts" data-beat>
+              <figure class="dona-receipts__hero">
+                <img src="../assets/images/dona/workshopping%20early%20ideas.jpg" alt="Andrew and the DONA team workshopping early ideas around a table covered in sketches and sticky notes" loading="lazy">
+              </figure>
+              <div class="dona-receipts__strip" aria-label="Whiteboard explorations">
+                <figure class="dona-receipts__thumb">
+                  <img src="../assets/images/dona/whiteboard%20exploration%201.png" alt="" loading="lazy">
+                </figure>
+                <figure class="dona-receipts__thumb">
+                  <img src="../assets/images/dona/whiteboard%20exploration%202.png" alt="" loading="lazy">
+                </figure>
+                <figure class="dona-receipts__thumb">
+                  <img src="../assets/images/dona/whiteboard%20exploration%203.png" alt="" loading="lazy">
+                </figure>
+                <figure class="dona-receipts__thumb">
+                  <img src="../assets/images/dona/whiteboard%20exploration%204.png" alt="" loading="lazy">
+                </figure>
+                <figure class="dona-receipts__thumb">
+                  <img src="../assets/images/dona/whiteboard%20exploration%205.jpg" alt="" loading="lazy">
+                </figure>
+              </div>
+              <p class="story-caption" style="margin-top: 0.85rem;">The process of covering lots of conceptual territory early on involved workshops and walls of exploration over many sessions.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="story-block" data-beat>
+          <div class="story-block__lead">
+            <span class="story-sec">§6</span>
+            <div class="story-prose">
+              <p>There was no easy way to build a 'minimal, viable' AI-powered wellbeing and productivity engine in 2019. But we still needed to answer our riskiest assumptions.</p>
+              <p>So we ran a simple 'Wizard-of-Oz' experiment over the corporate Slack instance. With much fanfare we “launched” a top secret, early beta, intelligent work assistant that could be accessed with a set of shortcuts.</p>
+              <p>And then, for four weeks…</p>
+              <p class="dona-punch">…we pretended to be the AI.</p>
+            </div>
+          </div>
+          <div class="story-block__body">
+            <figure class="story-figure" data-bob>
+              <div class="story-figure__frame">
+                <img src="../assets/images/dona/slack-experiment.png" alt="Slack messages showing the Wizard-of-Oz wellbeing and productivity assistant in conversation with participants" loading="lazy">
+              </div>
+              <figcaption class="story-caption">We each took turns daylighting as an AI productivity and wellbeing assistant on Slack. Participants were split into three groups: wellbeing + productivity assistance; productivity assistance only; and control.</figcaption>
+            </figure>
+            <div class="story-prose" style="margin-top: 1.5rem;">
+              <p>We had some pretty risky assumptions and pretty big questions to address. And the quickest and cheapest way to test our product vision was to fake it.</p>
+            </div>
+            <ul class="dona-questions" aria-label="Questions the experiment needed to answer">
+              <li>"Does this help?”</li>
+              <li>"Can we build it?”</li>
+              <li>“Would people use it?”</li>
+              <li>“Would anyone trust it?”</li>
+              <li>“Do we have permission to operate here?”</li>
+            </ul>
+            <aside class="dona-data-receipt" data-beat>
+              <div class="dona-data-receipt__frame">
+                <img src="../assets/images/dona/slack%20experiment%20results.png" alt="Box plots and mean rating charts from the Slack experiment comparing wellbeing, productivity and control groups" loading="lazy">
+              </div>
+              <p class="story-caption">Success! Subjects were engaged and even a regular check-in that asked “How are you feeling?” improved both users' perception of work and, in many cases, their productivity.</p>
+            </aside>
+            <div class="story-prose dona-name-block" style="margin-top: 2rem;">
+              <div class="dona-name-block__logo">
+                <img src="../assets/images/dona/dona%20logo.png" alt="DONA logo - a yellow lightbulb mark" loading="lazy">
+              </div>
+              <p>The results were surprisingly positive. That gave us enough confidence to build an MVP. We called this project <strong>DONA</strong> - from the Latin <em>dona nobis pacem</em>: give us peace.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Act V -->
+      <section class="story-band" id="the-product" tabindex="-1">
+        <header class="story-chapter" data-beat>
+          <p class="story-chapter__label">Act V</p>
+          <h2 class="story-chapter__title">Designing for ambiguity.</h2>
+        </header>
+
+        <div class="story-block" data-beat>
+          <div class="story-block__lead">
+            <span class="story-sec">§7</span>
+            <div class="story-prose">
+              <p>Only then did we start designing the product. </p>
+              <p>While my original vision was ambitious and far-reaching, we reduced the scope of the MVP to a single, core feature: <strong>The daily check-in.</strong></p>
+            </div>
+          </div>
+          <div class="story-block__body">
+            <div class="story-pair">
+              <div>
+                <p class="story-pair__label">Dashboard</p>
+                <div class="story-pair__frame" data-bob>
+                  <img src="../assets/images/dona/DONA%20north-star.png" alt="DONA north star concept showing a frame-of-mind dashboard with wellbeing programme suggestions" loading="lazy">
+                </div>
+              </div>
+              <div>
+                <p class="story-pair__label">Marketplace</p>
+                <div class="story-pair__frame" data-bob data-bob-delay="1">
+                  <img src="../assets/images/dona/DONA%20app%20marketplace.png" alt="DONA marketplace of wellbeing and productivity micro-apps" loading="lazy">
+                </div>
+              </div>
+            </div>
+            <p class="story-caption dona-pair-caption">My north star mockups imagined a plugin that contained its own marketplace of well-being and productivity-based micro-apps.</p>
+            
+          </div>
+        </div>
+
+        <div class="story-block" data-beat>
+          <div class="story-block__lead">
+            <span class="story-sec">§8</span>
+            <div class="story-prose">
+              <h3>Designing what you can't measure</h3>
+              <p>Wellbeing isn't like page load speed or conversion rate. There isn't a single objective metric that tells you how someone is feeling.</p>
+              <p>So I combined two different kinds of signal:</p>
+              <ul class="story-list">
+                <li><strong>Human data</strong> - how people reported feeling.</li>
+                <li><strong>Behavioural data</strong> - indicators that suggested how much capacity they actually had.</li>
+              </ul>
+              <p>Drawing on behavioural psychology, I also wanted to understand what people <em>didn't</em> do. Procrastination, avoidance and changing patterns of work can be just as revealing as the work itself.</p>
+            </div>
+          </div>
+          <div class="story-block__body">
+            <div class="dona-signal" data-beat>
+              <table class="dona-signal__table">
+                <caption class="sr-only">Measurable signals and what each predicts</caption>
+                <thead>
+                  <tr>
+                    <th scope="col">
+                      <span class="dona-signal__head">
+                        Measurable
+                        <span class="dona-signal__arrow" aria-hidden="true">→</span>
+                      </span>
+                    </th>
+                    <th scope="col">Predicts</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">
+                      <span class="dona-signal__metric">
+                        <span class="dona-signal__icon" aria-hidden="true">
+                          <svg viewBox="0 0 24 24" width="22" height="22" focusable="false"><circle cx="12" cy="12" r="8.25" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="9.2" cy="10.2" r="1" fill="currentColor"/><circle cx="14.8" cy="10.2" r="1" fill="currentColor"/><path d="M8.6 14.1c1.1 1.35 2.5 2 3.4 2s2.3-.65 3.4-2" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                        </span>
+                        <span>Self-declared wellbeing + trends</span>
+                      </span>
+                    </th>
+                    <td>Resiliency and future health</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">
+                      <span class="dona-signal__metric">
+                        <span class="dona-signal__icon" aria-hidden="true">
+                          <svg viewBox="0 0 24 24" width="22" height="22" focusable="false"><circle cx="12" cy="12" r="8.25" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M12 7.5V12l3.2 2" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        </span>
+                        <span>Time of day that DONA is engaged with</span>
+                      </span>
+                    </th>
+                    <td>Reactiveness and workload</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">
+                      <span class="dona-signal__metric">
+                        <span class="dona-signal__icon" aria-hidden="true">
+                          <svg viewBox="0 0 24 24" width="22" height="22" focusable="false"><path d="M16.8 14.8A6.2 6.2 0 0 1 9.2 7.2 6.5 6.5 0 1 0 16.8 14.8Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M17.2 5.2c.15.7.55 1.15 1.2 1.35-.65.2-1.05.65-1.2 1.35-.15-.7-.55-1.15-1.2-1.35.65-.2 1.05-.65 1.2-1.35Z" fill="currentColor"/></svg>
+                        </span>
+                        <span>Number of times DONA prompt is snoozed</span>
+                      </span>
+                    </th>
+                    <td>Stress and time management ability</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">
+                      <span class="dona-signal__metric">
+                        <span class="dona-signal__icon" aria-hidden="true">
+                          <svg viewBox="0 0 24 24" width="22" height="22" focusable="false"><path d="M19 12a7 7 0 1 1-2.05-4.95" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M19 5.5V10h-4.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        </span>
+                        <span>Regularity and consistency of use</span>
+                      </span>
+                    </th>
+                    <td>Durability and engagement</td>
+                  </tr>
+                  <tr class="is-validate">
+                    <th scope="row">
+                      <span class="dona-signal__metric">
+                        <span class="dona-signal__icon" aria-hidden="true">
+                          <svg viewBox="0 0 24 24" width="22" height="22" focusable="false"><path d="M3 12h3.2l2.1-4.2L12 18l2.4-6.5L16.2 12H21" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        </span>
+                        <span>Pulse surveys scoring helpfulness and health impact</span>
+                      </span>
+                    </th>
+                    <td>Validates the predictors above</td>
+                  </tr>
+                </tbody>
+              </table>
+              <p class="story-caption dona-signal__note">Human and machine data work in conjunction to deliver a core “capability score” that informed DONA's recommendations.</p>
+            </div>
+            <div class="story-prose" style="margin-top: 1.5rem;">
+              <p>We would go on to earn a patent for this idea: a personalised <button type="button" class="dona-peek" data-expand-src="../assets/images/dona/architecture.png" data-expand-alt="System architecture diagram for DONA's wellbeing feedback loop and recommendation engine">recommendation engine</button> based on a capability score and wellbeing feedback loop.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="story-block" data-beat>
+          <div class="story-block__lead">
+            <span class="story-sec">§9</span>
+            <div class="story-prose">
+              <h3>Designing a conversation</h3>
+              <p>We quickly realised that tone mattered as much as functionality.</p>
+              <p>Our Wizard-of-Oz experiment had unexpectedly shown that people were remarkably comfortable talking about wellbeing through chat.</p>
+              <p>Rather than assuming this was the right interface, we tested alternatives.</p>
+            </div>
+          </div>
+          <div class="story-block__body">
+            <div class="dona-models" data-beat>
+              <figure class="dona-models__card" tabindex="0">
+                <div class="dona-models__frame">
+                  <img src="../assets/images/dona/interface-dashboard.png" alt="Dashboard interface for capturing wellbeing with charts, a mood slider and tip cards" loading="lazy">
+                  <div class="dona-models__overlay">
+                    <ul class="dona-models__list">
+                      <li class="is-pro">easier to engineer</li>
+                      <li class="is-pro">familiar</li>
+                      <li class="is-con">'feels like work'</li>
+                      <li class="is-con">doesn't engage emotionally</li>
+                    </ul>
+                  </div>
+                </div>
+                <figcaption class="dona-models__label">Dashboard</figcaption>
+              </figure>
+              <figure class="dona-models__card" tabindex="0">
+                <div class="dona-models__frame">
+                  <img src="../assets/images/dona/interface-onewaychat.png" alt="One-way chat interface with limited preset response options" loading="lazy">
+                  <div class="dona-models__overlay">
+                    <ul class="dona-models__list">
+                      <li class="is-pro">easier to engineer</li>
+                      <li class="is-pro">clear options</li>
+                      <li class="is-con">can be frustratingly restrictive</li>
+                      <li class="is-con">doesn't engage empathy</li>
+                    </ul>
+                  </div>
+                </div>
+                <figcaption class="dona-models__label">One-way chat</figcaption>
+              </figure>
+              <figure class="dona-models__card is-winner" tabindex="0">
+                <div class="dona-models__frame">
+                  <img src="../assets/images/dona/interface-openchat.png" alt="Open chat interface with natural language and emoji check-in" loading="lazy">
+                  <div class="dona-models__overlay">
+                    <ul class="dona-models__list">
+                      <li class="is-pro">works emotionally</li>
+                      <li class="is-pro">encourages engagement</li>
+                      <li class="is-pro">feels natural and easy</li>
+                      <li class="is-con">harder to engineer</li>
+                    </ul>
+                  </div>
+                </div>
+                <figcaption class="dona-models__label">
+                  Open chat
+                  <span class="dona-models__badge" aria-label="Winner">
+                    <svg class="dona-models__rosette" viewBox="0 0 24 24" width="14" height="14" aria-hidden="true" focusable="false">
+                      <circle cx="12" cy="11" r="5.25" fill="none" stroke="currentColor" stroke-width="1.4"/>
+                      <path d="M9.2 15.6 8 21l4-2.2L16 21l-1.2-5.4" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/>
+                      <circle cx="12" cy="11" r="1.6" fill="currentColor"/>
+                    </svg>
+                    Winner
+                  </span>
+                </figcaption>
+              </figure>
+            </div>
+            <p class="story-caption" style="max-width: var(--story-wide); margin: 1rem auto 0;">We investigated various methods of capturing user well-being; open chat wasn't just preferred, it encouraged extra sharing.</p>
+            <div class="story-prose" style="margin-top: 1.5rem;">
+              <p>Open conversation consistently outperformed simpler input methods.</p>
+              <p>The extra engineering effort was justified because the medium itself appeared to reduce the emotional barrier to engagement.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="story-block" data-beat>
+          <div class="story-block__lead">
+            <span class="story-sec">§10</span>
+            <div class="story-prose">
+              <h3>Designing the moment</h3>
+              <p>The daily check-in became the most important interaction in the product.</p>
+              <p>It had to be visible enough to encourage daily engagement within the context of an already demanding and complex interface.</p>
+            </div>
+          </div>
+          <div class="story-block__body">
+            <div class="dona-evolve" data-beat>
+              <figure class="dona-evolve__item">
+                <img src="../assets/images/dona/DONA%20checkin%20evolution%201.png" alt="Early check-in prompt design exploration" loading="lazy">
+                <figcaption class="dona-evolve__step">01 - Sliding scale</figcaption>
+              </figure>
+              <figure class="dona-evolve__item">
+                <img src="../assets/images/dona/DONA%20checkin%20evolution%202.png" alt="Check-in prompt with refined emoji choices" loading="lazy">
+                <figcaption class="dona-evolve__step">02 - Multi-level nuance</figcaption>
+              </figure>
+              <figure class="dona-evolve__item">
+                <img src="../assets/images/dona/DONA%20checkin%20evolution%203.png" alt="Further check-in prompt iteration" loading="lazy">
+                <figcaption class="dona-evolve__step">03 - Words only</figcaption>
+              </figure>
+              <figure class="dona-evolve__item">
+                <img src="../assets/images/dona/DONA%20checkin%20evolution%204.png" alt="Final emoji-based check-in prompt design" loading="lazy">
+                <figcaption class="dona-evolve__step">04 - Ambiguous emojis</figcaption>
+              </figure>
+            </div>
+            <p class="story-caption" style="max-width: var(--story-wide); margin: 1rem auto 0;">We A/B tested a number of designs and approaches; emoji-based interfaces won out over text despite our reservations of appearing too flippant.</p>
+            <div class="story-prose" style="margin-top: 1.5rem;">
+              <p>Initially we worried emojis might feel too informal. But it shouldn't be surprising that user testing suggested the opposite.</p>
+              <p>Emojis are:</p>
+              <ul class="story-list">
+                <li>familiar</li>
+                <li>quick to interpret</li>
+                <li>culturally widespread</li>
+                <li>emotionally flexible</li>
+              </ul>
+              <p>They allowed people to project their own nuanced emotional state onto an intentionally ambiguous symbol rather than words which trigger an internal debate around best match (“Am I feeling 'Meh' or is it more 'Not Good'”).</p>
+              <p>Ambiguity gave the check-in an immediacy. Ambiguity turned out to be a feature, not a bug.</p>
+            </div>
+            <div class="story-pair" style="margin-top: 2rem;">
+              <div>
+                <p class="story-pair__label">In Workspace</p>
+                <div class="story-pair__frame" data-bob>
+                  <img src="../assets/images/dona/DONA%20-%20finished%20checkin%20prompt.png" alt="Finished DONA check-in prompt shown in situ within Citrix Workspace" loading="lazy">
+                </div>
+                <p class="story-caption">The finished check-in prompt in situ within Workspace.</p>
+              </div>
+              <div>
+                <p class="story-pair__label">Conversation</p>
+                <div class="story-pair__frame" data-bob data-bob-delay="1">
+                  <img src="../assets/images/dona/DONA%20chat%20interface.png" alt="DONA chat interface for a deeper conversation about recommendations after the check-in" loading="lazy">
+                </div>
+                <p class="story-caption">Responding to the check-in leads to a deeper chat where a natural conversation about recommendations can be had.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Act VI -->
+      <section class="story-band story-band--warm">
+        <header class="story-chapter" data-beat>
+          <p class="story-chapter__label">Act VI</p>
+          <h2 class="story-chapter__title">Different stories for different audiences.</h2>
+        </header>
+
+        <div class="story-block" data-beat>
+          <div class="story-block__lead">
+            <span class="story-sec">§11</span>
+            <div class="story-prose">
+              <p>Building and designing a working prototype was just half the battle.</p>
+              <p>DONA wasn't simply a product. If it were to be integrated with Workspace, it would represent a massive shift in how Citrix talked about productivity and involve multiple areas of the business.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="story-block" data-beat>
+          <div class="story-block__lead">
+            <span class="story-sec">§12</span>
+            <div class="story-prose">
+              <p>Winning support meant bringing multiple audiences on-side. As a behavioural designer I knew the most persuasive tool is a good story.</p>
+            </div>
+          </div>
+          <div class="story-block__body">
+            <div class="dona-stories" data-dona-stories data-beat>
+              <div class="dona-stories__chrome">
+                <div class="dona-stories__tabs" role="tablist" aria-label="Audience stories">
+                  <button type="button" class="dona-stories__tab is-active" role="tab" data-stories-tab="0" aria-selected="true">Employees</button>
+                  <button type="button" class="dona-stories__tab" role="tab" data-stories-tab="1" aria-selected="false" tabindex="-1">Executives</button>
+                  <button type="button" class="dona-stories__tab" role="tab" data-stories-tab="2" aria-selected="false" tabindex="-1">Marketing</button>
+                  <button type="button" class="dona-stories__tab" role="tab" data-stories-tab="3" aria-selected="false" tabindex="-1">Sales</button>
+                </div>
+                <div class="dona-stories__nav">
+                  <button type="button" class="dona-stories__btn" data-stories-prev aria-label="Previous story">‹</button>
+                  <button type="button" class="dona-stories__btn" data-stories-next aria-label="Next story">›</button>
+                </div>
+              </div>
+              <div class="dona-stories__viewport">
+                <div class="dona-stories__track" data-stories-track>
+                  <article class="dona-stories__slide" data-stories-slide role="tabpanel" aria-hidden="false">
+                    <div class="dona-stories__copy">
+                      <p class="dona-stories__kicker">Audience 01</p>
+                      <h3 class="dona-stories__title">Employees</h3>
+                      <p>Our primary market was inside Citrix itself.</p>
+                      <p>Visibility is hard to achieve in a busy workplace so to capture our fellow colleagues' imagination we put up an installation at the Citrix Tech Fair. It won us best booth at the fair and by the time we were pitching to ELT, every single executive had already heard about our project and was excited to talk to us.</p>
+                    </div>
+                    <figure class="dona-stories__media">
+                      <img src="../assets/images/dona/citrix%20innovation%20fair%20booth%201.png" alt="Citrix innovation fair booth recreating an uninspiring work cubicle as an interactive installation" loading="lazy">
+                      <figcaption class="story-caption">Here we recreated an uninspiring work cubicle where people had to complete a morale-draining exercise. This interactive joke doubled as an experiment, gathering more data for our project.</figcaption>
+                    </figure>
+                  </article>
+                  <article class="dona-stories__slide" data-stories-slide role="tabpanel" aria-hidden="true" tabindex="-1">
+                    <div class="dona-stories__copy">
+                      <p class="dona-stories__kicker">Audience 02</p>
+                      <h3 class="dona-stories__title">Executives</h3>
+                      <p>Our biggest 'customer' got the easiest story: strategic opportunity. Fortunately this was a self-explanatory narrative. The figures around hours lost to stress and burnout are staggering. Even if DONA could help reduce that by a fraction of a percent it would be an obvious investment.</p>
+                    </div>
+                    <figure class="dona-stories__media">
+                      <img src="../assets/images/dona/exec%20pitch%20-%20opportunity.png" alt="Executive pitch slide quantifying the opportunity around stress, burnout and lost productivity" loading="lazy">
+                      <figcaption class="story-caption">By proving what we'd achieved, aligning our aspirations to those of the company and demonstrating the cost of not doing this work as far higher than doing it, we quickly secured Executive Sponsorship.</figcaption>
+                    </figure>
+                  </article>
+                  <article class="dona-stories__slide" data-stories-slide role="tabpanel" aria-hidden="true" tabindex="-1">
+                    <div class="dona-stories__copy">
+                      <p class="dona-stories__kicker">Audience 03</p>
+                      <h3 class="dona-stories__title">Marketing</h3>
+                      <p>Aware of the disruption this shift of messaging would cause, we aimed to ease the burden by producing messaging material for the new narrative.</p>
+                    </div>
+                    <figure class="dona-stories__media">
+                      <img src="../assets/images/dona/marketing%20-%20problem%20costs.png" alt="Marketing collateral quantifying the cost of the productivity and wellbeing problem" loading="lazy">
+                      <figcaption class="story-caption">Research-backed collateral gave us permission to claim this space from a marketing point of view.</figcaption>
+                    </figure>
+                  </article>
+                  <article class="dona-stories__slide" data-stories-slide role="tabpanel" aria-hidden="true" tabindex="-1">
+                    <div class="dona-stories__copy">
+                      <p class="dona-stories__kicker">Audience 04</p>
+                      <h3 class="dona-stories__title">Sales</h3>
+                      <p>While sales gained a richer conversation than feature comparison, it was not a straightforward or simple conversation. We aimed to make that easier with education and enablement collateral.</p>
+                    </div>
+                    <figure class="dona-stories__media">
+                      <img src="../assets/images/dona/sales%20-%20DONA%20benefits.png" alt="Sales enablement slide outlining DONA talking points, figures and market opportunity" loading="lazy">
+                      <figcaption class="story-caption">Talking points, top-level figures, hard data and a new market are equal parts challenge and opportunity.</figcaption>
+                    </figure>
+                  </article>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="story-block" data-beat>
+          <div class="story-block__lead">
+            <span class="story-sec">§13</span>
+            <div class="story-prose">
+              <p>DONA received something rarer than executive sponsorship - it was deemed so important that it became part of Citrix's global marketing campaign.</p>
+            </div>
+          </div>
+          <div class="story-block__body">
+            <figure class="story-figure" data-bob>
+              <div class="story-figure__frame">
+                <img src="../assets/images/dona/DONA%20in%20global%20marketing%20campaign%201.png" alt="DONA featured in Citrix global marketing campaign creative, with the daily check-in foregrounded" loading="lazy">
+              </div>
+              <figcaption class="story-caption">DONA was featured heavily at Citrix's annual summit and then in Citrix's TV adverts; the daily check-in feature was foregrounded as a central part of the narrative.</figcaption>
+            </figure>
+            <aside class="dona-patent" data-beat>
+              <img class="dona-patent__seal" src="../assets/images/dona/Seal_of_the_United_States_Patent_and_Trademark_Office.svg" alt="" loading="lazy">
+              <p class="dona-patent__copy">It also earned us a US patent - <strong>#US11657058B2</strong> “Systems and methods of enhancing mental health and performance.”</p>
+            </aside>
+          </div>
+        </div>
+      </section>
+
+      <!-- Epilogue -->
+      <section class="story-band story-band--dark">
+        <header class="story-chapter story-chapter--dark" data-beat>
+          <p class="story-chapter__label">Epilogue</p>
+          <h2 class="story-chapter__title">Metrics aren't truth.</h2> 
+        </header>
+
+        <div class="story-block" data-beat>
+          <div class="story-block__lead">
+            <span class="story-sec">§14</span>
+            <div class="story-prose">
+              <p>There's a famous aphorism I come back to a lot:</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="dona-aphorism story-principle story-principle--aphorism" data-sequence="principle">
+          <p class="story-principle__text">
+            <span class="story-principle__block">
+              <span class="story-principle__rest">“Not everything that can be counted counts,</span>
+              <span class="story-principle__lead"> and not everything that counts can be counted.”</span>
+            </span>
+          </p>
+        </div>
+
+        <div class="story-block" data-beat style="padding-bottom: 4rem;">
+          <div class="story-block__lead">
+            <span class="story-sec" aria-hidden="true"></span>
+            <div class="story-prose">
+              <p>Most organisations optimise - naturally - for what they can easily measure. Clicks. Speed. Efficiency. Productivity.</p>
+              <p>But while this leads to sensible and logical individual decisions, collectively, in aggregate, something quite irrational can arise: you stop seeing the human story and only see the statistical one. That was our mistake.</p>
+              <p><strong>Because productivity isn't the goal. People are.</strong></p>
+            </div>
+          </div>
+        </div>
+      </section>
+
     </article>
 
-    <p class="case-back-top">
-      <a href="#main">Back to top</a>
-    </p>
+    <section class="case-interior-outcome" id="conclusion" tabindex="-1">
+      <p class="case-interior-outcome__label">Conclusion</p>
+      <p>We set out to make people more productive. The data said we were succeeding - until one stubborn metric asked how they felt. Following that contradiction led from survey anomaly to behavioural hypothesis, from Wizard-of-Oz experiment to MVP, and from a quiet innovation project into Citrix's global narrative about work.</p>
+      <p>DONA wasn't only a product. It was an argument that wellbeing belongs inside productivity tools - and that the most important design problems often start as measurement problems.</p>
+    </section>
+
+    <section class="case-interior-retro" id="do-differently" tabindex="-1">
+      <p class="case-interior-retro__kicker">Present day reflections</p>
+      <div class="case-interior-retro__head">
+        <h2 class="case-interior-retro__label">
+          <svg class="case-interior-retro__icon" viewBox="0 0 17 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <rect x="0.75" y="0.75" width="12.5" height="16.5" rx="1.25" stroke="currentColor" stroke-width="1.15"/>
+            <path d="M3.5 5.5h7M3.5 8.75h7M3.5 12h4.5" stroke="currentColor" stroke-width="1.15" stroke-linecap="round"/>
+            <path d="M13.25 3.5v13" stroke="currentColor" stroke-width="1.15" stroke-linecap="round" opacity="0.45"/>
+          </svg>
+          Things I'd do differently
+        </h2>
+      </div>
+      <ul class="case-interior-retro__list">
+        <li>There are many large, complex topics touched upon in this story - most of them deserve far greater and more dedicated investigation than I gave them. I would commission some serious, dedicated research if I were doing this again - not because I needed more proof to act, but because it would have formed an incredibly valuable body of knowledge to build upon.</li>
+        <li>I learned a lot about how large organisations work through DONA. It wasn't just the strength of the idea that led to success, but an entire mini-community of people who believed in it and worked hard to push it forwards. That's because the innovation track at Citrix had no formal way of feeding back into any business workstreams so there was friction at every turn. In hindsight, I would have taken the momentum we generated and pushed for some structural changes around the innovation programme so that it could reliably generate product improvements at scale.</li>
+      </ul>
+      <p class="case-back-top">
+        <a href="#main">Back to top</a>
+      </p>
+    </section>
 
     <section class="section section--rule">
       <div class="container">
         <p class="eyebrow">More work</p>
         <div class="work-grid">
           <a href="antare.html" class="work-card">
-            <span class="work-card__number">Project 01</span>
-            <h3 class="work-card__title">Antare</h3>
-            <p class="work-card__thesis">Editorial intelligence for AI-generated feeds.</p>
-            <img src="../assets/images/Antare-thumb.png" alt="" class="work-card__image" loading="lazy">
+            <span class="work-card__number">Case Study 01</span>
+            <h3 class="work-card__title">Antare: Compressing reality</h3>
+            <p class="work-card__thesis">When AI produces more signal than anyone can process, the design problem becomes editorial.</p>
+            <img src="../assets/images/Antare-thumb.png" alt="" class="work-card__image" loading="lazy" width="336" height="210">
           </a>
           <a href="education.html" class="work-card">
-            <span class="work-card__number">Project 03</span>
-            <h3 class="work-card__title">Education &amp; Enablement</h3>
-            <p class="work-card__thesis">Systemic product thinking at VMware.</p>
-            <img src="../assets/images/VMware-thumb.png" alt="" class="work-card__image" loading="lazy">
+            <span class="work-card__number">Case Study 03</span>
+            <h3 class="work-card__title">VMware: Designing outside the product</h3>
+            <p class="work-card__thesis">Poor conversion suggested we needed better premium features, but I looked elsewhere…</p>
+            <img src="../assets/images/VMware-thumb.png" alt="" class="work-card__image" loading="lazy" width="336" height="210">
           </a>
         </div>
       </div>
     </section>
   </main>
+
+  <dialog id="story-expand-dialog" class="story-expand">
+    <img src="" alt="">
+  </dialog>
 
   <footer class="cx-footer site-footer">
     <div class="container cx-footer__inner">
@@ -174,6 +791,8 @@
   </footer>
 
   <script src="../js/play-ribbon.js?v=7"></script>
-  <script src="../js/main.js"></script>
+  <script src="../js/case-story.js?v=43"></script>
+  <script src="../js/case-dona.js?v=12"></script>
+  <script src="../js/mobile-nav.js?v=1"></script>
 </body>
 </html>
