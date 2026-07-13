@@ -525,6 +525,76 @@ blockquote p {
   margin-top: auto;
 }
 
+/* ——— Design in depth (craft entry, not a case card) ——— */
+
+.work-depth {
+  border-top: 1px solid var(--color-rule);
+  padding-block: var(--space-2xl) var(--space-xl);
+}
+
+.work-depth__link {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(12rem, 22rem);
+  gap: var(--space-lg) var(--space-xl);
+  align-items: start;
+  text-decoration: none;
+  color: inherit;
+  max-width: 100%;
+}
+
+.work-depth__link:hover .work-depth__lead {
+  color: var(--color-accent);
+}
+
+.work-depth__copy {
+  max-width: 34rem;
+  padding-top: 0.15rem;
+}
+
+.work-depth__copy .eyebrow {
+  margin-bottom: var(--space-sm);
+}
+
+.work-depth__lead {
+  font-family: var(--font-serif);
+  font-size: clamp(1.35rem, 2.2vw, 1.7rem);
+  font-weight: 500;
+  line-height: 1.25;
+  margin: 0 0 var(--space-sm);
+  letter-spacing: -0.02em;
+  transition: color 0.2s ease;
+}
+
+.work-depth__hinge {
+  margin: 0;
+  font-size: 1.02rem;
+  line-height: 1.55;
+  color: var(--color-ink-muted);
+}
+
+.work-depth__image {
+  width: 100%;
+  max-width: 22rem;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  object-position: center;
+  background: var(--color-paper-warm);
+  display: block;
+  justify-self: end;
+}
+
+@media (max-width: 800px) {
+  .work-depth__link {
+    grid-template-columns: 1fr;
+  }
+
+  .work-depth__image {
+    max-width: none;
+    justify-self: stretch;
+    order: -1;
+  }
+}
+
 /* ——— Case study ——— */
 
 .case-header {
