@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="../favicon.ico" sizes="48x48">
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../apple-touch-icon.png">
+  <meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
+  <title>Design in Depth - Andrew Sheerin</title>
+  <meta name="description" content="Decision sheets from designing Antare's event card - delayed corrections, wrong jobs, and the weeds of information density.">
+  <link rel="stylesheet" href="../css/main.css?v=8">
+  <link rel="stylesheet" href="../css/site-shell.css?v=12">
+  <link rel="stylesheet" href="../css/design-in-depth.css?v=13">
+</head>
+<body class="site-shell depth-notebook">
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <header class="cx-header site-header">
+    <div class="container cx-header__inner">
+      <a href="../index.html" class="cx-logo">
+        <span class="cx-logo__name">Andrew Sheerin<sup class="cx-logo__tm">TM</sup></span>
+      </a>
+      <nav class="cx-nav cx-nav--clarity" aria-label="Primary">
+        <a href="../work/" aria-current="page">Work</a>
+        <a href="../about/">About</a>
+        <a href="../contact/">Contact</a>
+      </nav>
+      <button type="button" class="cx-nav-toggle" aria-expanded="false" aria-controls="cx-mobile-nav" aria-label="Open menu">
+        <span class="cx-nav-toggle__bar" aria-hidden="true"></span>
+        <span class="cx-nav-toggle__bar" aria-hidden="true"></span>
+        <span class="cx-nav-toggle__bar" aria-hidden="true"></span>
+      </button>
+      <nav id="cx-mobile-nav" class="cx-mobile-nav" aria-label="Mobile" hidden></nav>
+      <button type="button" class="cx-mobile-nav-backdrop" hidden aria-label="Close menu"></button>
+    </div>
+  </header>
+
+  <main id="main">
+    <header class="depth-entry">
+      <div class="depth-entry__inner">
+        <p class="depth-entry__badge">Field notes · 9 design 'should haves'</p>
+        <h1 class="depth-entry__title">Design in depth: Antare's Event Card</h1>
+        <p class="depth-entry__lede">Decisions I should have made earlier - and the evidence that explains why I didn't.</p>
+        <p class="depth-entry__aside">
+          Subject: Antare's <em>Event Card</em>, the modular unit of a real-time security feed; a  new component in a new system of a new product. </p>
+        <p class="depth-entry__aside">
+          Result: Delayed corrections - wrong jobs, lazy affordances, ideas that looked right until real data arrived. For the editorial story of the feed, see <a href="antare.html">Compressing Reality</a>.
+        </p>
+      </div>
+    </header>
+
+    <nav class="depth-jumps" aria-label="Decision sheets">
+      <span class="depth-jumps__label">Jump to a sheet</span>
+      <ul class="depth-jumps__list">
+        <li><a href="#inventory"><span>01</span> Inventory</a></li>
+        <li><a href="#wrong-job"><span>02</span> Wrong job</a></li>
+        <li><a href="#lazy-expand"><span>03</span> Lazy expand</a></li>
+        <li><a href="#workflow"><span>04</span> Workflow hitchhiking</a></li>
+        <li><a href="#demote"><span>05</span> Too much / demote</a></li>
+        <li><a href="#zoom"><span>06</span> Zoom in / out</a></li>
+        <li><a href="#mobile"><span>07</span> Mobile cull</a></li>
+        <li><a href="#micro"><span>08</span> Micro gains</a></li>
+        <li><a href="#landed"><span>09</span> Settled (for now)</a></li>
+      </ul>
+    </nav>
+
+    <div class="depth-field">
+
+      <!-- 01 Inventory -->
+      <article class="depth-sheet depth-sheet--split" id="inventory">
+        <header class="depth-sheet__head">
+          <span class="depth-sheet__tag">Sheet 01</span>
+          <h2 class="depth-sheet__title">Wireframes are maps, not designs</h2>
+          <p class="depth-sheet__later">Should have questioned earlier: which of the information types actually serves understanding in a scan?</p>
+        </header>
+        <div class="depth-sheet__body">
+          <figure class="depth-figure depth-figure--tilt-left">
+            <img
+              src="../assets/images/design-in-depth/early-wireframes.png"
+              alt="Early event card wireframes mapping title, categorisation, impact, workflow, activity and metadata"
+              loading="lazy"
+            >
+          </figure>
+          <div class="depth-sheet__note">
+            <p>Early mapping of the data space - physical relation of title (narrative), categorisation, prioritisation, impact, workflow state, activity, process options, metadata.</p>
+            <p>Metadata was assumed from day one: every DEMS system puts it front and centre. Then I stripped it when I realised much of it was an artefact of metrics-driven systems and that <strong>understanding</strong> was the card's primary job.</p>
+            <p>Interestingly, later, metadata came back. Length of clip, location, person involved: setting context before a second of video is watched.</p>
+          </div>
+        </div>
+      </article>
+
+      <!-- 02 Wrong job -->
+      <article class="depth-sheet depth-sheet--wide" id="wrong-job">
+        <header class="depth-sheet__head">
+          <span class="depth-sheet__tag">Sheet 02</span>
+          <h2 class="depth-sheet__title">When a good model infects the wrong surface</h2>
+          <p class="depth-sheet__later">Should have separated jobs sooner: feed is scan → confirm. Detail is investigate.</p>
+        </header>
+        <div class="depth-sheet__body">
+          <div class="depth-compare">
+            <figure class="depth-figure">
+              <img
+                src="../assets/images/design-in-depth/early-keymoments-wireframes.png"
+                alt="Early wireframes emphasising key moments structure on the event card"
+                loading="lazy"
+              >
+              <figcaption class="depth-figure__cap">Key-moments thinking reaches the card.</figcaption>
+            </figure>
+            <figure class="depth-figure">
+              <div
+                class="depth-mark"
+                style="--cx: 82.8%; --cy: 72.5%; --rx: 18%; --ry: 22.5%;"
+              >
+                <img
+                  src="../assets/images/design-in-depth/incident-detail.png"
+                  alt="Incident detail page with key moments timeline highlighted"
+                  loading="lazy"
+                >
+                <span class="depth-mark__ring" aria-hidden="true"></span>
+              </div>
+              <figcaption class="depth-figure__cap">Where that model actually belongs - investigation, not the feed glance.</figcaption>
+            </figure>
+          </div>
+          <div class="depth-sheet__note depth-sheet__note--wide">
+            <p>After hundreds of bodyworn clips I saw a common structure: events aren't one smooth arc. They're a collection of meaningful beats. Warning signs. Exposition. Peaks with long dull stretches. Resolutions that flare again.</p>
+            <p>That moment-based model (rightly) drove the incident detail page - and then infected the event card for a while. The card tried to "agree" with detail. Useful belief, wrong job. Cards don't exist for navigating and investigating.</p>
+          </div>
+          <figure class="depth-figure" style="max-width: 42rem;">
+            <img
+              src="../assets/images/design-in-depth/v1-card-moments.png"
+              alt="Early high-fidelity card built around a key moments list"
+              loading="lazy"
+            >
+            <figcaption class="depth-figure__cap">Early card following the same nature - a mini analysis window pretending to be a feed item.</figcaption>
+          </figure>
+        </div>
+      </article>
+
+      <!-- 03 Lazy expand -->
+      <article class="depth-sheet depth-sheet--split" id="lazy-expand">
+        <header class="depth-sheet__head">
+          <span class="depth-sheet__tag">Sheet 03</span>
+          <h2 class="depth-sheet__title">Expand was lazy design</h2>
+          <p class="depth-sheet__later">Should have done the hard cull of what truly belongs on the card - instead of inventing a place to hide everything. This is the design equivalent of sweeping under the rug.</p>
+        </header>
+        <div class="depth-sheet__body">
+          <div class="depth-stack">
+            <figure class="depth-figure">
+              <img
+                src="../assets/images/design-in-depth/Contracted%20Card.png"
+                alt="Contracted event card showing compact scan state before expand"
+                loading="lazy"
+              >
+              <figcaption class="depth-figure__cap">The mechanism: a contracted card for scanning - expand when you want more.</figcaption>
+            </figure>
+            <figure class="depth-figure depth-figure--tilt">
+              <img
+                src="../assets/images/design-in-depth/suggested-click-areas.png"
+                alt="Colour-coded suggested click areas on the same contracted card and its expanded state"
+                loading="lazy"
+              >
+              <figcaption class="depth-figure__cap">Same idea as a hit map - the overlays make how much work the surface was doing unmistakable.</figcaption>
+            </figure>
+          </div>
+          <div class="depth-sheet__note">
+            <p>Early explorations obsess over compact + expanded versions of the same card. Best of all worlds: all the data, no overload - if users are interested, they expand is the justification.</p>
+            <p>In practice that was avoidance. I wasn't rationalising what <strong>truly</strong> belongs on the card; I was wrangling affordances so I wouldn't have to.</p>
+            <p>Drawing these click areas and colouring complexity on the page made the evasion obvious. I didn't fully redesign until after mobile forced the issue, but the doubt was planted.</p>
+          </div>
+        </div>
+      </article>
+
+      <!-- 04 Workflow -->
+      <article class="depth-sheet depth-sheet--split" id="workflow">
+        <header class="depth-sheet__head">
+          <span class="depth-sheet__tag">Sheet 04</span>
+          <h2 class="depth-sheet__title">Workflow hitchhiked on "understanding the event"</h2>
+          <p class="depth-sheet__later">Should have treated process as a system to integrate with events - not as chrome bolted onto the card.</p>
+        </header>
+        <div class="depth-sheet__body">
+          <figure class="depth-figure">
+            <div
+              class="depth-mark"
+              style="--cx: 88.2%; --cy: 65.4%; --rx: 10.3%; --ry: 24.1%;"
+            >
+              <img
+                src="../assets/images/design-in-depth/v1-card-fullyloaded.png"
+                alt="Fully loaded event card with Resolve menu open - workflow actions circled"
+                loading="lazy"
+              >
+              <span class="depth-mark__ring" aria-hidden="true"></span>
+            </div>
+            <figcaption class="depth-figure__cap">Competitors bolt basic workflow onto the card. So did I.</figcaption>
+          </figure>
+          <div class="depth-sheet__note">
+            <p>It "makes sense." Everyone's DEMS does it. Wanting to process an incident in place is self-evident.</p>
+            <p>Workflow remained stubbornly present on many iterations because it was impossible to imagine a user doing <em>nothing</em> after seeing an important event. It wasn't until I gave myself permission to investigate the "thing users do after seeing important events" at a later date that I fully identified it as a separate system that needs integrating into events, not living <em>as</em> the event.</p>
+          </div>
+        </div>
+      </article>
+
+      <!-- 05 Demote -->
+      <article class="depth-sheet depth-sheet--wide" id="demote">
+        <header class="depth-sheet__head">
+          <span class="depth-sheet__tag">Sheet 05</span>
+          <h2 class="depth-sheet__title">Visually elegant. Operationally ridiculous.</h2>
+          <p class="depth-sheet__later">Should have killed two-tier cards when the question "why show something that isn't worth noticing?" first arose - not four iterations later.</p>
+        </header>
+        <div class="depth-sheet__body">
+          <div class="depth-compare">
+            <figure class="depth-figure">
+              <img
+                src="../assets/images/design-in-depth/v2-card-important.png"
+                alt="Higher-interest event card with video thumbnail"
+                loading="lazy"
+              >
+              <figcaption class="depth-figure__cap">Above importance threshold = Earns a thumb.</figcaption>
+            </figure>
+            <figure class="depth-figure">
+              <img
+                src="../assets/images/design-in-depth/v2-card-lesser-important.png"
+                alt="Lower-interest compact event card without thumbnail"
+                loading="lazy"
+              >
+              <figcaption class="depth-figure__cap">Below importance threshold = No thumb.</figcaption>
+            </figure>
+          </div>
+          <div class="depth-sheet__note depth-sheet__note--wide">
+            <p>Same era of compression: metadata gone or hidden, workflow behind a menu, key moments behind expand. Deceptive feeling of success but this is just different skins on one problem - too much data for a card.</p>
+            <p>Demoting some events by stripping the thumbnail looked like a mixed-interest feed. Visually it worked. Operationally: why surface something that isn't worth noticing?</p>
+            <p>The two-tier structure survived four iterations. It took real data in the feed before the lesson stuck - synthetic data had made bad decisions feel plausible.</p>
+          </div>
+          <figure class="depth-figure" style="max-width: 28rem;">
+            <img
+              src="../assets/images/design-in-depth/v5-cards-still-multiple-states.png"
+              alt="v5 card states still showing compact, rich, and expanded variants with annotations"
+              loading="lazy"
+            >
+            <figcaption class="depth-figure__cap">v5 is cleaner - and still carrying two wrong ideas: two-tier events, and click-to-expand. Not forced to optimise yet.</figcaption>
+          </figure>
+        </div>
+      </article>
+
+      <!-- 06 Zoom -->
+      <article class="depth-sheet depth-sheet--wide" id="zoom">
+        <header class="depth-sheet__head">
+          <span class="depth-sheet__tag">Sheet 06</span>
+          <h2 class="depth-sheet__title">Right alone, wrong in a list</h2>
+          <p class="depth-sheet__later">Should have judged the 'impact lozenge in the feed earlier - not just in isolation.</p>
+        </header>
+        <div class="depth-sheet__body">
+          <div class="depth-stack" style="max-width: 40rem;">
+            <figure class="depth-figure">
+              <img
+                src="../assets/images/design-in-depth/v4-big-lozenge-videothumb.png"
+                alt="Lozenge card with video thumbnail - impact colour sandwiched between image and title"
+                loading="lazy"
+              >
+              <figcaption class="depth-figure__cap">Many components require constant zooming in and out to design successfully. Volume, context and environment change how they are perceived.</figcaption>
+            </figure>
+          </div>
+          <div class="depth-sheet__note depth-sheet__note--wide">
+            <p>A brief obsession with getting the cards to compress vertically as much as possible led me to float the image left but this ruined the scanability of the vital 'impact lozenge'. My fix worked nicely on one card but was hideous in aggregate.</p>
+          </div>
+          <figure class="depth-figure depth-figure--tilt">
+            <img
+              src="../assets/images/design-in-depth/feed-with-big-lozenge-cards.png"
+              alt="Full feed mocked up with many large lozenge event cards"
+              loading="lazy"
+            >
+            <figcaption class="depth-figure__cap">One lozenge looks scan-optimised. A stack of them shouts. More urgency theatre than confidence.</figcaption>
+          </figure>
+          <p class="depth-footnote">
+            Process footnote: a Figma plugin pulling dummy data from Sheets was how I stress-tested a single component at scale. Necessary a year ago; much easier now with AI.
+            <a href="../assets/images/design-in-depth/figma-dummy-data-plugin.png">Plugin in operation</a>
+          </p>
+        </div>
+      </article>
+
+      <!-- 07 Mobile -->
+      <article class="depth-sheet depth-sheet--wide" id="mobile">
+        <header class="depth-sheet__head">
+          <span class="depth-sheet__tag">Sheet 07</span>
+          <h2 class="depth-sheet__title">Mobile done last - still fed upstream</h2>
+          <p class="depth-sheet__later">Should have used phone constraints earlier as a critique engine, even without a shipping app.</p>
+        </header>
+        <div class="depth-sheet__body">
+          <div class="depth-sheet__note depth-sheet__note--wide">
+            <p>We didn't discover the need for an app until late in the process. Designing under its constraints forced bare-minimum thinking that 'fed upwards' into the console card.</p>
+          </div>
+
+          <figure class="depth-figure depth-phone-lead">
+            <img
+              src="../assets/images/design-in-depth/finished-mobile-card.png"
+              alt="Finished mobile event card"
+              loading="lazy"
+            >
+            <figcaption class="depth-figure__cap">Every element has to earn its keep. Metadata collapses to the one shift-critical cue for supervisors: who shot it. Owner workflow rides higher here - the job during a shift is not the same as console post-review.</figcaption>
+          </figure>
+
+          <div class="depth-sheet__note depth-sheet__note--wide">
+            <p>Two personas, different jobs: guests own their events and often need to add context; supervisors watch many people. That split changes what the card carries.</p>
+          </div>
+
+          <div class="depth-phone-row">
+            <figure class="depth-figure">
+              <p class="depth-figure__label">Supervisor App</p>
+              <img
+                src="../assets/images/design-in-depth/mobile-supervisor-feed-comparison.png"
+                alt="Supervisor mobile feed with events from multiple users"
+                loading="lazy"
+              >
+              <figcaption class="depth-figure__cap">Own events plus the team: more data on the card because the feed spans many people.</figcaption>
+            </figure>
+            <figure class="depth-figure">
+              <p class="depth-figure__label">Guest App</p>
+              <img
+                src="../assets/images/design-in-depth/mobile-guest-feed-comparison.png"
+                alt="Guest mobile feed showing the user's own events"
+                loading="lazy"
+              >
+              <figcaption class="depth-figure__cap">Little reason to browse for nostalgia - they lived it. One vital job: add human context to what matters.</figcaption>
+            </figure>
+          </div>
+
+          <div class="depth-phone-row">
+            <figure class="depth-figure depth-figure--compound">
+              <p class="depth-figure__label">Customisable cards</p>
+              <div class="depth-stack">
+                <div class="depth-stack__item">
+                  <div
+                    class="depth-mark"
+                    style="--cx: 82.2%; --cy: 63.9%; --rx: 14.6%; --ry: 9.5%;"
+                  >
+                    <img
+                      src="../assets/images/design-in-depth/mobile-guest-result-of-options.png"
+                      alt="Guest feed result after applying options that reshape commented events"
+                      loading="lazy"
+                    >
+                    <span class="depth-mark__ring" aria-hidden="true"></span>
+                  </div>
+                  <figcaption class="depth-figure__cap">Two-tier presentation returns - this time for an operational reason, not space-saving. Hide the thumb after commenting and you can see at a glance which events already have context.</figcaption>
+                </div>
+                <div class="depth-stack__item">
+                  <div
+                    class="depth-mark"
+                    style="--cx: 48.9%; --cy: 90.3%; --rx: 42.2%; --ry: 16.0%;"
+                  >
+                    <img
+                      src="../assets/images/design-in-depth/mobile-guest-feed-options.png"
+                      alt="Guest feed options controlling whether commented events show video thumbnails"
+                      loading="lazy"
+                    >
+                    <span class="depth-mark__ring" aria-hidden="true"></span>
+                  </div>
+                  <figcaption class="depth-figure__cap">A setting, not a redesign: users can reshape the card to match how they work the shift.</figcaption>
+                </div>
+              </div>
+            </figure>
+            <figure class="depth-figure depth-figure--compound">
+              <p class="depth-figure__label">Portable event components</p>
+              <div class="depth-stack">
+                <div class="depth-stack__item">
+                  <div
+                    class="depth-mark"
+                    style="--cx: 30.1%; --cy: 47.8%; --rx: 26.1%; --ry: 12.3%;"
+                  >
+                    <img
+                      src="../assets/images/design-in-depth/mobile-notifications-truncated.png"
+                      alt="Supervisor notifications using portable event card fragments"
+                      loading="lazy"
+                    >
+                    <span class="depth-mark__ring" aria-hidden="true"></span>
+                  </div>
+                  <figcaption class="depth-figure__cap">Same card ingredients, re-used in notifications so alerts still feel like events.</figcaption>
+                </div>
+                <div class="depth-stack__item">
+                  <div
+                    class="depth-mark"
+                    style="--cx: 29.6%; --cy: 71.0%; --rx: 26.7%; --ry: 5.1%;"
+                  >
+                    <img
+                      src="../assets/images/design-in-depth/Mobile%20supervisor%20home.png"
+                      alt="Supervisor home screen surfacing events awaiting action"
+                      loading="lazy"
+                    >
+                    <span class="depth-mark__ring" aria-hidden="true"></span>
+                  </div>
+                  <figcaption class="depth-figure__cap">Outside the feed too: home surfaces events awaiting action before any scan begins.</figcaption>
+                </div>
+              </div>
+            </figure>
+          </div>
+        </div>
+      </article>
+
+      <!-- 08 Micro -->
+      <article class="depth-sheet depth-sheet--split depth-sheet--split-media-sm" id="micro">
+        <header class="depth-sheet__head">
+          <span class="depth-sheet__tag">Sheet 08</span>
+          <h2 class="depth-sheet__title">Compressing the 'boring' essentials</h2>
+          <p class="depth-sheet__later">Should have given earlier careful thought to micro-compression of smaller components rather than redesigning the whole card.</p>
+        </header>
+        <div class="depth-sheet__body">
+          <figure class="depth-figure depth-figure--flush">
+            <div class="depth-micro">
+              <img
+                src="../assets/images/design-in-depth/IncidentID-widget.png"
+                alt="Five-state interaction with 3 jobs for incident ID copy: idle, hover, press, copied, return"
+                loading="lazy"
+              >
+            </div>
+            <figcaption class="depth-figure__cap">Four jobs in the footprint of one quiet string: ID, copy ID, copy link, share.</figcaption>
+          </figure>
+          <div class="depth-sheet__note">
+            <p>You don't always have to redesign the whole component. Thoughtful compression at the constituent level - idle stays quiet; hover becomes a multi-target; feedback is temporary - accrues across the card without turning the feed into a toolbar.</p>
+            <p>Important but not urgent information still has to live somewhere. This is how it earned its keep without looking urgent.</p>
+          </div>
+        </div>
+      </article>
+
+      <!-- 09 Landed -->
+      <article class="depth-sheet depth-sheet--pair" id="landed">
+        <header class="depth-sheet__head">
+          <span class="depth-sheet__tag">Sheet 09</span>
+          <h2 class="depth-sheet__title">Where the card settled - for now</h2>
+          <p class="depth-sheet__later">Should've got here sooner. Real data; real compression; real time distribution; real randomness. These things hardened the settled version - for now.</p>
+        </header>
+        <div class="depth-sheet__body">
+          <figure class="depth-figure depth-figure--compound">
+            <div class="depth-stack">
+              <img
+                src="../assets/images/design-in-depth/Finished%20Single%20Event%20Card.png"
+                alt="Finished single event card with video, impact bar, title, summary and setting metadata"
+                loading="lazy"
+              >
+              <img
+                src="../assets/images/design-in-depth/Final%20Feed.png"
+                alt="Antare events feed showing stacked event cards in context"
+                loading="lazy"
+              >
+            </div>
+            <figcaption class="depth-figure__cap">Atom, then habitat. Even "fully loaded" feels calm and scannable - and still has to hold up in the feed.</figcaption>
+          </figure>
+          <figure class="depth-figure">
+            <img
+              src="../assets/images/design-in-depth/Final%20examples.png"
+              alt="Sheet of finished event card flavours and states for engineering handoff"
+              loading="lazy"
+            >
+            <figcaption class="depth-figure__cap">Handoff: one modular, predictable card reacting to different locations and amounts of data.</figcaption>
+          </figure>
+        </div>
+      </article>
+
+    </div>
+
+    <footer class="depth-close">
+      <div class="depth-close__inner">
+        <p>This is a record of corrections that arrived late - usually because I latched onto an elegant idea and the lack of real data or customers delayed the obvious questions.</p>
+        <p><strong>In my defence...</strong> These things are easy to catch in hindsight. You could argue that it's only having knowledge of what the system is that allows you to identify what's failing the system. So many of these designs were me thinking my way to an understanding of that system through making and observing. At the start, I wasn't even sure I knew what constiuted an event. By the end, I was asking questions about saliency vs. urgency. And I'm sure in 6 months time I'll see even more mistakes I haven't realised I've made yet.</p>
+        <p class="case-back-top">
+          <a href="#main">Back to top</a>
+        </p>
+      </div>
+    </footer>
+
+    <section class="section section--rule">
+      <div class="container">
+        <p class="eyebrow">More work</p>
+        <div class="work-grid">
+          <a href="antare.html" class="work-card">
+            <span class="work-card__number">Case Study 01</span>
+            <h3 class="work-card__title">Antare: Compressing reality</h3>
+            <p class="work-card__thesis">When AI produces more signal than anyone can process, the design problem becomes editorial.</p>
+            <img src="../assets/images/Antare-thumb.png" alt="" class="work-card__image" loading="lazy" width="336" height="210">
+          </a>
+          <a href="dona.html" class="work-card">
+            <span class="work-card__number">Case Study 02</span>
+            <h3 class="work-card__title">Citrix: The hidden cost of good intentions</h3>
+            <p class="work-card__thesis">Behavioural science, organisational influence and an early experiment in sensitive Human-AI interaction.</p>
+            <img src="../assets/images/DONA-thumb.png" alt="" class="work-card__image" loading="lazy" width="336" height="210">
+          </a>
+          <a href="education.html" class="work-card">
+            <span class="work-card__number">Case Study 03</span>
+            <h3 class="work-card__title">VMware: Designing outside the product</h3>
+            <p class="work-card__thesis">Poor conversion suggested we needed better premium features, but I looked elsewhere…</p>
+            <img src="../assets/images/VMware-thumb.png" alt="" class="work-card__image" loading="lazy" width="336" height="210">
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="cx-footer site-footer">
+    <div class="container cx-footer__inner">
+      <p>Andrew Sheerin - Product Design Leader</p>
+      <p><a href="../contact/">Contact</a> | <a href="../assets/cv/andrew-sheerin-cv-july-2026.pdf">CV</a></p>
+    </div>
+  </footer>
+
+  <script src="../js/play-ribbon.js?v=7"></script>
+  <script src="../js/main.js"></script>
+  <script src="../js/mobile-nav.js?v=1"></script>
+</body>
+</html>

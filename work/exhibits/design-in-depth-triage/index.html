@@ -1,0 +1,933 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Asset triage - Design in depth</title>
+  <style>
+    :root {
+      --paper: #f3efe8;
+      --paper-2: #ebe4d8;
+      --ink: #1c1c1c;
+      --muted: #5c5752;
+      --faint: #8a8480;
+      --rule: #cfc6b8;
+      --accent: #8b4513;
+      --sticky: #f5e6c8;
+      --keep: #3d5a45;
+      --out: #7a3b3b;
+      --sans: "IBM Plex Sans", system-ui, sans-serif;
+      --serif: "Source Serif 4", Georgia, serif;
+    }
+
+    * { box-sizing: border-box; }
+    html, body { margin: 0; }
+    body {
+      font-family: var(--sans);
+      background: var(--paper);
+      color: var(--ink);
+      min-height: 100vh;
+    }
+
+    .top {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(243, 239, 232, 0.94);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px dashed var(--rule);
+      padding: 0.75rem 1.25rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem 1.25rem;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .top h1 {
+      font-family: var(--serif);
+      font-size: 1.05rem;
+      font-weight: 500;
+      margin: 0;
+    }
+
+    .top .hint {
+      font-size: 0.78rem;
+      color: var(--faint);
+      margin: 0.15rem 0 0;
+    }
+
+    .modes {
+      display: inline-flex;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .modes button {
+      border: 0;
+      background: transparent;
+      padding: 0.4rem 0.85rem;
+      font: inherit;
+      font-size: 0.8rem;
+      cursor: pointer;
+      color: var(--muted);
+    }
+
+    .modes button[aria-pressed="true"] {
+      background: var(--sticky);
+      color: var(--accent);
+      font-weight: 500;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+
+    .actions button,
+    .nav button,
+    .field-btn {
+      font: inherit;
+      font-size: 0.8rem;
+      border: 1px solid var(--rule);
+      background: #fff;
+      color: var(--ink);
+      padding: 0.4rem 0.7rem;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .actions button:hover,
+    .nav button:hover,
+    .field-btn:hover { border-color: var(--muted); }
+
+    .layout {
+      display: grid;
+      grid-template-columns: 7.5rem 1fr minmax(16rem, 22rem);
+      gap: 0;
+      min-height: calc(100vh - 4.5rem);
+    }
+
+    @media (max-width: 960px) {
+      .layout { grid-template-columns: 1fr; }
+      .strip { flex-direction: row; overflow-x: auto; max-height: none; border-right: 0; border-bottom: 1px dashed var(--rule); }
+    }
+
+    .strip {
+      border-right: 1px dashed var(--rule);
+      overflow-y: auto;
+      max-height: calc(100vh - 4.5rem);
+      padding: 0.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+      background: var(--paper-2);
+    }
+
+    .strip button {
+      border: 1px solid transparent;
+      background: #fff;
+      padding: 0;
+      cursor: pointer;
+      border-radius: 3px;
+      overflow: hidden;
+      position: relative;
+      flex: 0 0 auto;
+    }
+
+    .strip button img {
+      display: block;
+      width: 100%;
+      height: 4.2rem;
+      object-fit: cover;
+      object-position: top;
+    }
+
+    .strip button[aria-current="true"] {
+      border-color: var(--accent);
+      outline: 1px solid var(--accent);
+    }
+
+    .strip button .dot {
+      position: absolute;
+      top: 3px;
+      right: 3px;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: transparent;
+      border: 1px solid rgba(0,0,0,0.2);
+    }
+
+    .strip button.has-vital .dot { background: var(--accent); border-color: var(--accent); }
+    .strip button.is-out .dot { background: var(--out); border-color: var(--out); }
+    .strip button.has-note .dot { box-shadow: 0 0 0 2px #fff; }
+
+    .stage {
+      padding: 1rem 1.25rem 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      min-width: 0;
+    }
+
+    .stage__meta {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      align-items: baseline;
+    }
+
+    .stage__name {
+      font-family: var(--serif);
+      font-size: 1.05rem;
+      margin: 0;
+      word-break: break-word;
+    }
+
+    .stage__count {
+      font-size: 0.78rem;
+      color: var(--faint);
+      white-space: nowrap;
+    }
+
+    .viewer {
+      position: relative;
+      background: var(--paper-2);
+      border: 1px solid var(--rule);
+      overflow: auto;
+      max-height: min(70vh, 820px);
+      display: grid;
+      place-items: center;
+      padding: 0.75rem;
+    }
+
+    .viewer__frame {
+      position: relative;
+      display: inline-block;
+      max-width: 100%;
+      line-height: 0;
+    }
+
+    .viewer__frame img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      user-select: none;
+      -webkit-user-drag: none;
+    }
+
+    .viewer__frame canvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      cursor: crosshair;
+      touch-action: none;
+    }
+
+    .viewer.mode-gut canvas { pointer-events: none; cursor: default; opacity: 0.85; }
+
+    .draw-help {
+      font-size: 0.78rem;
+      color: var(--faint);
+      margin: 0;
+    }
+
+    .nav {
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+    }
+
+    .aside {
+      border-left: 1px dashed var(--rule);
+      padding: 1rem 1.1rem 2rem;
+      background: rgba(255,255,255,0.35);
+      overflow-y: auto;
+      max-height: calc(100vh - 4.5rem);
+    }
+
+    @media (max-width: 960px) {
+      .aside { border-left: 0; border-top: 1px dashed var(--rule); max-height: none; }
+    }
+
+    .aside label {
+      display: block;
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin: 0 0 0.4rem;
+    }
+
+    .aside .block { margin-bottom: 1.15rem; }
+
+    .aside textarea {
+      width: 100%;
+      min-height: 5.5rem;
+      resize: vertical;
+      font: inherit;
+      font-size: 0.92rem;
+      line-height: 1.45;
+      padding: 0.65rem 0.7rem;
+      border: 1px solid var(--rule);
+      background: #fff;
+      color: var(--ink);
+      border-radius: 3px;
+    }
+
+    .aside textarea.short { min-height: 3.2rem; }
+
+    .vital-wrap {
+      background: var(--sticky);
+      border: 1px solid #e0d0a8;
+      padding: 0.85rem 0.9rem;
+      border-radius: 3px;
+    }
+
+    .vital-wrap input[type="range"] {
+      width: 100%;
+      margin: 0.35rem 0 0;
+      accent-color: var(--accent);
+    }
+
+    .fate {
+      display: flex;
+      gap: 0.35rem;
+    }
+
+    .fate button {
+      flex: 1;
+      font: inherit;
+      font-size: 0.78rem;
+      padding: 0.45rem 0.3rem;
+      border: 1px solid var(--rule);
+      background: #fff;
+      cursor: pointer;
+      border-radius: 3px;
+    }
+
+    .fate button[aria-pressed="true"][data-fate="keep"] {
+      background: #e5efe8;
+      border-color: var(--keep);
+      color: var(--keep);
+      font-weight: 500;
+    }
+
+    .fate button[aria-pressed="true"][data-fate="out"] {
+      background: #f3e5e5;
+      border-color: var(--out);
+      color: var(--out);
+      font-weight: 500;
+    }
+
+    .fate button[aria-pressed="true"][data-fate="maybe"] {
+      background: var(--sticky);
+      border-color: var(--accent);
+      color: var(--accent);
+      font-weight: 500;
+    }
+
+    .companions {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.35rem;
+      max-height: 14rem;
+      overflow-y: auto;
+      padding: 0.15rem;
+    }
+
+    .companions label {
+      text-transform: none;
+      letter-spacing: 0;
+      font-weight: 400;
+      font-size: 0;
+      color: transparent;
+      margin: 0;
+      border: 1px solid transparent;
+      border-radius: 3px;
+      overflow: hidden;
+      cursor: pointer;
+      position: relative;
+      background: #fff;
+    }
+
+    .companions label img {
+      width: 100%;
+      height: 3.2rem;
+      object-fit: cover;
+      object-position: top;
+      display: block;
+      opacity: 0.55;
+    }
+
+    .companions input {
+      position: absolute;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .companions input:checked + img {
+      opacity: 1;
+    }
+
+    .companions label:has(input:checked) {
+      border-color: var(--accent);
+      outline: 1px solid var(--accent);
+    }
+
+    .annotate-only[hidden],
+    .gut-quiet[hidden] { display: none !important; }
+
+    .progress {
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+
+    .progress strong { color: var(--ink); font-weight: 500; }
+
+    #import-file { display: none; }
+  </style>
+</head>
+<body>
+  <header class="top">
+    <div>
+      <h1>Design in depth · asset triage</h1>
+      <p class="hint">Disposable capture tool. Answers stay in this browser until you export.</p>
+    </div>
+    <div class="modes" role="group" aria-label="Pass mode">
+      <button type="button" id="mode-gut" aria-pressed="true">1 · Gut</button>
+      <button type="button" id="mode-annotate" aria-pressed="false">2 · Annotate</button>
+    </div>
+    <p class="progress" id="progress"></p>
+    <div class="actions">
+      <button type="button" id="btn-export">Export JSON</button>
+      <button type="button" id="btn-import">Import JSON</button>
+      <input type="file" id="import-file" accept="application/json,.json">
+      <button type="button" id="btn-clear">Clear all</button>
+    </div>
+  </header>
+
+  <div class="layout">
+    <aside class="strip" id="strip" aria-label="Asset filmstrip"></aside>
+
+    <section class="stage">
+      <div class="stage__meta">
+        <h2 class="stage__name" id="asset-name"></h2>
+        <span class="stage__count" id="asset-index"></span>
+      </div>
+      <div class="viewer mode-gut" id="viewer">
+        <div class="viewer__frame" id="frame">
+          <img id="asset-img" alt="">
+          <canvas id="mark-canvas" aria-label="Circle the interesting region"></canvas>
+        </div>
+      </div>
+      <p class="draw-help annotate-only" id="draw-help" hidden>Drag on the image to circle what matters. One ellipse is enough. Clear to redraw.</p>
+      <div class="nav">
+        <button type="button" id="btn-prev">← Prev</button>
+        <button type="button" id="btn-next">Next →</button>
+        <button type="button" id="btn-clear-mark" class="annotate-only" hidden>Clear circle</button>
+        <button type="button" id="btn-ungutted">Next unfinished gut</button>
+      </div>
+    </section>
+
+    <aside class="aside">
+      <div class="block">
+        <label>Keep / out</label>
+        <div class="fate" role="group" aria-label="Fate">
+          <button type="button" data-fate="keep">Keep</button>
+          <button type="button" data-fate="maybe">Maybe</button>
+          <button type="button" data-fate="out">Out</button>
+        </div>
+      </div>
+
+      <div class="block vital-wrap">
+        <label for="vital">How vital (gut)</label>
+        <input type="range" id="vital" min="0" max="100" value="50" aria-valuetext="gut rating">
+      </div>
+
+      <div class="block">
+        <label for="nuance">Nuance</label>
+        <textarea id="nuance" placeholder="Anything you'd tell me later - caveats, half-formed hunches, 'only if paired with X', why Out isn't really Out…"></textarea>
+      </div>
+
+      <div class="block annotate-only" hidden>
+        <label for="why">Why this exists here</label>
+        <textarea id="why" class="short" placeholder="One sentence. What decision does this prove?"></textarea>
+      </div>
+
+      <div class="block annotate-only" hidden>
+        <label for="interesting">What to look at</label>
+        <textarea id="interesting" class="short" placeholder="After you circle: name the detail in words if useful."></textarea>
+      </div>
+
+      <div class="block annotate-only" hidden>
+        <label for="pin-label">Pin label (optional)</label>
+        <textarea id="pin-label" class="short" placeholder='e.g. "Mission creep" / "Scan vs process"'></textarea>
+      </div>
+
+      <div class="block annotate-only" hidden>
+        <label>Belongs with</label>
+        <div class="companions" id="companions"></div>
+        <p class="draw-help" style="margin-top:0.4rem">Tap thumbs to cluster. Order doesn’t matter.</p>
+      </div>
+
+      <div class="block gut-quiet">
+        <p class="draw-help" style="margin:0">
+          Gut pass: Keep/Maybe/Out + slider + nuance. Flip to Annotate when you want circles / companions / sharper “why” - ideally only for Keep / high-vital Maybe.
+        </p>
+      </div>
+    </aside>
+  </div>
+
+  <script>
+    const ASSETS = [
+      "AI-checklist.png",
+      "Contracted Card.png",
+      "Event card controls.png",
+      "Final Feed.png",
+      "Final examples.png",
+      "Finished Single Event Card.png",
+      "IncidentID-copy-widget.png",
+      "incidentID-widget.png",
+      "Mobile - Guest Feed full.png",
+      "Mobile - Guest Feed ordered.png",
+      "Mobile - Guest feed options.png",
+      "Mobile - end of shift feedback flow.png",
+      "Mobile - finished event cards.png",
+      "Mobile - supervisor feed.png",
+      "Mobile - supervisor notifications.png",
+      "Mobile supervisor home.png",
+      "Testing different tag types.png",
+      "background-datagrid.png",
+      "early-keymoments-wireframes.png",
+      "early-wireframes.png",
+      "feed-with-big-lozenge-cards.png",
+      "figma-dummy-data-plugin.png",
+      "finished-mobile-card.png",
+      "incident-detail.png",
+      "mobile-guest-feed-comparison.png",
+      "mobile-guest-feed-options.png",
+      "mobile-guest-result-of-options.png",
+      "mobile-notifications-truncated.png",
+      "mobile-supervisor-feed-comparison.png",
+      "suggested-click-areas.png",
+      "v1-card-fullyloaded.png",
+      "v1-card-moments.png",
+      "v1-card-text.png",
+      "v2-card-important.png",
+      "v2-card-lesser-important.png",
+      "v2-card-moment-based.png",
+      "v2-card-moment-carousel.png",
+      "v2-card-momentbased-alt.png",
+      "v3-card-workflow-focussed.png",
+      "v4-big-lozenge-videothumb.png",
+      "v4-big-lozenge.png",
+      "v5-cards-still-multiple-states.png"
+    ];
+
+    const BASE = "../../../assets/images/design-in-depth/";
+    const STORAGE_KEY = "did-asset-triage-v1";
+
+    const state = {
+      mode: "gut",
+      index: 0,
+      records: loadRecords()
+    };
+
+    const els = {
+      strip: document.getElementById("strip"),
+      img: document.getElementById("asset-img"),
+      canvas: document.getElementById("mark-canvas"),
+      frame: document.getElementById("frame"),
+      viewer: document.getElementById("viewer"),
+      name: document.getElementById("asset-name"),
+      index: document.getElementById("asset-index"),
+      nuance: document.getElementById("nuance"),
+      why: document.getElementById("why"),
+      interesting: document.getElementById("interesting"),
+      pinLabel: document.getElementById("pin-label"),
+      vital: document.getElementById("vital"),
+      companions: document.getElementById("companions"),
+      progress: document.getElementById("progress"),
+      modeGut: document.getElementById("mode-gut"),
+      modeAnnotate: document.getElementById("mode-annotate"),
+      drawHelp: document.getElementById("draw-help")
+    };
+
+    const ctx = els.canvas.getContext("2d");
+    let drawing = false;
+    let draft = null;
+
+    function emptyRecord() {
+      return {
+        fate: null,
+        vital: null,
+        nuance: "",
+        why: "",
+        interesting: "",
+        pinLabel: "",
+        companions: [],
+        circle: null,
+        updatedAt: null
+      };
+    }
+
+    function loadRecords() {
+      try {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        if (!raw) return Object.create(null);
+        const parsed = JSON.parse(raw);
+        return parsed.records || Object.create(null);
+      } catch {
+        return Object.create(null);
+      }
+    }
+
+    function save() {
+      const payload = {
+        version: 1,
+        savedAt: new Date().toISOString(),
+        assets: ASSETS,
+        records: state.records
+      };
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(payload));
+      updateProgress();
+      updateStripDots();
+    }
+
+    function currentFile() {
+      return ASSETS[state.index];
+    }
+
+    function currentRecord() {
+      const file = currentFile();
+      if (!state.records[file]) state.records[file] = emptyRecord();
+      return state.records[file];
+    }
+
+    function assetUrl(file) {
+      return BASE + encodeURIComponent(file).replace(/%20/g, "%20");
+    }
+
+    function buildStrip() {
+      els.strip.innerHTML = "";
+      ASSETS.forEach((file, i) => {
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.title = file;
+        btn.dataset.index = String(i);
+        const img = document.createElement("img");
+        img.src = assetUrl(file);
+        img.alt = "";
+        img.loading = "lazy";
+        const dot = document.createElement("span");
+        dot.className = "dot";
+        btn.append(img, dot);
+        btn.addEventListener("click", () => {
+          state.index = i;
+          renderAsset();
+        });
+        els.strip.appendChild(btn);
+      });
+      updateStripDots();
+    }
+
+    function updateStripDots() {
+      [...els.strip.children].forEach((btn, i) => {
+        const rec = state.records[ASSETS[i]];
+        btn.classList.toggle("has-vital", !!(rec && rec.vital != null));
+        btn.classList.toggle("is-out", !!(rec && rec.fate === "out"));
+        btn.classList.toggle("has-note", !!(rec && (rec.nuance || rec.why || rec.interesting || rec.circle)));
+        btn.setAttribute("aria-current", i === state.index ? "true" : "false");
+      });
+    }
+
+    function updateProgress() {
+      let gutted = 0;
+      let annotated = 0;
+      let keep = 0;
+      ASSETS.forEach((file) => {
+        const r = state.records[file];
+        if (!r) return;
+        if (r.fate || r.vital != null) gutted += 1;
+        if (r.nuance || r.why || r.interesting || r.circle) annotated += 1;
+        if (r.fate === "keep") keep += 1;
+      });
+      els.progress.innerHTML =
+        `<strong>${gutted}</strong>/${ASSETS.length} gutted · ` +
+        `<strong>${annotated}</strong> annotated · ` +
+        `<strong>${keep}</strong> keep`;
+    }
+
+    function setMode(mode) {
+      state.mode = mode;
+      els.modeGut.setAttribute("aria-pressed", mode === "gut" ? "true" : "false");
+      els.modeAnnotate.setAttribute("aria-pressed", mode === "annotate" ? "true" : "false");
+      els.viewer.classList.toggle("mode-gut", mode === "gut");
+      document.querySelectorAll(".annotate-only").forEach((el) => {
+        el.hidden = mode !== "annotate";
+      });
+      document.querySelectorAll(".gut-quiet").forEach((el) => {
+        el.hidden = mode === "annotate";
+      });
+      redrawCircle();
+    }
+
+    function buildCompanions() {
+      const file = currentFile();
+      const rec = currentRecord();
+      els.companions.innerHTML = "";
+      ASSETS.forEach((other) => {
+        if (other === file) return;
+        const lab = document.createElement("label");
+        lab.title = other;
+        const input = document.createElement("input");
+        input.type = "checkbox";
+        input.value = other;
+        input.checked = rec.companions.includes(other);
+        const img = document.createElement("img");
+        img.src = assetUrl(other);
+        img.alt = "";
+        img.loading = "lazy";
+        input.addEventListener("change", () => {
+          const r = currentRecord();
+          if (input.checked) {
+            if (!r.companions.includes(other)) r.companions.push(other);
+          } else {
+            r.companions = r.companions.filter((x) => x !== other);
+          }
+          r.updatedAt = new Date().toISOString();
+          save();
+        });
+        lab.append(input, img);
+        els.companions.appendChild(lab);
+      });
+    }
+
+    function syncFormFromRecord() {
+      const r = currentRecord();
+      els.nuance.value = r.nuance || "";
+      els.why.value = r.why || "";
+      els.interesting.value = r.interesting || "";
+      els.pinLabel.value = r.pinLabel || "";
+      els.vital.value = r.vital != null ? r.vital : 50;
+      document.querySelectorAll(".fate button").forEach((btn) => {
+        btn.setAttribute("aria-pressed", btn.dataset.fate === r.fate ? "true" : "false");
+      });
+      buildCompanions();
+    }
+
+    function renderAsset() {
+      const file = currentFile();
+      els.name.textContent = file;
+      els.index.textContent = `${state.index + 1} / ${ASSETS.length}`;
+      els.img.onload = () => {
+        sizeCanvas();
+        redrawCircle();
+      };
+      els.img.src = assetUrl(file);
+      syncFormFromRecord();
+      updateStripDots();
+      updateProgress();
+      const currentBtn = els.strip.children[state.index];
+      if (currentBtn) currentBtn.scrollIntoView({ block: "nearest" });
+    }
+
+    function sizeCanvas() {
+      const rect = els.img.getBoundingClientRect();
+      const w = Math.max(1, Math.round(rect.width));
+      const h = Math.max(1, Math.round(rect.height));
+      if (els.canvas.width !== w || els.canvas.height !== h) {
+        els.canvas.width = w;
+        els.canvas.height = h;
+      }
+    }
+
+    function redrawCircle() {
+      sizeCanvas();
+      ctx.clearRect(0, 0, els.canvas.width, els.canvas.height);
+      const circle = draft || currentRecord().circle;
+      if (!circle) return;
+      const x = circle.cx * els.canvas.width;
+      const y = circle.cy * els.canvas.height;
+      const rx = circle.rx * els.canvas.width;
+      const ry = circle.ry * els.canvas.height;
+      ctx.beginPath();
+      ctx.ellipse(x, y, Math.max(rx, 2), Math.max(ry, 2), 0, 0, Math.PI * 2);
+      ctx.strokeStyle = "rgba(196, 68, 54, 0.95)";
+      ctx.lineWidth = 2.5;
+      ctx.setLineDash([6, 4]);
+      ctx.stroke();
+      ctx.setLineDash([]);
+      ctx.fillStyle = "rgba(196, 68, 54, 0.08)";
+      ctx.fill();
+    }
+
+    function pointerToNorm(e) {
+      const rect = els.canvas.getBoundingClientRect();
+      return {
+        x: (e.clientX - rect.left) / rect.width,
+        y: (e.clientY - rect.top) / rect.height
+      };
+    }
+
+    function onPointerDown(e) {
+      if (state.mode !== "annotate") return;
+      drawing = true;
+      els.canvas.setPointerCapture(e.pointerId);
+      const p = pointerToNorm(e);
+      draft = { cx: p.x, cy: p.y, rx: 0, ry: 0, _sx: p.x, _sy: p.y };
+      redrawCircle();
+    }
+
+    function onPointerMove(e) {
+      if (!drawing || !draft) return;
+      const p = pointerToNorm(e);
+      const sx = draft._sx;
+      const sy = draft._sy;
+      draft.cx = (sx + p.x) / 2;
+      draft.cy = (sy + p.y) / 2;
+      draft.rx = Math.abs(p.x - sx) / 2;
+      draft.ry = Math.abs(p.y - sy) / 2;
+      redrawCircle();
+    }
+
+    function onPointerUp() {
+      if (!drawing) return;
+      drawing = false;
+      if (draft && draft.rx > 0.01 && draft.ry > 0.01) {
+        const r = currentRecord();
+        r.circle = { cx: draft.cx, cy: draft.cy, rx: draft.rx, ry: draft.ry };
+        r.updatedAt = new Date().toISOString();
+        save();
+      }
+      draft = null;
+      redrawCircle();
+    }
+
+    function patch(partial) {
+      const r = currentRecord();
+      Object.assign(r, partial, { updatedAt: new Date().toISOString() });
+      save();
+      updateStripDots();
+    }
+
+    els.canvas.addEventListener("pointerdown", onPointerDown);
+    els.canvas.addEventListener("pointermove", onPointerMove);
+    els.canvas.addEventListener("pointerup", onPointerUp);
+    els.canvas.addEventListener("pointercancel", onPointerUp);
+    window.addEventListener("resize", () => redrawCircle());
+
+    els.nuance.addEventListener("input", () => patch({ nuance: els.nuance.value }));
+    els.why.addEventListener("input", () => patch({ why: els.why.value }));
+    els.interesting.addEventListener("input", () => patch({ interesting: els.interesting.value }));
+    els.pinLabel.addEventListener("input", () => patch({ pinLabel: els.pinLabel.value }));
+    els.vital.addEventListener("input", () => {
+      patch({ vital: Number(els.vital.value) });
+      if (!currentRecord().fate) {
+        // nudge maybe if they rate without fate
+      }
+    });
+
+    document.querySelectorAll(".fate button").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        patch({ fate: btn.dataset.fate });
+        document.querySelectorAll(".fate button").forEach((b) => {
+          b.setAttribute("aria-pressed", b === btn ? "true" : "false");
+        });
+      });
+    });
+
+    els.modeGut.addEventListener("click", () => setMode("gut"));
+    els.modeAnnotate.addEventListener("click", () => setMode("annotate"));
+
+    document.getElementById("btn-prev").addEventListener("click", () => {
+      state.index = (state.index - 1 + ASSETS.length) % ASSETS.length;
+      renderAsset();
+    });
+    document.getElementById("btn-next").addEventListener("click", () => {
+      state.index = (state.index + 1) % ASSETS.length;
+      renderAsset();
+    });
+    document.getElementById("btn-clear-mark").addEventListener("click", () => {
+      patch({ circle: null });
+      draft = null;
+      redrawCircle();
+    });
+    document.getElementById("btn-ungutted").addEventListener("click", () => {
+      for (let step = 1; step <= ASSETS.length; step++) {
+        const i = (state.index + step) % ASSETS.length;
+        const r = state.records[ASSETS[i]];
+        if (!r || (!r.fate && r.vital == null)) {
+          state.index = i;
+          renderAsset();
+          return;
+        }
+      }
+    });
+
+    document.getElementById("btn-export").addEventListener("click", () => {
+      const payload = {
+        version: 1,
+        exportedAt: new Date().toISOString(),
+        assets: ASSETS,
+        records: state.records
+      };
+      const blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
+      const a = document.createElement("a");
+      a.href = URL.createObjectURL(blob);
+      a.download = `design-in-depth-triage-${new Date().toISOString().slice(0, 10)}.json`;
+      a.click();
+      URL.revokeObjectURL(a.href);
+    });
+
+    document.getElementById("btn-import").addEventListener("click", () => {
+      document.getElementById("import-file").click();
+    });
+    document.getElementById("import-file").addEventListener("change", async (e) => {
+      const file = e.target.files && e.target.files[0];
+      if (!file) return;
+      try {
+        const text = await file.text();
+        const parsed = JSON.parse(text);
+        state.records = parsed.records || Object.create(null);
+        save();
+        renderAsset();
+      } catch {
+        alert("Could not read that JSON.");
+      }
+      e.target.value = "";
+    });
+
+    document.getElementById("btn-clear").addEventListener("click", () => {
+      if (!confirm("Clear all triage answers in this browser?")) return;
+      state.records = Object.create(null);
+      save();
+      renderAsset();
+    });
+
+    document.addEventListener("keydown", (e) => {
+      if (e.target.matches("textarea, input")) return;
+      if (e.key === "ArrowRight") {
+        document.getElementById("btn-next").click();
+      } else if (e.key === "ArrowLeft") {
+        document.getElementById("btn-prev").click();
+      } else if (e.key === "1") {
+        setMode("gut");
+      } else if (e.key === "2") {
+        setMode("annotate");
+      }
+    });
+
+    buildStrip();
+    setMode("gut");
+    renderAsset();
+  </script>
+</body>
+</html>

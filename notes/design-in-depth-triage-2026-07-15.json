@@ -1,0 +1,585 @@
+{
+  "version": 1,
+  "exportedAt": "2026-07-15T10:45:50.354Z",
+  "assets": [
+    "AI-checklist.png",
+    "Contracted Card.png",
+    "Event card controls.png",
+    "Final Feed.png",
+    "Final examples.png",
+    "Finished Single Event Card.png",
+    "IncidentID-copy-widget.png",
+    "incidentID-widget.png",
+    "Mobile - Guest Feed full.png",
+    "Mobile - Guest Feed ordered.png",
+    "Mobile - Guest feed options.png",
+    "Mobile - end of shift feedback flow.png",
+    "Mobile - finished event cards.png",
+    "Mobile - supervisor feed.png",
+    "Mobile - supervisor notifications.png",
+    "Mobile supervisor home.png",
+    "Testing different tag types.png",
+    "background-datagrid.png",
+    "early-keymoments-wireframes.png",
+    "early-wireframes.png",
+    "feed-with-big-lozenge-cards.png",
+    "figma-dummy-data-plugin.png",
+    "finished-mobile-card.png",
+    "incident-detail.png",
+    "mobile-guest-feed-comparison.png",
+    "mobile-guest-feed-options.png",
+    "mobile-guest-result-of-options.png",
+    "mobile-notifications-truncated.png",
+    "mobile-supervisor-feed-comparison.png",
+    "suggested-click-areas.png",
+    "v1-card-fullyloaded.png",
+    "v1-card-moments.png",
+    "v1-card-text.png",
+    "v2-card-important.png",
+    "v2-card-lesser-important.png",
+    "v2-card-moment-based.png",
+    "v2-card-moment-carousel.png",
+    "v2-card-momentbased-alt.png",
+    "v3-card-workflow-focussed.png",
+    "v4-big-lozenge-videothumb.png",
+    "v4-big-lozenge.png",
+    "v5-cards-still-multiple-states.png"
+  ],
+  "records": {
+    "AI-checklist.png": {
+      "fate": "maybe",
+      "vital": 9,
+      "nuance": "",
+      "why": "Possibly if there's natural space for a 'receipt' showing how AI design is part of the design process",
+      "interesting": "",
+      "pinLabel": "",
+      "companions": [],
+      "circle": null,
+      "updatedAt": "2026-07-14T17:22:27.116Z"
+    },
+    "Event card controls.png": {
+      "fate": "maybe",
+      "vital": 11,
+      "nuance": "",
+      "why": "This shows the atomised design of the card in figma. It demonstrates the card is made up of multiple mini components and states; it also shows I know how to construct complex figma elements",
+      "interesting": "",
+      "pinLabel": "",
+      "companions": [],
+      "circle": null,
+      "updatedAt": "2026-07-14T18:13:54.388Z"
+    },
+    "Final Feed.png": {
+      "fate": "keep",
+      "vital": 80,
+      "nuance": "",
+      "why": "I think it's nice to conclude with a look at where the event card ended up and how that is represented in the feed",
+      "interesting": "",
+      "pinLabel": "",
+      "companions": [
+        "Finished Single Event Card.png"
+      ],
+      "circle": null,
+      "updatedAt": "2026-07-14T18:14:51.448Z"
+    },
+    "Final examples.png": {
+      "fate": "maybe",
+      "vital": null,
+      "nuance": "",
+      "why": "This is a more detailed look at where the event card finished up. For completionists it's important as it shows not just a finished asset but flavours of a same asset. Could be compressed with the finished event card as a mutli-toggle explore (or carousel) of the card in various states rather than an overwhelming image like this",
+      "interesting": "",
+      "pinLabel": "",
+      "companions": [
+        "Finished Single Event Card.png",
+        "Final Feed.png"
+      ],
+      "circle": null,
+      "updatedAt": "2026-07-14T18:17:21.855Z"
+    },
+    "Finished Single Event Card.png": {
+      "fate": "keep",
+      "vital": 97,
+      "nuance": "",
+      "why": "I think it's nice to conclude with a look at where the event card ended up and how that is represented in the feed",
+      "interesting": "",
+      "pinLabel": "",
+      "companions": [
+        "Final Feed.png"
+      ],
+      "circle": null,
+      "updatedAt": "2026-07-14T18:18:20.427Z"
+    },
+    "IncidentID-copy-widget.png": {
+      "fate": "maybe",
+      "vital": null,
+      "nuance": "",
+      "why": "There's a mini-story about intelligent compression of information. On the event card there were several bits of important but not urgent information: incident ID, copy ID, copy incident link, share incident link. I designed a component that compressed all that into the space that just the ID takes up. This is the interaction design; I don't have many examples of interaction design being mapped out, that's why it's here. Belongs with Incident ID Widget (just added)",
+      "interesting": "",
+      "pinLabel": "",
+      "companions": [],
+      "circle": null,
+      "updatedAt": "2026-07-14T18:24:54.644Z"
+    },
+    "Mobile - Guest Feed full.png": {
+      "fate": "keep",
+      "vital": 64,
+      "nuance": "",
+      "why": "All mobile designs are strategically important. Three purposes: \n1. There's a mini story about mobile being done last but informing back up the chain into ecosystem as it forced me to focus on bare minimum\n2. It shows design for multiple personas with drastically different interests and goals (supervisor and guest)\n3. I need evidence of mobile design for many jobs",
+      "interesting": "I feel I want to call out multiple small things that explain what's on the card and how it serves the user AND (where applicable) how this informed the larger ecosystem and improved the console event card",
+      "pinLabel": "",
+      "companions": [
+        "Mobile - supervisor feed.png"
+      ],
+      "circle": null,
+      "updatedAt": "2026-07-14T18:28:46.788Z"
+    },
+    "Mobile - Guest Feed ordered.png": {
+      "fate": "maybe",
+      "vital": 65,
+      "nuance": "",
+      "why": "This and the associated image are exploring one thing really: that this specific persona has a unique goal - they have to easily identify events of theirs that they need to add context to. Workflows for this user are so core to the experience that they changed the event card slightly (optionally) - so that users can hide video thumbnail for commented events as it's less needed",
+      "interesting": "",
+      "pinLabel": "",
+      "companions": [
+        "Mobile - Guest feed options.png"
+      ],
+      "circle": {
+        "cx": 0.5271979944029851,
+        "cy": 0.20139199263443935,
+        "rx": 0.4824024409203981,
+        "ry": 0.08880796803489703
+      },
+      "updatedAt": "2026-07-14T18:33:15.015Z"
+    },
+    "Mobile - Guest feed options.png": {
+      "fate": null,
+      "vital": null,
+      "nuance": "",
+      "why": "Exposing the setting that controls the previous event feed layout with commented events showing without thumb",
+      "interesting": "",
+      "pinLabel": "",
+      "companions": [
+        "Mobile - Guest Feed ordered.png"
+      ],
+      "circle": {
+        "cx": 0.4620646766169154,
+        "cy": 0.9326831110554921,
+        "rx": 0.3659145677860697,
+        "ry": 0.08590286219965676
+      },
+      "updatedAt": "2026-07-15T09:34:08.922Z"
+    },
+    "Mobile - end of shift feedback flow.png": {
+      "fate": "out",
+      "vital": 39,
+      "nuance": "",
+      "why": "If you can think of a good reason to include it great. It's a wonderful illustration of mobile workflows and I really just want an excuse to show I can do this. Probably for another place, if at all. It's not related to event cards sadly",
+      "interesting": "",
+      "pinLabel": "",
+      "companions": [],
+      "circle": null,
+      "updatedAt": "2026-07-14T18:34:45.431Z"
+    },
+    "Mobile - finished event cards.png": {
+      "fate": "maybe",
+      "vital": 23,
+      "nuance": "",
+      "why": "This is part of the handover artefact for engineering. It explains the modular aspect of both types of card: guest and supervisor. Probably not needed if other 'finished card' artefacts are used",
+      "interesting": "",
+      "pinLabel": "",
+      "companions": [
+        "Final examples.png"
+      ],
+      "circle": null,
+      "updatedAt": "2026-07-14T18:38:34.878Z"
+    },
+    "Mobile - supervisor feed.png": {
+      "fate": "keep",
+      "vital": 77,
+      "nuance": "",
+      "why": "To be presented in direct juxtaposition with guest feed. There are extra bits of data on the supervisor card because they are viewing events from multiple users, rather than just their own events",
+      "interesting": "",
+      "pinLabel": "",
+      "companions": [
+        "Mobile - Guest Feed full.png"
+      ],
+      "circle": null,
+      "updatedAt": "2026-07-14T18:39:34.491Z"
+    },
+    "Mobile - supervisor notifications.png": {
+      "fate": "keep",
+      "vital": 62,
+      "nuance": "",
+      "why": "I want to show how elements of the event card were designed to be portable so they could be used on other surfaces and still have relation to events and feel like part of a system",
+      "interesting": "",
+      "pinLabel": "",
+      "companions": [
+        "Mobile supervisor home.png"
+      ],
+      "circle": {
+        "cx": 0.46574986396144274,
+        "cy": 0.24037739559496568,
+        "rx": 0.4069714902052239,
+        "ry": 0.04745825586384439
+      },
+      "updatedAt": "2026-07-14T18:42:21.791Z"
+    },
+    "Mobile supervisor home.png": {
+      "fate": "keep",
+      "vital": null,
+      "nuance": "",
+      "why": "Again, shows portability of the event card so that events awaiting action are surfaced on the app home screen. Probably want to show the whole screen (same with notifications) to 'subtly' cue viewers that \"look, I can do mobile design\"",
+      "interesting": "",
+      "pinLabel": "",
+      "companions": [
+        "Mobile - supervisor notifications.png"
+      ],
+      "circle": {
+        "cx": 0.29569153866525427,
+        "cy": 0.710121297005893,
+        "rx": 0.2674457097457627,
+        "ry": 0.050664623027932676
+      },
+      "updatedAt": "2026-07-15T10:36:44.020Z"
+    },
+    "Testing different tag types.png": {
+      "fate": "maybe",
+      "vital": 18,
+      "nuance": "",
+      "why": "Brief exploration of how dense to make tags and how to convey incident category in tags. Not very exciting but if it belonged with another asset that was exploring similar problems then worth bundling.",
+      "interesting": "",
+      "pinLabel": "",
+      "companions": [],
+      "circle": null,
+      "updatedAt": "2026-07-14T18:44:16.834Z"
+    },
+    "background-datagrid.png": {
+      "fate": "out",
+      "vital": null,
+      "nuance": "",
+      "why": "This was there in case I needed to illustrate the background to the feed; I don't ",
+      "interesting": "",
+      "pinLabel": "",
+      "companions": [],
+      "circle": null,
+      "updatedAt": "2026-07-14T18:44:37.815Z"
+    },
+    "early-keymoments-wireframes.png": {
+      "fate": "keep",
+      "vital": null,
+      "nuance": "",
+      "why": "At some point, after viewing hundreds of bodyworn camera clips I realised there was a common structure to all events - they aren't just \"story\" with a narrative arc, they usually are comprised of several 'beats' or key moments. Some events have peaks with long periods of nothing interesting happening. Some seem to resolve, then flare up again. This moment-based model drove design of the incident detail page and that thinking infected the event card for a while... until I realised that event information in the feed is there for a different reason to event information on the event detail page",
+      "interesting": "",
+      "pinLabel": "",
+      "companions": [],
+      "circle": null,
+      "updatedAt": "2026-07-14T18:50:26.933Z"
+    },
+    "early-wireframes.png": {
+      "fate": "keep",
+      "vital": 70,
+      "nuance": "",
+      "why": "Early mapping of the data space to establish physical relation of various types of information:\nTitle (narrative)\nCategorisation\nPrioritisation\nImpact\nWorkflow state\nActivity\nProcess options\nMetadata\n\nInterestingly metadata was assumed from day 1 as ever DEMS system has metadata front and centre. THen I got rid of metadata when I realised it was only there as an artefact of metrics-driven systems (the only data that could be shown) and that understanding was the primary job of the card; then metadata got added back in as I realised that metadata (some of it) does in fact aid understanding, or at least context setting: length of clip, location, person invovled etc.",
+      "interesting": "",
+      "pinLabel": "",
+      "companions": [],
+      "circle": null,
+      "updatedAt": "2026-07-14T18:47:38.291Z"
+    },
+    "feed-with-big-lozenge-cards.png": {
+      "fate": "keep",
+      "vital": null,
+      "nuance": "",
+      "why": "I think this is illustrating something interesting and quite important in design. Often you have to continuously zoom in and out, designing component and placing it in context. The large lozenge version of the event card looked like it was strongly optimised for primary scanning, showing the impact level (colour) far left and obvious.\n\nBut shown in the feed, it was clear that more than one of these were overwhelming and created a console that was more \"shouting\" than reassuring and confidence inspiring",
+      "interesting": "",
+      "pinLabel": "",
+      "companions": [
+        "v4-big-lozenge.png",
+        "v4-big-lozenge-videothumb.png"
+      ],
+      "circle": null,
+      "updatedAt": "2026-07-14T18:53:30.652Z"
+    },
+    "figma-dummy-data-plugin.png": {
+      "fate": "keep",
+      "vital": null,
+      "nuance": "",
+      "why": "This shows process technique: using a figma plugin to pull in dummy data from google sheets to quickly test a single component design at scale (see big lozenge problem). It's redundant now AI can do this easily, but a year ago it was necessary.",
+      "interesting": "",
+      "pinLabel": "",
+      "companions": [],
+      "circle": null,
+      "updatedAt": "2026-07-14T18:54:40.154Z"
+    },
+    "incident-detail.png": {
+      "fate": "keep",
+      "vital": 84,
+      "nuance": "",
+      "why": "I feel this \"makes real\" the previous observation about how the key moment model infected the event card. This illustration of the incident detail page explains what that means and why that might have happened. It clearly belongs here as a primary way of navigating and investigating the event. But cards don't exist for navigating and investigating.",
+      "interesting": "",
+      "pinLabel": "",
+      "companions": [
+        "v1-card-moments.png",
+        "v2-card-moment-carousel.png",
+        "early-keymoments-wireframes.png"
+      ],
+      "circle": {
+        "cx": 0.8275304839121553,
+        "cy": 0.7250261123877167,
+        "rx": 0.18040171731358529,
+        "ry": 0.2253133486526008
+      },
+      "updatedAt": "2026-07-14T18:56:40.690Z"
+    },
+    "suggested-click-areas.png": {
+      "fate": "keep",
+      "vital": 94,
+      "nuance": "",
+      "why": "I think there's a mini story here about recognising that the event card was being asked to do more work than it could comfortably support. Many of my early explorations are obsessed with the idea of having a compact and expanded version of the same card, imagining this would be the best of all worlds. ALL the data, but not overloading the interface or the viewer. If someone is interested then they click expand and get the full load.\n\nIn actual fact, this was what I called lazy design. I didn't do the hard work of rationalising what TRULY belongs on the card, I instead invented or wrangled affordances onto the card that would enable me to avoid this thinking.\n\nDrawing up the click areas of my card design that I was quite proud of by this point was an \"aha\" moment for me as I recognised the complexity of what I was designing. Interestingly I didn't fully redesign until after tackling the mobile event card, but it did the job of planting the seeds of doubt and started me asking questions about what I was really doing.",
+      "interesting": "",
+      "pinLabel": "",
+      "companions": [],
+      "circle": null,
+      "updatedAt": "2026-07-14T19:00:38.965Z"
+    },
+    "v1-card-fullyloaded.png": {
+      "fate": "keep",
+      "vital": 70,
+      "nuance": "",
+      "why": "This illustrates another early assumption that all competitors have in their DEMS and just \"makes sense\" which is bolting on basic workflow onto the card. It took a while but the next step was to simplify this to a one stage action (keep forever or allow it to decay) and then finally removed all trace of workflow for later exploration identifying it successfully as a separate system that would need INTEGRATING into events but shouldn't be part of events",
+      "interesting": "",
+      "pinLabel": "",
+      "companions": [],
+      "circle": {
+        "cx": 0.8823117498723188,
+        "cy": 0.6535847239456967,
+        "rx": 0.10341587397854951,
+        "ry": 0.24124423536384346
+      },
+      "updatedAt": "2026-07-14T19:03:24.181Z"
+    },
+    "v1-card-moments.png": {
+      "fate": "maybe",
+      "vital": null,
+      "nuance": "",
+      "why": "Early card design following from the wireframe of the same nature showing key moment based thinking",
+      "interesting": "",
+      "pinLabel": "",
+      "companions": [
+        "early-keymoments-wireframes.png"
+      ],
+      "circle": null,
+      "updatedAt": "2026-07-14T19:29:47.422Z"
+    },
+    "v1-card-text.png": {
+      "fate": "maybe",
+      "vital": 12,
+      "nuance": "",
+      "why": "For a bit I investigated the idea of not showcasing video thumbnails at all, theorising that title and key events would convey information better. Thumbnails quickly came back as even a still can convey a lot of information and also serve as great differentiators",
+      "interesting": "",
+      "pinLabel": "",
+      "companions": [],
+      "circle": null,
+      "updatedAt": "2026-07-14T19:30:59.909Z"
+    },
+    "v2-card-important.png": {
+      "fate": "maybe",
+      "vital": null,
+      "nuance": "",
+      "why": "This and the next showing how the card evolves:\n- metadata has gone / hidden\n- workflow options hidden behind 3-dot menu\n- key moments and metadata hidden behind expand\n\nThese are all circling the same problem: there's too much data for a card to handle",
+      "interesting": "",
+      "pinLabel": "",
+      "companions": [
+        "v2-card-lesser-important.png"
+      ],
+      "circle": null,
+      "updatedAt": "2026-07-14T19:32:47.848Z"
+    },
+    "v2-card-lesser-important.png": {
+      "fate": "maybe",
+      "vital": null,
+      "nuance": "",
+      "why": "Part of the too much data problem was to visually demote some events to be less noticeable by removing the thumbnail. Visually it worked quite well, the feed had mixed-interest things in it. Operationally it was ridiculous: why show something that isn't worth noticing?\n\nSurprisingly this \"two tier\" card structure stayed through 4 separate iterations before I learned this lesson (probably because it took until v4 before we got real data in the feed and I suddenly realised it was impossible to make good decisions with the current design)",
+      "interesting": "",
+      "pinLabel": "",
+      "companions": [
+        "v2-card-important.png"
+      ],
+      "circle": null,
+      "updatedAt": "2026-07-14T19:35:10.658Z"
+    },
+    "v2-card-moment-based.png": {
+      "fate": "maybe",
+      "vital": 22,
+      "nuance": "",
+      "why": "A different design approach to navigating key moments. It's becoming less of a card and more of a mini-incident-anlaysis window",
+      "interesting": "",
+      "pinLabel": "",
+      "companions": [
+        "v2-card-moment-carousel.png"
+      ],
+      "circle": null,
+      "updatedAt": "2026-07-14T19:35:54.050Z"
+    },
+    "v2-card-moment-carousel.png": {
+      "fate": "out",
+      "vital": 8,
+      "nuance": "",
+      "why": "",
+      "interesting": "",
+      "pinLabel": "",
+      "companions": [],
+      "circle": null,
+      "updatedAt": "2026-07-14T19:36:17.466Z"
+    },
+    "v2-card-momentbased-alt.png": {
+      "fate": "maybe",
+      "vital": 34,
+      "nuance": "",
+      "why": "Another exploration of how to browse via the key moment model/ structure inside a card. \n\nI trialed these variations internally with the help of the front end team and served different cards to different people then compared their experience of the feed. \n\nSome really liked this design! But it didn't fit the job of the feed ultimately.",
+      "interesting": "",
+      "pinLabel": "",
+      "companions": [
+        "v2-card-moment-carousel.png",
+        "v2-card-moment-based.png"
+      ],
+      "circle": null,
+      "updatedAt": "2026-07-14T19:38:03.173Z"
+    },
+    "v3-card-workflow-focussed.png": {
+      "fate": "out",
+      "vital": 5,
+      "nuance": "",
+      "why": "",
+      "interesting": "",
+      "pinLabel": "",
+      "companions": [],
+      "circle": null,
+      "updatedAt": "2026-07-14T19:38:59.872Z"
+    },
+    "v4-big-lozenge-videothumb.png": {
+      "fate": null,
+      "vital": null,
+      "nuance": "",
+      "why": "The colour lozenge was a staple of the event card from the beginning. It meant subtly different things but as a device it did a consistent job really well - it told users at a glance how much of their attention was warranted. It started undefined as a vague 'importance score' and ended up matching a carefully researched framework of \"impact severity\", reflecting how dangerous this event is to successful operation of the business/organisation.\n\nOne problem though, previous designs had the lozenge left aligned of all content meaning you could scan down the left of the feed and immediately see the 'shape and contours' of the events. Then I made the decision to condense the feed vertically and left-align the image so each card takes up less vertical space. The result was that the lozenge was now sandwiched between image and title making it less obvious and slightly harder to scan.\n\nThis design seeks to rectify the effects of an earlier optimisation (floating the image left). It feels like it works in isoaltion but fails in aggregate",
+      "interesting": "",
+      "pinLabel": "",
+      "companions": [],
+      "circle": null,
+      "updatedAt": "2026-07-14T19:45:46.261Z"
+    },
+    "v4-big-lozenge.png": {
+      "fate": "maybe",
+      "vital": null,
+      "nuance": "",
+      "why": "See other assets talking about the big lozenge",
+      "interesting": "",
+      "pinLabel": "",
+      "companions": [],
+      "circle": null,
+      "updatedAt": "2026-07-14T19:46:02.129Z"
+    },
+    "v5-cards-still-multiple-states.png": {
+      "fate": "maybe",
+      "vital": 30,
+      "nuance": "",
+      "why": "This is v5 and is cleaner than previous designs, it's definitely working towards clarity but two \"wrong\" ideas are stubbornly still present:\ntwo-tiered events\nclick-to-expand\n\nThe reason: I simply haven't been forced to optimise the card by real data. It's all theoretical because all we had was synthetic data",
+      "interesting": "",
+      "pinLabel": "",
+      "companions": [],
+      "circle": null,
+      "updatedAt": "2026-07-14T19:47:44.912Z"
+    },
+    "incidentID-widget.png": {
+      "fate": null,
+      "vital": null,
+      "nuance": "",
+      "why": "",
+      "interesting": "",
+      "pinLabel": "",
+      "companions": [],
+      "circle": null,
+      "updatedAt": null
+    },
+    "mobile-guest-feed-options.png": {
+      "fate": null,
+      "vital": null,
+      "nuance": "",
+      "why": "",
+      "interesting": "",
+      "pinLabel": "",
+      "companions": [],
+      "circle": {
+        "cx": 0.4890659009639304,
+        "cy": 0.9025818941885966,
+        "rx": 0.42188228777985076,
+        "ry": 0.16020250822368426
+      },
+      "updatedAt": "2026-07-15T10:03:56.060Z"
+    },
+    "mobile-guest-result-of-options.png": {
+      "fate": null,
+      "vital": null,
+      "nuance": "",
+      "why": "",
+      "interesting": "",
+      "pinLabel": "",
+      "companions": [],
+      "circle": {
+        "cx": 0.8219182408271144,
+        "cy": 0.6394253060089021,
+        "rx": 0.1462098686256219,
+        "ry": 0.09464832158753705
+      },
+      "updatedAt": "2026-07-15T10:05:30.222Z"
+    },
+    "mobile-notifications-truncated.png": {
+      "fate": null,
+      "vital": null,
+      "nuance": "",
+      "why": "",
+      "interesting": "",
+      "pinLabel": "",
+      "companions": [],
+      "circle": {
+        "cx": 0.30129868236940294,
+        "cy": 0.4779411764705882,
+        "rx": 0.2610264109141791,
+        "ry": 0.12314408936651586
+      },
+      "updatedAt": "2026-07-15T10:06:04.731Z"
+    },
+    "mobile-supervisor-feed-comparison.png": {
+      "fate": null,
+      "vital": null,
+      "nuance": "",
+      "why": "",
+      "interesting": "",
+      "pinLabel": "",
+      "companions": [],
+      "circle": null,
+      "updatedAt": null
+    },
+    "finished-mobile-card.png": {
+      "fate": null,
+      "vital": null,
+      "nuance": "",
+      "why": "",
+      "interesting": "",
+      "pinLabel": "",
+      "companions": [],
+      "circle": null,
+      "updatedAt": null
+    },
+    "mobile-guest-feed-comparison.png": {
+      "fate": null,
+      "vital": null,
+      "nuance": "",
+      "why": "",
+      "interesting": "",
+      "pinLabel": "",
+      "companions": [],
+      "circle": null,
+      "updatedAt": null
+    }
+  }
+}
