@@ -370,6 +370,20 @@ blockquote p {
   padding-block: 0;
 }
 
+.section--work .work-grid {
+  padding-block: var(--space-lg) var(--space-xl);
+}
+
+@media (max-width: 900px) {
+  .section--hero:has(+ .section--work) {
+    padding-block: var(--space-xl) 0;
+  }
+
+  .section--work .work-grid {
+    padding-top: var(--space-md);
+  }
+}
+
 .section--prose {
   padding-block: 0;
 }
