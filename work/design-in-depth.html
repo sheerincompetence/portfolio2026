@@ -9,7 +9,7 @@
   <meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
   <title>Design in Depth - Andrew Sheerin</title>
   <meta name="description" content="Decision sheets from designing Antare's event card - delayed corrections, wrong jobs, and the weeds of information density.">
-  <link rel="stylesheet" href="../css/main.css?v=8">
+  <link rel="stylesheet" href="../css/main.css?v=15">
   <link rel="stylesheet" href="../css/site-shell.css?v=12">
   <link rel="stylesheet" href="../css/design-in-depth.css?v=13">
 </head>
@@ -503,5 +503,59 @@
   <script src="../js/play-ribbon.js?v=7"></script>
   <script src="../js/main.js"></script>
   <script src="../js/mobile-nav.js?v=1"></script>
+  <script>
+    (function () {
+      var settling = false;
+      var settleTimer = null;
+
+      function scrollToId(id) {
+        var el = document.getElementById(id);
+        if (!el) return;
+        var root = document.documentElement;
+        var prev = root.style.scrollBehavior;
+        root.style.scrollBehavior = 'auto';
+        el.scrollIntoView({ block: 'start', behavior: 'auto' });
+        root.style.scrollBehavior = prev;
+      }
+
+      function settleHash() {
+        if (!location.hash) return;
+        scrollToId(location.hash.slice(1));
+      }
+
+      function armSettle() {
+        settling = true;
+        clearTimeout(settleTimer);
+        settleTimer = setTimeout(function () { settling = false; }, 1400);
+        requestAnimationFrame(settleHash);
+        setTimeout(settleHash, 120);
+        setTimeout(settleHash, 450);
+        setTimeout(settleHash, 1000);
+      }
+
+      var nav = document.querySelector('.depth-jumps');
+      if (nav) {
+        nav.querySelectorAll('a[href^="#"]').forEach(function (link) {
+          link.addEventListener('click', function (e) {
+            var id = (link.getAttribute('href') || '').slice(1);
+            if (!id || !document.getElementById(id)) return;
+            e.preventDefault();
+            if (history.replaceState) history.replaceState(null, '', '#' + id);
+            else location.hash = id;
+            scrollToId(id);
+            armSettle();
+          });
+        });
+      }
+
+      window.addEventListener('load', function () {
+        if (location.hash) armSettle();
+      });
+
+      document.addEventListener('load', function (e) {
+        if (settling && e.target && e.target.tagName === 'IMG') settleHash();
+      }, true);
+    })();
+  </script>
 </body>
 </html>

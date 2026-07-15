@@ -525,6 +525,19 @@ blockquote p {
   margin-top: auto;
 }
 
+/* Design in depth - field-notes card in More work footers */
+.work-card--depth .work-card__number {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.work-card--depth .work-card__number svg {
+  flex-shrink: 0;
+  color: var(--color-ink-faint);
+  opacity: 0.75;
+}
+
 /* ——— Design in depth (craft entry, not a case card) ——— */
 
 .work-depth {
@@ -579,8 +592,8 @@ blockquote p {
 
 .work-depth__mark {
   flex-shrink: 0;
-  color: var(--color-accent);
-  opacity: 0.85;
+  color: var(--color-ink-faint);
+  opacity: 0.75;
 }
 
 .work-depth__lead {
