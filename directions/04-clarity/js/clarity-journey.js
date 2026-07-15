@@ -1812,7 +1812,7 @@
     restPanel?.removeAttribute('hidden');
     body.classList.add('is-resting');
     syncNavModeFlags();
-    document.title = 'Andrew Sheerin — Product Design Leader';
+    document.title = 'Andrew Sheerin - Product Design Leader';
     try { localStorage.setItem(STORAGE_KEY, 'true'); } catch (_) { /* ignore */ }
     if (!wasResting || document.documentElement.classList.contains('journey-skip-entry')) {
       clearSkipEntryClasses();
@@ -1831,15 +1831,14 @@
     clearSkipEntryClasses();
     restPanel?.setAttribute('hidden', '');
     body.classList.remove('is-resting', 'is-entering-rest');
-    document.title = 'Andrew Sheerin — Complexity → Clarity';
+    document.title = 'Andrew Sheerin - Complexity → Clarity';
     try { localStorage.removeItem(STORAGE_KEY); } catch (_) { /* ignore */ }
 
-    resetAllPops();
     if (chaosLayer) {
       chaosLayer.classList.remove('is-gone');
       chaosLayer.setAttribute('aria-hidden', 'true');
     }
-    setClarity(100);
+    resetToStart();
     syncNavModeFlags();
     slider.focus();
   }
