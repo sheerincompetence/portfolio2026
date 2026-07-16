@@ -499,16 +499,24 @@
 .story-band--dark .story-sec { color: rgba(242, 239, 233, 0.38); }
 .story-band--dark .story-sec-title { color: var(--story-paper); }
 
-@media (max-width: 600px) {
+@media (max-width: 768px) {
+  /* Drop desktop reading-rail inset; keep a compact § column like design-in-depth gutters */
   .story {
-    --story-sec-col: 2.25rem;
-    --story-sec-gap: 1rem;
+    --story-prose-inset: 0;
+    --story-sec-col: 2rem;
+    --story-sec-gap: 0.75rem;
   }
 
   .story-block__lead {
-    grid-template-columns: 2.25rem minmax(0, 1fr);
-    gap: 0 1rem;
-    margin-left: max(1.5rem, var(--story-prose-inset));
+    grid-template-columns: var(--story-sec-col) minmax(0, 1fr);
+    gap: 0 var(--story-sec-gap);
+    margin-left: 0;
+    max-width: none;
+  }
+
+  .story-block__body > .story-prose,
+  .story-rail {
+    margin-left: var(--story-sec-rail);
   }
 
   .story-chapter {

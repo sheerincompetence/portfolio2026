@@ -421,4 +421,11 @@
   body.journey-layout-lock.complexity-start .chaos-trust {
     display: none !important;
   }
+
+  /* Footer: stack like other site-shell pages (avoid cramped two-column wrap) */
+  body.complexity-start .cx-footer__inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
 }
