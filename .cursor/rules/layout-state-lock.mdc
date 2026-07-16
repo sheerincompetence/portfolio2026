@@ -1,0 +1,46 @@
+---
+description: Fragile layouts — smallest change, lock non-target states, verify before stopping
+globs: index.html,directions/04-clarity/**,work/*.html,css/main.css
+alwaysApply: false
+---
+
+# Layout state lock
+
+Use on production paths with parked milestones or multi-state layouts. For clarity journey specifics, also read `journey-clarity.mdc` and `MILESTONES.md`.
+
+**Does not apply** to open exploration in `directions/` (except `04-clarity`) or disposable prototypes unless Andrew says otherwise.
+
+## Default behaviour
+
+1. **Smallest change** — fix only what was asked.
+2. **Non-target states are locked** — match current production everywhere except the requested change.
+3. **Verify before stopping** — check the changed state *and* parked/start states.
+
+## When Andrew asks for a fix
+
+```text
+Make the smallest possible change.
+Treat all other states as locked.
+The finished state must match current production in every respect except [the thing I asked to change].
+Verify both the changed state and the parked/start state before stopping.
+```
+
+## Structural fixes
+
+If removing an overlay, spacer, or hidden element fixes one bug, **reintroduce intended geometry explicitly** (margin, padding, in-flow invisible placeholder). Do not rely on accidental layout from elements you removed for other reasons.
+
+Prefer `visibility: hidden` over `display: none` when an element must keep its space.
+
+## Verification (before ending session)
+
+| Area | Check |
+|------|-------|
+| Homepage journey | `?start=1`, `?resting=1`, narrow mobile (~390px) |
+| Header / clicks | Logo and nav clickable after scroll in resting state |
+| Spacing | Headline-to-CTA and hero geometry unchanged outside the fix |
+
+Use Browser MCP or ask Andrew for a screenshot if layout is fragile.
+
+## Optional second pass
+
+For larger edits: "regression pass on [named states]" — no separate QA agent required for small fixes.
