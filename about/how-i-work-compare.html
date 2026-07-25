@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
+  <title>How I Work — compare layouts</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500&display=swap');
+
+    * { box-sizing: border-box; }
+    html, body { margin: 0; height: 100%; }
+    body {
+      font-family: 'IBM Plex Sans', system-ui, sans-serif;
+      background: #1c1c1c;
+      color: #f7f5f2;
+      display: flex;
+      flex-direction: column;
+      min-height: 100%;
+    }
+
+    .compare-top {
+      flex: 0 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem 1.5rem;
+      padding: 0.85rem 1.25rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+      background: #131210;
+    }
+
+    .compare-top h1 {
+      font-size: 0.95rem;
+      font-weight: 500;
+      margin: 0;
+      letter-spacing: 0.02em;
+    }
+
+    .compare-top p {
+      margin: 0;
+      font-size: 0.78rem;
+      color: #8a8480;
+      max-width: 36rem;
+    }
+
+    .compare-top__links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem 1rem;
+      font-size: 0.78rem;
+    }
+
+    .compare-top__links a {
+      color: #d8d4ce;
+    }
+
+    .compare-grid {
+      flex: 1 1 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 0;
+    }
+
+    .compare-pane {
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+      min-height: 0;
+      border-right: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .compare-pane:last-child {
+      border-right: none;
+    }
+
+    .compare-pane__head {
+      flex: 0 0 auto;
+      padding: 0.65rem 1rem;
+      background: #2a2826;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .compare-pane__head strong {
+      display: block;
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #f7f5f2;
+      margin-bottom: 0.2rem;
+    }
+
+    .compare-pane__head span {
+      font-size: 0.75rem;
+      color: #8a8480;
+      line-height: 1.4;
+    }
+
+    .compare-pane__head--story {
+      background: #2f2d2a;
+    }
+
+    .compare-pane__head--depth {
+      background: #2a2f2d;
+    }
+
+    .compare-pane iframe {
+      flex: 1 1 auto;
+      width: 100%;
+      border: 0;
+      background: #f7f5f2;
+    }
+
+    @media (max-width: 960px) {
+      .compare-grid {
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 1fr;
+      }
+
+      .compare-pane {
+        border-right: none;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        min-height: 50vh;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="compare-top">
+    <div>
+      <h1>How I Work — layout compare</h1>
+      <p>Scroll each pane independently. Open a single version in its own tab when you want full width.</p>
+    </div>
+    <nav class="compare-top__links" aria-label="Versions">
+      <a href="how-i-work-story.html" target="_blank" rel="noopener">Case study model ↗</a>
+      <a href="how-i-work-depth.html" target="_blank" rel="noopener">Design in depth model ↗</a>
+      <a href="how-i-work.html">Current canonical</a>
+    </nav>
+  </header>
+
+  <div class="compare-grid">
+    <section class="compare-pane" aria-label="Case study layout">
+      <div class="compare-pane__head compare-pane__head--story">
+        <strong>Case study model</strong>
+        <span>Hero + jump nav · act chapters · scroll beats · warm/dark bands · story figures</span>
+      </div>
+      <iframe src="how-i-work-story.html" title="How I Work — case study layout" loading="lazy"></iframe>
+    </section>
+
+    <section class="compare-pane" aria-label="Design in depth layout">
+      <div class="compare-pane__head compare-pane__head--depth">
+        <strong>Design in depth model</strong>
+        <span>Field-notes entry · decision sheets · § rails · ruled paper · informational tone</span>
+      </div>
+      <iframe src="how-i-work-depth.html" title="How I Work — design in depth layout" loading="lazy"></iframe>
+    </section>
+  </div>
+</body>
+</html>
