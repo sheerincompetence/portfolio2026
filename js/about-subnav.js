@@ -1,10 +1,7 @@
 /**
- * About subnav — stuck state + floor colour matched to the first content block.
+ * About subnav - stuck state + floor colour matched to the first content block.
  */
 (function () {
-  var bar = document.querySelector('.about-rail-bar');
-  if (!bar) return;
-
   function readFloorColor(el) {
     if (!el) {
       return getComputedStyle(document.body).backgroundColor;
@@ -22,45 +19,62 @@
     return getComputedStyle(document.body).backgroundColor;
   }
 
-  function setFloorColor() {
-    var content = bar.nextElementSibling;
-    bar.style.setProperty('--about-rail-floor', readFloorColor(content));
+  function stickyTop(bar) {
+    var px = parseFloat(getComputedStyle(bar).top);
+    if (!Number.isNaN(px) && px > 0) {
+      return px;
+    }
+
+    var header = document.querySelector('.cx-header');
+    return header ? header.getBoundingClientRect().height : 92;
   }
 
-  setFloorColor();
+  function initAboutSubnav() {
+    var bar = document.querySelector('.about-rail-bar');
+    if (!bar) return;
 
-  if (!('IntersectionObserver' in window)) return;
+    function setFloorColor() {
+      var content = bar.nextElementSibling;
+      bar.style.setProperty('--about-rail-floor', readFloorColor(content));
+    }
 
-  var sentinel = document.createElement('div');
-  sentinel.className = 'about-rail-sentinel';
-  sentinel.setAttribute('aria-hidden', 'true');
-  bar.parentNode.insertBefore(sentinel, bar);
-
-  var stickyTop = function () {
-    return parseFloat(getComputedStyle(bar).top) || 0;
-  };
-
-  function createObserver() {
-    return new IntersectionObserver(
-      function (entries) {
-        entries.forEach(function (entry) {
-          bar.classList.toggle('is-stuck', !entry.isIntersecting);
-        });
-      },
-      {
-        threshold: [0],
-        rootMargin: '-' + stickyTop() + 'px 0px 0px 0px'
-      }
-    );
-  }
-
-  var observer = createObserver();
-  observer.observe(sentinel);
-
-  window.addEventListener('resize', function () {
     setFloorColor();
-    observer.disconnect();
-    observer = createObserver();
+
+    if (!('IntersectionObserver' in window)) return;
+
+    var sentinel = document.createElement('div');
+    sentinel.className = 'about-rail-sentinel';
+    sentinel.setAttribute('aria-hidden', 'true');
+    bar.parentNode.insertBefore(sentinel, bar);
+
+    function createObserver() {
+      return new IntersectionObserver(
+        function (entries) {
+          entries.forEach(function (entry) {
+            bar.classList.toggle('is-stuck', !entry.isIntersecting);
+          });
+        },
+        {
+          threshold: [0],
+          rootMargin: '-' + stickyTop(bar) + 'px 0px 0px 0px'
+        }
+      );
+    }
+
+    var observer = createObserver();
     observer.observe(sentinel);
-  });
+
+    window.addEventListener('resize', function () {
+      setFloorColor();
+      observer.disconnect();
+      observer = createObserver();
+      observer.observe(sentinel);
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initAboutSubnav);
+  } else {
+    initAboutSubnav();
+  }
 })();
