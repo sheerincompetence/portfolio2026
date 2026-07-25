@@ -45,9 +45,18 @@ body.depth-notebook .cx-header.site-header {
   object-position: top center;
 }
 
-.about-mast__media--diagram img {
-  object-fit: contain;
-  object-position: center bottom;
+.about-mast__media--diagram {
+  width: 11.5rem;
+  height: auto;
+  align-self: flex-end;
+  margin-bottom: 2rem;
+}
+
+.about-mast__media--diagram img,
+.about-mast__media--diagram svg {
+  display: block;
+  width: 100%;
+  height: auto;
 }
 
 .about-mast__copy {
@@ -131,8 +140,9 @@ body.depth-notebook .cx-header.site-header {
   }
 
   .about-mast__media--diagram {
-    width: min(14rem, 80vw);
-    aspect-ratio: 4 / 3;
+    width: min(11.5rem, 70vw);
+    aspect-ratio: auto;
+    margin-bottom: 2rem;
   }
 
   .about-mast__copy {

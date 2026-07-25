@@ -158,9 +158,14 @@ body.hiw {
 .hiw-flow-diagram {
   margin: 0 auto 1.5rem;
   padding: 0;
-  max-width: 44rem;
+  max-width: none;
+  width: 100%;
   background: none;
   border: none;
+}
+
+.hiw-stack-diagram {
+  max-width: 28rem;
 }
 
 .hiw-flow-diagram {
@@ -168,7 +173,9 @@ body.hiw {
 }
 
 .hiw-stack-diagram svg,
-.hiw-flow-diagram svg {
+.hiw-flow-diagram svg,
+.hiw-stack-diagram img,
+.hiw-flow-diagram img {
   display: block;
   width: 100%;
   height: auto;
@@ -176,22 +183,22 @@ body.hiw {
 
 .hiw-stack-diagram__layer,
 .hiw-flow-diagram__step {
-  transition: transform 0.25s ease, opacity 0.25s ease;
   cursor: default;
 }
 
-.hiw-stack-diagram.is-interactive .hiw-stack-diagram__layer:not(.is-active),
+.hiw-flow-diagram__step {
+  transition: transform 0.25s ease, opacity 0.25s ease;
+}
+
 .hiw-flow-diagram.is-interactive .hiw-flow-diagram__step:not(.is-active) {
   opacity: 0.55;
 }
 
-.hiw-stack-diagram.is-interactive .hiw-stack-diagram__layer.is-hovered,
 .hiw-flow-diagram.is-interactive .hiw-flow-diagram__step.is-hovered {
   opacity: 1;
   transform: translateX(4px);
 }
 
-.hiw-stack-diagram.is-interactive .hiw-stack-diagram__layer.is-active,
 .hiw-flow-diagram.is-interactive .hiw-flow-diagram__step.is-active {
   opacity: 1;
 }
