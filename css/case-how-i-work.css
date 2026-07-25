@@ -152,6 +152,10 @@ body.hiw {
   margin: 2.5rem 0 0.85rem var(--hiw-prose-inset);
 }
 
+.hiw-kicker:first-child {
+  margin-top: 0;
+}
+
 /* ——— Diagrams ——— */
 
 .hiw-stack-diagram,
@@ -275,28 +279,89 @@ body.is-image-zoom-open .hiw-ws-wall__track {
   }
 }
 
-/* ——— Games + meaningful play ——— */
+/* ——— Product as Play ——— */
 
-.hiw-games-figure {
-  margin: 2rem 0 0;
+.hiw-product-as-play {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(10rem, 15rem);
+  gap: clamp(1.25rem, 3vw, 2.25rem);
+  align-items: start;
+  margin: 0 var(--hiw-prose-inset);
+  max-width: calc(var(--hiw-prose) + 15rem + 2.25rem);
+}
+
+.hiw-product-as-play__copy {
+  display: grid;
+  gap: 1.25rem;
+  min-width: 0;
+}
+
+.hiw-product-as-play__copy .hiw-tight-prose {
+  max-width: none;
+}
+
+.hiw-product-as-play__library-lead {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.45rem;
+}
+
+.hiw-product-as-play__library-lead p {
+  margin: 0;
+  flex: 1;
+  min-width: 0;
+  font-family: var(--font-serif);
+  font-size: 1.02rem;
+  line-height: 1.55;
+  color: var(--depth-ink-soft);
+}
+
+.hiw-product-as-play__bridge {
+  flex: 0 0 auto;
+  width: 1.65rem;
+  height: 0.75rem;
+  margin-top: 0.55rem;
+  opacity: 0.82;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 22 8' fill='none'%3E%3Ccircle cx='1.1' cy='4' r='.7' fill='%238b4513'/%3E%3Cpath d='M2.6 4h13' stroke='%238b4513' stroke-width='.8'/%3E%3Cpath d='M14.6 2.45 18.2 4l-3.6 1.55' stroke='%238b4513' stroke-width='.8' stroke-linejoin='miter'/%3E%3C/svg%3E")
+    no-repeat center / contain;
+}
+
+.hiw-product-as-play__games {
+  margin: 0;
   padding: 0;
   border: none;
   background: transparent;
 }
 
-.hiw-games-figure img {
-  width: 100%;
+.hiw-product-as-play__games img {
   display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 2px;
+  border: 1px solid rgba(28, 28, 28, 0.1);
+  box-shadow: 0 10px 28px rgba(28, 28, 28, 0.08);
 }
 
-.hiw-breakout {
-  margin: 2rem calc(50% - min(48rem, 50vw - 2rem)) 0;
-  width: min(56rem, calc(100vw - 4rem));
-  max-width: none;
-  padding: 0.5rem;
+.hiw-product-as-play__games-cap {
+  margin: 0.35rem 0 0;
+  font-family: var(--font-sans);
+  font-size: 0.58rem;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  text-align: center;
+  color: var(--color-ink-faint);
 }
 
-.hiw-breakout img {
+.hiw-meaningful-play {
+  margin: 2rem auto 0;
+  width: min(42rem, 100%);
+  max-width: 42rem;
+  justify-self: center;
+  padding: 0.75rem;
+}
+
+.hiw-meaningful-play img {
   width: 100%;
   display: block;
 }
@@ -308,12 +373,9 @@ body.is-image-zoom-open .hiw-ws-wall__track {
   flex-wrap: wrap;
   gap: 0.55rem 0.65rem;
   list-style: none;
-  margin: 1.25rem var(--hiw-prose-inset) 0;
-  padding: 1.1rem 1.15rem;
-  max-width: calc(var(--hiw-prose) + 2rem);
-  background: linear-gradient(135deg, rgba(196, 92, 58, 0.06) 0%, rgba(47, 93, 140, 0.06) 100%);
-  border: 1px dashed var(--depth-rule-dash);
-  border-radius: 2px;
+  margin: 0;
+  padding: 0;
+  max-width: none;
 }
 
 .hiw-play-effects li {
@@ -621,10 +683,21 @@ body.is-image-zoom-open .hiw-ws-wall__track {
     --hiw-prose-inset: 0;
   }
 
-  .hiw-breakout {
-    margin-left: calc(-1 * var(--case-gutter, 2rem));
-    margin-right: calc(-1 * var(--case-gutter, 2rem));
-    width: calc(100% + 2 * var(--case-gutter, 2rem));
+  .hiw-product-as-play {
+    grid-template-columns: 1fr;
+    max-width: var(--hiw-prose);
+  }
+
+  .hiw-product-as-play__bridge {
+    display: none;
+  }
+
+  .hiw-product-as-play__games {
+    max-width: min(16rem, 70vw);
+  }
+
+  .hiw-meaningful-play {
+    max-width: 100%;
   }
 
   .hiw-epilogue {
