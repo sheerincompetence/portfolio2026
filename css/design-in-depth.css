@@ -16,6 +16,42 @@ body.depth-notebook .cx-header.site-header {
   background: var(--depth-paper);
 }
 
+body.about-page.depth-notebook .cx-header.site-header {
+  background: var(--color-paper);
+}
+
+/* --- About section rail (shared across About pages) --- */
+
+.about-rail {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.35rem 0.75rem;
+  margin: 0 0 1.5rem;
+  padding: 0;
+}
+
+.about-rail a {
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  color: var(--depth-aside, #5c5752);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+
+.about-rail a:hover {
+  color: var(--color-ink);
+  border-bottom-color: rgba(28, 28, 28, 0.2);
+}
+
+.about-rail a[aria-current="page"] {
+  color: var(--color-ink);
+  border-bottom-color: var(--depth-pin, #8b4513);
+}
+
 /* --- Entry --- */
 
 .depth-entry {
