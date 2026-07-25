@@ -6,80 +6,23 @@ body.hiw {
   --hiw-prose-inset: max(0px, calc((var(--hiw-content-w) - var(--hiw-prose)) / 2));
   --hiw-score-depth: 3px;
   --hiw-score-hi: rgba(255, 255, 255, 0.55);
-  --depth-paper: #e8e2d6;
-  --depth-paper-ruled: #ded8cc;
-}
-
-/* Keep site header on default paper, not ochre page tint */
-body.hiw.depth-notebook .cx-header.site-header,
-body.about-page.depth-notebook .cx-header.site-header {
-  background: var(--color-paper);
-}
-
-/* ——— Entry masthead ——— */
-
-.hiw-entry {
-  padding-bottom: var(--space-lg);
-}
-
-.hiw-entry__mast {
-  max-width: 56rem;
-}
-
-.hiw-entry__title {
-  font-size: clamp(1.75rem, 4vw, 2.5rem);
-  line-height: 1.18;
-  max-width: 20ch;
-  margin-bottom: 2.25rem;
-}
-
-.hiw-entry__intro {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(11rem, 15rem);
-  gap: 3rem 4rem;
-  align-items: start;
-  padding-top: 0.25rem;
-  border-top: 1px solid var(--depth-rule-dash);
-}
-
-.hiw-entry__label {
-  font-family: var(--font-sans);
-  font-size: 0.7rem;
-  font-weight: 500;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--depth-pin);
-  margin: 0 0 1rem;
-}
-
-.hiw-entry__prose {
-  font-family: var(--font-serif);
-  font-size: 1.05rem;
-  line-height: 1.58;
-  color: var(--depth-ink-soft);
-  padding-top: 1.75rem;
-}
-
-.hiw-entry__prose p {
-  margin: 0 0 0.8em;
-}
-
-.hiw-entry__prose p:last-child {
-  margin-bottom: 0;
 }
 
 .hiw-practice-index {
-  padding-top: 1.75rem;
+  margin-bottom: var(--space-lg);
 }
 
 .hiw-practice-index ol {
   list-style: none;
   margin: 0;
   padding: 0;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1rem 2rem;
 }
 
 .hiw-practice-index li + li {
-  margin-top: 0.85rem;
+  margin-top: 0;
 }
 
 .hiw-practice-index a {
@@ -116,14 +59,9 @@ body.about-page.depth-notebook .cx-header.site-header {
 }
 
 @media (max-width: 768px) {
-  .hiw-entry__intro {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-  }
-
-  .hiw-practice-index {
-    padding-top: 0;
-    border-top: 1px dashed var(--depth-rule-dash);
+  .hiw-practice-index ol {
+    grid-template-columns: 1fr 1fr;
+    gap: 0.85rem 1.5rem;
   }
 }
 
