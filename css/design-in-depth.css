@@ -63,6 +63,21 @@ body.depth-notebook .cx-header.site-header {
   flex: 1;
   min-width: 0;
   padding-bottom: 2rem;
+  position: relative;
+}
+
+.about-mast__eyebrow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translateY(calc(-100% - 0.45rem));
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: 0.62rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-ink-faint);
 }
 
 .about-mast__copy h1 {
@@ -91,20 +106,108 @@ body.depth-notebook .cx-header.site-header {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 0.35rem 0.75rem;
+  gap: 0.35rem 1.35rem;
   margin: 0;
-  padding: 1.25rem 0 0;
+  padding: 1.25rem 0.5rem 1.15rem;
   border-top: 1px solid var(--color-rule);
+  position: relative;
+  z-index: 0;
+  background: none;
+}
+
+.about-mast .about-rail__label {
+  display: none;
+}
+
+.about-mast .about-rail a {
+  font-size: 0.62rem;
+  font-weight: 500;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+/* Subnav variants — swap one modifier on .about-rail: --wash | --pill | --type | --rules */
+
+.about-mast .about-rail--wash::after {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 100vw;
+  transform: translateX(-50%);
+  pointer-events: none;
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--depth-pin) 6%, color-mix(in srgb, var(--depth-ink-soft) 16%, var(--depth-paper))) 0%,
+    color-mix(in srgb, var(--depth-ink-soft) 4%, var(--depth-paper)) 52%,
+    transparent 100%
+  );
+}
+
+.about-mast .about-rail--pill {
+  width: fit-content;
+  margin-top: 0.15rem;
+  padding: 0.55rem 0.9rem;
+  border: 1px solid var(--depth-rule-dash);
+  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.48);
+  box-shadow: 0 1px 0 rgba(28, 28, 28, 0.04);
+}
+
+.about-mast .about-rail--type {
+  padding-top: 1rem;
+  gap: 0.25rem 0.85rem;
+}
+
+.about-mast .about-rail--type .about-rail__label {
+  display: block;
+  flex: 0 0 100%;
+  margin: 0 0 0.15rem;
+  font-family: var(--font-sans);
+  font-size: 0.58rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-ink-faint);
+}
+
+.about-mast .about-rail--type a {
+  font-size: 0.68rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.about-mast .about-rail--rules {
+  border-top: none;
+  padding-top: 1.35rem;
+  padding-bottom: 1.25rem;
+}
+
+.about-mast .about-rail--rules::after {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 100vw;
+  transform: translateX(-50%);
+  pointer-events: none;
+  background:
+    linear-gradient(var(--color-rule), var(--color-rule)) top / 100% 1px no-repeat,
+    linear-gradient(var(--depth-rule-dash), var(--depth-rule-dash)) bottom / 100% 1px no-repeat;
 }
 
 .about-mast .about-rail::before {
   content: '';
   flex: 0 0 auto;
-  width: 1.85rem;
+  width: 1.35rem;
   height: 0.75rem;
   margin-right: 0.45rem;
   opacity: 0.88;
-  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 22 8' fill='none'%3E%3Ccircle cx='1.1' cy='4' r='.7' fill='%238b4513'/%3E%3Cpath d='M2.6 4h13' stroke='%238b4513' stroke-width='.8'/%3E%3Cpath d='M14.6 2.45 18.2 4l-3.6 1.55' stroke='%238b4513' stroke-width='.8' stroke-linejoin='miter'/%3E%3C/svg%3E")
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 8' fill='none'%3E%3Ccircle cx='1.1' cy='4' r='.7' fill='%238b4513'/%3E%3Cpath d='M2.6 4h8' stroke='%238b4513' stroke-width='.8'/%3E%3Cpath d='M10.6 2.45 13.2 4l-3.6 1.55' stroke='%238b4513' stroke-width='.8' stroke-linejoin='miter'/%3E%3C/svg%3E")
     no-repeat center / contain;
 }
 

@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="135 65 350 365" fill="none" role="img" aria-hidden="true">
+  <rect x="150" y="72" width="320" height="52" rx="3" fill="#fff" stroke="#ddd8d0"/>
+  <text x="310" y="104" text-anchor="middle" font-size="14" font-weight="500" letter-spacing="0.14em" fill="#5c5752" font-family="IBM Plex Sans, system-ui, sans-serif">INTERFACE</text>
+  <rect x="150" y="146" width="320" height="52" rx="3" fill="#fff" stroke="#ddd8d0"/>
+  <text x="310" y="178" text-anchor="middle" font-size="14" font-weight="500" letter-spacing="0.14em" fill="#5c5752" font-family="IBM Plex Sans, system-ui, sans-serif">WORKFLOW</text>
+  <line x1="310" y1="146" x2="310" y2="132" stroke="#b5aea3" stroke-width="1.35"/>
+  <polygon points="310,126 305.5,133.5 314.5,133.5" fill="#b5aea3"/>
+  <rect x="150" y="220" width="320" height="52" rx="3" fill="#fff" stroke="#c45c3a" stroke-width="1.5"/>
+  <text x="310" y="252" text-anchor="middle" font-size="14" font-weight="500" letter-spacing="0.14em" fill="#8b4513" font-family="IBM Plex Sans, system-ui, sans-serif">BEHAVIOUR</text>
+  <line x1="310" y1="220" x2="310" y2="206" stroke="#b5aea3" stroke-width="1.35"/>
+  <polygon points="310,200 305.5,207.5 314.5,207.5" fill="#b5aea3"/>
+  <rect x="150" y="294" width="320" height="52" rx="3" fill="#fff" stroke="#c45c3a" stroke-width="1.5"/>
+  <text x="310" y="326" text-anchor="middle" font-size="14" font-weight="500" letter-spacing="0.14em" fill="#8b4513" font-family="IBM Plex Sans, system-ui, sans-serif">MENTAL MODELS</text>
+  <line x1="310" y1="294" x2="310" y2="280" stroke="#b5aea3" stroke-width="1.35"/>
+  <polygon points="310,274 305.5,281.5 314.5,281.5" fill="#b5aea3"/>
+  <rect x="150" y="368" width="320" height="52" rx="3" fill="#fff" stroke="#ddd8d0"/>
+  <text x="310" y="400" text-anchor="middle" font-size="14" font-weight="500" letter-spacing="0.14em" fill="#5c5752" font-family="IBM Plex Sans, system-ui, sans-serif">HIDDEN SYSTEMS</text>
+  <line x1="310" y1="368" x2="310" y2="354" stroke="#b5aea3" stroke-width="1.35"/>
+  <polygon points="310,348 305.5,355.5 314.5,355.5" fill="#b5aea3"/>
+</svg>
