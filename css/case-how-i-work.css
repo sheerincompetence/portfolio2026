@@ -6,6 +6,7 @@ body.hiw {
   --hiw-prose-inset: max(0px, calc((var(--hiw-content-w) - var(--hiw-prose)) / 2));
   --hiw-score-depth: 3px;
   --hiw-score-hi: rgba(255, 255, 255, 0.55);
+  --hiw-threshold-offset: 1.35rem;
 }
 
 .hiw-practice-index {
@@ -69,7 +70,7 @@ body.hiw {
 
 .hiw-practice {
   position: relative;
-  padding-top: calc(var(--space-xl) + 0.5rem);
+  padding-top: 5.5rem;
 }
 
 .hiw-practice__head {
@@ -106,7 +107,7 @@ body.hiw {
 
 .hiw-threshold {
   position: absolute;
-  top: 0;
+  top: var(--hiw-threshold-offset);
   left: var(--case-gutter, 2rem);
   right: var(--case-gutter, 2rem);
   height: calc(1px + var(--hiw-score-depth));
@@ -574,13 +575,20 @@ body.is-image-zoom-open .hiw-ws-wall__track {
   margin-top: 2.25rem;
 }
 
-.hiw-disrupt-row__lead {
+.hiw-disrupt-row__copy {
+  max-width: var(--hiw-prose);
   font-family: var(--font-serif);
   font-size: 1.02rem;
   line-height: 1.55;
   color: var(--depth-ink-soft);
-  margin: 0;
-  max-width: var(--hiw-prose);
+}
+
+.hiw-disrupt-row__copy p {
+  margin: 0 0 0.75em;
+}
+
+.hiw-disrupt-row__copy p:last-child {
+  margin-bottom: 0;
 }
 
 .hiw-quote-callout {
@@ -662,7 +670,7 @@ body.is-image-zoom-open .hiw-ws-wall__track {
   --story-dark: #131210;
   --story-dark-text: #d8d4ce;
   --story-score-hi: rgba(242, 239, 233, 0.5);
-  --story-score-depth: 3px;
+  --story-score-depth: 5px;
   --story-content-w: calc(min(var(--width-site), 100vw) - 4rem);
   --story-prose-inset: max(
     3.25rem,
@@ -676,8 +684,19 @@ body.is-image-zoom-open .hiw-ws-wall__track {
   padding-bottom: var(--space-2xl);
 }
 
-.hiw-epilogue .story-chapter--dark::before {
-  --score-scale: 1;
+.hiw-epilogue .story-chapter--dark {
+  margin-left: var(--story-prose-inset);
+  max-width: var(--story-prose);
+}
+
+.hiw-epilogue .story-block {
+  margin-top: 0;
+}
+
+.hiw-epilogue .story-block__lead {
+  display: block;
+  max-width: var(--story-prose);
+  margin-left: var(--story-prose-inset);
 }
 
 .hiw-epilogue .case-back-top {
