@@ -14,7 +14,14 @@
   }
 
   function initWorkshopWall() {
-    document.querySelectorAll('[data-hiw-ws-track]').forEach(duplicateTrack);
+    document.querySelectorAll('.hiw-ws-wall').forEach(function (wall) {
+      var track = wall.querySelector('[data-hiw-ws-track]');
+      if (!track) return;
+      duplicateTrack(track);
+      if (window.PortfolioImageZoom) {
+        window.PortfolioImageZoom.init(track);
+      }
+    });
   }
 
   function initThresholds() {
