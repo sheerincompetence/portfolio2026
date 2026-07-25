@@ -68,9 +68,21 @@ body.hiw {
 
 /* ——— Practice sections ——— */
 
+body.hiw .depth-field {
+  padding-bottom: 0;
+}
+
+.hiw-epilogue.story-band {
+  padding-top: 0;
+}
+
 .hiw-practice {
   position: relative;
   padding-top: 5.5rem;
+}
+
+.hiw .depth-field > .hiw-practice:first-child {
+  border-top: none;
 }
 
 .hiw-practice__head {
@@ -300,11 +312,14 @@ body.is-image-zoom-open .hiw-ws-wall__track {
 
 .hiw-product-as-play {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(10rem, 15rem);
-  gap: clamp(1.25rem, 3vw, 2.25rem);
+  grid-template-columns: minmax(0, 1fr) 13.5rem;
+  gap: 1.75rem;
   align-items: start;
   margin: 0 var(--hiw-prose-inset);
-  max-width: calc(var(--hiw-prose) + 15rem + 2.25rem);
+  max-width: var(--hiw-prose);
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
 }
 
 .hiw-product-as-play__copy {
@@ -348,6 +363,7 @@ body.is-image-zoom-open .hiw-ws-wall__track {
   padding: 0;
   border: none;
   background: transparent;
+  min-width: 0;
 }
 
 .hiw-product-as-play__games img {
@@ -457,9 +473,20 @@ body.is-image-zoom-open .hiw-ws-wall__track {
 .hiw-name-card__glyph {
   display: flex;
   justify-content: center;
-  color: var(--depth-pin);
-  opacity: 0.85;
+  opacity: 0.9;
   margin: 0 0 0.85rem;
+}
+
+.hiw-name-card--productivity .hiw-name-card__glyph {
+  color: #c45c3a;
+}
+
+.hiw-name-card--visibility .hiw-name-card__glyph {
+  color: #4a6f8a;
+}
+
+.hiw-name-card--support .hiw-name-card__glyph {
+  color: #5a7d52;
 }
 
 .hiw-name-card__glyph svg {
@@ -687,6 +714,7 @@ body.is-image-zoom-open .hiw-ws-wall__track {
 .hiw-epilogue .story-chapter--dark {
   margin-left: var(--story-prose-inset);
   max-width: var(--story-prose);
+  padding-top: 5.5rem;
 }
 
 .hiw-epilogue .story-block {
@@ -714,6 +742,11 @@ body.is-image-zoom-open .hiw-ws-wall__track {
   color: #e8e4dc;
 }
 
+.hiw-epilogue .story-prose .hiw-epilogue__standout {
+  font-style: italic;
+  color: #c4bfb8;
+}
+
 @media (max-width: 768px) {
   body.hiw {
     --hiw-prose-inset: 0;
@@ -729,7 +762,7 @@ body.is-image-zoom-open .hiw-ws-wall__track {
   }
 
   .hiw-product-as-play__games {
-    max-width: min(16rem, 70vw);
+    max-width: min(20rem, 100%);
   }
 
   .hiw-meaningful-play {

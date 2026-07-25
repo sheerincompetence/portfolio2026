@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="100 58 560 360" fill="none" role="img" aria-labelledby="hiw-amb-title">
+  <title id="hiw-amb-title">Navigating ambiguity before interface design</title>
+  <g class="hiw-stack-diagram__layer" data-layer="interface">
+    <rect x="150" y="72" width="320" height="52" rx="3" fill="#fff" stroke="#ddd8d0"/>
+    <text x="310" y="104" text-anchor="middle" font-size="14" font-weight="500" letter-spacing="0.14em" fill="#5c5752" font-family="IBM Plex Sans, system-ui, sans-serif">INTERFACE</text>
+  </g>
+  <g class="hiw-stack-diagram__layer" data-layer="workflow">
+    <rect x="150" y="146" width="320" height="52" rx="3" fill="#fff" stroke="#ddd8d0"/>
+    <text x="310" y="178" text-anchor="middle" font-size="14" font-weight="500" letter-spacing="0.14em" fill="#5c5752" font-family="IBM Plex Sans, system-ui, sans-serif">WORKFLOW</text>
+  </g>
+  <line x1="310" y1="146" x2="310" y2="132" stroke="#b5aea3" stroke-width="1.35"/>
+  <polygon points="310,126 305.5,133.5 314.5,133.5" fill="#b5aea3"/>
+  <g class="hiw-stack-diagram__layer is-active" data-layer="behaviour">
+    <rect x="150" y="220" width="320" height="52" rx="3" fill="#fff" stroke="#c45c3a" stroke-width="1.5"/>
+    <text x="310" y="252" text-anchor="middle" font-size="14" font-weight="500" letter-spacing="0.14em" fill="#8b4513" font-family="IBM Plex Sans, system-ui, sans-serif">BEHAVIOUR</text>
+  </g>
+  <line x1="310" y1="220" x2="310" y2="206" stroke="#b5aea3" stroke-width="1.35"/>
+  <polygon points="310,200 305.5,207.5 314.5,207.5" fill="#b5aea3"/>
+  <g class="hiw-stack-diagram__layer is-active" data-layer="mental">
+    <rect x="150" y="294" width="320" height="52" rx="3" fill="#fff" stroke="#c45c3a" stroke-width="1.5"/>
+    <text x="310" y="326" text-anchor="middle" font-size="14" font-weight="500" letter-spacing="0.14em" fill="#8b4513" font-family="IBM Plex Sans, system-ui, sans-serif">MENTAL MODELS</text>
+  </g>
+  <line x1="310" y1="294" x2="310" y2="280" stroke="#b5aea3" stroke-width="1.35"/>
+  <polygon points="310,274 305.5,281.5 314.5,281.5" fill="#b5aea3"/>
+  <g class="hiw-stack-diagram__layer" data-layer="hidden">
+    <rect x="150" y="368" width="320" height="52" rx="3" fill="#fff" stroke="#ddd8d0"/>
+    <text x="310" y="400" text-anchor="middle" font-size="14" font-weight="500" letter-spacing="0.14em" fill="#5c5752" font-family="IBM Plex Sans, system-ui, sans-serif">HIDDEN SYSTEMS</text>
+  </g>
+  <line x1="310" y1="368" x2="310" y2="354" stroke="#b5aea3" stroke-width="1.35"/>
+  <polygon points="310,348 305.5,355.5 314.5,355.5" fill="#b5aea3"/>
+  <line x1="478" y1="98" x2="508" y2="98" stroke="#b5aea3" stroke-width="1"/>
+  <text x="514" y="102" font-size="12" fill="#8a8480" font-family="IBM Plex Sans, system-ui, sans-serif">most product work begins here</text>
+  <path d="M 508 246 L 538 246 L 538 346 L 508 346" fill="none" stroke="#c45c3a" stroke-width="1.5"/>
+  <text x="546" y="300" font-size="12" font-weight="500" fill="#8b4513" font-family="IBM Plex Sans, system-ui, sans-serif">I tend to start here</text>
+</svg>

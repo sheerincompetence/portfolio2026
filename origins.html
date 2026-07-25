@@ -7,12 +7,13 @@
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="apple-touch-icon.png">
   <meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
-  <title>Origins — Andrew Sheerin</title>
+  <title>Origins - Andrew Sheerin</title>
   <meta name="description" content="Before product design: TerrorBull Games, systems thinking through play, and what shaped my approach.">
-  <link rel="stylesheet" href="css/main.css?v=6">
+  <link rel="stylesheet" href="css/main.css?v=15">
   <link rel="stylesheet" href="css/site-shell.css?v=13">
+  <link rel="stylesheet" href="css/design-in-depth.css?v=40">
 </head>
-<body class="site-shell">
+<body class="site-shell depth-notebook about-page">
   <a href="#main" class="skip-link">Skip to content</a>
 
   <header class="cx-header site-header">
@@ -22,7 +23,7 @@
       </a>
       <nav class="cx-nav cx-nav--clarity" aria-label="Primary">
         <a href="work/">Work</a>
-        <a href="about/" aria-current="page">About</a>
+        <a href="about/">About</a>
         <a href="contact/">Contact</a>
       </nav>
     
@@ -37,15 +38,29 @@
   </header>
 
   <main id="main">
-    <section class="section section--hero">
-      <div class="container container--prose">
-        <p class="eyebrow">Background</p>
-        <h1>Origins</h1>
-        <p class="lead">Before I was a product designer, I made board games that provoked, entertained, and occasionally got seized by police.</p>
-        <p class="text-muted">TerrorBull Games taught me everything I still use: how to communicate complex ideas through systems, how play disarms authority, and how the most effective way to challenge assumptions is to make people experience them.</p>
+    <header class="about-mast">
+      <div class="container">
+        <div class="about-mast__hero">
+          <div class="about-mast__media">
+            <img src="assets/images/origins/wot-box.png" alt="" width="800" height="600" loading="eager">
+          </div>
+          <div class="about-mast__copy">
+            <p class="about-mast__eyebrow">Background</p>
+            <h1>Origins</h1>
+            <p class="about-mast__lead">Before I was a product designer, I made board games that provoked, entertained, and occasionally got seized by police.</p>
+            <p class="about-mast__lead">TerrorBull Games taught me everything I still use: how to communicate complex ideas through systems, how play disarms authority, and how the most effective way to challenge assumptions is to make people experience them.</p>
+          </div>
+        </div>
+        <nav class="about-rail about-rail--wash" aria-label="About pages">
+          <span class="about-rail__label">About</span>
+          <a href="about/">About</a>
+          <a href="about/how-i-work.html">How I Work</a>
+          <a href="origins.html" aria-current="page">Origins</a>
+        </nav>
       </div>
-    </section>
+    </header>
 
+    <div class="about-body">
     <section class="section section--rule">
       <div class="container container--prose">
         <p class="narrative-block__label">What happened</p>
@@ -54,15 +69,19 @@
         <p>It became a cultural phenomenon. International press coverage. Exhibition at the Berlin Academy of Arts. An appearance on The IT Crowd. Police seizures in multiple countries. Debates about whether satire crosses into incitement. For two years, a board game about terrorism was front-page news.</p>
       </div>
 
-      <figure class="figure figure--wide container container--prose">
-        <img src="assets/images/origins/wot-box.png" alt="War on Terror board game box front" loading="lazy">
-        <figcaption class="figure__caption">War on Terror: The Boardgame — deliberately kitsch, deliberately provocative.</figcaption>
-      </figure>
+      <div class="container container--prose">
+        <figure class="figure figure--wide">
+          <img src="assets/images/origins/wot-box.png" alt="War on Terror board game box front" loading="lazy">
+          <figcaption class="figure__caption">War on Terror: The Boardgame — deliberately kitsch, deliberately provocative.</figcaption>
+        </figure>
+      </div>
 
-      <figure class="figure figure--wide container container--prose">
-        <img src="assets/images/origins/wot-tv.png" alt="War on Terror featured on The IT Crowd" loading="lazy">
-        <figcaption class="figure__caption">Featured on The IT Crowd — when your board game becomes part of someone else's comedy.</figcaption>
-      </figure>
+      <div class="container container--prose">
+        <figure class="figure figure--wide">
+          <img src="assets/images/origins/wot-tv.png" alt="War on Terror featured on The IT Crowd" loading="lazy">
+          <figcaption class="figure__caption">Featured on The IT Crowd — when your board game becomes part of someone else's comedy.</figcaption>
+        </figure>
+      </div>
     </section>
 
     <section class="section">
@@ -76,10 +95,12 @@
         </blockquote>
       </div>
 
-      <figure class="figure figure--wide container container--prose">
-        <img src="assets/images/origins/play-disarms.jpg" alt="Play disarms authority — thematic photograph" loading="lazy">
-        <figcaption class="figure__caption">Play disarms authority — the principle that connects board games to workshop facilitation to product strategy.</figcaption>
-      </figure>
+      <div class="container container--prose">
+        <figure class="figure figure--wide">
+          <img src="assets/images/origins/play-disarms.jpg" alt="Play disarms authority — thematic photograph" loading="lazy">
+          <figcaption class="figure__caption">Play disarms authority — the principle that connects board games to workshop facilitation to product strategy.</figcaption>
+        </figure>
+      </div>
     </section>
 
     <section class="section section--rule">
@@ -110,6 +131,7 @@
         </div>
       </div>
     </section>
+    </div>
   </main>
 
   <footer class="cx-footer site-footer">
