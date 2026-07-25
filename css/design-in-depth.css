@@ -117,11 +117,10 @@ body.depth-notebook {
   content: '';
   position: absolute;
   z-index: -1;
-  left: 50%;
+  left: 0;
+  right: 0;
   top: 0;
   bottom: 0;
-  width: 100vw;
-  transform: translateX(-50%);
   pointer-events: none;
   background: linear-gradient(
     180deg,
@@ -136,11 +135,10 @@ body.depth-notebook {
   content: '';
   position: absolute;
   z-index: 1;
-  left: 50%;
+  left: 0;
+  right: 0;
   bottom: 0;
-  width: 100vw;
   height: 1px;
-  transform: translateX(-50%);
   pointer-events: none;
   background: var(--color-rule);
 }
@@ -214,11 +212,10 @@ body.depth-notebook {
   content: '';
   position: absolute;
   z-index: -1;
-  left: 50%;
+  left: 0;
+  right: 0;
   top: 0;
   bottom: 0;
-  width: 100vw;
-  transform: translateX(-50%);
   pointer-events: none;
   background:
     linear-gradient(var(--color-rule), var(--color-rule)) top / 100% 1px no-repeat,

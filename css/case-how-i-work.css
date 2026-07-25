@@ -9,6 +9,10 @@ body.hiw {
   --hiw-threshold-offset: 1.35rem;
 }
 
+html:has(body.hiw) {
+  overflow-x: clip;
+}
+
 .hiw-practice-index {
   margin-bottom: var(--space-lg);
 }
@@ -163,6 +167,7 @@ body.hiw .depth-field {
   text-transform: uppercase;
   color: var(--depth-pin);
   margin: 2.5rem 0 0.85rem var(--hiw-prose-inset);
+  max-width: var(--hiw-prose);
 }
 
 .hiw-kicker:first-child {
@@ -239,11 +244,11 @@ body.hiw .depth-field {
 /* ——— Workshop wall (single carousel) ——— */
 
 .hiw-ws-wall {
+  --hiw-wall-gutter: max(2rem, calc((100vw - min(var(--width-site), 100vw)) / 2 + 2rem));
   position: relative;
   overflow: hidden;
-  width: calc(100% + 2 * var(--case-gutter, 2rem));
-  max-width: 100vw;
-  margin: 2rem calc(-1 * var(--case-gutter, 2rem)) 0;
+  width: calc(100% + 2 * var(--hiw-wall-gutter));
+  margin: 2rem calc(-1 * var(--hiw-wall-gutter));
   height: clamp(11rem, 26vh, 17rem);
   cursor: zoom-in;
 }
