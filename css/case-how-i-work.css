@@ -173,7 +173,23 @@ body.hiw {
 }
 
 .hiw-flow-diagram {
-  max-width: 38rem;
+  max-width: 28rem;
+  margin-bottom: 0;
+}
+
+.hiw-flow-diagram + .hiw-tight-prose {
+  margin-top: -1.15rem;
+}
+
+.hiw-flow-diagram__step--dest rect {
+  fill: #080808;
+  stroke: #080808;
+  stroke-width: 1.75;
+}
+
+.hiw-flow-diagram__step--dest text {
+  fill: #f3efe8;
+  font-weight: 500;
 }
 
 .hiw-stack-diagram svg,
@@ -194,7 +210,7 @@ body.hiw {
   transition: transform 0.25s ease, opacity 0.25s ease;
 }
 
-.hiw-flow-diagram.is-interactive .hiw-flow-diagram__step:not(.is-active) {
+.hiw-flow-diagram.is-interactive .hiw-flow-diagram__step:not(.is-active):not(.hiw-flow-diagram__step--dest) {
   opacity: 0.55;
 }
 
@@ -354,10 +370,10 @@ body.is-image-zoom-open .hiw-ws-wall__track {
 }
 
 .hiw-meaningful-play {
-  margin: 2rem auto 0;
+  margin: 2rem var(--hiw-prose-inset) 0;
   width: min(42rem, 100%);
-  max-width: 42rem;
-  justify-self: center;
+  max-width: var(--hiw-prose);
+  justify-self: start;
   padding: 0.75rem;
 }
 
