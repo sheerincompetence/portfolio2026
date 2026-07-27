@@ -256,6 +256,10 @@ body.depth-notebook {
   border-top: 1px solid var(--color-rule);
 }
 
+#speaking-teaching {
+  scroll-margin-top: calc(var(--play-ribbon-h, 0px) + var(--cx-shell-header-h, 5.111rem) + 2.5rem);
+}
+
 .about-experience .timeline li:last-child {
   border-bottom: none;
 }
