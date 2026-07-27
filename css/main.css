@@ -281,14 +281,6 @@ blockquote p {
   margin: 0;
 }
 
-.about-biography {
-  padding-bottom: var(--space-lg);
-}
-
-.about-experience {
-  padding-top: var(--space-lg);
-}
-
 /* REF-001 / Hero — matches Figma component */
 .ref-hero {
   display: flex;

@@ -243,6 +243,33 @@ body.depth-notebook {
   padding-top: 0;
 }
 
+/* About index — tighter sections, hairline dividers between blocks */
+.about-body:has(.about-biography) > .section {
+  padding-block: var(--space-lg);
+}
+
+.about-body:has(.about-biography) > .section:first-child {
+  padding-top: 0;
+}
+
+.about-body:has(.about-biography) > .section + .section {
+  border-top: 1px solid var(--color-rule);
+}
+
+.about-experience .timeline li:last-child {
+  border-bottom: none;
+}
+
+@media (max-width: 768px) {
+  .about-body:has(.about-biography) > .section {
+    padding-block: var(--space-md);
+  }
+
+  .about-body:has(.about-biography) > .section:first-child {
+    padding-top: 0;
+  }
+}
+
 .about-body > .section--tight-bottom {
   padding-bottom: var(--space-md);
 }
