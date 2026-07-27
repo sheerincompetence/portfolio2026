@@ -47,6 +47,7 @@ body.depth-notebook {
   height: auto;
   align-self: flex-end;
   margin-bottom: 2rem;
+  overflow: visible;
 }
 
 .about-mast__media--diagram img,
@@ -54,6 +55,7 @@ body.depth-notebook {
   display: block;
   width: 100%;
   height: auto;
+  object-fit: contain;
 }
 
 .about-mast__copy {
@@ -241,12 +243,34 @@ body.depth-notebook {
   padding-top: 0;
 }
 
+.about-body > .section--tight-bottom {
+  padding-bottom: var(--space-md);
+}
+
+.about-body > .section--tight-bottom > .container--prose:last-child .figure {
+  margin-bottom: 0;
+}
+
+.about-body > .section--tight-top {
+  padding-top: var(--space-md);
+}
+
 .about-body__lead {
   margin: 0 0 var(--space-lg);
   max-width: 42rem;
   font-family: var(--font-serif);
   font-size: clamp(1.05rem, 2vw, 1.2rem);
   line-height: 1.55;
+  color: var(--color-ink);
+}
+
+.about-standout {
+  font-family: var(--font-serif);
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  margin: var(--space-sm) 0 var(--space-lg);
   color: var(--color-ink);
 }
 
@@ -266,7 +290,9 @@ body.depth-notebook {
 
   .about-mast__media--diagram {
     width: min(11.5rem, 70vw);
+    height: auto;
     aspect-ratio: auto;
+    overflow: visible;
     margin-bottom: 2rem;
   }
 
