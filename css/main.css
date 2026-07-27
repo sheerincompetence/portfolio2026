@@ -831,7 +831,11 @@ blockquote p {
 
 .contact-hero .lead {
   margin-bottom: 0;
-  padding-bottom: 4rem;
+  padding-bottom: var(--space-md);
+}
+
+main:has(.contact-hero) > .section:not(.section--hero) {
+  padding-top: var(--space-sm);
 }
 
 .contact-links {
