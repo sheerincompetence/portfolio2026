@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "Andrew Sheerin - Product Design Leader Portfolio",
   "scripts": {
-    "test": "echo \"No tests specified\" && exit 0"
+    "test": "echo \"No tests specified\" && exit 0",
+    "check:layout-parity": "node scripts/check-layout-parity.mjs"
   },
   "repository": {
     "type": "git",
@@ -22,5 +23,8 @@
   "homepage": "https://github.com/sheerincompetence/portfolio2026#readme",
   "dependencies": {
     "@vercel/speed-insights": "^2.0.0"
+  },
+  "devDependencies": {
+    "playwright": "^1.62.1"
   }
 }
