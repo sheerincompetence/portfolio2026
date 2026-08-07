@@ -1,0 +1,26 @@
+{
+  "name": "portfolio2026",
+  "version": "1.0.0",
+  "description": "Andrew Sheerin - Product Design Leader Portfolio",
+  "scripts": {
+    "test": "echo \"No tests specified\" && exit 0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sheerincompetence/portfolio2026.git"
+  },
+  "keywords": [
+    "portfolio",
+    "design",
+    "vercel"
+  ],
+  "author": "Andrew Sheerin",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sheerincompetence/portfolio2026/issues"
+  },
+  "homepage": "https://github.com/sheerincompetence/portfolio2026#readme",
+  "dependencies": {
+    "@vercel/speed-insights": "^2.0.0"
+  }
+}
