@@ -3,8 +3,8 @@
  * Compare layout metrics and console errors: main (:8765) vs play (:8766).
  *
  * Usage (both dev servers must be running):
- *   npm run check:layout-parity
- *   node scripts/check-layout-parity.mjs
+ *   bun run check:layout-parity
+ *   bun scripts/check-layout-parity.mjs
  *
  * Exit 0 when all metric deltas are within tolerance and play has no
  * unexpected console errors beyond main.
