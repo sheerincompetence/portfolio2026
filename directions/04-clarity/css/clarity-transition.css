@@ -223,7 +223,10 @@ body.clarity-journey .cx-hero__copy {
   flex-grow: 1;
   min-width: 0;
   max-width: var(--cx-headline-copy-max, 80%);
-  margin-right: calc((var(--venn-slot-px) + var(--cx-venn-copy-gap, 1.5rem)) * (1 - var(--venn-space, 0)));
+  margin-right: calc(
+    (var(--venn-slot-px) * var(--cx-venn-slot-scale, 1) + var(--cx-venn-copy-gap, 1.5rem))
+    * (1 - var(--venn-space, 0))
+  );
 }
 
 body.clarity-journey .cx-hero__eyebrow {

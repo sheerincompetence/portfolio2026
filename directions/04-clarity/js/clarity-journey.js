@@ -1164,23 +1164,19 @@
       return;
     }
 
-    if (vennSlotPx != null && vennSlotPx > 0) return;
-
     const rootPx = parseFloat(getComputedStyle(root).fontSize) || 16;
     const liftPx = parseFloat(
       getComputedStyle(root).getPropertyValue('--cx-hero-lift')
     ) || 70;
-    const vennScale = parseFloat(
-      getComputedStyle(body).getPropertyValue('--cx-venn-slot-scale')
-    ) || 1;
     const rowW = row.getBoundingClientRect().width;
+    /* Base slot only — CSS applies --cx-venn-slot-scale to width and copy margin */
     const w = Math.ceil(Math.min(
       18.75 * rootPx,
       rowW * 0.48,
       28 * rootPx - liftPx * 0.55
-    ) * vennScale);
+    ));
 
-    if (w < 80 || w > 520) return;
+    if (w < 48 || w > 520) return;
     vennSlotPx = w;
     root.style.setProperty('--venn-slot-px', `${w}px`);
   }
@@ -1216,6 +1212,7 @@
     const vennExit = clamp01((u - VENN_EXIT_START) / (VENN_EXIT_END - VENN_EXIT_START));
 
     root.style.setProperty('--u', u);
+    root.style.setProperty('--cx-eyebrow-min-active', u > 0.001 ? '1' : '0');
     root.style.setProperty('--venn-exit', vennExit.toFixed(4));
     root.style.setProperty('--venn-space', vennExit.toFixed(4));
     const slideVw = vennExit >= 1 ? 0 : vennExit * VENN_SLIDE_VW;
@@ -1947,6 +1944,7 @@
       updateLayoutDebug();
       return;
     }
+    captureVennSlotWidth();
     captureEyebrowReservedHeight();
     captureHeadlineBaseline();
     captureLayoutZones();
@@ -1957,9 +1955,12 @@
 
   document.fonts?.ready?.then(() => {
     if (isResting) return;
+    root.style.removeProperty('--cx-eyebrow-reserved-height');
+    root.style.removeProperty('--cx-layout-eyebrow-slot');
     resetVennMetrics();
     resetHeadlineBaseline();
     captureEyebrowReservedHeight();
+    captureVennSlotWidth();
     captureHeadlineBaseline();
     captureLayoutZones();
     updateHeadlineLayout();

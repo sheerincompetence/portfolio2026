@@ -132,6 +132,38 @@ body.journey-layout-lock.complexity-start .cx-hero__headline-row {
 /* Site narrows 1280 → 980 with slider (content focus) — do not freeze at 1280 */
 body.journey-layout-lock.clarity-journey {
   --width-site: calc(1280px - var(--u) * 300px);
+  /* Portrait scales 900px → 1280px; extra taper 769–900 in media query below */
+  --cx-hero-portrait-w: clamp(
+    14rem,
+    calc(14rem + (20.056rem - 14rem) * ((100vw - 900px) / (1280px - 900px))),
+    20.056rem
+  );
+  --cx-hero-portrait-h: clamp(
+    20.5rem,
+    calc(20.5rem + (29.5rem - 20.5rem) * ((100vw - 900px) / (1280px - 900px))),
+    29.5rem
+  );
+  --cx-hero-portrait-gap: clamp(
+    2rem,
+    calc(2rem + (4rem - 2rem) * ((100vw - 900px) / (1280px - 900px))),
+    4rem
+  );
+  /* Venn scales 1000px → 1280px; hidden below 1000 (no room beside portrait + headline) */
+  --cx-venn-slot-scale: clamp(
+    0.55,
+    calc(0.55 + 0.45 * ((100vw - 1000px) / (1280px - 1000px))),
+    1
+  );
+  --cx-venn-copy-gap: clamp(
+    0.65rem,
+    calc(0.65rem + (1.5rem - 0.65rem) * ((100vw - 1000px) / (1280px - 1000px))),
+    1.5rem
+  );
+  --cx-headline-start-size: clamp(
+    1.125rem,
+    calc(1.125rem + (1.333rem - 1.125rem) * ((100vw - 769px) / (1280px - 769px))),
+    1.333rem
+  );
 }
 
 /* Copy grows as venn slot collapses */
@@ -143,7 +175,10 @@ body.journey-layout-lock.complexity-start .cx-hero__copy {
   flex-grow: 1;
   min-width: 0;
   max-width: var(--cx-headline-copy-max, 80%);
-  margin-right: calc((var(--venn-slot-px) + var(--cx-venn-copy-gap, 1.5rem)) * (1 - var(--venn-space, 0)));
+  margin-right: calc(
+    (var(--venn-slot-px) * var(--cx-venn-slot-scale, 1) + var(--cx-venn-copy-gap, 1.5rem))
+    * (1 - var(--venn-space, 0))
+  );
   padding-top: calc(var(--headline-free-grow, 0) * var(--cx-layout-headline-drift));
 }
 
@@ -168,10 +203,10 @@ body.journey-layout-lock.complexity-start .cx-hero__venn {
   transform: translateX(var(--venn-slide, 0));
 }
 
-/* Skills bullets: stagger out but keep full row height (don't collapse to one line) */
+/* Skills: natural height at u=0; reserved slot only while skills fade (slider > 0) */
 body.journey-layout-lock.clarity-journey .cx-hero__eyebrow {
   flex-shrink: 0;
-  min-height: var(--cx-eyebrow-reserved-height, var(--cx-layout-eyebrow-slot));
+  min-height: calc(var(--cx-eyebrow-reserved-height, 0px) * var(--cx-eyebrow-min-active, 0));
   max-height: none;
   margin-bottom: max(0.5rem, calc(1rem - var(--cx-hero-lift) * 0.15));
   overflow: visible;
@@ -271,31 +306,35 @@ html.journey-skip-entry body.clarity-journey .cx-rest-panel[hidden] {
   pointer-events: auto !important;
 }
 
-/* ——— Journey responsive (min 900px) ——— */
-@media (max-width: 1190px) {
-  body.clarity-journey {
-    --cx-headline-start-size: 1.125rem;
-  }
-}
-
-@media (max-width: 1190px) and (min-width: 900px) {
+@media (max-width: 1190px) and (min-width: 769px) {
   body.clarity-journey {
     --cx-headline-copy-max: 100%;
   }
 }
 
-@media (max-width: 1190px) and (min-width: 1101px) {
-  body.clarity-journey {
-    --cx-venn-copy-gap: 0.65rem;
-    --cx-venn-slot-scale: 0.78;
-    --cx-hero-portrait-w: 16.5rem;
-    --cx-hero-portrait-h: 24.25rem;
-    --cx-hero-portrait-gap: 3rem;
+@media (max-width: 1000px) {
+  body.journey-layout-lock .cx-hero__venn {
+    display: none !important;
   }
 }
 
-@media (max-width: 1100px) {
-  body.journey-layout-lock .cx-hero__venn {
-    display: none !important;
+/* Narrow tablet: shrink portrait so slider + headline keep room beside it */
+@media (max-width: 900px) and (min-width: 769px) {
+  body.journey-layout-lock.clarity-journey {
+    --cx-hero-portrait-w: clamp(
+      10rem,
+      calc(10rem + (14rem - 10rem) * ((100vw - 769px) / (900px - 769px))),
+      14rem
+    );
+    --cx-hero-portrait-h: clamp(
+      14.75rem,
+      calc(14.75rem + (20.5rem - 14.75rem) * ((100vw - 769px) / (900px - 769px))),
+      20.5rem
+    );
+    --cx-hero-portrait-gap: clamp(
+      1.25rem,
+      calc(1.25rem + (2rem - 1.25rem) * ((100vw - 769px) / (900px - 769px))),
+      2rem
+    );
   }
 }
