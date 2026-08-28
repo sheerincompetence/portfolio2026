@@ -404,6 +404,21 @@ body.complexity-start.is-nav-simplified .cx-nav--clarity {
   animation: cx-slider-arrow-nudge 0.55s ease-in-out infinite;
 }
 
+.cx-hero__slider-block--hint-active {
+  --cx-slider-hint-lift: 0;
+  transform-origin: 50% 100%;
+  transform:
+    translateY(calc(var(--cx-slider-hint-lift) * -5px))
+    scale(calc(1 + var(--cx-slider-hint-lift) * 0.028));
+  will-change: transform;
+}
+
+.cx-hero__slider-block--hint-active .cx-slider {
+  box-shadow:
+    0 0 calc(36px + var(--cx-slider-hint-lift) * 8px) rgba(28, 28, 28, calc(0.22 + var(--cx-slider-hint-lift) * 0.05)),
+    0 calc(6px + var(--cx-slider-hint-lift) * 10px) calc(18px + var(--cx-slider-hint-lift) * 16px) rgba(28, 28, 28, calc(0.1 + var(--cx-slider-hint-lift) * 0.12));
+}
+
 /* ——— Slider: hero control panel ——— */
 .cx-slider {
   position: relative;
@@ -552,6 +567,14 @@ body.complexity-start.is-nav-simplified .cx-nav--clarity {
 @media (prefers-reduced-motion: reduce) {
   .cx-hero__slider-block--arrow-cue .cx-slider__heading-arrow {
     animation: none;
+  }
+
+  .cx-hero__slider-block--hint-active {
+    transform: none;
+  }
+
+  .cx-hero__slider-block--hint-active .cx-slider {
+    box-shadow: var(--cx-slider-shadow, 0 0 36px rgba(28, 28, 28, 0.22), 0 0 10px rgba(28, 28, 28, 0.1));
   }
 }
 

@@ -1546,8 +1546,9 @@
     sliderHintActive = false;
     slider?.classList.remove('cx-slider__input--hinting');
     sliderBlock?.classList.remove('cx-slider--hint-active');
-    if (wasHinting && currentU <= SLIDER_HINT_PEAK / 100 + 0.01) {
-      setClarity(0);
+    clearSliderHintLift();
+    if (wasHinting) {
+      setSliderVisualOnly(0);
     }
     cancelSliderArrowCue();
   }
@@ -1574,14 +1575,32 @@
     }, SLIDER_ARROW_CUE_MS);
   }
 
-  function animateClarityHint(targetPct, durationMs, easeFn, onDone) {
-    const fromPct = currentU * 100;
+  function setSliderVisualOnly(pct) {
+    const rounded = Math.round(Math.max(0, Math.min(100, pct)));
+    slider.value = String(rounded);
+    slider.setAttribute('aria-valuenow', String(rounded));
+    if (sliderHintActive) syncSliderHintLift(rounded);
+  }
+
+  function syncSliderHintLift(pct) {
+    if (!sliderChrome) return;
+    const lift = Math.max(0, Math.min(1, pct / SLIDER_HINT_PEAK));
+    sliderChrome.style.setProperty('--cx-slider-hint-lift', lift.toFixed(3));
+  }
+
+  function clearSliderHintLift() {
+    sliderChrome?.classList.remove('cx-hero__slider-block--hint-active');
+    sliderChrome?.style.removeProperty('--cx-slider-hint-lift');
+  }
+
+  function animateSliderHintVisual(targetPct, durationMs, easeFn, onDone) {
+    const fromPct = parseFloat(slider.value) || 0;
     const start = performance.now();
 
     function frame(now) {
       if (!sliderHintActive) return;
       const t = Math.min(1, (now - start) / durationMs);
-      setClarity(fromPct + (targetPct - fromPct) * easeFn(t));
+      setSliderVisualOnly(fromPct + (targetPct - fromPct) * easeFn(t));
       if (t < 1) {
         sliderHintRaf = requestAnimationFrame(frame);
         return;
@@ -1597,7 +1616,8 @@
     sliderHintActive = false;
     slider?.classList.remove('cx-slider__input--hinting');
     sliderBlock?.classList.remove('cx-slider--hint-active');
-    if (currentU <= SLIDER_HINT_PEAK / 100 + 0.01) setClarity(0);
+    clearSliderHintLift();
+    setSliderVisualOnly(0);
     startSliderArrowCue();
   }
 
@@ -1607,10 +1627,12 @@
     sliderHintActive = true;
     slider.classList.add('cx-slider__input--hinting');
     sliderBlock?.classList.add('cx-slider--hint-active');
+    sliderChrome?.classList.add('cx-hero__slider-block--hint-active');
+    syncSliderHintLift(0);
 
-    animateClarityHint(SLIDER_HINT_PEAK, SLIDER_HINT_OUT_MS, easeOutCubic, () => {
+    animateSliderHintVisual(SLIDER_HINT_PEAK, SLIDER_HINT_OUT_MS, easeOutCubic, () => {
       if (!sliderHintActive) return;
-      animateClarityHint(0, SLIDER_HINT_BACK_MS, easeInCubic, () => {
+      animateSliderHintVisual(0, SLIDER_HINT_BACK_MS, easeInCubic, () => {
         if (sliderHintActive) finishSliderHint();
       });
     });
