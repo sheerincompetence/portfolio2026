@@ -12,6 +12,7 @@
   <link rel="stylesheet" href="../css/main.css?v=15">
   <link rel="stylesheet" href="../css/site-shell.css?v=13">
   <link rel="stylesheet" href="../css/design-in-depth.css?v=13">
+  <link rel="stylesheet" href="../css/image-zoom.css?v=2">
   <script>
     window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
   </script>
@@ -40,7 +41,7 @@
     </div>
   </header>
 
-  <main id="main">
+  <main id="main" data-zoom-page>
     <header class="depth-entry">
       <div class="depth-entry__inner">
         <p class="depth-entry__badge">Field notes · 9 design 'should haves'</p>
@@ -478,19 +479,19 @@
             <span class="work-card__number">Case Study 01</span>
             <h3 class="work-card__title">Antare: Compressing reality</h3>
             <p class="work-card__thesis">When AI produces more signal than anyone can process, the design problem becomes editorial.</p>
-            <img src="../assets/images/Antare-thumb.png" alt="" class="work-card__image" loading="lazy" width="336" height="210">
+            <img src="../assets/images/Antare-thumb.png" srcset="../assets/images/Antare-thumb-560w.png 560w, ../assets/images/Antare-thumb-840w.png 840w, ../assets/images/Antare-thumb.png 3202w" sizes="(min-width: 901px) calc((min(980px, 100vw - 4rem) - 5rem) / 3), 100vw" alt="" class="work-card__image" loading="lazy" width="336" height="210">
           </a>
           <a href="dona.html" class="work-card">
             <span class="work-card__number">Case Study 02</span>
             <h3 class="work-card__title">Citrix: The hidden cost of good intentions</h3>
             <p class="work-card__thesis">Behavioural science, organisational influence and an early experiment in sensitive Human-AI interaction.</p>
-            <img src="../assets/images/DONA-thumb.png" alt="" class="work-card__image" loading="lazy" width="336" height="210">
+            <img src="../assets/images/DONA-thumb.png" srcset="../assets/images/DONA-thumb-560w.png 560w, ../assets/images/DONA-thumb-840w.png 840w, ../assets/images/DONA-thumb.png 3202w" sizes="(min-width: 901px) calc((min(980px, 100vw - 4rem) - 5rem) / 3), 100vw" alt="" class="work-card__image" loading="lazy" width="336" height="210">
           </a>
           <a href="education.html" class="work-card">
             <span class="work-card__number">Case Study 03</span>
             <h3 class="work-card__title">VMware: Designing outside the product</h3>
             <p class="work-card__thesis">Poor conversion suggested we needed better premium features, but I looked elsewhere…</p>
-            <img src="../assets/images/VMware-thumb.png" alt="" class="work-card__image" loading="lazy" width="336" height="210">
+            <img src="../assets/images/VMware-thumb.png" srcset="../assets/images/VMware-thumb-560w.png 560w, ../assets/images/VMware-thumb-840w.png 840w, ../assets/images/VMware-thumb.png 3202w" sizes="(min-width: 901px) calc((min(980px, 100vw - 4rem) - 5rem) / 3), 100vw" alt="" class="work-card__image" loading="lazy" width="336" height="210">
           </a>
         </div>
       </div>
@@ -500,11 +501,12 @@
   <footer class="cx-footer site-footer">
     <div class="container cx-footer__inner">
       <p>Andrew Sheerin - Product Design Leader</p>
-      <p><a href="../contact/">Contact</a> | <a href="../assets/cv/andrew-sheerin-cv-august-2026.pdf">CV</a></p>
+      <p><a href="../contact/">Contact</a> | <a href="../assets/cv/andrew-sheerin-cv-2026.pdf">CV</a></p>
     </div>
   </footer>
 
   <script src="../js/play-ribbon.js?v=7"></script>
+  <script src="../js/image-zoom.js?v=3"></script>
   <script src="../js/main.js"></script>
   <script src="../js/mobile-nav.js?v=1"></script>
   <script>

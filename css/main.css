@@ -12,6 +12,7 @@
   --color-accent: #3d4f5f;
   --color-accent-light: #e8ecf0;
   --color-rule: #ddd8d0;
+  --color-rule-hover: #e8e4de;
   --color-highlight: #faf8f5;
 
   --font-serif: 'Source Serif 4', Georgia, 'Times New Roman', serif;
@@ -486,17 +487,50 @@ blockquote p {
 }
 
 .work-card {
+  position: relative;
   display: flex;
   flex-direction: column;
   text-decoration: none;
   color: inherit;
   border-top: 2px solid var(--color-ink);
   padding-top: var(--space-md);
-  transition: border-color 0.2s;
+  transition: border-color 0.2s ease;
+}
+
+.work-card::before {
+  content: '';
+  position: absolute;
+  inset: calc(-1 * var(--space-md)) -1.15rem -1.15rem;
+  border-radius: 2px;
+  background: transparent;
+  transition: background-color 0.2s ease;
+  z-index: -1;
+}
+
+.work-card::after {
+  content: '';
+  position: absolute;
+  inset: calc(-1 * var(--space-md)) -1.15rem -1.15rem;
+  border: 1px solid transparent;
+  border-radius: 2px;
+  pointer-events: none;
+  transition: border-color 0.2s ease;
 }
 
 .work-card:hover {
-  border-color: var(--color-accent);
+  border-top-color: var(--color-accent);
+}
+
+.work-card:hover::before {
+  background: #fff;
+}
+
+.work-card:hover::after {
+  border-color: var(--color-rule-hover);
+}
+
+.work-card:hover .work-card__title {
+  color: var(--color-accent);
 }
 
 .work-card__number {
@@ -512,6 +546,7 @@ blockquote p {
   font-size: 1.22rem;
   font-weight: 500;
   margin: 0 0 var(--space-xs);
+  transition: color 0.2s ease;
 }
 
 .work-card__thesis {
@@ -523,6 +558,7 @@ blockquote p {
 }
 
 .work-card__image {
+  width: 100%;
   aspect-ratio: 16 / 10;
   object-fit: cover;
   object-position: top;
@@ -547,27 +583,48 @@ blockquote p {
 
 .work-depth {
   border-top: 1px solid var(--color-rule);
-  padding-block: var(--space-2xl) var(--space-xl);
+  padding-block: var(--space-xl) var(--space-xl);
 }
 
 .work-depth__link {
+  position: relative;
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(12rem, 22rem);
+  grid-template-columns: minmax(0, 1fr) minmax(14rem, 22rem);
   gap: var(--space-lg) var(--space-xl);
   align-items: start;
   text-decoration: none;
   color: inherit;
-  max-width: 100%;
-  padding: 1.15rem 1.25rem;
-  margin-inline: -1.25rem;
-  border: 1px dashed transparent;
-  border-radius: 2px;
-  transition: border-color 0.2s ease, background-color 0.2s ease;
+  width: 100%;
+  margin: 0;
+  padding: 1.15rem;
 }
 
-.work-depth__link:hover {
-  border-color: var(--color-rule);
-  background: rgba(255, 255, 255, 0.35);
+.work-depth__link::before {
+  content: '';
+  position: absolute;
+  inset: 0 -1.15rem -1.15rem;
+  border-radius: 2px;
+  background: transparent;
+  transition: background-color 0.2s ease;
+  z-index: -1;
+}
+
+.work-depth__link::after {
+  content: '';
+  position: absolute;
+  inset: 0 -1.15rem -1.15rem;
+  border: 1px solid transparent;
+  border-radius: 2px;
+  pointer-events: none;
+  transition: border-color 0.2s ease;
+}
+
+.work-depth__link:hover::before {
+  background: #fff;
+}
+
+.work-depth__link:hover::after {
+  border-color: var(--color-rule-hover);
 }
 
 .work-depth__link:hover .work-depth__lead {
@@ -578,14 +635,8 @@ blockquote p {
   color: var(--color-ink);
 }
 
-.work-depth__link:hover .work-depth__image {
-  transform: translateY(-4px);
-  box-shadow: 0 10px 22px rgba(28, 28, 28, 0.14);
-}
-
 .work-depth__copy {
   max-width: 34rem;
-  padding-top: 0.15rem;
 }
 
 .work-depth__eyebrow {
@@ -647,14 +698,11 @@ blockquote p {
   display: block;
   justify-self: end;
   border: 1px solid var(--color-rule);
-  transition: transform 0.22s ease, box-shadow 0.22s ease;
 }
 
-@media (max-width: 800px) {
+@media (max-width: 900px) {
   .work-depth__link {
     grid-template-columns: 1fr;
-    margin-inline: 0;
-    padding-inline: 0;
   }
 
   .work-depth__image {

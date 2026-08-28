@@ -13,6 +13,7 @@
   <link rel="stylesheet" href="../css/site-shell.css?v=13">
   <link rel="stylesheet" href="../css/case-interior.css?v=11">
   <link rel="stylesheet" href="../css/case-story.css?v=75">
+  <link rel="stylesheet" href="../css/image-zoom.css?v=2">
   <script>
     window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
   </script>
@@ -180,14 +181,14 @@
             <div>
               <p class="story-pair__label">Industry standard</p>
               <div class="story-pair__frame" data-bob>
-                <img src="../assets/images/antare-curated/datagrid.png" alt="Typical DEMS datagrid" loading="lazy">
+                <img src="../assets/images/antare-curated/datagrid.png" alt="Typical DEMS datagrid" loading="lazy" data-zoom>
               </div>
               <p class="story-caption">A typical DEMS datagrid: fine for 5 events; useless for 500.</p>
             </div>
             <div>
               <p class="story-pair__label">Our first attempt</p>
               <div class="story-pair__frame" data-bob data-bob-delay="1">
-                <img src="../assets/images/antare-curated/antare-datagrid.png" alt="Antare datagrid iteration" loading="lazy">
+                <img src="../assets/images/antare-curated/antare-datagrid.png" alt="Antare datagrid iteration" loading="lazy" data-zoom>
               </div>
               <p class="story-caption">My first instinct was to improve what exists. Only then did I ask what else there could be.</p>
             </div>
@@ -358,11 +359,11 @@
           <div class="story-feeds-compact">
             <div data-bob>
               <p class="story-feeds-compact__tag">Chronological · all events</p>
-              <img src="../assets/images/antare-curated/feed-chrono.png" alt="Chronological feed mode" loading="lazy">
+              <img src="../assets/images/antare-curated/feed-chrono.png" alt="Chronological feed mode" loading="lazy" data-zoom>
             </div>
             <div data-bob data-bob-delay="1">
               <p class="story-feeds-compact__tag">Priority · concern + risk + critical</p>
-              <img src="../assets/images/antare-curated/feed-impact.png" alt="Priority feed mode" loading="lazy">
+              <img src="../assets/images/antare-curated/feed-impact.png" alt="Priority feed mode" loading="lazy" data-zoom>
             </div>
           </div>
           <p class="story-caption">Same org, same day - different job to be done.</p>
@@ -547,7 +548,7 @@
           <div class="story-block__lead">
             <span class="story-sec">§13</span>
             <div class="story-prose">
-              <h3>The feed shrinks; the product expands.</h3>
+              <h3>The feed shrinks but the product expands...</h3>
               <p>"Visibility creates obligation" gave us a strategy for building different intelligence surfaces for different kinds of information:</p>
             </div>
           </div>
@@ -577,16 +578,16 @@
             </div>
 
           <div class="story-compress" data-beat>
-            <p class="story-compress__intro">Compression techniques - click any fragment to expand</p>
+            <p class="story-compress__intro">Different surfaces for different kinds of information - click to expand</p>
             <div class="story-compress__grid">
-              <button type="button" class="story-compress__tile" data-expand-src="../assets/images/antare-curated/dashboard.png" data-expand-alt="Dashboard full view" style="background-image: url('../assets/images/antare-curated/fragment-dashboard1.png');" aria-label="Dashboard fragment: overview metrics"></button>
-              <button type="button" class="story-compress__tile" data-expand-src="../assets/images/antare-curated/dashboard.png" data-expand-alt="Dashboard full view" style="background-image: url('../assets/images/antare-curated/fragment-dashboard2.png');" aria-label="Dashboard fragment: incident trends"></button>
-              <button type="button" class="story-compress__tile" data-expand-src="../assets/images/antare-curated/dashboard.png" data-expand-alt="Dashboard full view" style="background-image: url('../assets/images/antare-curated/fragment-dashboard3.png');" aria-label="Dashboard fragment: location breakdown"></button>
-              <button type="button" class="story-compress__tile" data-expand-src="../assets/images/antare-curated/dashboard.png" data-expand-alt="Dashboard full view" style="background-image: url('../assets/images/antare-curated/fragment-dashboard4.png');" aria-label="Dashboard fragment: severity distribution"></button>
-              <button type="button" class="story-compress__tile" data-expand-src="../assets/images/antare-curated/summary.png" data-expand-alt="Summary full view" style="background-image: url('../assets/images/antare-curated/fragment-summary1.png');" aria-label="Summary fragment: headline"></button>
-              <button type="button" class="story-compress__tile" data-expand-src="../assets/images/antare-curated/summary.png" data-expand-alt="Summary full view" style="background-image: url('../assets/images/antare-curated/fragment-summary2.png');" aria-label="Summary fragment: narrative"></button>
-              <button type="button" class="story-compress__tile" data-expand-src="../assets/images/antare-curated/summary.png" data-expand-alt="Summary full view" style="background-image: url('../assets/images/antare-curated/fragment-summary3.png');" aria-label="Summary fragment: key moments"></button>
-              <button type="button" class="story-compress__tile" data-expand-src="../assets/images/antare-curated/summary.png" data-expand-alt="Summary full view" style="background-image: url('../assets/images/antare-curated/fragment-summary4.png');" aria-label="Summary fragment: outcomes"></button>
+              <button type="button" class="story-compress__tile" data-zoom-src="../assets/images/antare-curated/zoom-dashboard1.png" data-zoom-alt="Dashboard: overview metrics" style="background-image: url('../assets/images/antare-curated/fragment-dashboard1.png');" aria-label="Dashboard fragment: overview metrics"></button>
+              <button type="button" class="story-compress__tile" data-zoom-src="../assets/images/antare-curated/zoom-dashboard2.png" data-zoom-alt="Dashboard: incident trends" style="background-image: url('../assets/images/antare-curated/fragment-dashboard2.png');" aria-label="Dashboard fragment: incident trends"></button>
+              <button type="button" class="story-compress__tile" data-zoom-src="../assets/images/antare-curated/zoom-dashboard3.png" data-zoom-alt="Dashboard: location breakdown" style="background-image: url('../assets/images/antare-curated/fragment-dashboard3.png');" aria-label="Dashboard fragment: location breakdown"></button>
+              <button type="button" class="story-compress__tile" data-zoom-src="../assets/images/antare-curated/zoom-dashboard4.png" data-zoom-alt="Dashboard: severity distribution" style="background-image: url('../assets/images/antare-curated/fragment-dashboard4.png');" aria-label="Dashboard fragment: severity distribution"></button>
+              <button type="button" class="story-compress__tile" data-zoom-src="../assets/images/antare-curated/zoom-summary1.png" data-zoom-alt="Summary: headline" style="background-image: url('../assets/images/antare-curated/zoom-summary1.png');" aria-label="Summary fragment: headline"></button>
+              <button type="button" class="story-compress__tile" data-zoom-src="../assets/images/antare-curated/zoom-summary2.png" data-zoom-alt="Summary: narrative" style="background-image: url('../assets/images/antare-curated/zoom-summary2.png');" aria-label="Summary fragment: narrative"></button>
+              <button type="button" class="story-compress__tile" data-zoom-src="../assets/images/antare-curated/zoom-summary3.png" data-zoom-alt="Summary: key moments" style="background-image: url('../assets/images/antare-curated/zoom-summary3.png');" aria-label="Summary fragment: key moments"></button>
+              <button type="button" class="story-compress__tile" data-zoom-src="../assets/images/antare-curated/zoom-summary4.png" data-zoom-alt="Summary: outcomes" style="background-image: url('../assets/images/antare-curated/fragment-summary4.png');" aria-label="Summary fragment: outcomes"></button>
             </div>
             <p class="story-caption">Dashboard for aggregated insights; summaries for human stories over time.</p>
           </div>
@@ -659,13 +660,13 @@
             <span class="work-card__number">Case Study 02</span>
             <h3 class="work-card__title">Citrix: The hidden cost of good intentions</h3>
             <p class="work-card__thesis">Behavioural science, organisational influence and an early experiment in sensitive Human-AI interaction.</p>
-            <img src="../assets/images/DONA-thumb.png" alt="" class="work-card__image" loading="lazy" width="336" height="210">
+            <img src="../assets/images/DONA-thumb.png" srcset="../assets/images/DONA-thumb-560w.png 560w, ../assets/images/DONA-thumb-840w.png 840w, ../assets/images/DONA-thumb.png 3202w" sizes="(min-width: 901px) calc((min(980px, 100vw - 4rem) - 5rem) / 3), 100vw" alt="" class="work-card__image" loading="lazy" width="336" height="210">
           </a>
           <a href="education.html" class="work-card">
             <span class="work-card__number">Case Study 03</span>
             <h3 class="work-card__title">VMware: Designing outside the product</h3>
             <p class="work-card__thesis">Poor conversion suggested we needed better premium features, but I looked elsewhere…</p>
-            <img src="../assets/images/VMware-thumb.png" alt="" class="work-card__image" loading="lazy" width="336" height="210">
+            <img src="../assets/images/VMware-thumb.png" srcset="../assets/images/VMware-thumb-560w.png 560w, ../assets/images/VMware-thumb-840w.png 840w, ../assets/images/VMware-thumb.png 3202w" sizes="(min-width: 901px) calc((min(980px, 100vw - 4rem) - 5rem) / 3), 100vw" alt="" class="work-card__image" loading="lazy" width="336" height="210">
           </a>
           <a href="design-in-depth.html" class="work-card work-card--depth">
             <span class="work-card__number">
@@ -677,26 +678,23 @@
             </span>
             <h3 class="work-card__title">Nine design should'ves</h3>
             <p class="work-card__thesis">The day-to-day craft: close-up decisions that don't make the big-story cut.</p>
-            <img src="../assets/images/design-in-depth/click-map-for-thumb.png" alt="" class="work-card__image" loading="lazy" width="336" height="210">
+            <img src="../assets/images/design-in-depth/click-map-for-thumb.png" srcset="../assets/images/design-in-depth/click-map-for-thumb-560w.png 560w, ../assets/images/design-in-depth/click-map-for-thumb-840w.png 840w, ../assets/images/design-in-depth/click-map-for-thumb.png 1600w" sizes="(min-width: 901px) calc((min(980px, 100vw - 4rem) - 5rem) / 3), 100vw" alt="" class="work-card__image" loading="lazy" width="336" height="210">
           </a>
         </div>
       </div>
     </section>
   </main>
 
-  <dialog id="story-expand-dialog" class="story-expand">
-    <img src="" alt="">
-  </dialog>
-
   <footer class="cx-footer site-footer">
     <div class="container cx-footer__inner">
       <p>Andrew Sheerin - Product Design Leader</p>
-      <p><a href="../contact/">Contact</a> | <a href="../assets/cv/andrew-sheerin-cv-august-2026.pdf">CV</a></p>
+      <p><a href="../contact/">Contact</a> | <a href="../assets/cv/andrew-sheerin-cv-2026.pdf">CV</a></p>
     </div>
   </footer>
 
   <script src="../js/play-ribbon.js?v=7"></script>
-  <script src="../js/case-story.js?v=43"></script>
+  <script src="../js/image-zoom.js?v=2"></script>
+  <script src="../js/case-story.js?v=44"></script>
   <script src="../js/mobile-nav.js?v=1"></script>
 </body>
 </html>

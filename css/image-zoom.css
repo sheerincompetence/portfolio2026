@@ -2,6 +2,7 @@
 
 img[data-zoom],
 [data-zoom-src],
+[data-expand-src],
 .zoomable img {
   cursor: zoom-in;
 }
@@ -53,6 +54,7 @@ body.is-image-zoom-open .image-zoom-dialog * {
 @media (prefers-reduced-motion: reduce) {
   img[data-zoom],
   [data-zoom-src],
+  [data-expand-src],
   .zoomable img {
     cursor: pointer;
   }

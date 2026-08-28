@@ -1,11 +1,13 @@
 /**
  * Universal image zoom — opt in with data-zoom on img or data-zoom-src on a control.
+ * Legacy case studies may still use data-expand-src / data-expand-alt (same behaviour).
  * Hover: zoom-in cursor. Click: native-size overlay. Click overlay: close (zoom-out cursor).
  */
 (function () {
   var dialog = null;
   var dialogImg = null;
   var lastTrigger = null;
+  var TRIGGER_SELECTOR = 'img[data-zoom], [data-zoom-src], [data-expand-src]';
 
   function ensureDialog() {
     if (dialog) return;
@@ -66,8 +68,8 @@
     }
 
     return {
-      src: node.getAttribute('data-zoom-src') || '',
-      alt: node.getAttribute('data-zoom-alt') || ''
+      src: node.getAttribute('data-zoom-src') || node.getAttribute('data-expand-src') || '',
+      alt: node.getAttribute('data-zoom-alt') || node.getAttribute('data-expand-alt') || ''
     };
   }
 
@@ -86,13 +88,19 @@
 
   function bindZoomables(root) {
     var scope = root || document;
-    scope.querySelectorAll('img[data-zoom], [data-zoom-src]').forEach(markZoomable);
+    scope.querySelectorAll(TRIGGER_SELECTOR).forEach(markZoomable);
+    scope.querySelectorAll('[data-zoom-page] img').forEach(function (img) {
+      if (!img.hasAttribute('data-zoom')) {
+        img.setAttribute('data-zoom', '');
+      }
+      markZoomable(img);
+    });
   }
 
   function handleClick(e) {
     if (isOpen()) return;
 
-    var trigger = e.target.closest('img[data-zoom], [data-zoom-src]');
+    var trigger = e.target.closest(TRIGGER_SELECTOR);
     if (!trigger) return;
 
     var source = getSource(trigger);
@@ -112,7 +120,7 @@
 
     if (e.key !== 'Enter' && e.key !== ' ') return;
 
-    var trigger = e.target.closest('img[data-zoom], [data-zoom-src]');
+    var trigger = e.target.closest(TRIGGER_SELECTOR);
     if (!trigger || isOpen()) return;
 
     e.preventDefault();

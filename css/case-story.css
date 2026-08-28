@@ -1723,25 +1723,6 @@
   margin-top: 1.75rem;
 }
 
-.story-expand {
-  border: none;
-  padding: 0;
-  margin: 0;
-  max-width: 95vw;
-  max-height: 90vh;
-  background: transparent;
-}
-
-.story-expand::backdrop {
-  background: rgba(0, 0, 0, 0.75);
-}
-
-.story-expand img {
-  max-width: 95vw;
-  max-height: 88vh;
-  object-fit: contain;
-}
-
 @media (max-width: 700px) {
   .story-compress__grid { grid-template-columns: repeat(2, 1fr); }
 }

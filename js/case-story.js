@@ -567,24 +567,6 @@
     });
   }
 
-  /* ——— Compression expand ——— */
-  function initCompress() {
-    var dialog = document.getElementById('story-expand-dialog');
-    var img = dialog && dialog.querySelector('img');
-    if (!dialog || !img) return;
-
-    document.querySelectorAll('[data-expand-src]').forEach(function (btn) {
-      btn.addEventListener('click', function () {
-        img.src = btn.getAttribute('data-expand-src');
-        img.alt = btn.getAttribute('data-expand-alt') || '';
-        dialog.showModal();
-      });
-    });
-
-    dialog.addEventListener('click', function (e) {
-      if (e.target === dialog) dialog.close();
-    });
-  }
 
   /* ——— Jump nav — instant scroll + scroll-margin anchors (smooth scroll drifts through sticky sequences) ——— */
   function scrollToJumpTarget(id) {
@@ -637,6 +619,5 @@
   initActVChapter();
   initPrinciple();
   initSurfaces();
-  initCompress();
   initJumps();
 })();
