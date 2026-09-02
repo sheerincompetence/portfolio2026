@@ -1,0 +1,15 @@
+# Dev tooling and config — not for public serving
+.cursor/
+.vscode/
+package.json
+bun.lock
+vercel.json
+
+# Build scripts — run at deploy time, not served
+scripts/
+
+# Internal notes and explorations
+notes/
+directions/
+components/
+slides/
