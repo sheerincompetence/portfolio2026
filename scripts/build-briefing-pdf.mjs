@@ -3,10 +3,9 @@
  * Print about/briefing.html to assets/briefing/andrew-sheerin-portfolio-briefing.pdf
  */
 
-import { mkdirSync } from 'fs';
+import { existsSync, mkdirSync } from 'fs';
 import { join } from 'path';
 import { pathToFileURL } from 'url';
-import { chromium } from 'playwright';
 import { SITE_ORIGIN } from './public-pages.mjs';
 
 const ROOT = new URL('..', import.meta.url).pathname;
@@ -14,6 +13,13 @@ const OUT_DIR = join(ROOT, 'assets/briefing');
 const OUT_PDF = join(OUT_DIR, 'andrew-sheerin-portfolio-briefing.pdf');
 const BRIEFING_HTML = join(ROOT, 'about/briefing.html');
 const BRIEFING_PAGE_URL = `${SITE_ORIGIN}/about/briefing.html`;
+
+function shouldSkipPdfBuild() {
+  if (process.env.SKIP_BRIEFING_PDF === '1') return true;
+  // Playwright needs OS libraries Vercel's build image does not provide.
+  if (process.env.VERCEL === '1') return true;
+  return false;
+}
 
 async function rewriteLinksForPdf(page) {
   await page.evaluate((pageUrl) => {
@@ -29,6 +35,17 @@ async function rewriteLinksForPdf(page) {
 export async function buildBriefingPdf() {
   mkdirSync(OUT_DIR, { recursive: true });
 
+  if (shouldSkipPdfBuild()) {
+    if (!existsSync(OUT_PDF)) {
+      throw new Error(
+        'Briefing PDF is missing. Run `bun run build:pdf` locally and commit assets/briefing/andrew-sheerin-portfolio-briefing.pdf.'
+      );
+    }
+    console.log('Skipping briefing PDF generation (using committed asset).');
+    return;
+  }
+
+  const { chromium } = await import('playwright');
   const browser = await chromium.launch();
   try {
     const page = await browser.newPage();
