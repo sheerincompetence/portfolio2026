@@ -1,15 +1,9 @@
-# Dev tooling and config — not for public serving
-.cursor/
-.vscode/
-package.json
-bun.lock
-vercel.json
-
-# Build scripts — run at deploy time, not served
-scripts/
-
-# Internal notes and explorations
+# Never upload — private notes and explorations
 notes/
 directions/
 components/
 slides/
+
+# Editor config
+.cursor/
+.vscode/
