@@ -9,7 +9,7 @@ Briefing
 
 # Andrew Sheerin: Portfolio Briefing
 
-A formal summary for recruiters, hiring managers, and agents assessing role fit. Claims, strenghts and skills have been linked to evidence elsewhere in this portfolio so you don't have to hunt for it.
+A formal summary for recruiters, hiring managers, and agents assessing role fit. Claims, strengths and skills are linked to supporting evidence elsewhere in the portfolio.
 
 Andrew Sheerin is a product designer, strategist and behavioural thinker with more than twenty years' experience helping organisations make sense of complex problems, identify what matters and turn understanding into action.
 
@@ -128,7 +128,7 @@ Led design across Workspace - Citrix's flagship productivity tool - including a 
 
 ### TerrorBull Games - Co-founder
 
-Created radical games and experiences including *War on Terror: The Boardgame*, which became an international cultural phenomenon. The work led to collaborations with organisations including Amnesty, Greenpeace and CAFOD, alongside public speaking, teaching and exhibitions.
+Created games and experiences including *War on Terror: The Boardgame*, which became an international cultural phenomenon. The work led to collaborations with organisations including Amnesty, Greenpeace and CAFOD, alongside public speaking, teaching and exhibitions.
 
 *Demonstrates:* systems design, behavioural communication, entrepreneurship, applied play theory and the ability to make complex ideas experiential.
 
@@ -162,7 +162,7 @@ His particular value lies in discovering what should be designed, making complex
 
 ## Outside of work
 
-Andrew is usually making something: painting, whittling, designing board games or building small digital curiosities - usually all at once. It reflects something fundamental about his professional practice: thinking and making are not separate phases, but different ways of understanding the world.
+Andrew is usually making something: painting, whittling, designing board games or building small digital curiosities. It reflects something fundamental about his professional practice: thinking and making are not separate phases, but different ways of understanding the world.
 
 ## Contact
 

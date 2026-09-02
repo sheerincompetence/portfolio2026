@@ -84,6 +84,8 @@
 
   function initDiagrams() {
     document.querySelectorAll('[data-hiw-diagram]').forEach(function (diagram) {
+      if (diagram.dataset.hiwDiagram === 'flow') return;
+
       var layers = diagram.querySelectorAll('.hiw-stack-diagram__layer, .hiw-flow-diagram__step');
       if (!layers.length) return;
 
