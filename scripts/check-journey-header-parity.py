@@ -19,8 +19,8 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-LAYOUT_LOCK = ROOT / "directions/04-clarity/css/clarity-layout-lock.css"
-LAYOUT_MOBILE = ROOT / "directions/04-clarity/css/clarity-layout-mobile.css"
+LAYOUT_LOCK = ROOT / "css/clarity-journey/clarity-layout-lock.css"
+LAYOUT_MOBILE = ROOT / "css/clarity-journey/clarity-layout-mobile.css"
 INDEX = ROOT / "index.html"
 RIBBON = ROOT / "js/play-ribbon.js"
 MAX_LAYOUT_LOCK_LINES = 320
@@ -29,7 +29,7 @@ MAX_LAYOUT_LOCK_LINES = 320
 def git_show_main_layout_lock() -> str | None:
     try:
         return subprocess.check_output(
-            ["git", "show", "main:directions/04-clarity/css/clarity-layout-lock.css"],
+            ["git", "show", "main:css/clarity-journey/clarity-layout-lock.css"],
             cwd=ROOT,
             text=True,
         )
@@ -63,7 +63,7 @@ def main() -> int:
             errors.append("clarity-layout-lock.css has broken .cx-rest-panel__cta, rule (mobile block leak).")
 
     if not LAYOUT_MOBILE.is_file():
-        errors.append("Missing directions/04-clarity/css/clarity-layout-mobile.css")
+        errors.append("Missing css/clarity-journey/clarity-layout-mobile.css")
 
     index = INDEX.read_text() if INDEX.is_file() else ""
     if "clarity-layout-mobile.css" not in index:

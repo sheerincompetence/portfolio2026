@@ -1,18 +1,5 @@
-# Direction explorations — not production
-directions/01-swiss/
-directions/02-casefile/
-directions/03-playful/
-directions/05-graphic/
-directions/index.html
-directions/reference-home.html
-directions/hiw-naming-flow-options.html
-
-# 04-clarity HTML prototypes — CSS/JS still required by production homepage
-directions/04-clarity/*.html
-directions/04-clarity/MILESTONES.md
-directions/04-clarity/URGENCY-PARKED.md
-
-# Other private / dev-only folders
+# Explorations and internal notes — not production
+directions/
 notes/
 components/
 slides/
