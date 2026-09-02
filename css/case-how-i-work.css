@@ -175,6 +175,11 @@ body.hiw .depth-field {
   margin-top: 0;
 }
 
+#designing-the-design,
+#self-disruptive-flows {
+  scroll-margin-top: calc(var(--play-ribbon-h, 0px) + var(--cx-shell-header-h, 5.111rem) + 2.5rem);
+}
+
 /* ——— Diagrams ——— */
 
 .hiw-stack-diagram,

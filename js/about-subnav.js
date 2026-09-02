@@ -35,6 +35,10 @@
 
     function setFloorColor() {
       var content = bar.nextElementSibling;
+      if (content) {
+        var section = content.querySelector(':scope > .section');
+        if (section) content = section;
+      }
       bar.style.setProperty('--about-rail-floor', readFloorColor(content));
     }
 

@@ -1,0 +1,38 @@
+# Andrew Sheerin
+
+> Product Design Leader. I translate ideas into understanding.
+
+Plain-text mirrors of the public portfolio for crawlers, ATS tools, and AI agents.
+Start with the briefing doc for role-fit assessment; use page mirrors for deeper evidence.
+
+## Briefing (start here)
+
+- [Portfolio Briefing](https://andrewsheerin.com/llms/about-briefing.md): Formal role-fit summary for recruiters and agents, with links to evidence for each claim.
+- [Portfolio Briefing (HTML)](https://andrewsheerin.com/about/briefing.html)
+
+- [Portfolio Briefing (PDF)](https://andrewsheerin.com/assets/briefing/andrew-sheerin-portfolio-briefing.pdf)
+
+- [Portfolio Briefing (Markdown download)](https://andrewsheerin.com/assets/briefing/andrew-sheerin-portfolio-briefing.md)
+
+## Pages
+
+- [Home](https://andrewsheerin.com/llms/home.md): Product design leader - editorial AI, behavioural design, and clarity from complexity.
+- [Work](https://andrewsheerin.com/llms/work.md): Selected case studies: Antare, Citrix DONA, and VMware RabbitMQ.
+- [Antare: Compressing Reality](https://andrewsheerin.com/llms/work-antare.md): Editorial intelligence for AI-generated incident feeds at Antare.
+- [Citrix: The Hidden Cost of Good Intentions](https://andrewsheerin.com/llms/work-dona.md): Wellbeing meets productivity - behavioural science and Human-AI interaction at Citrix.
+- [VMware: Designing Outside the Product](https://andrewsheerin.com/llms/work-education.md): RabbitMQ conversion - when the problem lived in education and enablement, not the product.
+- [Design in Depth](https://andrewsheerin.com/llms/work-design-in-depth.md): Field notes on Antare event card decisions - density, affordances, and delayed corrections.
+- [About](https://andrewsheerin.com/llms/about.md): Background, approach, and path from TerrorBull Games to product design leadership.
+- [How I Work](https://andrewsheerin.com/llms/about-how-i-work.md): Four practices: ambiguity, shared understanding, naming hidden things, partnering with AI.
+- [Origins](https://andrewsheerin.com/llms/about-origins.md): Before product design - TerrorBull Games, War on Terror, and persuasive communication through play.
+- [Contact](https://andrewsheerin.com/llms/contact.md): Email, LinkedIn, and CV download.
+
+## CV
+
+- [Portfolio Briefing (PDF)](https://andrewsheerin.com/assets/briefing/andrew-sheerin-portfolio-briefing.pdf): Generated briefing for recruiters and agents.
+- [Portfolio Briefing (Markdown)](https://andrewsheerin.com/assets/briefing/andrew-sheerin-portfolio-briefing.md): Generated markdown briefing for recruiters and agents.
+- [CV (PDF, 2026)](https://andrewsheerin.com/assets/cv/andrew-sheerin-cv-2026.pdf): Andrew Sheerin - Design Lead CV.
+
+## Optional
+
+- [Sitemap](https://andrewsheerin.com/sitemap.xml)

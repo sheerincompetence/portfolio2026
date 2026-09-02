@@ -1,3 +1,21 @@
-# Private portfolio — do not index
+# Production portfolio — index public pages; keep sandboxes private
 User-agent: *
-Disallow: /
+Allow: /
+
+Disallow: /directions/
+Disallow: /components/
+Disallow: /slides/
+Disallow: /work/exhibits/
+Disallow: /work/antare-directions/
+Disallow: /work/antare-revelation.html
+Disallow: /work/antare-structured.html
+Disallow: /work/antare-visual.html
+Disallow: /about/how-i-work-depth.html
+Disallow: /about/how-i-work-story.html
+Disallow: /about/how-i-work-compare.html
+
+Sitemap: https://andrewsheerin.com/sitemap.xml
+
+# Plain-text mirrors for crawlers and AI agents
+# https://llmstxt.org/
+# LLMs: https://andrewsheerin.com/llms.txt
