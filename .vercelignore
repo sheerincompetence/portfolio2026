@@ -1,6 +1,10 @@
-# Never upload — private notes and explorations
+# Explorations — block from deploy; except clarity journey assets used by production homepage
+directions/**
+!directions/04-clarity/css/**
+!directions/04-clarity/js/**
+
+# Other private / dev-only folders
 notes/
-directions/
 components/
 slides/
 
