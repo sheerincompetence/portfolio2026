@@ -1,6 +1,12 @@
 {
   "buildCommand": "bun run build && rm -rf scripts && rm -f package.json bun.lock",
   "outputDirectory": ".",
+  "git": {
+    "deploymentEnabled": {
+      "main": true,
+      "*": false
+    }
+  },
   "headers": [
     {
       "source": "/directions/:path*",
