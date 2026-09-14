@@ -4,6 +4,9 @@ notes/
 components/
 slides/
 
+# Unused source assets (kept in git, not deployed)
+assets/images/_not-used/
+
 # Editor config
 .cursor/
 .vscode/
